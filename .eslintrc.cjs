@@ -1,7 +1,5 @@
 module.exports = {
   extends: [
-    'airbnb',
-    'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:import/errors',
@@ -24,16 +22,18 @@ module.exports = {
       version: 'detect',
     },
     'import/resolver': {
-      node: {
-        paths: ['src'],
+      alias: {
+        map: [['@', './src']],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
-      alias: [['@', './src']],
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
   },
   rules: {
     'prettier/prettier': 'error',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }], // 추가
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -44,5 +44,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
   },
 };

@@ -19,6 +19,7 @@
           'primary-babyblue': '#DBEAFF',
           'primary-bluegray': '#DFE5F6',
           'primary-cobaltblue': '#C5F0FF',
+          'primary-berrypurple': '#5845F3',
           'background-lightgray': '#EFF0F1',
           'background-lightblue': '#E0EAFF',
           'opacity-30': 'rgba(0, 0, 0, 0.30)',
@@ -125,6 +126,14 @@
             '20px',
             { lineHeight: '32px', fontWeight: '400' },
           ],
+          'detail-3-semibold': [
+            '16px',
+            { lineHeight: '20px', fontWeight: '600' },
+          ],
+          'detail-3-regular': [
+            '16px',
+            { lineHeight: '20px', fontWeight: '400' },
+          ],
         },
         spacing: {
           // 여백 정의
@@ -149,6 +158,10 @@
           1800: '72px',
           1900: '76px',
           2000: '80px',
+          2500: '112px',
+          2900: '140px',
+          3000: '180px',
+          4000: '200px',
         },
       },
     },
