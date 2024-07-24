@@ -17,7 +17,7 @@ function Header() {
   };
 
   return (
-    <header className="flex justify-between bg-transparent px-3000 py-500">
+    <header className="absolute flex justify-between w-screen bg-transparent px-3000 py-500">
       <span className="flex items-center justify-center text-detail-1-bold text-neutral-black">
         CASPER ELECTRONIC
       </span>

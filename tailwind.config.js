@@ -38,102 +38,292 @@
           'gradient-lightblue-white':
             'linear-gradient(90deg, #E0EAFF 0%, #FFF 100%)',
         },
-        fontFamily: { pretendard: ['"Pretendard Variable"', 'sans-serif'] }, // 폰트 정의
+        fontFamily: { poppins: ['"Poppins"', 'sans-serif'] },
         fontSize: {
           // 폰트 크기 정의
-          'heading-1-bold': ['48px', { lineHeight: '70px', fontWeight: '700' }],
+          'heading-banner-title': [
+            '88px',
+            {
+              lineHeight: '100px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'heading-banner-title-2': [
+            '80px',
+            {
+              lineHeight: '90px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'heading-1-bold': [
+            '48px',
+            {
+              lineHeight: '70px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'heading-1-semibold': [
             '48px',
-            { lineHeight: '70px', fontWeight: '600' },
+            {
+              lineHeight: '70px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'heading-1-medium': [
             '48px',
-            { lineHeight: '70px', fontWeight: '500' },
+            {
+              lineHeight: '70px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'heading-1-regular': [
             '48px',
-            { lineHeight: '70px', fontWeight: '400' },
+            {
+              lineHeight: '70px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
-          'heading-2-bold': ['44px', { lineHeight: '70px', fontWeight: '700' }],
+          'heading-2-bold': [
+            '44px',
+            {
+              lineHeight: '70px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'heading-2-semibold': [
             '44px',
-            { lineHeight: '70px', fontWeight: '600' },
+            {
+              lineHeight: '70px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'heading-2-medium': [
             '44px',
-            { lineHeight: '70px', fontWeight: '500' },
+            {
+              lineHeight: '70px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'heading-2-regular': [
             '44px',
-            { lineHeight: '70px', fontWeight: '400' },
+            {
+              lineHeight: '70px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
-          'heading-3-bold': ['40px', { lineHeight: '70px', fontWeight: '700' }],
+          'heading-3-bold': [
+            '40px',
+            {
+              lineHeight: '70px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'heading-3-semibold': [
             '40px',
-            { lineHeight: '70px', fontWeight: '600' },
+            {
+              lineHeight: '70px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'heading-3-medium': [
             '40px',
-            { lineHeight: '70px', fontWeight: '500' },
+            {
+              lineHeight: '70px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'heading-3-regular': [
             '40px',
-            { lineHeight: '70px', fontWeight: '400' },
+            {
+              lineHeight: '70px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
-          'body-1-bold': ['36px', { lineHeight: '54px', fontWeight: '700' }],
+          'body-1-bold': [
+            '36px',
+            {
+              lineHeight: '54px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'body-1-semibold': [
             '36px',
             { lineHeight: '54px', fontWeight: '600' },
           ],
-          'body-1-medium': ['36px', { lineHeight: '54px', fontWeight: '500' }],
-          'body-1-regular': ['36px', { lineHeight: '54px', fontWeight: '400' }],
-          'body-2-bold': ['32px', { lineHeight: '54px', fontWeight: '700' }],
+          'body-1-medium': [
+            '36px',
+            {
+              lineHeight: '54px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'body-1-regular': [
+            '36px',
+            {
+              lineHeight: '54px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'body-2-bold': [
+            '32px',
+            {
+              lineHeight: '54px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'body-2-semibold': [
             '32px',
-            { lineHeight: '54px', fontWeight: '600' },
+            {
+              lineHeight: '54px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
-          'body-2-medium': ['32px', { lineHeight: '54px', fontWeight: '500' }],
-          'body-2-regular': ['32px', { lineHeight: '54px', fontWeight: '400' }],
-          'body-3-bold': ['28px', { lineHeight: '54px', fontWeight: '700' }],
+          'body-2-medium': [
+            '32px',
+            {
+              lineHeight: '54px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'body-2-regular': [
+            '32px',
+            {
+              lineHeight: '54px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'body-3-bold': [
+            '28px',
+            {
+              lineHeight: '54px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'body-3-semibold': [
             '28px',
-            { lineHeight: '54px', fontWeight: '600' },
+            {
+              lineHeight: '54px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
-          'body-3-medium': ['28px', { lineHeight: '54px', fontWeight: '500' }],
-          'body-3-regular': ['28px', { lineHeight: '54px', fontWeight: '400' }],
-          'detail-1-bold': ['24px', { lineHeight: '36px', fontWeight: '700' }],
+          'body-3-medium': [
+            '28px',
+            {
+              lineHeight: '54px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'body-3-regular': [
+            '28px',
+            {
+              lineHeight: '54px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
+          'detail-1-bold': [
+            '24px',
+            {
+              lineHeight: '36px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'detail-1-semibold': [
             '24px',
-            { lineHeight: '36px', fontWeight: '600' },
+            {
+              lineHeight: '36px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'detail-1-medium': [
             '24px',
-            { lineHeight: '36px', fontWeight: '500' },
+            {
+              lineHeight: '36px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'detail-1-regular': [
             '24px',
-            { lineHeight: '36px', fontWeight: '400' },
+            {
+              lineHeight: '36px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
-          'detail-2-bold': ['20px', { lineHeight: '32px', fontWeight: '700' }],
+          'detail-2-bold': [
+            '20px',
+            {
+              lineHeight: '32px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'detail-2-semibold': [
             '20px',
-            { lineHeight: '32px', fontWeight: '600' },
+            {
+              lineHeight: '32px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'detail-2-medium': [
             '20px',
-            { lineHeight: '32px', fontWeight: '500' },
+            {
+              lineHeight: '32px',
+              fontWeight: '500',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'detail-2-regular': [
             '20px',
-            { lineHeight: '32px', fontWeight: '400' },
+            {
+              lineHeight: '32px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'detail-3-semibold': [
             '16px',
-            { lineHeight: '20px', fontWeight: '600' },
+            {
+              lineHeight: '20px',
+              fontWeight: '600',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
           'detail-3-regular': [
             '16px',
-            { lineHeight: '20px', fontWeight: '400' },
+            {
+              lineHeight: '20px',
+              fontWeight: '400',
+              fontFamily: 'Pretendard Variable',
+            },
           ],
         },
         spacing: {
@@ -163,6 +353,8 @@
           2900: '140px',
           3000: '180px',
           4000: '200px',
+          5000: '240px',
+          6000: '360px',
         },
       },
     },

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '@/context/authContext';
 import isValidPhoneNumber from '@/utils/isValidPhoneNumber';
-import modalClose from '@/assets/modalClose.svg';
+import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
 
 function PhoneInputModal({ closePhoneModal }) {
