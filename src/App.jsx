@@ -1,16 +1,17 @@
 import React from 'react';
 import { TabProvider } from '@/context/tabContext';
 import { AuthProvider } from '@/context/authContext';
-import { Footer } from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
+import { Footer } from '@/components/footer/Footer';
+import EventIntro from '@/pages/eventIntro/eventIntro';
 
 function App() {
   return (
-    <div>
+    <div className="relative min-w-[1280px]">
       <AuthProvider>
         <TabProvider>
           <Header />
-          ddd
+          <EventIntro />
         </TabProvider>
       </AuthProvider>
       <Footer />
