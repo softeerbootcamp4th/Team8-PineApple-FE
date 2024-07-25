@@ -5,6 +5,7 @@ import PhoneInputModal from '@/components/modal/PhoneInputModal';
 
 function Header() {
   const { activeTab, setActiveTab } = useContext(TabContext);
+
   const { phoneNumber } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
 
@@ -17,14 +18,14 @@ function Header() {
   };
 
   return (
-    <header className="absolute flex justify-between w-screen bg-transparent px-3000 py-500">
-      <span className="flex items-center justify-center text-detail-1-bold text-neutral-black">
+    <header className="absolute flex justify-between w-full bg-transparent px-3000 py-500">
+      <span className="flex items-center justify-center text-detail-1-bold text-neutral-black text-nowrap">
         CASPER ELECTRONIC
       </span>
       <div className="flex items-center justify-between">
         <button
           onClick={() => setActiveTab('introduce')}
-          className={`${
+          className={`text-nowrap ${
             activeTab === 'introduce'
               ? 'text-detail-1-bold'
               : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
@@ -35,7 +36,7 @@ function Header() {
         </button>
         <button
           onClick={() => setActiveTab('join')}
-          className={`${
+          className={`text-nowrap ${
             activeTab === 'join'
               ? 'text-detail-1-bold'
               : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
@@ -46,7 +47,7 @@ function Header() {
         </button>
         <button
           onClick={() => setActiveTab('newCarIntro')}
-          className={`${
+          className={` text-nowrap ${
             activeTab === 'newCarIntro'
               ? 'text-detail-1-bold'
               : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
@@ -59,12 +60,12 @@ function Header() {
       {phoneNumber === '' ? (
         <button
           onClick={openPhoneModal}
-          className="w-[140px] h-[44px] flex justify-center items-center bg-primary-blue text-neutral-white text-detail-3-regular rounded-full font-pretendard pt-[2px]"
+          className="text-nowrap w-[140px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full"
         >
           전화번호 입력하기
         </button>
       ) : (
-        <div className="w-[140px] h-[44px] flex justify-center items-center bg-primary-blue text-neutral-white text-detail-3-regular rounded-full font-pretendard pt-[2px]">
+        <div className="text-nowrap w-[140px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full">
           {phoneNumber}
         </div>
       )}

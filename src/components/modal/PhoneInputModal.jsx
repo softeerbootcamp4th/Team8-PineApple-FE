@@ -21,7 +21,7 @@ function PhoneInputModal({ closePhoneModal }) {
     }
   };
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black z-[100]">
       <div className="bg-neutral-white w-[900px] h-[500px] pt-[105px] pb-[67px] flex flex-col justify-between items-center relative rounded-[20px]">
         <button
           onClick={closePhoneModal}
@@ -29,7 +29,7 @@ function PhoneInputModal({ closePhoneModal }) {
         >
           <img src={modalClose} alt="Close" />
         </button>
-        <span className="text-body-2-bold font-pretendard text-neutral-black">
+        <span className="text-body-2-bold text-neutral-black">
           핸드폰 번호를 입력해주세요
         </span>
         <input
