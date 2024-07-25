@@ -5,7 +5,7 @@ import casperCarImageShadow from '@/assets/icons/casperCarImageShadow.svg';
 import { TabContext } from '@/context/tabContext';
 
 function EventIntroMain() {
-  const { activeTab, setActiveTab } = useContext(TabContext);
+  const [activeTab, setActiveTab] = useContext(TabContext);
   const handleMoveJoin = () => {
     setActiveTab('join');
   };

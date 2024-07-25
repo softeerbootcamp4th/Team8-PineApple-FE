@@ -4,8 +4,8 @@ import { AuthContext } from '@/context/authContext';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 
 function Header() {
-  const { activeTab, setActiveTab } = useContext(TabContext);
-  const { phoneNumber } = useContext(AuthContext);
+  const [activeTab, setActiveTab] = useContext(TabContext);
+  const [phoneNumber] = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
 
   const openPhoneModal = () => {

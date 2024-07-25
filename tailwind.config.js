@@ -5,6 +5,9 @@
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
       extend: {
+        backgroundImage: {
+          'hero-pattern': "url('/src/assets/images/background.svg')",
+        },
         colors: {
           // 색상 정의
           'neutral-black': '#000000',

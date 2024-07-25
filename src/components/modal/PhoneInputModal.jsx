@@ -5,7 +5,7 @@ import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
 
 function PhoneInputModal({ closePhoneModal }) {
-  const { phoneNumber, setPhoneNumber } = useContext(AuthContext);
+  const [phoneNumber, setPhoneNumber] = useContext(AuthContext);
   const [inputPhone, setInputPhone] = useState('');
   const [isInvalid, setIsValid] = useState(false);
   const handleInputText = e => {
