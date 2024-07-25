@@ -22,9 +22,6 @@
           'primary-berrypurple': '#5845F3',
           'background-lightgray': '#EFF0F1',
           'background-lightblue': '#E0EAFF',
-          'opacity-30': 'rgba(0, 0, 0, 0.30)',
-          'opacity-50': 'rgba(0, 0, 0, 0.50)',
-          'opacity-75': 'rgba(0, 0, 0, 0.75)',
           'shadow-bluepurple': '#D4D3E3',
         },
         backgroundImage: {
