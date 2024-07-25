@@ -28,6 +28,8 @@
           'shadow-bluepurple': '#D4D3E3',
         },
         backgroundImage: {
+          //그림 배경 정의
+          'new-car-intro': "url('./src/assets/images/newCarIntroBg.svg')",
           // 그라데이션 색상 정의
           'gradient-blue-purple':
             'linear-gradient(90deg, #0128FF 0%, #AD00FF 100%)',
