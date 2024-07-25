@@ -7,7 +7,7 @@ export const TabProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState('introduce');
 
   return (
-    <TabContext.Provider value={[activeTab, setActiveTab]}>
+    <TabContext.Provider value={{ activeTab, setActiveTab }}>
       {children}
     </TabContext.Provider>
   );
