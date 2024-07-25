@@ -6,7 +6,7 @@
     theme: {
       extend: {
         backgroundImage: {
-          'hero-pattern': "url('/src/assets/images/background.svg')",
+          'new-car-intro': "url('/src/assets/images/background.svg')",
         },
         colors: {
           // 색상 정의
