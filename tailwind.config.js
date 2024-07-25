@@ -5,9 +5,6 @@
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
       extend: {
-        backgroundImage: {
-          'new-car-intro': "url('/src/assets/images/background.svg')",
-        },
         colors: {
           // 색상 정의
           'neutral-black': '#000000',
@@ -31,6 +28,8 @@
           'shadow-bluepurple': '#D4D3E3',
         },
         backgroundImage: {
+          //그림 배경 정의
+          'new-car-intro': "url('./src/assets/images/newCarIntroBg.svg')",
           // 그라데이션 색상 정의
           'gradient-blue-purple':
             'linear-gradient(90deg, #0128FF 0%, #AD00FF 100%)',
