@@ -1,25 +1,17 @@
-import React, { useContext, useEffect } from 'react';
-import { TabProvider, TabContext } from '@/context/tabContext';
+import React from 'react';
+import { TabProvider } from '@/context/tabContext';
 import { AuthProvider } from '@/context/authContext';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
-import EventIntro from '@/pages/eventIntro/eventIntro';
-import NewCarIntro from '@/pages/newCarIntro/NewCarIntro';
+import MainContent from '@/pages/MainContent';
 
 function App() {
-  // const [activeTab, setActiveTab] = useContext(TabContext); // TabContext 사용
-  // useEffect(() => {
-  //   setActiveTab('introduce');
-  // }, []);
-
   return (
-    <div className="relative">
+    <div className="relative min-w-[1720px]">
       <AuthProvider>
         <TabProvider>
           <Header />
-          <EventIntro />
-          {/* {activeTab === 'join' && <JoinEvent />} */}
-          {/* {activeTab === 'newCarIntro' && <NewCarIntro />} */}
+          <MainContent />
         </TabProvider>
       </AuthProvider>
       <Footer />
