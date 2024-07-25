@@ -7,9 +7,11 @@
 2. [기술 스택](#기술-스택)
 3. [프로젝트 구조](#프로젝트-구조)
 4. [컨벤션](#컨벤션)
-5. [Notion 주소](#Notion-주소)
-6. [주요 기능](#주요-기능)
-7. [배포 주소](#배포-주소)
+5. [1차 발표 pdf 링크](#1차-발표-pdf-링크)
+6. [Notion 주소](#Notion-주소)
+7. [주요 기능](#주요-기능)
+8. [배포 주소](#배포-주소)
+
 ## 프로젝트 소개
 이 프로젝트는 소프티어 부트캠프 4기 최종 프로젝트
 ## 기술 스택
@@ -106,6 +108,9 @@ feat/#27/Button
 <!-- 예시 -->
 feat : #27/Component Base - Button 기능 개발
 ```
+
+## 1차 발표 pdf 링크
+> https://nbviewer.org/github/softeerbootcamp4th/Team8-PineApple-FE/blob/main/team8_%EB%B0%9F%EC%9C%BC%EC%8B%A4%EC%88%98%EC%88%98%EC%88%B2_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C%EC%B4%88%EC%95%88.pdf
 
 ## Notion 주소
 ```
