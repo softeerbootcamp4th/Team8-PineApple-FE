@@ -42,7 +42,7 @@ const detailData = [
 function NewCarDetail() {
   return (
     <>
-      <div className="flex mx-5000">
+      <div className="flex px-5000">
         <div>
           <div className="text-primary-berrypurple text-body-2-regular">
             1회 충전 주행 가능 거리
