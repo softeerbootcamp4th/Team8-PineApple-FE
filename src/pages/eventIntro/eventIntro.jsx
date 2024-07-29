@@ -7,7 +7,7 @@ function EventIntro() {
   return (
     <>
       <EventMainIntro />
-      <div className="bg-gradient-cobaltblue-white">
+      <div className="bg-gradient-lightblue-white-vertical">
         <EventIntroNav />
         <EventIntroRewards />
       </div>
