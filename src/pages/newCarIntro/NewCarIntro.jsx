@@ -1,6 +1,7 @@
 import React from 'react';
 import NewCarIntroMain from '@/pages/newCarIntro/NewCarIntroMain';
-import NewCarCarousel from './newCarCarousel';
+import NewCarCarousel from '@/pages/newCarIntro/NewCarCarousel';
+import NewCarDetail from '@/pages/newCarIntro/NewCarDetail';
 
 function NewCarIntro() {
   return (
@@ -8,6 +9,7 @@ function NewCarIntro() {
       <NewCarIntroMain />
       <div className="pt-2500 bg-gradient-lightblue-white-vertical">
         <NewCarCarousel />
+        <NewCarDetail />
       </div>
     </>
   );
