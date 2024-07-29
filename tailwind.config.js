@@ -36,6 +36,8 @@
             'linear-gradient(90deg, #8285F6 0%, #C5F0FF 100%)',
           'gradient-lightblue-white':
             'linear-gradient(90deg, #E0EAFF 0%, #FFF 100%)',
+          'gradient-lightblue-white-vertical':
+            'linear-gradient(180deg, #E0EAFF 0%, #FFF 100%)',
         },
         fontFamily: { poppins: ['"Poppins"', 'sans-serif'] },
         fontSize: {

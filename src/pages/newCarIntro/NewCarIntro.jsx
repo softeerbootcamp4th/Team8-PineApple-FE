@@ -1,11 +1,14 @@
 import React from 'react';
 import NewCarIntroMain from '@/pages/newCarIntro/NewCarIntroMain';
-import Footer from '@/components/footer/Footer';
+import NewCarCarousel from './newCarCarousel';
 
 function NewCarIntro() {
   return (
     <>
       <NewCarIntroMain />
+      <div className="pt-2500 bg-gradient-lightblue-white-vertical">
+        <NewCarCarousel />
+      </div>
     </>
   );
 }

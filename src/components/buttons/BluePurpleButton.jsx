@@ -17,4 +17,4 @@ BluePurpleButton.propTypes = {
   onClickFunc: PropTypes.func.isRequired,
 };
 
-export default BluePurpleButton;
+export default React.memo(BluePurpleButton);

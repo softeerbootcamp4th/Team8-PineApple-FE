@@ -18,4 +18,5 @@ BlueButton.propTypes = {
   onClickFunc: PropTypes.func.isRequired,
 };
 
-export default BlueButton;
+//memo를 이용하여 rerender 방지
+export default React.memo(BlueButton);
