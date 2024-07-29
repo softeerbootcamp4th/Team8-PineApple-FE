@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import EventIntro from '@/pages/eventIntro/EventIntro';
-// import JoinEvent from '@/pages/joinEvent/JoinEvent';
+import JoinEventIntro from '@/pages/joinEvent/JoinEventIntro';
 import NewCarIntro from '@/pages/newCarIntro/NewCarIntro';
 import { TabContext } from '@/context/tabContext';
 
@@ -12,7 +12,7 @@ function MainContent() {
   return (
     <>
       {activeTab === 'introduce' && <EventIntro />}
-      {/* {activeTab === 'join' && <JoinEvent />} */}
+      {activeTab === 'join' && <JoinEventIntro />}
       {activeTab === 'newCarIntro' && <NewCarIntro />}
     </>
   );
