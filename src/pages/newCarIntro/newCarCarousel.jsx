@@ -17,8 +17,8 @@ function NewCarCarousel() {
           />
         </div>
         <div className="flex justify-center gap-600">
-          <img src={arrowLeftCircle}></img>
-          <img src={arrowRightCircle}></img>
+          <img src={arrowLeftCircle} className="hover:cursor-pointer"></img>
+          <img src={arrowRightCircle} className="hover:cursor-pointer"></img>
         </div>
       </div>
     </>
