@@ -58,21 +58,26 @@
 .s1 {
   background: url('@/assets/images/newCarImage1.svg') no-repeat center center;
   background-size: cover;
+  opacity: 1 !important;
 }
 .s2 {
   background: url('@/assets/images/newCarImage2.svg') no-repeat center center;
   background-size: cover;
+  opacity: 1 !important;
 }
 .s3 {
   background: url('@/assets/images/newCarImage3.svg') no-repeat center center;
   background-size: cover;
+  opacity: 1 !important;
 }
 
 .s4 {
   background: url('@/assets/images/newCarImage4.svg') no-repeat center center;
   background-size: cover;
+  opacity: 1 !important;
 }
 .s5 {
   background: url('@/assets/images/newCarImage5.svg') no-repeat center center;
   background-size: cover;
+  opacity: 1 !important;
 }

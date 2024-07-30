@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import newCarImage1 from '@/assets/images/newCarImage1.svg';
 import arrowLeftCircle from '@/assets/images/arrowLeftCircle.svg';
 import arrowRightCircle from '@/assets/images/arrowRightCircle.svg';
@@ -7,19 +7,33 @@ import loadMicroSlider from './loadMicroSlider';
 
 function NewCarCarousel() {
   const sliderRef = useRef(null);
+  const [slider, setSlider] = useState(null);
 
   useEffect(() => {
     const cleanup = loadMicroSlider(() => {
       const __ms = sliderRef.current;
       if (__ms) {
-        new MicroSlider(__ms, {
+        const msSlider = new MicroSlider(__ms, {
           indicators: true,
           indicatorText: '',
         });
+        setSlider(msSlider);
       }
     });
     return cleanup;
   }, []);
+
+  const handlePrevButton = () => {
+    if (slider) {
+      slider.prev();
+    }
+  };
+
+  const handleNextButton = () => {
+    if (slider) {
+      slider.next();
+    }
+  };
 
   return (
     <>
@@ -37,8 +51,18 @@ function NewCarCarousel() {
         </div>
       </div>
       <div className="flex justify-center mt-1500 mb-3000 gap-600">
-        <img src={arrowLeftCircle} className="hover:cursor-pointer"></img>
-        <img src={arrowRightCircle} className="hover:cursor-pointer"></img>
+        <img
+          src={arrowLeftCircle}
+          alt="leftButton"
+          onClick={handlePrevButton}
+          className="hover:cursor-pointer"
+        ></img>
+        <img
+          src={arrowRightCircle}
+          alt="rightButton"
+          onClick={handleNextButton}
+          className="hover:cursor-pointer"
+        ></img>
       </div>
     </>
   );
