@@ -4,14 +4,6 @@
   width: 100%;
 }
 
-.micro-slider.fullwidth {
-  height: 480px;
-}
-.micro-slider.fullwidth .slider-item {
-  height: 480px;
-  line-height: 480px;
-  width: 100%;
-}
 .slider-wrapper {
   overflow: hidden;
   position: relative;
@@ -19,27 +11,22 @@
   transform-origin: 0 50%;
 }
 .slider-item {
-  background: #fff;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.06),
     0 1px 2px rgba(0, 0, 0, 0.12);
-  color: #fff;
   display: none;
-  font-size: 72px;
-  height: 320px;
-  line-height: 320px;
+  height: 500px;
   left: 0;
   position: absolute;
-  text-align: center;
   top: 0;
-  width: 320px;
+  width: 900px;
   cursor: pointer;
 }
 .indicators {
   bottom: 0px;
   left: 50%;
   list-style-type: none;
-  margin: 0 0 0 -77px;
+  margin: 0 0 0 -65px;
   padding: 0;
   position: absolute;
 }
@@ -67,20 +54,23 @@
   background: #e6e9ec;
 }
 .s1 {
-  background: #3f51b5;
+  background: url('@/assets/images/newCarImage1.svg') no-repeat center center;
+  background-size: cover;
 }
 .s2 {
-  background: #448aff;
+  background: url('@/assets/images/newCarImage2.svg') no-repeat center center;
+  background-size: cover;
 }
 .s3 {
-  background: #03a9f4;
+  background: url('@/assets/images/newCarImage3.svg') no-repeat center center;
+  background-size: cover;
 }
+
 .s4 {
-  background: #00bcd4;
+  background: url('@/assets/images/newCarImage4.svg') no-repeat center center;
+  background-size: cover;
 }
 .s5 {
-  background: #009688;
-}
-.s6 {
-  background: #4caf50;
+  background: url('@/assets/images/newCarImage5.svg') no-repeat center center;
+  background-size: cover;
 }
