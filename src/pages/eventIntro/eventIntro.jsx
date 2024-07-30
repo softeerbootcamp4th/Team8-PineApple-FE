@@ -1,7 +1,7 @@
 import React from 'react';
 import EventMainIntro from '@/pages/eventIntro/EventIntroMain';
 import EventIntroNav from '@/pages/eventIntro/EventIntroNav';
-import EventIntroRewards from './EventIntroRewards';
+import EventIntroRewards from '@/pages/eventIntro/EventIntroRewards';
 
 function EventIntro() {
   return (
