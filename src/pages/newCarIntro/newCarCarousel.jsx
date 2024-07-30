@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import arrowLeftCircle from '@/assets/images/arrowLeftCircle.svg';
 import arrowRightCircle from '@/assets/images/arrowRightCircle.svg';
+import loadMicroSlider from '@/utils/loadMicroSlider';
 import '@/styles/newCarCarousel.css';
-import loadMicroSlider from './loadMicroSlider';
 
 function NewCarCarousel() {
   const sliderRef = useRef(null);

@@ -26,7 +26,8 @@
         },
         backgroundImage: {
           //그림 배경 정의
-          'new-car-intro': "url('./src/assets/images/newCarIntroBg.svg')",
+          'new-car-intro': "url('@/assets/images/newCarIntroBg.svg')",
+          'join-event-main': "url('@/assets/images/joinEventMainBg.svg')",
           // 그라데이션 색상 정의
           'gradient-blue-purple':
             'linear-gradient(90deg, #0128FF 0%, #AD00FF 100%)',
@@ -38,6 +39,8 @@
             'linear-gradient(90deg, #E0EAFF 0%, #FFF 100%)',
           'gradient-lightblue-white-vertical':
             'linear-gradient(180deg, #E0EAFF 0%, #FFF 100%)',
+          card1: 'linear-gradient(180deg, #C5F0FF 0%, #FFF 99.95%)',
+          card2: 'linear-gradient(180deg, #E0EAFF 0%, #FFF 99.95%)',
         },
         fontFamily: { poppins: ['"Poppins"', 'sans-serif'] },
         fontSize: {
