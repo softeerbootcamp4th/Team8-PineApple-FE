@@ -7,9 +7,8 @@ function JoinEventIntroMain() {
     <div className="bg-join-event-main bg-cover bg-center h-screen pt-[250px] flex flex-col gap-1300">
       <div className="px-5000">
         <div className="flex items-center gap-300">
-          <Card1 />
+          <Card1 loginData="" />
           <div className="text-heading-1-bold text-neutral-white">+</div>
-          <Card2 />
         </div>
       </div>
     </div>

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import noCarImage from '@/assets/images/noCarImage.svg';
 import carImage from '@/assets/images/carImage.svg';
 import BlueButton from '@/components/buttons/BlueButton';
 import PropTypes from 'prop-types';
 
 function Card1({ loginData }) {
-  let imagesrc = noCarImage;
+  let imageSrc = noCarImage;
   // loginData의 Carhave가 true면 imagesrc 바꿔주기
   if (!loginData) {
-    imagesrc = carImage;
+    imageSrc = carImage;
   }
   return (
     <div className="bg-card1 px-800 py-700 w-[340px] h-[417px] rounded-[30px]">
@@ -16,12 +16,13 @@ function Card1({ loginData }) {
       <div className="whitespace-pre-line text-detail-1-semibold text-neutral-black">
         {`운전 중 피하고 싶은\n상황 월드컵`}
       </div>
-      <image className="relative w-[266px] h-[143px]" src={imageSrc}>
-        {imagesrc === noCarImage && (
+      <div className="relative w-[266px] h-[143px]">
+        <img className="w-full h-full" src={imageSrc} alt="Car" />
+        {imageSrc === noCarImage && (
           <div className="text-center absolute top-[18px] left-[29px]">?</div>
         )}
-      </image>
-      <BlueButton value="차 얻기" onclick={() => alert('차 얻기')} />
+      </div>
+      <BlueButton value="차 얻기" onClick={() => alert('차 얻기')} />
     </div>
   );
 }

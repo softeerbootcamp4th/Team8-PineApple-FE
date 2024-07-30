@@ -4,7 +4,7 @@ import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
 import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import PropTypes from 'prop-types';
 
-function Card({ details }) {
+function Card2({ details }) {
   const { bgColor, title, description, imageSrc, buttonValue, onClickFunc } =
     details;
   return (
@@ -19,7 +19,7 @@ function Card({ details }) {
   );
 }
 
-Card.propTypes = {
+Card2.propTypes = {
   details: PropTypes.shape({
     bgColor: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
