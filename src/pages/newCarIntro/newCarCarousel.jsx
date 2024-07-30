@@ -2,25 +2,23 @@ import React, { useEffect, useRef } from 'react';
 import newCarImage1 from '@/assets/images/newCarImage1.svg';
 import arrowLeftCircle from '@/assets/images/arrowLeftCircle.svg';
 import arrowRightCircle from '@/assets/images/arrowRightCircle.svg';
+import '@/styles/newCarCarousel.css';
+import loadMicroSlider from './loadMicroSlider';
 
 function NewCarCarousel() {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src =
-      'https://cdn.jsdelivr.net/npm/micro-slider@1.0.9/dist/micro-slider.min.js';
-    script.onload = () => {
+    const cleanup = loadMicroSlider(() => {
       const __ms = sliderRef.current;
-      const __msSlider = new MicroSlider(__ms, {
-        indicators: true,
-        indicatorText: '',
-      });
-    };
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
+      if (__ms) {
+        new MicroSlider(__ms, {
+          indicators: true,
+          indicatorText: '',
+        });
+      }
+    });
+    return cleanup;
   }, []);
 
   return (
