@@ -1,16 +1,14 @@
 .micro-slider {
-  height: 480px;
+  height: 550px;
   position: relative;
   width: 100%;
 }
 
 .slider-wrapper {
-  overflow: hidden;
   position: relative;
   transform-style: preserve-3d;
   transform-origin: 0 50%;
-  height: 600px;
-  margin-bottom: 300px;
+  height: auto;
 }
 .slider-item {
   box-shadow:
@@ -21,11 +19,11 @@
   left: 0;
   position: absolute;
   top: 0;
-  width: 800px;
+  width: 1000px;
   cursor: pointer;
 }
 .indicators {
-  bottom: -40px;
+  bottom: -20px;
   left: 50%;
   list-style-type: none;
   margin: 0 0 0 -57px;
@@ -43,6 +41,7 @@
 .indicators li:last-child {
   margin: 0;
 }
+
 .indicators a {
   background: #fff;
   border-radius: 8px;
@@ -55,6 +54,7 @@
 .indicators .active a {
   background: #e6e9ec;
 }
+
 .s1 {
   background: url('@/assets/images/newCarImage1.svg') no-repeat center center;
   background-size: cover;
