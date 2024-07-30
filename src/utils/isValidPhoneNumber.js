@@ -1,5 +1,4 @@
 function isValidPhoneNumber(number) {
-  console.log(number.length);
   if (number.length < 9 || number.length > 11) {
     return false;
   }

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
 
