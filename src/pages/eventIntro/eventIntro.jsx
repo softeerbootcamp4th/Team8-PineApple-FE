@@ -5,13 +5,13 @@ import EventIntroRewards from '@/pages/eventIntro/EventIntroRewards';
 
 function EventIntro() {
   return (
-    <>
+    <div>
       <EventMainIntro />
       <div className="bg-gradient-lightblue-white-vertical">
         <EventIntroNav />
         <EventIntroRewards />
       </div>
-    </>
+    </div>
   );
 }
 
