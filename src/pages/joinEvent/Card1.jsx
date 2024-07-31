@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import noCarImage from '@/assets/images/noCarImage.svg';
 import carImage from '@/assets/images/carImage.svg';
 import BlueButton from '@/components/buttons/BlueButton';
