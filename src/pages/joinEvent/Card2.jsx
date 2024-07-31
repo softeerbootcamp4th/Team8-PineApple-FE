@@ -11,7 +11,7 @@ function Card2({ loginData }) {
     imageSrc = toolBoxImage;
   }
   return (
-    <div className="flex flex-col justify-between bg-card1 px-800 py-700 h-[417px] w-[340px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-card2 px-800 py-700 h-[417px] w-[340px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event2
       </div>

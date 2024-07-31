@@ -12,19 +12,21 @@ function Card1({ loginData }) {
   }
   return (
     <div className="flex flex-col justify-between bg-card1 px-800 py-700 w-[340px] h-[417px] rounded-[30px]">
-      <div className="text-detail-2-semibold text-primary-blue">Event1</div>
-      <div className="whitespace-pre-line text-detail-1-semibold text-neutral-black">
+      <div className="text-detail-2-semibold text-primary-blue h-800">
+        Event1
+      </div>
+      <div className="whitespace-pre-line text-detail-1-semibold h-1800 text-neutral-black">
         {`운전 중 피하고 싶은\n상황 월드컵`}
       </div>
-      <div className="relative w-[266px] h-[143px]">
+      <div className="relative h-4000 py-500 px-500">
         <img className="w-full h-full" src={imageSrc} alt="Car" />
         {imageSrc === noCarImage && (
-          <div className="w-[214px] text-heading-banner-title-2 text-neutral-white text-center absolute top-[18px] left-[29px]">
+          <div className="w-[214px] text-heading-banner-title-2 text-neutral-white text-center absolute top-[51px] left-[31px]">
             ?
           </div>
         )}
       </div>
-      <div className="bottom-0 flex justify-center">
+      <div className="flex items-center justify-center">
         <BlueButton value="차 얻기" onClick={() => alert('차 얻기')} />
       </div>
     </div>
