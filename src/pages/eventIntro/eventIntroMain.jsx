@@ -1,19 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import casperCarImage from '@/assets/images/casper_car_image.png';
 import arrow from '@/assets/icons/arrow.svg';
 import casperCarImageShadow from '@/assets/icons/casperCarImageShadow.svg';
-import { TabContext } from '@/context/tabContext';
+import { Link } from 'react-router-dom';
 
 function EventIntroMain() {
-  const { activeTab, setActiveTab } = useContext(TabContext);
-  const handleMoveJoin = () => {
-    setActiveTab('join');
-  };
-
-  const handleMovenewCarIntro = () => {
-    setActiveTab('newCarIntro');
-  };
-
   return (
     <div className="bg-gradient-violetblue-cobaltblue h-[872px] pt-[150px] flex justify-between">
       <div className="ml-3000">
@@ -42,19 +33,17 @@ function EventIntroMain() {
           까지 다양한 상품을 받을 수 있어요.
         </p>
         <div className="flex mt-600 gap-300">
-          <button
-            onClick={handleMoveJoin}
-            className="flex items-center justify-center transition-transform rounded-full px-800 py-400 bg-neutral-white text-neutral-black text-detail-3-semibold hover:scale-105"
-          >
-            이벤트 참여하기
-          </button>
-          <button
-            onClick={handleMovenewCarIntro}
-            className="flex items-center justify-center bg-transparent rounded-full px-800 py-400 text-neutral-black text-detail-3-semibold border-[2px] border-solid border-neutral-black hover:scale-105 transition-transform"
-          >
-            캐스퍼 EV 알아보기
-            <img src={arrow} alt="move" />
-          </button>
+          <Link to="event">
+            <button className="flex items-center justify-center transition-transform rounded-full px-800 py-400 bg-neutral-white text-neutral-black text-detail-3-semibold hover:scale-105">
+              이벤트 참여하기
+            </button>
+          </Link>
+          <Link to="introduce">
+            <button className="flex items-center justify-center bg-transparent rounded-full px-800 py-400 text-neutral-black text-detail-3-semibold border-[2px] border-solid border-neutral-black hover:scale-105 transition-transform">
+              캐스퍼 EV 알아보기
+              <img src={arrow} alt="move" />
+            </button>
+          </Link>
         </div>
       </div>
       <div className="relative pr-[35px] pb-[112px]">
