@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { TabContext } from '@/context/tabContext';
 import { AuthContext } from '@/context/authContext';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
-  const { activeTab, setActiveTab } = useContext(TabContext);
-
   const { phoneNumber } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
 
@@ -23,39 +21,42 @@ function Header() {
         CASPER ELECTRONIC
       </span>
       <div className="flex items-center justify-between">
-        <button
-          onClick={() => setActiveTab('introduce')}
-          className={`text-nowrap ${
-            activeTab === 'introduce'
-              ? 'text-detail-1-bold'
-              : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `text-nowrap pr-[44px] ${
+              isActive
+                ? 'text-detail-1-bold'
+                : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
+            }`
           }
-               pr-[44px]`}
         >
           이벤트 소개
-        </button>
-        <button
-          onClick={() => setActiveTab('join')}
-          className={`text-nowrap ${
-            activeTab === 'join'
-              ? 'text-detail-1-bold'
-              : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
+        </NavLink>
+        <NavLink
+          to="event"
+          className={({ isActive }) =>
+            `text-nowrap pr-[44px] ${
+              isActive
+                ? 'text-detail-1-bold'
+                : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
+            }`
           }
-               pr-[44px]`}
         >
           이벤트 참여하기
-        </button>
-        <button
-          onClick={() => setActiveTab('newCarIntro')}
-          className={` text-nowrap ${
-            activeTab === 'newCarIntro'
-              ? 'text-detail-1-bold'
-              : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
+        </NavLink>
+        <NavLink
+          to="introduce"
+          className={({ isActive }) =>
+            `text-nowrap pr-[44px] ${
+              isActive
+                ? 'text-detail-1-bold'
+                : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
+            }`
           }
-              pr-[44px]`}
         >
-          신차 소개
-        </button>
+          이벤트 참여하기
+        </NavLink>
       </div>
       {phoneNumber === '' ? (
         <button

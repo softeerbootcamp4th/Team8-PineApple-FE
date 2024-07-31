@@ -17,7 +17,7 @@ function ToastMessage({ messageType }) {
 
   return (
     <div
-      className={`fixed py-1200 px-1700 top-[40%] left-[40%] rounded-2xl shadow-2xl bg-neutral-white ${animationClass}`}
+      className={`fixed py-600 px-3000 top-[43%] left-[33.5%] rounded-2xl shadow-2xl bg-neutral-white ${animationClass}`}
     >
       {messageType === 'copyLink' ? (
         <p className="text-detail-2-medium text-neutral-black">
