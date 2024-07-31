@@ -41,11 +41,11 @@ function CommentIndex() {
 
   const onChangePage = page => {
     setIndexOfLastPost(page * 10);
-    setIndexOfFirstPost(page * 10 - 10);
+    setIndexOfFirstPost((page - 1) * 10);
     setCurrentPage(page);
   };
   return (
-    <div className="mb-4000">
+    <div>
       <CommentDate today={today} setToday={setToday} />
       <div className="flex items-center justify-between mb-1000">
         <RemainingTime />
@@ -63,7 +63,7 @@ function CommentIndex() {
           />
         ))}
       </div>
-      <div className="mb-4000">
+      <div className="mb-2000">
         <PagingComment
           page={currentPage}
           count={totalCommentCount}

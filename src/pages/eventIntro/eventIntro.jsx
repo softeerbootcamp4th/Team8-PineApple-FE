@@ -1,12 +1,12 @@
 import React from 'react';
-import EventMainIntro from '@/pages/eventIntro/EventIntroMain';
+import EventIntroMain from '@/pages/eventIntro/EventIntroMain';
 import EventIntroNav from '@/pages/eventIntro/EventIntroNav';
 import EventIntroRewards from '@/pages/eventIntro/EventIntroRewards';
 
 function EventIntro() {
   return (
     <div>
-      <EventMainIntro />
+      <EventIntroMain />
       <div className="bg-gradient-lightblue-white-vertical">
         <EventIntroNav />
         <EventIntroRewards />
