@@ -33,8 +33,8 @@ function Card1({ loginData }) {
         className={`flex items-center justify-center ${loginData ? 'invisible' : 'visible'}`}
       >
         <BlueButton
-          value="캐스퍼 얻기 "
-          onClickFunc={() => alert('캐스퍼 얻기')}
+          value="자동차 얻기 "
+          onClickFunc={() => alert('자동차 얻기')}
           textSize="text-detail-3-semibold"
         />
       </div>
