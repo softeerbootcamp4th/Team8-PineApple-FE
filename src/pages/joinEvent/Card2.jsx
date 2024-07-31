@@ -2,6 +2,7 @@ import React from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
 import toolBoxImage from '@/assets/images/toolBoxImage.svg';
+import questionMark from '@/assets/images/questionMark.svg';
 import PropTypes from 'prop-types';
 
 function Card2({ loginData, auth, joined }) {
@@ -31,9 +32,11 @@ function Card2({ loginData, auth, joined }) {
       <div className="relative h-4000 py-500 px-500">
         <img className="w-full h-full" src={imageSrc} alt="ToolBox" />
         {imageSrc === noToolBoxImage && (
-          <div className="w-[214px] text-heading-banner-title-2 text-neutral-white text-center absolute top-[51px] left-[31px]">
-            ?
-          </div>
+          <img
+            src={questionMark}
+            alt="questionMark"
+            className="absolute top-[48px] left-[84px]"
+          ></img>
         )}
       </div>
       <div
@@ -42,7 +45,7 @@ function Card2({ loginData, auth, joined }) {
         <BlueButton
           value="툴박스 얻기"
           onClickFunc={() => alert('툴박스 얻기')}
-          textSize="text-detail-2-medium"
+          textSize="text-detail-3-semibold"
         />
       </div>
     </div>

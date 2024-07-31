@@ -55,7 +55,7 @@ function Header() {
             }`
           }
         >
-          이벤트 참여하기
+          신차 소개
         </NavLink>
       </div>
       {phoneNumber === '' ? (

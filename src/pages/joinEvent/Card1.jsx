@@ -2,6 +2,7 @@ import React from 'react';
 import noCarImage from '@/assets/images/noCarImage.svg';
 import carImage from '@/assets/images/carImage.svg';
 import BlueButton from '@/components/buttons/BlueButton';
+import questionMark from '@/assets/images/questionMark.svg';
 import PropTypes from 'prop-types';
 
 function Card1({ loginData }) {
@@ -21,18 +22,20 @@ function Card1({ loginData }) {
       <div className="relative h-4000 py-500 px-500">
         <img className="w-full h-full" src={imageSrc} alt="Car" />
         {imageSrc === noCarImage && (
-          <div className="w-[214px] text-heading-banner-title-2 text-neutral-white text-center absolute top-[51px] left-[31px]">
-            ?
-          </div>
+          <img
+            src={questionMark}
+            alt="questionMark"
+            className="absolute top-[50px] left-[88px]"
+          ></img>
         )}
       </div>
       <div
         className={`flex items-center justify-center ${loginData ? 'invisible' : 'visible'}`}
       >
         <BlueButton
-          value="차 얻기"
-          onClickFunc={() => alert('차 얻기')}
-          textSize="text-detail-2-medium"
+          value="캐스퍼 얻기 "
+          onClickFunc={() => alert('캐스퍼 얻기')}
+          textSize="text-detail-3-semibold"
         />
       </div>
     </div>
