@@ -9,6 +9,7 @@ function JoinEventIntroMain() {
         <div className="flex items-center gap-300">
           <Card1 loginData="" />
           <div className="text-heading-1-bold text-neutral-white">+</div>
+          <Card2 loginData={0} />
         </div>
       </div>
     </div>
