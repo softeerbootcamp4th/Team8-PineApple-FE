@@ -29,6 +29,7 @@ function NewCarIntroMain() {
         <BluePurpleButton
           value="무료 시승 신청 (최대 연 6회)"
           onClickFunc={linkToFreeRide}
+          textSize="text-detail-3-semibold"
         />
         <WhiteButton value="사전 계약하기" onClickFunc={linkToPreOrder} />
       </div>

@@ -4,13 +4,11 @@ import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
 import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import PropTypes from 'prop-types';
 
-function Card2({ loginData, auth }) {
-  // joined의 정보는 backend에서 가져옴
-  let joined = true;
+function Card2({ loginData, auth, joined }) {
   let imageSrc = noToolBoxImage;
 
-  // loginData의 toolbox가 1이상이면 imagesrc 바꿔주기
-  if (loginData >= 1) {
+  //QuizJoined 했으면 상품 받음
+  if (joined) {
     imageSrc = toolBoxImage;
   }
   return (
@@ -54,6 +52,7 @@ Card2.propTypes = {
   // eslint 속이기 위한 data 타입
   loginData: PropTypes.number.isRequired,
   auth: PropTypes.string.isRequired,
+  joined: PropTypes.bool.isRequired,
 };
 
 export default Card2;

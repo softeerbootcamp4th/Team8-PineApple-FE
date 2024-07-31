@@ -23,6 +23,7 @@
           'background-lightgray': '#EFF0F1',
           'background-lightblue': '#E0EAFF',
           'shadow-bluepurple': '#D4D3E3',
+          'op-30-blue': 'rgba(1, 40, 255, 0.30)',
         },
         backgroundImage: {
           //그림 배경 정의

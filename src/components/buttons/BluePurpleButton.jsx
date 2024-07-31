@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BluePurpleButton({ value, onClickFunc }) {
+function BluePurpleButton({ value, onClickFunc, textSize }) {
   return (
     <button
       onClick={onClickFunc}
-      className="flex items-center justify-center rounded-full bg-gradient-blue-purple px-800 py-400 text-detail-3-semibold text-neutral-white"
+      className={`flex items-center justify-center rounded-full bg-gradient-blue-purple px-800 py-400 ${textSize} text-neutral-white`}
     >
       {value}
     </button>
@@ -15,6 +15,7 @@ function BluePurpleButton({ value, onClickFunc }) {
 BluePurpleButton.propTypes = {
   value: PropTypes.string.isRequired,
   onClickFunc: PropTypes.func.isRequired,
+  textSize: PropTypes.string.isRequired,
 };
 
 export default React.memo(BluePurpleButton);
