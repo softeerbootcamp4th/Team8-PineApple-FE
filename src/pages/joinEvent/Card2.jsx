@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
+import { AuthContext } from '@/context/authContext';
 import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import PropTypes from 'prop-types';
 
 function Card2({ loginData }) {
+  const { phoneNumber } = useContext(AuthContext);
+  const [joined, setJoined] = useState(false);
   let imageSrc = noToolBoxImage;
+
   // loginData의 toolbox가 1이상이면 imagesrc 바꿔주기
   if (loginData >= 1) {
     imageSrc = toolBoxImage;
@@ -18,7 +22,7 @@ function Card2({ loginData }) {
       <div className="text-detail-1-semibold h-1800 text-neutral-black">
         일일 미니퀴즈
         <div
-          className={`items-center justify-end h-900 flex ${loginData > 0 ? 'visible' : 'invisible'}`}
+          className={`items-center justify-end h-900 flex ${phoneNumber ? 'visible' : 'invisible'}`}
         >
           <div
             className={`px-400 py-100 rounded-[8px] text-detail-3-semibold text-primary-blue bg-neutral-white`}
@@ -27,16 +31,21 @@ function Card2({ loginData }) {
           </div>
         </div>
       </div>
-      <div className="relative h-4000">
-        <img className="w-full h-full py-500 px-500" src={imageSrc} alt="Car" />
+      <div className="relative h-4000 py-500 px-500">
+        <img className="w-full h-full" src={imageSrc} alt="ToolBox" />
         {imageSrc === noToolBoxImage && (
           <div className="w-[214px] text-heading-banner-title-2 text-neutral-white text-center absolute top-[51px] left-[31px]">
             ?
           </div>
         )}
       </div>
-      <div className="flex items-center justify-center">
-        <BlueButton value="툴박스 얻기" onClick={() => alert('툴박스 얻기')} />
+      <div
+        className={`flex items-center justify-center ${joined ? 'invisible' : 'visible'}`}
+      >
+        <BlueButton
+          value="툴박스 얻기"
+          onClickFunc={() => alert('툴박스 얻기')}
+        />
       </div>
     </div>
   );

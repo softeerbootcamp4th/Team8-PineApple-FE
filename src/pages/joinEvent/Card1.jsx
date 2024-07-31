@@ -26,8 +26,10 @@ function Card1({ loginData }) {
           </div>
         )}
       </div>
-      <div className="flex items-center justify-center">
-        <BlueButton value="차 얻기" onClick={() => alert('차 얻기')} />
+      <div
+        className={`flex items-center justify-center ${loginData ? 'invisible' : 'visible'}`}
+      >
+        <BlueButton value="차 얻기" onClickFunc={() => alert('차 얻기')} />
       </div>
     </div>
   );
