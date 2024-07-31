@@ -6,15 +6,15 @@ import { AuthContext } from '@/context/authContext';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 
 function JoinEventIntroMain() {
+  const { phoneNumber } = useContext(AuthContext);
+  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
   // 아래 변수들은 벡에서 가져올 내용
   let haveCar = false;
   let joinedQuiz = false;
   let toolBoxCnt = 3;
   let day = 2;
   let details = `캐스퍼 EV와 떠날 시간!\n깜빡하고 차키를 안 가져왔네요.. 어떻게 해야할까요?`;
-
-  const { phoneNumber } = useContext(AuthContext);
-  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+  let disabled = !phoneNumber || !haveCar || toolBoxCnt === 0; // 결과 보기 버튼 클릭 가능 여부 변수명 변경 필요
 
   const openPhoneModal = () => {
     setOpenPhoneInputModal(true);
@@ -46,7 +46,7 @@ function JoinEventIntroMain() {
               </span>
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="relative flex flex-col">
             <div className="text-heading-banner-title text-nowrap mb-1000">
               <span className="text-gradient-blue-purple">캐스퍼 EV</span>와
               떠나기
@@ -61,8 +61,16 @@ function JoinEventIntroMain() {
               value="결과 보기"
               onClickFunc={() => alert('결과 보기')}
               textSize="text-body-3-regular"
-              disabled={!phoneNumber || !haveCar || toolBoxCnt === 0}
+              disabled={disabled}
             />
+            {disabled && (
+              <>
+                <div className="absolute top-[427px] left-[327px] h-0 w-0 border-x-[12px] border-b-[12px] border-x-transparent border-b-neutral-white"></div>
+                <div className="absolute top-[433px] left-[139px] w-[400px] rounded-[5px] py-300 text-center bg-neutral-white text-primary-blue">
+                  이벤트에 참여해서 추첨을 위한 아이템을 모아보아요!
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
