@@ -1,13 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
-import { AuthContext } from '@/context/authContext';
 import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import PropTypes from 'prop-types';
 
-function Card2({ loginData }) {
-  const { phoneNumber } = useContext(AuthContext);
-  const [joined, setJoined] = useState(false);
+function Card2({ loginData, auth }) {
+  // joined의 정보는 backend에서 가져옴
+  let joined = true;
   let imageSrc = noToolBoxImage;
 
   // loginData의 toolbox가 1이상이면 imagesrc 바꿔주기
@@ -22,7 +21,7 @@ function Card2({ loginData }) {
       <div className="text-detail-1-semibold h-1800 text-neutral-black">
         일일 미니퀴즈
         <div
-          className={`items-center justify-end h-900 flex ${phoneNumber ? 'visible' : 'invisible'}`}
+          className={`items-center justify-end h-900 flex ${auth ? 'visible' : 'invisible'}`}
         >
           <div
             className={`px-400 py-100 rounded-[8px] text-detail-3-semibold text-primary-blue bg-neutral-white`}
@@ -54,6 +53,7 @@ function Card2({ loginData }) {
 Card2.propTypes = {
   // eslint 속이기 위한 data 타입
   loginData: PropTypes.number.isRequired,
+  auth: PropTypes.string.isRequired,
 };
 
 export default Card2;
