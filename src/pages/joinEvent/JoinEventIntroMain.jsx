@@ -61,6 +61,7 @@ function JoinEventIntroMain() {
               value="결과 보기"
               onClickFunc={() => alert('결과 보기')}
               textSize="text-body-3-regular"
+              disabled={!phoneNumber || !haveCar || toolBoxCnt === 0}
             />
           </div>
         </div>
