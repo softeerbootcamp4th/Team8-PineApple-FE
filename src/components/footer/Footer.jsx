@@ -10,8 +10,8 @@ function Footer() {
     window.open('https://casper.hyundai.com/vehicles/test-driving/intro');
   };
   return (
-    <footer className="flex flex-col items-center justify-start gap-900 h-[412px] px-[236px] py-[56px] bg-neutral-50">
-      <div className="text-center text-primary-berrypurple text-detail-1-medium ">
+    <footer className="flex flex-col items-center justify-start gap-900 px-[236px] pt-[50px] pb-[80px] bg-neutral-50">
+      <div className="text-center text-primary-berrypurple text-detail-1-medium">
         전력을 다해, CASPER Eletric 사전계약 진행중
       </div>
       <div className="flex justify-center gap-300">
@@ -20,7 +20,11 @@ function Footer() {
           onClickFunc={linkToFreeRide}
           textSize="text-detail-3-semibold"
         />
-        <WhiteButton value="사전 계약하기" onClickFunc={linkToPreOrder} />
+        <WhiteButton
+          value="사전 계약하기"
+          onClickFunc={linkToPreOrder}
+          textSize="text-detail-3-semibold"
+        />
       </div>
     </footer>
   );

@@ -42,6 +42,7 @@ function Card2({ loginData, auth, joined }) {
         <BlueButton
           value="툴박스 얻기"
           onClickFunc={() => alert('툴박스 얻기')}
+          textSize="text-detail-2-medium"
         />
       </div>
     </div>

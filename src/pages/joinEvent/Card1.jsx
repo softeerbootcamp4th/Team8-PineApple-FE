@@ -29,7 +29,11 @@ function Card1({ loginData }) {
       <div
         className={`flex items-center justify-center ${loginData ? 'invisible' : 'visible'}`}
       >
-        <BlueButton value="차 얻기" onClickFunc={() => alert('차 얻기')} />
+        <BlueButton
+          value="차 얻기"
+          onClickFunc={() => alert('차 얻기')}
+          textSize="text-detail-2-medium"
+        />
       </div>
     </div>
   );

@@ -31,7 +31,11 @@ function NewCarIntroMain() {
           onClickFunc={linkToFreeRide}
           textSize="text-detail-3-semibold"
         />
-        <WhiteButton value="사전 계약하기" onClickFunc={linkToPreOrder} />
+        <WhiteButton
+          value="사전 계약하기"
+          onClickFunc={linkToPreOrder}
+          textSize="text-detail-3-semibold"
+        />
       </div>
     </div>
   );
