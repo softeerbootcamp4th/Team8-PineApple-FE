@@ -30,7 +30,7 @@ function JoinEventIntroMain() {
         <div className="flex justify-between px-2500">
           <div className="space-y-1200">
             <div className="flex items-center gap-300">
-              <Card1 loginData={haveCar} />
+              <Card1 haveCar={haveCar} />
               <div className="text-heading-1-bold text-neutral-white">+</div>
               <Card2
                 loginData={toolBoxCnt}
@@ -62,6 +62,8 @@ function JoinEventIntroMain() {
               onClickFunc={() => alert('결과 보기')}
               textSize="text-body-3-regular"
               disabled={disabled}
+              px="px-3000"
+              py="py-400"
             />
             {disabled && (
               <>

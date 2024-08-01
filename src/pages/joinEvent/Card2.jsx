@@ -13,7 +13,7 @@ function Card2({ loginData, auth, joined }) {
     imageSrc = toolBoxImage;
   }
   return (
-    <div className="flex flex-col justify-between bg-card2 px-800 py-700 h-[417px] w-[340px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[340px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event2
       </div>
@@ -45,7 +45,9 @@ function Card2({ loginData, auth, joined }) {
         <BlueButton
           value="툴박스 얻기"
           onClickFunc={() => alert('툴박스 얻기')}
-          textSize="text-detail-3-semibold"
+          textSize="text-detail-2-medium"
+          px="px-800"
+          py="py-400"
         />
       </div>
     </div>
