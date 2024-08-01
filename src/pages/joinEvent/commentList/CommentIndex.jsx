@@ -7,6 +7,7 @@ import EachComment from '@/pages/joinEvent/commentList/EachComment';
 import PagingComment from '@/pages/joinEvent/commentList/PagingComment';
 import dateFormatting from '@/utils/dateFormatting';
 import getNowTime from '@/utils/getNowTime';
+import { getComment } from '@/api/comment';
 
 function CommentIndex() {
   const [today, setToday] = useState(dateFormatting());
@@ -16,24 +17,8 @@ function CommentIndex() {
   const [totalCommentCount, setTotalCommentCount] = useState(0);
   const [nowTime, setNowTime] = useState(getNowTime());
 
-  const fetchComments = async () => {
-    try {
-      const response = await fetch(
-        `http://13.125.215.8:8080/comments?page=${currentPage - 1}&sort=${option}&date=${today}`,
-      );
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('댓글을 가져오는데 실패하였습니다.', error);
-    }
-  };
-
   const updateComments = async () => {
-    const data = await fetchComments();
-    console.log(data);
+    const data = await getComment(currentPage - 1, option, today);
     if (data) {
       setCommentList(data.comments);
       setTotalCommentCount(data.totalPages);
