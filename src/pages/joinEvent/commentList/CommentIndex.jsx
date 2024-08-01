@@ -10,17 +10,16 @@ import getNowTime from '@/utils/getNowTime';
 
 function CommentIndex() {
   const [today, setToday] = useState(dateFormatting());
-  const [option, setOption] = useState('popularity');
+  const [option, setOption] = useState('like');
   const [commentList, setCommentList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalCommentCount, setTotalCommentCount] = useState(0);
   const [nowTime, setNowTime] = useState(getNowTime());
-  const [indexOfLastPost, setIndexOfLastPost] = useState(10);
-  const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
+
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `http://13.125.215.8:8080/comments?page=${currentPage}&sort=${option}&date=${today}`,
+        `http://13.125.215.8:8080/comments?page=${currentPage - 1}&sort=${option}&date=${today}`,
       );
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -32,22 +31,26 @@ function CommentIndex() {
     }
   };
 
-  useEffect(() => {
-    const updateComments = async () => {
-      const data = await fetchComments();
-      if (data) {
-        setCommentList(data.comments);
-        setTotalCommentCount(data.totalPages);
-      }
-    };
+  const updateComments = async () => {
+    const data = await fetchComments();
+    console.log(data);
+    if (data) {
+      setCommentList(data.comments);
+      setTotalCommentCount(data.totalPages);
+    }
+  };
 
+  useEffect(() => {
     updateComments();
   }, [currentPage, option, today]);
 
   const onChangePage = page => {
-    setIndexOfLastPost(page * 10);
-    setIndexOfFirstPost((page - 1) * 10);
     setCurrentPage(page);
+  };
+
+  const onClickrefreshData = () => {
+    setNowTime(getNowTime());
+    updateComments();
   };
   return (
     <div>
@@ -55,7 +58,11 @@ function CommentIndex() {
       <div className="flex items-center justify-between mb-1000">
         <RemainingTime />
         <div className="flex">
-          <RefreshData nowTime={nowTime} setNowTime={setNowTime} />
+          <RefreshData
+            nowTime={nowTime}
+            setNowTime={setNowTime}
+            onClickrefreshData={onClickrefreshData}
+          />
           <CommentToggleButton option={option} setOption={setOption} />
         </div>
       </div>
@@ -64,7 +71,8 @@ function CommentIndex() {
           <EachComment
             comment={comment}
             key={index}
-            indexOfFirstPost={indexOfFirstPost + index}
+            indexOfFirstPost={(currentPage - 1) * 10 + index}
+            option={option}
           />
         ))}
       </div>
@@ -80,7 +88,3 @@ function CommentIndex() {
 }
 
 export default CommentIndex;
-
-// comment 벡에서 전해주는 데이터떄문에 바뀌었으니 구조 전체적으로 다듬어야함
-// 모달 구조 짜기
-// 전화번호 인증된 값 로컬에 담을지 쿠키에 담을지 어떤식으로 새로고침할때 받아올지 잘 찾아보고 정하기

@@ -6,16 +6,16 @@ function SortCommentButton({ option, setOption }) {
     <div className="relative flex rounded-full w-44 h-11 bg-neutral-white">
       <div
         className={`absolute w-1/2 h-full rounded-full bg-primary-blue transition-transform duration-300 ease-in-out ${
-          option === 'popularity'
+          option === 'like'
             ? 'transform translate-x-0'
             : 'transform translate-x-full'
         }`}
       ></div>
       <button
         className={`flex-1 text-center z-10 text-detail-3-regular ${
-          option === 'popularity' ? 'text-white' : 'text-primary-blue'
+          option === 'like' ? 'text-white' : 'text-primary-blue'
         }`}
-        onClick={() => setOption('popularity')}
+        onClick={() => setOption('like')}
       >
         인기순
       </button>

@@ -19,6 +19,7 @@ function PhoneAuthModal({ inputPhone, closePhoneModal }) {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           phoneNumber: inputPhone,
           code: validateCode,
@@ -26,7 +27,7 @@ function PhoneAuthModal({ inputPhone, closePhoneModal }) {
       })
         .then(response => response.json())
         .then(result => {
-          setPhoneNumber();
+          setPhoneNumber(result.phoneNumber);
           closePhoneModal();
         })
         .catch(error => {

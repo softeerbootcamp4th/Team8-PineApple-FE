@@ -11,8 +11,23 @@ function CommandInputModal({ closeCommandModal }) {
     setInputCommand(e.target.value);
   };
   const handleCommand = () => {
-    console.log(inputCommand);
-    closeCommandModal();
+    fetch('http://13.125.215.8:8080/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        content: 'ㅇㅇㅇ',
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        closeCommandModal();
+      })
+      .catch(error => {
+        console.error('API 통신 실패:', error);
+      });
   };
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black z-[100]">

@@ -9,7 +9,7 @@ function PagingComment({ page, count, onChangePage }) {
       <Pagination
         activePage={page}
         itemsCountPerPage={10}
-        totalItemsCount={count}
+        totalItemsCount={count * 10}
         pageRangeDisplayed={Math.floor(count / 10)}
         prevPageText={'<'}
         nextPageText={'>'}
