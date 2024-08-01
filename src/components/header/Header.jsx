@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '@/context/authContext';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 function Header() {
   const { phoneNumber } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+  const textColor =
+    useLocation().pathname === '/introduce'
+      ? 'text-neutral-white'
+      : 'text-neutral-black';
 
   const openPhoneModal = () => {
     setOpenPhoneInputModal(true);
@@ -17,14 +21,16 @@ function Header() {
 
   return (
     <header className="absolute flex justify-between w-full bg-transparent px-3000 py-500">
-      <span className="flex items-center justify-center text-detail-1-bold text-neutral-black text-nowrap">
+      <span
+        className={`flex items-center justify-center text-detail-1-bold text-neutral-black text-nowrap ${textColor}`}
+      >
         CASPER ELECTRONIC
       </span>
       <div className="flex items-center justify-between">
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `text-nowrap pr-[44px] ${
+            `text-nowrap pr-[44px] ${textColor} ${
               isActive
                 ? 'text-detail-1-bold'
                 : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
@@ -36,7 +42,7 @@ function Header() {
         <NavLink
           to="event"
           className={({ isActive }) =>
-            `text-nowrap pr-[44px] ${
+            `text-nowrap pr-[44px] ${textColor} ${
               isActive
                 ? 'text-detail-1-bold'
                 : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
@@ -48,14 +54,14 @@ function Header() {
         <NavLink
           to="introduce"
           className={({ isActive }) =>
-            `text-nowrap pr-[44px] ${
+            `text-nowrap pr-[44px] ${textColor} ${
               isActive
                 ? 'text-detail-1-bold'
                 : 'text-detail-2-regular hover:scale-110 transition-transform duration-300'
             }`
           }
         >
-          이벤트 참여하기
+          신차 소개
         </NavLink>
       </div>
       {phoneNumber === '' ? (
