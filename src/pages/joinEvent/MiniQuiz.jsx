@@ -26,21 +26,9 @@ function MiniQuiz() {
           </div>
         )}
         <div className="absolute inset-0 flex gap-600">
-          <img
-            src={miniQuizIntro1}
-            alt="miniQuizIntro1"
-            className="object-cover w-1/3 h-full"
-          />
-          <img
-            src={miniQuizIntro2}
-            alt="miniQuizIntro2"
-            className="object-cover w-1/3 h-full"
-          />
-          <img
-            src={miniQuizIntro3}
-            alt="miniQuizIntro3"
-            className="object-cover w-1/3 h-full"
-          />
+          <img src={miniQuizIntro1} alt="miniQuizIntro1" />
+          <img src={miniQuizIntro2} alt="miniQuizIntro2" />
+          <img src={miniQuizIntro3} alt="miniQuizIntro3" />
         </div>
       </div>
       <div className="w-[780px] z-0 ml-2500">
