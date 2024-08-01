@@ -5,7 +5,7 @@ function WhiteButton({ value, onClickFunc, textSize, px, py }) {
   return (
     <button
       onClick={onClickFunc}
-      className={`${textSize} ${px} ${py} flex items-center justify-center rounded-full bg-neutral-white px-800 py-400 text-neutral-black`}
+      className={`${textSize} ${px} ${py} flex items-center justify-center rounded-full bg-neutral-white text-neutral-black`}
     >
       {value}
     </button>
