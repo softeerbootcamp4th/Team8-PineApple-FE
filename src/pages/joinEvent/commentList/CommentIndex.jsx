@@ -12,16 +12,20 @@ function CommentIndex() {
   const [today, setToday] = useState(dateFormatting());
   const [option, setOption] = useState('popularity');
   const [commentList, setCommentList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [totalCommentCount, setTotalCommentCount] = useState(0);
   const [nowTime, setNowTime] = useState(getNowTime());
   const [indexOfLastPost, setIndexOfLastPost] = useState(10);
   const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
   const fetchComments = async () => {
     try {
-      const response = await fetch('http://localhost:3001/comments');
+      const response = await fetch(
+        `http://13.125.215.8:8080/comments?page=${currentPage}&sort=${option}&date=${today}`,
+      );
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       const data = await response.json();
-      setTotalCommentCount(data.length);
       return data;
     } catch (error) {
       console.error('댓글을 가져오는데 실패하였습니다.', error);
@@ -32,7 +36,8 @@ function CommentIndex() {
     const updateComments = async () => {
       const data = await fetchComments();
       if (data) {
-        setCommentList(data.slice(indexOfFirstPost, indexOfLastPost));
+        setCommentList(data.comments);
+        setTotalCommentCount(data.totalPages);
       }
     };
 
@@ -75,3 +80,7 @@ function CommentIndex() {
 }
 
 export default CommentIndex;
+
+// comment 벡에서 전해주는 데이터떄문에 바뀌었으니 구조 전체적으로 다듬어야함
+// 모달 구조 짜기
+// 전화번호 인증된 값 로컬에 담을지 쿠키에 담을지 어떤식으로 새로고침할때 받아올지 잘 찾아보고 정하기
