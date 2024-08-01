@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BluePurpleButton({ value, onClickFunc, textSize, disabled, px, py }) {
+function BluePurpleButton({
+  value,
+  onClickFunc,
+  textSize,
+  disabled = false,
+  px,
+  py,
+}) {
   return (
     <button
       onClick={onClickFunc}
@@ -17,7 +24,7 @@ BluePurpleButton.propTypes = {
   value: PropTypes.string.isRequired,
   onClickFunc: PropTypes.func.isRequired,
   textSize: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   px: PropTypes.string.isRequired,
   py: PropTypes.string.isRequired,
 };

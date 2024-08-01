@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BlueButton({ value, onClickFunc, textSize, disabled, px, py }) {
+function BlueButton({
+  value,
+  onClickFunc,
+  textSize,
+  disabled = false,
+  px,
+  py,
+}) {
   return (
     <button
       onClick={onClickFunc}
