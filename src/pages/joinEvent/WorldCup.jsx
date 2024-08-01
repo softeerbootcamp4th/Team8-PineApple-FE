@@ -11,7 +11,7 @@ function WorldCup() {
         <div className="w-[610px]">
           <div className="space-y-800">
             <div className="text-primary-blue text-detail-1-bold">
-              Event1.자동차 얻기
+              Event1. 자동차 얻기
             </div>
             <div className="text-heading-3-bold">
               운전 중 피하고 싶은 상황 월드컵
