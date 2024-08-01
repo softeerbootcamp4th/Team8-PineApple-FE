@@ -4,7 +4,7 @@ import miniQuizIntro1 from '@/assets/images/miniQuizIntro1.svg';
 import miniQuizIntro2 from '@/assets/images/miniQuizIntro2.svg';
 import miniQuizIntro3 from '@/assets/images/miniQuizIntro3.svg';
 import getNowTime from '@/utils/getNowTime';
-import '@/styles/miniQuiz.css';
+import '@/styles/global.css';
 
 function MiniQuiz() {
   const [countDownStart, setCountDownStart] = useState(() => {
