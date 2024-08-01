@@ -34,7 +34,7 @@ function WorldCup() {
         <div className="relative w-[784px]">
           {/*아래 div 두 개는 svg 파일에 포함된 밑줄 삭제용입니다.*/}
           <div className="absolute top-[347px] left-[70px] bg-white w-[300px] h-[3px] origin-bottom-left -rotate-[15deg] z-30"></div>
-          <div className="absolute top-[350px] left-[327px] bg-white w-[300px] h-[3px] origin-bottom-right -rotate-[-15deg] z-30"></div>
+          <div className="absolute top-[350px] left-[311px] bg-white w-[300px] h-[3px] origin-bottom-right -rotate-[-15deg] z-30"></div>
           <img
             className="absolute top-[51px] left-[6px] z-0"
             src={worldCupIntro1}
@@ -46,7 +46,7 @@ function WorldCup() {
             alt="산 중턱에서 전기차 배터리 방전되기"
           ></img>
           <img
-            className="absolute top-[57px] left-[426px] z-0"
+            className="absolute top-[57px] left-[410px] z-0"
             src={worldCupIntro3}
             alt="골목에서 천천히 걸어가는 보행자 만나기"
           ></img>
