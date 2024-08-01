@@ -35,6 +35,8 @@ function NewCarIntroMain() {
           value="사전 계약하기"
           onClickFunc={linkToPreOrder}
           textSize="text-detail-3-semibold"
+          px="px-800"
+          py="py-400"
         />
       </div>
     </div>
