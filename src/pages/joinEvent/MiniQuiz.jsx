@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import miniQuizIntro1 from '@/assets/images/miniQuizIntro1.svg';
 import miniQuizIntro2 from '@/assets/images/miniQuizIntro2.svg';
 import miniQuizIntro3 from '@/assets/images/miniQuizIntro3.svg';
 import getNowTime from '@/utils/getNowTime';
+import '@/styles/miniQuiz.css';
 
 function MiniQuiz() {
   const [countDownStart, setCountDownStart] = useState(() => {
@@ -49,12 +50,8 @@ function MiniQuiz() {
           </div>
           <div className="text-heading-3-bold">월드컵 일일 미니퀴즈</div>
           <div className="flex gap-400">
-            <div className="bg-background-lightblue px-400 py-100 text-detail-2-medium text-primary-blue">
-              매일 오후 1시 공개
-            </div>
-            <div className="bg-background-lightblue px-400 py-100 text-detail-2-medium text-primary-blue">
-              선착순 500명 스타벅스 5천원 쿠폰
-            </div>
+            <div className="skyblue-box">매일 오후 1시 공개</div>
+            <div className="skyblue-box">선착순 500명 스타벅스 5천원 쿠폰</div>
           </div>
         </div>
         <div className="whitespace-pre-line text-detail-2-medium mt-400 mb-1200">
