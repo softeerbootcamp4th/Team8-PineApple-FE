@@ -19,6 +19,8 @@ function Footer() {
           value="무료 시승 신청 (최대 연 6회)"
           onClickFunc={linkToFreeRide}
           textSize="text-detail-3-semibold"
+          px="px-800"
+          py="py-400"
         />
         <WhiteButton
           value="사전 계약하기"
