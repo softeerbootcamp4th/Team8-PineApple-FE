@@ -59,7 +59,7 @@ function MiniQuiz() {
         </div>
         <div className="whitespace-pre-line text-detail-2-medium mt-400 mb-1200">
           {`월드컵에서 알 수 있는 캐스퍼 EV에 대한  일일 미니 퀴즈를 맞추고
-                    도구 아이템을 받아요. 도구 아이템은 응모에 한번 참여하면 사라져요.`}
+                    툴박스 아이템을 받아요. 툴박스 아이템은 응모에 한번 참여하면 사라져요.`}
         </div>
         <BlueButton
           value="이벤트 참여하기"
