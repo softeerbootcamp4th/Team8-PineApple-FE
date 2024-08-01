@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function EventIntroMain() {
   return (
-    <div className="bg-gradient-violetblue-cobaltblue h-[872px] pt-[150px] flex justify-between">
+    <div className="bg-gradient-violetblue-cobaltblue h-[872px] pt-[151px] flex justify-between">
       <div className="ml-3000">
         <div className="flex w-[350px] h-[50px] items-center justify-center bg-primary-berrypurple text-detail-1-bold text-neutral-white mb-600 text-nowrap">
           진짜 캐스퍼 EV를 얻을 수 있는 기회

@@ -36,7 +36,7 @@ function NewCarCarousel() {
 
   return (
     <>
-      <div className="mx-5000 mb-1100">
+      <div className="mx-5000 mb-1101">
         <div className="text-body-3-semibold text-primary-blue">Highlights</div>
         <div className="text-heading-2-bold">전력을 다해, CASPER Electric</div>
       </div>

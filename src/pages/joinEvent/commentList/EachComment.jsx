@@ -20,13 +20,15 @@ function EachComment({ comment, indexOfFirstPost }) {
         {indexOfFirstPost + 1}등
       </div>
       <span className="w-44 text-detail-2-regular text-neutral-500 mr-1500">
-        {comment.phone}
+        {comment.phoneNumber}
       </span>
       <p className="text-detail-2-regular text-neutral-950 overflow-hidden whitespace-nowrap text-ellipsis w-[650px] mr-2500">
-        {comment.body}
+        {comment.content}
       </p>
       <div className="flex items-center">
-        <div className="text-detail-2-regular text-neutral-500">{likes}</div>
+        <div className="text-detail-2-regular text-neutral-500">
+          {comment.likeCount}
+        </div>
         <img
           src={isHeart ? FullHeart : Heart}
           alt={isHeart ? 'FullHeart' : 'Heart'}
