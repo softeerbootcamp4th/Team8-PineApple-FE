@@ -11,7 +11,7 @@ function CommentDate({ today, setToday }) {
   useEffect(() => {
     const formattedToday = dateFormatting();
     setIsNextDayDisabled(today === formattedToday);
-    setIsPreviousDayDisabled(today === '2024.07.28');
+    setIsPreviousDayDisabled(today === '2024-07-28');
   }, [today]);
 
   const handlePreviousDay = () => {

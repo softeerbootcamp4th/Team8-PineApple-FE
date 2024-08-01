@@ -72,7 +72,7 @@ function Header() {
           전화번호 입력하기
         </button>
       ) : (
-        <div className="text-nowrap w-[140px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full">
+        <div className="text-nowrap w-[140px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full flex justify-center items-center">
           {phoneNumber}
         </div>
       )}
