@@ -15,6 +15,9 @@ function CommandInputModal({ closeCommandModal }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
+        // Refreshtoken: 'JSESSIONID=ACFF49E9002F19E211EB8738AE5E07A0',
+        // Authorization: 'JSESSIONID=ACFF49E9002F19E211EB8738AE5E07A0',
+        // 'Set-Cookie': 'JSESSIONID=ACFF49E9002F19E211EB8738AE5E07A0',
       },
       credentials: 'same-origin',
       body: JSON.stringify({
