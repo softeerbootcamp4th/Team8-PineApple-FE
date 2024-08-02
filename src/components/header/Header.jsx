@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '@/context/authContext';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 import { NavLink, useLocation } from 'react-router-dom';
+import { logout } from '@/api/auth/index';
 
 function Header() {
-  const { phoneNumber } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
   const textColor =
     useLocation().pathname === '/introduce'
@@ -17,6 +18,17 @@ function Header() {
 
   const closePhoneModal = () => {
     setOpenPhoneInputModal(false);
+  };
+
+  const handleLogout = () => {
+    logout()
+      .then(result => {
+        localStorage.removeItem('userInfo');
+        setUserInfo({});
+      })
+      .catch(error => {
+        console.error('API 통신 실패:', error);
+      });
   };
 
   return (
@@ -64,16 +76,24 @@ function Header() {
           신차 소개
         </NavLink>
       </div>
-      {phoneNumber === '' ? (
+      {userInfo.phoneNumber === undefined ? (
         <button
           onClick={openPhoneModal}
-          className="text-nowrap w-[140px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full"
+          className="text-nowrap px-[21px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full"
         >
           전화번호 입력하기
         </button>
       ) : (
-        <div className="text-nowrap w-[140px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full flex justify-center items-center">
-          {phoneNumber}
+        <div className="flex gap-300">
+          <button
+            onClick={handleLogout}
+            className="flex justify-center items-center px-[21px] py-[9px] text-neutral-950 text-detail-3-regular rounded-full border-solid border-[1px] border-black hover:scale-110 transition-transform duration-300"
+          >
+            로그아웃
+          </button>
+          <div className="text-nowrap px-[21px] h-[44px] bg-primary-blue text-neutral-white text-detail-3-regular rounded-full flex justify-center items-center">
+            {userInfo.phoneNumber}
+          </div>
         </div>
       )}
       {openPhoneInputModal ? (

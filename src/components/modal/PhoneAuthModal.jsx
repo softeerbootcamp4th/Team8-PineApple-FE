@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '@/context/authContext';
 import modalClose from '@/assets/icons/modalClose.svg';
+import { loginCode } from '@/api/auth/index';
+
 import PropTypes from 'prop-types';
 
 function PhoneAuthModal({ inputPhone, closePhoneModal }) {
-  const { phoneNumber, setPhoneNumber } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useContext(AuthContext);
   const [validateCode, setValidateCode] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [firstClick, setFirstClick] = useState(false);
@@ -12,27 +14,16 @@ function PhoneAuthModal({ inputPhone, closePhoneModal }) {
     setValidateCode(e.target.value);
     setIsValid(e.target.value.length === 6);
   };
-  const handleAuth = () => {
+  const handleAuth = async () => {
     if (validateCode === '111111') {
-      fetch('http://13.125.215.8:8080/login/code', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          phoneNumber: inputPhone,
-          code: validateCode,
-        }),
-      })
-        .then(response => response.json())
-        .then(result => {
-          setPhoneNumber(result.phoneNumber);
-          closePhoneModal();
-        })
-        .catch(error => {
-          console.error('API 통신 실패:', error);
-        });
+      try {
+        const response = await loginCode(inputPhone, validateCode);
+        localStorage.setItem('userInfo', JSON.stringify(response));
+        setUserInfo(response);
+        closePhoneModal();
+      } catch (error) {
+        console.error('API 통신 실패:', error);
+      }
     } else {
       alert('ddd');
     }
@@ -55,7 +46,7 @@ function PhoneAuthModal({ inputPhone, closePhoneModal }) {
         placeholder="인증번호 입력 (6자리)"
         onClick={firstClickEvent}
         onChange={handleInputText}
-        className={`w-[640px] h-[80px] px-[30px] pl-[40px] mb-800 text-body-3-regular text-neutral-black placeholder:text-body-3-regular placeholder-neutral-black placeholder-opacity-50 border-solid ${!isValid && firstClick ? 'border-red-500 focus:border-red-500' : 'border-neutral-black focus:border-primary-blue'} border-[4px] rounded-[10px] outline-none`}
+        className={`w-[640px] h-[80px] px-[30px] pl-[40px] mb-1500 text-body-3-regular text-neutral-black placeholder:text-body-3-regular placeholder-neutral-black placeholder-opacity-50 border-solid ${!isValid && firstClick ? 'border-red-500 focus:border-red-500' : 'border-neutral-black focus:border-primary-blue'} border-[4px] rounded-[10px] outline-none`}
       ></input>
       {!isValid && firstClick && (
         <span className="absolute text-red-500 text-detail-3-regular top-[235px] left-[100px]">

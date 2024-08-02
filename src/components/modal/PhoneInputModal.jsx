@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '@/context/authContext';
+import React, { useState } from 'react';
 import isValidPhoneNumber from '@/utils/isValidPhoneNumber';
 import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
 import Check from '@/assets/icons/check.svg';
 import PhoneAuthModal from '@/components/modal/PhoneAuthModal';
+import { loginPhone } from '@/api/auth/index';
+import phoneNumberFormatting from '@/utils/phoneNumberFormatting';
 
 function PhoneInputModal({ closePhoneModal }) {
   const [inputPhone, setInputPhone] = useState('');
@@ -12,28 +13,21 @@ function PhoneInputModal({ closePhoneModal }) {
   const [isCheck, setIsCheck] = useState(false);
   const [firstClick, setFirstClick] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+
   const handleInputText = e => {
     setInputPhone(e.target.value);
     setIsValid(isValidPhoneNumber(e.target.value));
   };
-  const handleAuth = () => {
-    fetch('http://13.125.215.8:8080/login/phone', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        phoneNumber: inputPhone,
-      }),
-    })
-      .then(response => response.json())
-      .then(result => {
-        setShowAuthModal(true);
-      })
-      .catch(error => {
-        console.error('API 통신 실패:', error);
-      });
+
+  const handleAuth = async () => {
+    try {
+      const formattedPhone = phoneNumberFormatting(inputPhone);
+      const response = await loginPhone(formattedPhone);
+      setInputPhone(formattedPhone);
+      setShowAuthModal(true);
+    } catch (error) {
+      console.error('loginPhone API 통신 실패:', error);
+    }
   };
 
   const handleCheck = () => {
