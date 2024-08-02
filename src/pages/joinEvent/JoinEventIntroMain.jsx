@@ -28,7 +28,6 @@ function JoinEventIntroMain() {
 
   return (
     <>
-      <GetItemModal />
       <div className="bg-join-event-main bg-cover bg-center h-screen pt-[250px] flex flex-col">
         <div className="flex gap-2000 px-3000">
           <div className="space-y-1200">
