@@ -63,10 +63,8 @@ function JoinEventIntroMain() {
               <BluePurpleButton
                 value="결과 보기"
                 onClickFunc={() => alert('결과 보기')}
-                textSize="text-body-3-regular"
+                styles="text-body-3-regular px-5000 py-400"
                 disabled={disabled}
-                px="px-5000"
-                py="py-400"
               />
             </div>
             {disabled && (
