@@ -29,7 +29,7 @@ function NewCarIntroMain() {
         <BluePurpleButton
           value="무료 시승 신청 (최대 연 6회)"
           onClickFunc={linkToFreeRide}
-          styles="text-detail-3-semibold px-800 py-400"
+          styles="text-detail-3-semibold px-800 py-400 "
         />
         <WhiteButton
           value="사전 계약하기"
