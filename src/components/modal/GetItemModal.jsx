@@ -1,8 +1,7 @@
 import React from 'react';
 import modalClose from '@/assets/icons/modalClose.svg';
-import carImage from '@/assets/images/carImage.svg';
-import carShadow from '@/assets/images/carShadow.svg';
 import BlueButton from '@/components/buttons/BlueButton';
+import getCarModalImage from '@/assets/images/getCarModalImage.svg';
 import '@/styles/global.css';
 
 function GetItemModal(close) {
@@ -17,14 +16,9 @@ function GetItemModal(close) {
         </div>
         <div className="text-center text-detail-1-bold">자동차를 얻었어요!</div>
         <img
-          src={carImage}
-          alt="car"
-          className="absolute top-[170px] left-[163px] z-[103]"
-        ></img>
-        <img
-          src={carShadow}
-          alt="carShadow"
-          className="absolute top-[259px] left-[149px] z-[101]"
+          src={getCarModalImage}
+          alt="getCarModalImage"
+          className="absolute top-[100px] left-[63px] z-[103]"
         ></img>
         <div className="absolute top-[385px]">
           <BlueButton
