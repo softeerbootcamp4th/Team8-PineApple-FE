@@ -13,7 +13,7 @@ function Card2({ loginData, auth, joined }) {
     imageSrc = toolBoxImage;
   }
   return (
-    <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[340px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event2
       </div>
@@ -35,7 +35,7 @@ function Card2({ loginData, auth, joined }) {
           <img
             src={questionMark}
             alt="questionMark"
-            className="absolute top-[48px] left-[84px]"
+            className="absolute top-[48px] left-[74px]"
           ></img>
         )}
       </div>

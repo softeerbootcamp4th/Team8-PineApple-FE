@@ -62,6 +62,14 @@
               fontFamily: 'Pretendard Variable',
             },
           ],
+          'heading-banner-title-3': [
+            '72px',
+            {
+              lineHeight: '80px',
+              fontWeight: '700',
+              fontFamily: 'Pretendard Variable',
+            },
+          ],
           'heading-1-bold': [
             '48px',
             {

@@ -16,7 +16,7 @@ function NewCarIntroMain() {
     originLinkToPreOrder();
   }, []);
   return (
-    <div className="bg-new-car-intro bg-cover bg-center h-screen pt-[250px] flex flex-col gap-1300">
+    <div className="bg-new-car-intro bg-cover bg-center h-[680px] pt-[250px] flex flex-col gap-1300">
       <div className="flex flex-col items-center">
         <div className="text-detail-1-medium text-neutral-white">
           전력을 다해, CASPER Eletric 사전계약 진행중

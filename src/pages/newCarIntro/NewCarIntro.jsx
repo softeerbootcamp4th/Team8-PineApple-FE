@@ -7,7 +7,7 @@ function NewCarIntro() {
   return (
     <>
       <NewCarIntroMain />
-      <div className="pt-2500 bg-gradient-lightblue-white-vertical pb-4000">
+      <div className="pt-1800 bg-gradient-lightblue-white-vertical pb-4000">
         <NewCarCarousel />
         <NewCarDetail />
       </div>

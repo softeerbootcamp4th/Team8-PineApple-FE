@@ -13,7 +13,7 @@ function MiniQuiz() {
   });
 
   return (
-    <div className="flex px-2500 pb-2900">
+    <div className="flex px-3000 pb-2900">
       <div className="relative w-[610px] h-[400px]">
         {countDownStart && (
           <div className="absolute inset-0 z-10 bg-black opacity-70 p-2000">
@@ -31,15 +31,19 @@ function MiniQuiz() {
           <img src={miniQuizIntro3} alt="miniQuizIntro3" />
         </div>
       </div>
-      <div className="w-[780px] z-0 ml-2500">
+      <div className="w-[780px] z-0 ml-3000">
         <div className="space-y-800">
           <div className="text-primary-blue text-detail-1-bold">
             Event2. 툴박스 얻기
           </div>
           <div className="text-heading-3-bold">월드컵 일일 미니퀴즈</div>
           <div className="flex gap-400">
-            <div className="skyblue-box">매일 오후 1시 공개</div>
-            <div className="skyblue-box">선착순 500명 스타벅스 5천원 쿠폰</div>
+            <div className="text-detail-2-medium skyblue-box">
+              매일 오후 1시 공개
+            </div>
+            <div className="text-detail-2-medium skyblue-box">
+              선착순 500명 스타벅스 5천원 쿠폰
+            </div>
           </div>
         </div>
         <div className="whitespace-pre-line text-detail-2-medium mt-400 mb-1200">
