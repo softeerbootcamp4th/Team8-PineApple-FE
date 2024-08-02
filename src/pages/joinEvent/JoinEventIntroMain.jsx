@@ -7,16 +7,16 @@ import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import GetItemModal from '@/components/modal/GetItemModal';
 
 function JoinEventIntroMain() {
-  const { phoneNumber } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
 
   // 아래 변수들은 벡에서 가져올 내용
-  let haveCar = false;
+  const { haveCar, toolBoxCnt, phoneNumber } = userInfo;
+  //joinedQuiz는 userInfo에 추가
   let joinedQuiz = false;
-  let toolBoxCnt = 3;
   let day = 2;
-  let details = `캐스퍼 EV와 떠날 시간!\n깜빡하고 차키를 안 가져왔네요.. 어떻게 해야할까요?`;
-  let disabled = !phoneNumber || !haveCar || toolBoxCnt === 0; // 결과 보기 버튼 클릭 가능 여부 변수명 변경 필요
+  const details = `캐스퍼 EV와 떠날 시간!\n깜빡하고 차키를 안 가져왔네요.. 어떻게 해야할까요?`;
+  const disabled = !phoneNumber || !haveCar || toolBoxCnt === 0; // 결과 보기 버튼 클릭 가능 여부 변수명 변경 필요
 
   const openPhoneModal = () => {
     setOpenPhoneInputModal(true);
@@ -35,7 +35,7 @@ function JoinEventIntroMain() {
               <Card1 haveCar={haveCar} />
               <div className="text-heading-1-bold text-neutral-white">+</div>
               <Card2
-                loginData={toolBoxCnt}
+                toolBoxCnt={toolBoxCnt}
                 auth={phoneNumber}
                 joined={joinedQuiz}
               />

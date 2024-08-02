@@ -5,7 +5,7 @@ import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import questionMark from '@/assets/images/questionMark.svg';
 import PropTypes from 'prop-types';
 
-function Card2({ loginData, auth, joined }) {
+function Card2({ toolBoxCnt, auth, joined }) {
   let imageSrc = noToolBoxImage;
 
   //QuizJoined 했으면 상품 받음
@@ -25,7 +25,7 @@ function Card2({ loginData, auth, joined }) {
           <div
             className={`px-400 py-100 rounded-[8px] text-detail-3-semibold text-primary-blue bg-neutral-white`}
           >
-            {loginData}개 보유
+            {toolBoxCnt}개 보유
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ function Card2({ loginData, auth, joined }) {
 
 Card2.propTypes = {
   // eslint 속이기 위한 data 타입
-  loginData: PropTypes.number.isRequired,
+  toolBoxCnt: PropTypes.number.isRequired,
   auth: PropTypes.string.isRequired,
   joined: PropTypes.bool.isRequired,
 };

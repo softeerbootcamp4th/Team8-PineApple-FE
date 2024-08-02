@@ -6,11 +6,8 @@ import questionMark from '@/assets/images/questionMark.svg';
 import PropTypes from 'prop-types';
 
 function Card1({ haveCar }) {
-  let imageSrc = noCarImage;
-  // loginData의 Carhave가 true면 imagesrc 바꿔주기
-  if (haveCar) {
-    imageSrc = carImage;
-  }
+  const imageSrc = haveCar ? carImage : noCarImage;
+
   return (
     <div className="flex flex-col justify-between bg-card1 px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
