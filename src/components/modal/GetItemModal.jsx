@@ -30,9 +30,7 @@ function GetItemModal(close) {
           <BlueButton
             value="받기"
             onClickFunc={() => alert('get')}
-            px="px-1300"
-            py="py-400"
-            text-size="text-detail-3-semibold"
+            styles="px-1300 py-400 text-detail-3-semibold"
           />
         </div>
       </div>

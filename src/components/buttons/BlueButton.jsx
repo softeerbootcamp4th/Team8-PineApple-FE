@@ -1,19 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BlueButton({
-  value,
-  onClickFunc,
-  textSize,
-  disabled = false,
-  px,
-  py,
-}) {
+function BlueButton({ value, styles, onClickFunc, disabled = false }) {
   return (
     <button
       onClick={onClickFunc}
       // text-detail and padding have to be fixed, 인자로 추가할까??
-      className={`${textSize} ${px} ${py} ${disabled ? 'opacity-30' : 'opacity-100'} flex items-center justify-center rounded-full bg-primary-blue text-neutral-white`}
+      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover:drop-shadow-[0_5px_5px_rgba(0,0,0,0.25)]'} flex items-center justify-center rounded-full bg-primary-blue text-neutral-white`}
     >
       {value}
     </button>
@@ -23,10 +16,8 @@ function BlueButton({
 BlueButton.propTypes = {
   value: PropTypes.string.isRequired,
   onClickFunc: PropTypes.func.isRequired,
-  textSize: PropTypes.string.isRequired,
+  styles: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  px: PropTypes.string.isRequired,
-  py: PropTypes.string.isRequired,
 };
 
 //memo를 이용하여 rerender 방지

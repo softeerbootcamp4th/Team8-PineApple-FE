@@ -9,11 +9,7 @@ import GetItemModal from '@/components/modal/GetItemModal';
 function JoinEventIntroMain() {
   const { phoneNumber } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
 
-  const closeModal = () => {
-    setOpenModal(false);
-  };
   // 아래 변수들은 벡에서 가져올 내용
   let haveCar = false;
   let joinedQuiz = false;
@@ -32,7 +28,6 @@ function JoinEventIntroMain() {
 
   return (
     <>
-      {openModal && <GetItemModal close={closeModal} />}
       <div className="bg-join-event-main bg-cover bg-center h-screen pt-[250px] flex flex-col">
         <div className="flex gap-2000 px-3000">
           <div className="space-y-1200">

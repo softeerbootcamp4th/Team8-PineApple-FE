@@ -45,9 +45,7 @@ function Card2({ loginData, auth, joined }) {
         <BlueButton
           value="툴박스 얻기"
           onClickFunc={() => alert('툴박스 얻기')}
-          textSize="text-detail-2-medium"
-          px="px-800"
-          py="py-400"
+          styles="px-800 py-400 text-detail-2-medium"
         />
       </div>
     </div>

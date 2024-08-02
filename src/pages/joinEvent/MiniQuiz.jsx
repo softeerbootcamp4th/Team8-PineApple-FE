@@ -53,9 +53,7 @@ function MiniQuiz() {
         <BlueButton
           value="이벤트 참여하기"
           onClickFunc={() => alert('이벤트 참여하기')}
-          textSize="text-detail-2-medium"
-          px="px-2000"
-          py="py-400"
+          styles="px-2000 py-400 text-detail-2-medium"
         />
       </div>
     </div>

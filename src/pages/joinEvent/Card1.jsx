@@ -35,9 +35,7 @@ function Card1({ haveCar }) {
         <BlueButton
           value="자동차 얻기 "
           onClickFunc={() => alert('자동차 얻기')}
-          textSize="text-detail-2-medium"
-          px="px-800"
-          py="py-400"
+          styles="px-800 py-400 text-detail-2-medium"
         />
       </div>
     </div>
