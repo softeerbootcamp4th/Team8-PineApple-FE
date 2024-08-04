@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
 
 function CommandInputModal({ closeCommandModal }) {
+  // 모달창이 띄워졌을때 뒷부분 스크롤 막기 위한 코드
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
   const [inputCommand, setInputCommand] = useState('');
   const handleInputText = e => {
     if (e.target.value.length > 50) {

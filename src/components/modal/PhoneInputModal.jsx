@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import isValidPhoneNumber from '@/utils/isValidPhoneNumber';
 import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
@@ -36,6 +36,13 @@ function PhoneInputModal({ closePhoneModal }) {
   const firstClickEvent = () => {
     setFirstClick(true);
   };
+  // 모달창이 띄워졌을때 뒷부분 스크롤 막기 위한 코드
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black z-[100]">
       {showAuthModal ? (

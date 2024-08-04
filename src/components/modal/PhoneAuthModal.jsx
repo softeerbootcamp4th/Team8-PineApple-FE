@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '@/context/authContext';
 import modalClose from '@/assets/icons/modalClose.svg';
 import { loginCode } from '@/api/auth/index';
@@ -31,6 +31,13 @@ function PhoneAuthModal({ inputPhone, closePhoneModal }) {
   const firstClickEvent = () => {
     setFirstClick(true);
   };
+  // 모달창이 띄워졌을때 뒷부분 스크롤 막기 위한 코드
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
   return (
     <div className="bg-neutral-white w-[800px] py-1500 flex flex-col items-center relative rounded-[20px]">
       <button
