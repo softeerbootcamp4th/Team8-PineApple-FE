@@ -5,7 +5,7 @@ import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import questionMark from '@/assets/images/questionMark.svg';
 import PropTypes from 'prop-types';
 
-function Card2({ loginData, auth, joined }) {
+function Card2({ toolBoxCnt, auth, joined }) {
   let imageSrc = noToolBoxImage;
 
   //QuizJoined 했으면 상품 받음
@@ -13,7 +13,7 @@ function Card2({ loginData, auth, joined }) {
     imageSrc = toolBoxImage;
   }
   return (
-    <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[340px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event2
       </div>
@@ -25,7 +25,7 @@ function Card2({ loginData, auth, joined }) {
           <div
             className={`px-400 py-100 rounded-[8px] text-detail-3-semibold text-primary-blue bg-neutral-white`}
           >
-            {loginData}개 보유
+            {toolBoxCnt}개 보유
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@ function Card2({ loginData, auth, joined }) {
           <img
             src={questionMark}
             alt="questionMark"
-            className="absolute top-[48px] left-[84px]"
+            className="absolute top-[48px] left-[74px]"
           ></img>
         )}
       </div>
@@ -45,9 +45,7 @@ function Card2({ loginData, auth, joined }) {
         <BlueButton
           value="툴박스 얻기"
           onClickFunc={() => alert('툴박스 얻기')}
-          textSize="text-detail-2-medium"
-          px="px-800"
-          py="py-400"
+          styles="px-800 py-400 text-detail-2-medium"
         />
       </div>
     </div>
@@ -56,7 +54,7 @@ function Card2({ loginData, auth, joined }) {
 
 Card2.propTypes = {
   // eslint 속이기 위한 data 타입
-  loginData: PropTypes.number.isRequired,
+  toolBoxCnt: PropTypes.number.isRequired,
   auth: PropTypes.string.isRequired,
   joined: PropTypes.bool.isRequired,
 };

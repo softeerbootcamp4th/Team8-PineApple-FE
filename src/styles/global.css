@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .skyblue-box {
-  @apply bg-background-lightblue px-400 py-100 text-detail-2-medium text-primary-blue;
+  @apply bg-background-lightblue px-400 py-100 text-primary-blue;
 }

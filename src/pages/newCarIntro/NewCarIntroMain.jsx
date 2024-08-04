@@ -16,7 +16,7 @@ function NewCarIntroMain() {
     originLinkToPreOrder();
   }, []);
   return (
-    <div className="bg-new-car-intro bg-cover bg-center h-screen pt-[250px] flex flex-col gap-1300">
+    <div className="bg-new-car-intro bg-cover bg-center h-[680px] pt-[250px] flex flex-col gap-1300">
       <div className="flex flex-col items-center">
         <div className="text-detail-1-medium text-neutral-white">
           전력을 다해, CASPER Eletric 사전계약 진행중
@@ -29,16 +29,12 @@ function NewCarIntroMain() {
         <BluePurpleButton
           value="무료 시승 신청 (최대 연 6회)"
           onClickFunc={linkToFreeRide}
-          textSize="text-detail-3-semibold"
-          px="px-800"
-          py="py-400"
+          styles="text-detail-3-semibold px-800 py-400 "
         />
         <WhiteButton
           value="사전 계약하기"
           onClickFunc={linkToPreOrder}
-          textSize="text-detail-3-semibold"
-          px="px-800"
-          py="py-400"
+          styles="text-detail-3-semibold px-800 py-400"
         />
       </div>
     </div>

@@ -6,13 +6,10 @@ import questionMark from '@/assets/images/questionMark.svg';
 import PropTypes from 'prop-types';
 
 function Card1({ haveCar }) {
-  let imageSrc = noCarImage;
-  // loginData의 Carhave가 true면 imagesrc 바꿔주기
-  if (haveCar) {
-    imageSrc = carImage;
-  }
+  const imageSrc = haveCar ? carImage : noCarImage;
+
   return (
-    <div className="flex flex-col justify-between bg-card1 px-800 pt-700 pb-500 w-[340px] h-[417px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-card1 px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event1
       </div>
@@ -25,7 +22,7 @@ function Card1({ haveCar }) {
           <img
             src={questionMark}
             alt="questionMark"
-            className="absolute top-[50px] left-[88px]"
+            className="absolute top-[50px] left-[78px]"
           ></img>
         )}
       </div>
@@ -35,9 +32,7 @@ function Card1({ haveCar }) {
         <BlueButton
           value="자동차 얻기 "
           onClickFunc={() => alert('자동차 얻기')}
-          textSize="text-detail-2-medium"
-          px="px-800"
-          py="py-400"
+          styles="px-800 py-400 text-detail-2-medium"
         />
       </div>
     </div>
