@@ -20,11 +20,13 @@ function JoinEventIntro() {
       <div ref={refs.miniQuizRef}>
         <MiniQuiz />
       </div>
-      <div className="bg-gradient-lightblue-white-vertical px-[240px] py-[115px]">
+      <div className="bg-gradient-lightblue-white-vertical px-3000">
         <div ref={refs.dailyCommentRef}>
           <DailyComment />
         </div>
-        <CommentIndex />
+        <div ref={refs.commentIndexRef}>
+          <CommentIndex />
+        </div>
       </div>
     </>
   );
