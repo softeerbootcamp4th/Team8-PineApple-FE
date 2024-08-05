@@ -2,7 +2,7 @@ import React from 'react';
 
 function WorldCupHeader() {
   return (
-    <div className="absolute flex w-full h-[32px] items-center top-[5%] left-[5%]">
+    <div className="absolute flex w-full h-[32px] items-center top-[2%] left-[5%]">
       <span className="text-detail-1-bold text-neutral-black mr-2000">
         CASPER ELECTRIC
       </span>
