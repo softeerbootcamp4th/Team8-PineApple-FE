@@ -1,19 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
 import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 function Card2() {
+  const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
   const { toolBoxCnt, joinedQuiz } = userInfo;
   let imageSrc = noToolBoxImage;
   //QuizJoined 했으면 상품 받음
   //Card1에 있는 주석 참고!
-  if (joined) {
+  if (joinedQuiz) {
     imageSrc = toolBoxImage;
   }
+
+  const gotoMiniQuiz = useCallback(() => {
+    navigate('/event/miniquiz');
+  }, []);
 
   return (
     <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
@@ -47,7 +53,7 @@ function Card2() {
       >
         <BlueButton
           value="툴박스 얻기"
-          onClickFunc={() => alert('툴박스 얻기')}
+          onClickFunc={gotoMiniQuiz}
           styles="px-800 py-400 text-detail-2-medium"
         />
       </div>
