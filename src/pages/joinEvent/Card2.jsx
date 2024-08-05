@@ -52,7 +52,7 @@ function Card2() {
         className={`flex items-center justify-center ${joinedQuiz ? 'invisible' : 'visible'}`}
       >
         <BlueButton
-          value="툴박스 얻기"
+          value="도구 얻기"
           onClickFunc={gotoMiniQuiz}
           styles="px-800 py-400 text-detail-2-medium"
         />
