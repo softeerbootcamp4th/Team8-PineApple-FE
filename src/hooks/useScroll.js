@@ -7,6 +7,7 @@ function useScroll() {
   const worldCupRef = useRef(null);
   const miniQuizRef = useRef(null);
   const dailyCommentRef = useRef(null);
+  const commentIndexRef = useRef(null);
 
   useEffect(() => {
     const { state } = location;
@@ -25,6 +26,8 @@ function useScroll() {
       case 'dailyComment':
         dailyCommentRef.current?.scrollIntoView({ behavior: 'smooth' });
         break;
+      case 'commentIndex':
+        commentIndexRef.current?.scrollIntoView({ behavior: 'smooth' });
       default:
         break;
     }
@@ -36,6 +39,7 @@ function useScroll() {
       worldCupRef,
       miniQuizRef,
       dailyCommentRef,
+      commentIndexRef,
     },
   };
 }
