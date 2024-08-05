@@ -5,10 +5,7 @@ import Clock from '@/assets/icons/clock.svg';
 
 function EventIntroNavItem({ item }) {
   return (
-    <div
-      onClick={item.moveFunc}
-      className="mt-[-100px] w-[300px] h-[500px] bg-neutral-white rounded-[25.86px] shadow-3xl hover:scale-110 transition-transform duration-300 z-10 cursor-pointer relative"
-    >
+    <div className="mt-[-100px] w-[300px] h-[500px] bg-neutral-white rounded-[25.86px] shadow-3xl hover:scale-110 transition-transform duration-300 z-10 cursor-pointer relative">
       <img src={item.image} alt="navImage" className="w-full" />
       <div className="absolute flex items-center justify-center top-6 left-36">
         <span className="pr-2 text-detail-3-semibold text-neutral-white">
