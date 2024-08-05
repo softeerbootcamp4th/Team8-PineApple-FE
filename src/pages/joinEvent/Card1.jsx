@@ -1,9 +1,10 @@
-import React ,{useContext} from 'react';
+import React, { useContext } from 'react';
 import noCarImage from '@/assets/images/noCarImage.svg';
 import carImage from '@/assets/images/carImage.svg';
 import BlueButton from '@/components/buttons/BlueButton';
 import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
+import '@/styles/global.css';
 
 function Card1() {
   const { userInfo } = useContext(AuthContext);
@@ -34,9 +35,7 @@ function Card1() {
           ></img>
         )}
       </div>
-      <div
-        className={`flex items-center justify-center ${haveCar ? 'invisible' : 'visible'}`}
-      >
+      <div className={`set-center ${haveCar ? 'invisible' : 'visible'}`}>
         <BlueButton
           value="자동차 얻기 "
           onClickFunc={() => alert('자동차 얻기')}

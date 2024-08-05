@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '@/styles/global';
 
 function BluePurpleButton({ value, onClickFunc, styles, disabled = false }) {
   return (
     <button
       onClick={onClickFunc}
-      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover:scale-105 transition-transform'} flex items-center justify-center rounded-full bg-gradient-blue-purple  text-neutral-white`}
+      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover:scale-105 transition-transform'} set-center rounded-full bg-gradient-blue-purple  text-neutral-white`}
       disabled={disabled}
     >
       {value}

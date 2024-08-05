@@ -5,3 +5,7 @@
 .skyblue-box {
   @apply bg-background-lightblue px-400 py-100 text-primary-blue;
 }
+
+.set-center {
+  @apply flex items-center justify-center;
+}

@@ -5,6 +5,7 @@ import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
+import '@/styles/global.css';
 
 function Card2() {
   const navigate = useNavigate();
@@ -48,9 +49,7 @@ function Card2() {
           ></img>
         )}
       </div>
-      <div
-        className={`flex items-center justify-center ${joinedQuiz ? 'invisible' : 'visible'}`}
-      >
+      <div className={`set-center ${joinedQuiz ? 'invisible' : 'visible'}`}>
         <BlueButton
           value="도구 얻기"
           onClickFunc={gotoMiniQuiz}

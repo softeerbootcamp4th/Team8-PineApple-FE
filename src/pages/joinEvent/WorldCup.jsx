@@ -9,7 +9,7 @@ function WorldCup() {
     <>
       <div className="px-3000 pt-2000 pb-2500">
         <div className="flex gap-2000">
-          <div className="w-[610px]">
+          <div className="min-w-[610px]">
             <div className="space-y-800">
               <div className="text-primary-blue text-detail-1-bold">
                 Event1. 자동차 얻기
