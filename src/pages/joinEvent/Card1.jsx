@@ -1,12 +1,20 @@
-import React from 'react';
+import React ,{useContext} from 'react';
 import noCarImage from '@/assets/images/noCarImage.svg';
 import carImage from '@/assets/images/carImage.svg';
 import BlueButton from '@/components/buttons/BlueButton';
 import questionMark from '@/assets/images/questionMark.svg';
-import PropTypes from 'prop-types';
+import { AuthContext } from '@/context/authContext';
 
-function Card1({ haveCar }) {
-  const imageSrc = haveCar ? carImage : noCarImage;
+function Card1() {
+  const { userInfo } = useContext(AuthContext);
+  const { haveCar } = userInfo;
+
+  // haveCar 값이 바뀔 때는 어차피 useContext로 재랜더링이 되므로 let으로 선언 아래의 공식 문서에도 let 사용하는 예시가 있음!
+  // https://react.dev/learn/preserving-and-resetting-state
+  let imageSrc = noCarImage;
+  if (haveCar) {
+    imageSrc = carImage;
+  }
 
   return (
     <div className="flex flex-col justify-between bg-card1 px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
@@ -38,10 +46,5 @@ function Card1({ haveCar }) {
     </div>
   );
 }
-
-Card1.propTypes = {
-  // eslint 속이기 위한 data 타입
-  haveCar: PropTypes.bool.isRequired,
-};
 
 export default Card1;
