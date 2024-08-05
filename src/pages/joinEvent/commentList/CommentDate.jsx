@@ -4,7 +4,7 @@ import PreviousDayArrow from '@/assets/icons/previousDayArrow.svg';
 import dateFormatting from '@/utils/dateFormatting';
 import PropTypes from 'prop-types';
 
-function CommentDate({ today, setToday }) {
+function CommentDate({ today, setToday, setCurrentPage }) {
   const [isNextDayDisabled, setIsNextDayDisabled] = useState(false);
   const [isPreviousDayDisabled, setIsPreviousDayDisabled] = useState(false);
 
@@ -19,6 +19,7 @@ function CommentDate({ today, setToday }) {
       const previousDay = new Date(today);
       previousDay.setDate(previousDay.getDate() - 1);
       setToday(dateFormatting(previousDay));
+      setCurrentPage(1);
     }
   };
 
@@ -27,6 +28,7 @@ function CommentDate({ today, setToday }) {
       const nextDay = new Date(today);
       nextDay.setDate(nextDay.getDate() + 1);
       setToday(dateFormatting(nextDay));
+      setCurrentPage(1);
     }
   };
 
@@ -52,6 +54,7 @@ function CommentDate({ today, setToday }) {
 CommentDate.propTypes = {
   today: PropTypes.string.isRequired,
   setToday: PropTypes.func.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
 };
 
 export default CommentDate;

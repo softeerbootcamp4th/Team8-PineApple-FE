@@ -1,5 +1,5 @@
 import React from 'react';
-import casperCarImage from '@/assets/images/casper_car_image.png';
+import casperCarImage from '@/assets/images/casper_car_image.svg';
 import arrow from '@/assets/icons/arrow.svg';
 import casperCarImageShadow from '@/assets/icons/casperCarImageShadow.svg';
 import { Link } from 'react-router-dom';

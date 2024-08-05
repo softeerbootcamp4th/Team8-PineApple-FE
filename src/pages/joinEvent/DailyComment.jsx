@@ -33,7 +33,7 @@ function DailyComment() {
   };
 
   return (
-    <div className="mb-2900">
+    <div className="pt-2500 mb-2900">
       <p className="text-detail-1-bold text-primary-blue mb-800">
         Event 3. 도구 아이템 한 번 더
       </p>
@@ -48,7 +48,7 @@ function DailyComment() {
       <div className="flex items-center gap-400">
         <button
           onClick={openCommandModal}
-          className="flex items-center justify-center rounded-full bg-primary-blue px-1600 py-400 text-detail-2-medium text-neutral-white hover:scale-110 transition-transform duration-300"
+          className="flex items-center justify-center transition-transform duration-300 rounded-full bg-primary-blue px-1600 py-400 text-detail-2-medium text-neutral-white hover:scale-110"
         >
           <img src={Edit} alt="edit icons" className="mr-200" />
           일일 기대평 작성하기

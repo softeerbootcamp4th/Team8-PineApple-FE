@@ -3,6 +3,7 @@ import BlueButton from '@/components/buttons/BlueButton';
 import worldCupIntro1 from '@/assets/images/worldCupIntro1.svg';
 import worldCupIntro2 from '@/assets/images/worldCupIntro2.svg';
 import worldCupIntro3 from '@/assets/images/worldCupIntro3.svg';
+import { Link } from 'react-router-dom';
 
 function WorldCup() {
   return (
@@ -23,11 +24,12 @@ function WorldCup() {
                 {`운전 중 피하고 싶은 상황을 고르면 나에게 딱 맞는 캐스퍼 EV 옵션을
                 추천받고 차 아이템은 한번 획득하면 응모에 여러번 참여해도 남아있어요.`}
               </div>
-              <BlueButton
-                value="이벤트 참여하기"
-                onClickFunc={() => alert('이벤트 참여하기')}
-                styles="px-2000 py-400 text-detail-2-medium"
-              />
+              <Link to="worldcup">
+                <BlueButton
+                  value="이벤트 참여하기"
+                  styles="px-2000 py-400 text-detail-2-medium"
+                />
+              </Link>
             </div>
           </div>
           <div className="relative w-[784px]">

@@ -8,8 +8,10 @@ import PagingComment from '@/pages/joinEvent/commentList/PagingComment';
 import dateFormatting from '@/utils/dateFormatting';
 import getNowTime from '@/utils/getNowTime';
 import { getComment } from '@/api/comment';
+import { useNavigate } from 'react-router-dom';
 
 function CommentIndex() {
+  const navigate = useNavigate();
   const [today, setToday] = useState(dateFormatting());
   const [option, setOption] = useState('like');
   const [commentList, setCommentList] = useState([]);
@@ -31,15 +33,21 @@ function CommentIndex() {
 
   const onChangePage = page => {
     setCurrentPage(page);
+    navigate('/event', { state: { scrollTo: 'commentIndex' } });
   };
 
   const onClickrefreshData = () => {
     setNowTime(getNowTime());
     updateComments();
   };
+
   return (
-    <div>
-      <CommentDate today={today} setToday={setToday} />
+    <div className="pt-1500 pb-2500">
+      <CommentDate
+        today={today}
+        setToday={setToday}
+        setCurrentPage={setCurrentPage}
+      />
       <div className="flex items-center justify-between mb-1000">
         <RemainingTime />
         <div className="flex">
@@ -64,8 +72,8 @@ function CommentIndex() {
       <div className="mb-2000">
         <PagingComment
           page={currentPage}
-          count={totalCommentCount}
           onChangePage={onChangePage}
+          count={totalCommentCount}
         />
       </div>
     </div>
