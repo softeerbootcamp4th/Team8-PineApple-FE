@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '@/styles/global';
+import '@/styles/global.css';
 
 function BluePurpleButton({ value, onClickFunc, styles, disabled = false }) {
   return (
