@@ -14,7 +14,7 @@ function MiniQuiz() {
 
   return (
     <div className="flex px-3000 pb-2900">
-      <div className="relative w-[610px] h-[400px]">
+      <div className="relative min-w-[610px] h-[400px]">
         {countDownStart && (
           <div className="absolute inset-0 z-10 bg-black opacity-70 p-2000">
             <div className="text-center text-body-2-semibold text-primary-blue">

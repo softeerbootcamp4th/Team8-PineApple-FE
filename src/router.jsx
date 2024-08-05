@@ -4,6 +4,7 @@ import App from '@/App';
 import EventIntro from '@/pages/eventIntro/EventIntro';
 import JoinEventIntro from '@/pages//joinEvent/JoinEventIntro';
 import NewCarIntro from '@/pages/newCarIntro/NewCarIntro';
+import MiniQuiz from '@/pages/miniquiz/MiniQuiz';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'miniquiz',
-            element: <></>,
+            element: <MiniQuiz />,
           },
         ],
       },

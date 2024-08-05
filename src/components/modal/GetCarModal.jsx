@@ -6,7 +6,7 @@ import '@/styles/global.css';
 
 function GetItemModal(close) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black z-[100]">
+    <div className="fixed inset-0 set-center bg-opacity-50 bg-neutral-black z-[100]">
       <div className="bg-neutral-white w-[600px] h-[480px] py-1500 flex flex-col items-center relative rounded-[20px]">
         <button onClick={close} className="absolute top-[29px] right-[29px]">
           <img src={modalClose} alt="Close" />

@@ -22,8 +22,8 @@ function NewCarDetail() {
         </div>
       </div>
       <div className="grid grid-cols-2 mx-5000 gap-x-600 gap-y-2900">
-        {newCarDetailData.map((item, idx) => (
-          <NewCarDetailBox details={item} key={idx} />
+        {newCarDetailData.map(item => (
+          <NewCarDetailBox details={item} key={item.id} />
         ))}
       </div>
     </>

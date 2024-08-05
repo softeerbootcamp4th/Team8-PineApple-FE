@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useContext, useCallback } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
 import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import questionMark from '@/assets/images/questionMark.svg';
-import PropTypes from 'prop-types';
+import { AuthContext } from '@/context/authContext';
+import { useNavigate } from 'react-router-dom';
+import '@/styles/global.css';
 
-function Card2({ toolBoxCnt, auth, joined }) {
+function Card2() {
+  const navigate = useNavigate();
+  const { userInfo } = useContext(AuthContext);
+  const { toolBoxCnt, joinedQuiz } = userInfo;
   let imageSrc = noToolBoxImage;
-
   //QuizJoined 했으면 상품 받음
-  if (joined) {
+  //Card1에 있는 주석 참고!
+  if (joinedQuiz) {
     imageSrc = toolBoxImage;
   }
+
+  const gotoMiniQuiz = useCallback(() => {
+    navigate('/event/miniquiz');
+  }, []);
+
   return (
     <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
@@ -20,7 +30,7 @@ function Card2({ toolBoxCnt, auth, joined }) {
       <div className="text-detail-1-semibold h-1800 text-neutral-black">
         일일 미니퀴즈
         <div
-          className={`items-center justify-end h-900 flex ${auth ? 'visible' : 'invisible'}`}
+          className={`items-center justify-end h-900 flex ${toolBoxCnt !== undefined ? 'visible' : 'invisible'}`}
         >
           <div
             className={`px-400 py-100 rounded-[8px] text-detail-3-semibold text-primary-blue bg-neutral-white`}
@@ -39,24 +49,15 @@ function Card2({ toolBoxCnt, auth, joined }) {
           ></img>
         )}
       </div>
-      <div
-        className={`flex items-center justify-center ${joined ? 'invisible' : 'visible'}`}
-      >
+      <div className={`set-center ${joinedQuiz ? 'invisible' : 'visible'}`}>
         <BlueButton
-          value="툴박스 얻기"
-          onClickFunc={() => alert('툴박스 얻기')}
+          value="도구 얻기"
+          onClickFunc={gotoMiniQuiz}
           styles="px-800 py-400 text-detail-2-medium"
         />
       </div>
     </div>
   );
 }
-
-Card2.propTypes = {
-  // eslint 속이기 위한 data 타입
-  toolBoxCnt: PropTypes.number.isRequired,
-  auth: PropTypes.string.isRequired,
-  joined: PropTypes.bool.isRequired,
-};
 
 export default Card2;
