@@ -22,7 +22,7 @@ function MiniQuiz() {
             월드컵 일일 미니퀴즈
           </div>
         </div>
-        <div className="flex flex-col items-center px-5000 mb-2000">
+        <div className="flex flex-col items-center mb-2000">
           <div className="rounded-[8px] skyblue-box text-detail-1-bold mb-500">
             월드컵 일일 미니퀴즈
           </div>
