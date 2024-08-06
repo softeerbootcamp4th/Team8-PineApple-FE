@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function useScroll() {
   const location = useLocation();
+  const history = useNavigate();
   const mainRef = useRef(null);
   const worldCupRef = useRef(null);
   const miniQuizRef = useRef(null);
@@ -28,10 +29,12 @@ function useScroll() {
         break;
       case 'commentIndex':
         commentIndexRef.current?.scrollIntoView({ behavior: 'smooth' });
+        break;
       default:
         break;
     }
-  }, [location]);
+    history({ ...location, state: { ...state, scrollTo: null } });
+  }, []);
 
   return {
     refs: {
