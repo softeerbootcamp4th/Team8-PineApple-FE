@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import EventHeader from '@/components/header/EventHeader';
 import QuizResult from '@/pages/miniquiz/QuizResult';
 import ClickBox from '@/pages/miniquiz/ClickBox';
-import shuffleData from '@/utils/utilForMiniQuiz';
+import shuffleArr from '@/utils/shuffleArr';
 import { getMiniQuiz } from '@/api/miniQuiz';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import '@/styles/global.css';
@@ -24,7 +24,8 @@ function MiniQuiz() {
         const { quizId, quizDescription, quizQuestions } = data;
         setQuizId(quizId);
         setQuizDescription(quizDescription);
-        setShuffledSelectList(shuffleData(quizQuestions));
+        const quizArr = Object.entries(quizQuestions);
+        setShuffledSelectList(shuffleArr(quizArr));
       } catch (err) {
         setError(err);
       } finally {

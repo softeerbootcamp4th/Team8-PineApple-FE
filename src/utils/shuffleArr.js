@@ -6,10 +6,4 @@ const shuffleArr = entries => {
   return entries;
 };
 
-const shuffleData = data => {
-  const entries = Object.entries(data); //key와 value를 한 배열에
-  const shuffledData = shuffleArr(entries);
-  return shuffledData;
-};
-
-export default shuffleData;
+export default shuffleArr;
