@@ -4,7 +4,7 @@ import BackIcon from '@/assets/icons/back.svg';
 
 function EventHeader({ eventTitle, eventBody, setopenExitModal }) {
   return (
-    <div className="absolute flex h-[32px] items-center top-[2%] left-[5%]">
+    <div className="absolute flex h-[32px] items-center top-[2%] left-[5%] z-[100]">
       <button
         onClick={() => setopenExitModal(true)}
         className="transition-transform duration-300 hover:scale-125"
