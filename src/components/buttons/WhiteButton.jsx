@@ -6,7 +6,7 @@ function WhiteButton({ value, onClickFunc, styles, disabled = false }) {
   return (
     <button
       onClick={onClickFunc}
-      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover:scale-105 transition-transform'} set-center rounded-full bg-neutral-white text-neutral-black`}
+      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover-scale-ani'} set-center rounded-full bg-neutral-white text-neutral-black`}
       disabled={disabled}
     >
       {value}

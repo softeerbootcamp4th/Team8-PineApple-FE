@@ -9,3 +9,7 @@
 .set-center {
   @apply flex items-center justify-center;
 }
+
+.hover-scale-ani {
+  @apply transition-transform hover:scale-105;
+}
