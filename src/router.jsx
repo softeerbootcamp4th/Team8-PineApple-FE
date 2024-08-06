@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             element: <WorldCup />,
           },
           {
-            path: 'miniquiz',
+            path: 'miniQuiz',
             element: <MiniQuiz />,
           },
         ],

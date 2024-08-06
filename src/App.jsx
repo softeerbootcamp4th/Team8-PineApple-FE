@@ -6,7 +6,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
-  const hideHeaderAndFooter = ['/event/worldCup', '/event/miniquiz'].includes(
+  const hideHeaderAndFooter = ['/event/worldCup', '/event/miniQuiz'].includes(
     location.pathname,
   );
 

@@ -17,7 +17,7 @@ function Card2() {
   }
 
   const gotoMiniQuiz = useCallback(() => {
-    navigate('/event/miniquiz');
+    navigate('/event/miniQuiz');
   }, []);
 
   return (
