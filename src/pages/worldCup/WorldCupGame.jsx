@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import EventHeader from '@/components/header/EventHeader';
 import WorldCupTitle from './WorldCupTitle';
-import data from '@/constants/worldCup/worldCupData';
 import PropTypes from 'prop-types';
+import ExitModal from '@/components/modal/ExitModal';
 
-function WorldCupGame({ title = '8강', onselect }) {
+function WorldCupGame({ title = '8강', onSelect, roundData }) {
   const [currentState, setCurrentState] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
+  const [openExitModal, setopenExitModal] = useState(false);
 
   const getTextLeftStyle = () => {
     return currentState === -1
@@ -15,7 +16,7 @@ function WorldCupGame({ title = '8강', onselect }) {
   };
 
   const getLeftImageSrc = () => {
-    return currentState === 1 ? data[0].grayImage : data[0].image;
+    return currentState === 1 ? roundData[0].grayImage : roundData[0].image;
   };
 
   const getTextRightStyle = () => {
@@ -25,21 +26,15 @@ function WorldCupGame({ title = '8강', onselect }) {
   };
 
   const getRightImageSrc = () => {
-    return currentState === -1 ? data[1].grayImage : data[1].image;
+    return currentState === -1 ? roundData[1].grayImage : roundData[1].image;
   };
 
   const handleCurrentState = isChosen => {
     if (animationClass) return;
-    if (isChosen) {
-      setCurrentState(-1);
-    } else {
-      setCurrentState(1);
-    }
+    setCurrentState(isChosen ? -1 : 1);
   };
 
-  const handleMouseLeave = () => {
-    setCurrentState(0);
-  };
+  const handleMouseLeave = () => setCurrentState(0);
 
   const handleAnimation = isChosen => {
     setCurrentState(0);
@@ -48,17 +43,50 @@ function WorldCupGame({ title = '8강', onselect }) {
     } else {
       setAnimationClass('animate-slide-right-to-left');
     }
-    // 1초 후 애니메이션 클래스 제거
-    // setTimeout(() => {
-    //   setAnimationClass('');
-    // }, 1000);
+    setTimeout(() => {
+      setAnimationClass('');
+      onSelect(isChosen);
+    }, 1500);
   };
+
+  const getContainerClass = isChosen => {
+    let baseClass = 'flex flex-col items-center justify-center pt-[5%] ';
+    if (isChosen) {
+      baseClass +=
+        currentState === 1
+          ? 'bg-neutral-100 '
+          : 'bg-gradient-cobaltblue-white-opposite ';
+      if (animationClass === 'animate-slide-left-to-right') {
+        baseClass += 'animate-slide-left-to-right';
+      } else if (animationClass === 'animate-slide-right-to-left') {
+        baseClass += 'animate-remove-left-to-right w-[0%]';
+      } else {
+        baseClass += 'w-1/2';
+      }
+    } else {
+      baseClass +=
+        currentState === -1
+          ? 'bg-neutral-100 '
+          : 'bg-gradient-lightblue-white ';
+      if (animationClass === 'animate-slide-right-to-left') {
+        baseClass += 'animate-slide-right-to-left';
+      } else if (animationClass === 'animate-slide-left-to-right') {
+        baseClass += 'animate-remove-right-to-left w-[0%]';
+      } else {
+        baseClass += 'w-1/2';
+      }
+    }
+    return baseClass;
+  };
+
+  const onClose = () => setopenExitModal(false);
 
   return (
     <div className="relative w-full min-w-[1104px] min-h-[860px]">
       <EventHeader
         eventTitle="Event 1. 차 얻기"
         eventBody="운전 중 피하고 싶은 상황 월드컵"
+        setopenExitModal={setopenExitModal}
       />
       <WorldCupTitle title={title} />
       {animationClass === '' ? (
@@ -67,15 +95,14 @@ function WorldCupGame({ title = '8강', onselect }) {
         </span>
       ) : null}
       <div className="flex h-screen">
-        <div
-          className={`flex flex-col items-center justify-center pt-[5%] ${currentState === 1 ? 'bg-neutral-100' : 'bg-gradient-cobaltblue-white-opposite'} ${animationClass === 'animate-slide-left-to-right' ? 'animate-slide-left-to-right' : animationClass === 'animate-slide-right-to-left' ? 'animate-remove-left-to-right w-[0%]' : 'w-1/2'}`}
-        >
+        <div className={getContainerClass(true)}>
           <div
             className={`w-[455px] h-[435px] rounded-[35px] z-[50] flex items-start pt-2 mb-1000 justify-center ${currentState === -1 ? 'bg-gradient-blue-purple' : 'bg-transparent'}`}
           >
             <img
               src={getLeftImageSrc()}
-              alt={data[0].story}
+              alt={roundData[0].story}
+              key={roundData[0].id}
               onMouseEnter={() => handleCurrentState(true)}
               onMouseLeave={handleMouseLeave}
               onClick={() => handleAnimation(true)}
@@ -86,18 +113,17 @@ function WorldCupGame({ title = '8강', onselect }) {
           <p
             className={`text-detail-2-semibold ${getTextLeftStyle()} ${animationClass === 'animate-slide-right-to-left' ? 'hidden' : null}`}
           >
-            {data[0].story}
+            {roundData[0].story}
           </p>
         </div>
-        <div
-          className={`flex flex-col items-center justify-center pt-[5%] ${currentState === -1 ? 'bg-neutral-100' : 'bg-gradient-lightblue-white'} ${animationClass === 'animate-slide-right-to-left' ? 'animate-slide-right-to-left' : animationClass === 'animate-slide-left-to-right' ? 'animate-remove-right-to-left w-[0%]' : 'w-1/2'}`}
-        >
+        <div className={getContainerClass(false)}>
           <div
             className={`w-[455px] h-[435px] rounded-[35px] z-[50] flex items-start pt-2 mb-1000 justify-center ${currentState === 1 ? 'bg-gradient-blue-purple' : 'bg-transparent'}`}
           >
             <img
               src={getRightImageSrc()}
-              alt={data[1].story}
+              alt={roundData[1].story}
+              key={roundData[1].id}
               onMouseEnter={() => handleCurrentState(false)}
               onMouseLeave={handleMouseLeave}
               onClick={() => handleAnimation(false)}
@@ -107,17 +133,19 @@ function WorldCupGame({ title = '8강', onselect }) {
           <p
             className={`text-detail-2-semibold ${getTextRightStyle()} ${animationClass === 'animate-slide-left-to-right' ? 'hidden' : null}`}
           >
-            {data[1].story}
+            {roundData[1].story}
           </p>
         </div>
       </div>
+      {openExitModal ? <ExitModal onClose={onClose} game="worldCup" /> : null}
     </div>
   );
 }
 
 WorldCupGame.propTypes = {
-  title: PropTypes.string,
-  onselect: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  onSelect: PropTypes.func,
+  roundData: PropTypes.array.isRequired,
 };
 
 export default WorldCupGame;
