@@ -10,11 +10,11 @@ import '@/styles/global.css';
 function Card2() {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
-  const { toolBoxCnt, joinedQuiz } = userInfo;
+  const { toolBoxCnt, alreadyGetTodayToolBox } = userInfo;
   let imageSrc = noToolBoxImage;
   //QuizJoined 했으면 상품 받음
   //Card1에 있는 주석 참고!
-  if (joinedQuiz) {
+  if (alreadyGetTodayToolBox) {
     imageSrc = toolBoxImage;
   }
 
@@ -49,9 +49,10 @@ function Card2() {
           ></img>
         )}
       </div>
-      <div className={`set-center ${joinedQuiz ? 'invisible' : 'visible'}`}>
+      <div className="set-center">
         <BlueButton
           value="도구 얻기"
+          // 당일 toolbox 수령했으면 이미 아이템을 수령하여 재수령이 불가능합니다 모달 보여주고 돌아가기 참여하기 버튼 만들어서 다시 navigate하면 될 듯
           onClickFunc={gotoMiniQuiz}
           styles="px-800 py-400 text-detail-2-medium"
         />
