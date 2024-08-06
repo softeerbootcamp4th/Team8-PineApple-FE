@@ -13,7 +13,7 @@ function WorldCup() {
   }, []);
   return (
     <>
-      <div className="px-3000 pt-2000 pb-2500">
+      <div className="px-3000 pt-2000 pb-500">
         <div className="flex gap-2000">
           <div className="w-[610px]">
             <div className="space-y-800">

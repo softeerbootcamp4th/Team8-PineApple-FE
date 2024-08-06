@@ -13,3 +13,10 @@
 .hover-scale-ani {
   @apply transition-transform hover:scale-105;
 }
+
+.gradient-border {
+  border: 4x solid;
+  border-image-slice: 1;
+  border-radius: 15px;
+  border-image-source: linear-gradient(90deg, #0128ff 0%, #ad00ff 100%);
+}

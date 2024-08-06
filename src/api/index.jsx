@@ -14,6 +14,7 @@ const apiRequest = async (url, method, body) => {
       `${import.meta.env.VITE_API_URL}${url}`,
       options,
     );
+    console.log(response);
     const result = await response.json();
     return result;
   } catch (error) {
