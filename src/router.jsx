@@ -5,7 +5,9 @@ import EventIntro from '@/pages/eventIntro/EventIntro';
 import JoinEventIntro from '@/pages//joinEvent/JoinEventIntro';
 import NewCarIntro from '@/pages/newCarIntro/NewCarIntro';
 import MiniQuiz from '@/pages/miniquiz/MiniQuiz';
-import WorldCup from '@/pages/worldCup/WorldCupGame';
+import WorldCup from '@/pages/worldCup/WorldCupMain';
+import WorldCupResult from '@/pages/worldCup/WorldCupResult';
+import MiniQuizResult from '@/pages/miniquiz/MiniQuizResult';
 
 const router = createBrowserRouter([
   {
@@ -21,12 +23,20 @@ const router = createBrowserRouter([
             element: <JoinEventIntro />,
           },
           {
-            path: 'worldcup',
+            path: 'worldCup',
             element: <WorldCup />,
           },
           {
-            path: 'miniquiz',
+            path: 'worldCupResult',
+            element: <WorldCupResult />,
+          },
+          {
+            path: 'miniQuiz',
             element: <MiniQuiz />,
+          },
+          {
+            path: 'miniQuizResult',
+            element: <MiniQuizResult />,
           },
         ],
       },
