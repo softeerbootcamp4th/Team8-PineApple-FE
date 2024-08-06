@@ -46,7 +46,7 @@ function MiniQuiz() {
   }
 
   if (isSubmit) {
-    return <QuizResult />;
+    return <QuizResult quizId={quizId} isChosen={isChosen} />;
   }
   return (
     <>

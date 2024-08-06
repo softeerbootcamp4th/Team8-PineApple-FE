@@ -4,9 +4,9 @@ import '@/styles/global.css';
 
 function ClickBox({ id, value, isChosen, onClick }) {
   let className =
-    ' hover-scale-ani set-center text-body-3-semibold min-w-[586px] min-h-[120px] rounded-[15px] border-2 ';
+    'hover-scale-ani set-center text-body-3-semibold min-w-[586px] min-h-[120px] rounded-[15px] border-2 overflow-hidden ';
   if (id === isChosen) {
-    className = 'bg-background-lightblue gradient-border' + className;
+    className = className + 'bg-background-lightblue gradient-border';
   } else {
     className = className + 'border-op-30-blue bg-neutral-white';
   }

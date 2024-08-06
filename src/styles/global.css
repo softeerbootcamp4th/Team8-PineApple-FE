@@ -15,8 +15,10 @@
 }
 
 .gradient-border {
-  border: 4x solid;
-  border-image-slice: 1;
+  border: 5px solid transparent;
   border-radius: 15px;
-  border-image-source: linear-gradient(90deg, #0128ff 0%, #ad00ff 100%);
+  background-image: linear-gradient(#e0eaff, #e0eaff),
+    linear-gradient(to right, #0128ff, #ad00ff);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
