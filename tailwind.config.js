@@ -39,6 +39,8 @@
             'linear-gradient(90deg, #8285F6 0%, #C5F0FF 100%)',
           'gradient-lightblue-white':
             'linear-gradient(90deg, #E0EAFF 0%, #FFF 100%)',
+          'gradient-cobaltblue-white-opposite':
+            'linear-gradient(270deg, #C5F0FF 0%, #FFF 100%)',
           'gradient-lightblue-white-vertical':
             'linear-gradient(180deg, #E0EAFF 0%, #FFF 100%)',
           card1: 'linear-gradient(180deg, #C5F0FF 0%, #FFF 99.95%)',
@@ -382,10 +384,30 @@
             '0%': { transform: 'translateY(0)' },
             '100%': { transform: 'translateY(-100vh)' },
           },
+          expandLeftToRight: {
+            '0%': { width: '50%' },
+            '100%': { width: '100%' },
+          },
+          expandRightToLeft: {
+            '0%': { width: '50%' },
+            '100%': { width: '100%' },
+          },
+          contractionLeftToRight: {
+            '0%': { width: '50%' },
+            '100%': { width: '0%' },
+          },
+          contractionRightToLeft: {
+            '0%': { width: '50%' },
+            '100%': { width: '0%' },
+          },
         },
         animation: {
           'slide-down': 'slide-down 0.5s ease-out forwards',
           'slide-up': 'slide-up 0.5s ease-in forwards',
+          'slide-left-to-right': 'expandLeftToRight 1s forwards',
+          'slide-right-to-left': 'expandRightToLeft 1s forwards',
+          'remove-left-to-right': 'contractionLeftToRight 1s forwards',
+          'remove-right-to-left': 'contractionRightToLeft 1s forwards',
         },
       },
     },
