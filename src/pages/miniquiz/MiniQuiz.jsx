@@ -10,7 +10,7 @@ function MiniQuiz() {
     '캐스퍼 EV는 000 을(를) 통해 주변 보행자에게 차량의 존재를 알려줄 수 있어요!';
   return (
     <>
-      <div className="bg-miniquiz-paper fixed inset-0 z-[10] text-nowrap">
+      <div className="relative inset-0 bg-miniquiz-paper text-nowrap">
         <div className="flex px-5000 py-500 gap-400 mb-2500">
           <div className="flex items-end text-detail-1-bold h-800 min-w-[280px]">
             CASPER ELECTRIC
