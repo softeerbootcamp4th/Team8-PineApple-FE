@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
+import { AuthContext } from '@/context/authContext';
+import { postComment } from '@/api/comment/index';
 
 function CommandInputModal({ closeCommandModal }) {
+  const { userInfo, setUserInfo } = useContext(AuthContext);
   // 모달창이 띄워졌을때 뒷부분 스크롤 막기 위한 코드
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -17,27 +20,14 @@ function CommandInputModal({ closeCommandModal }) {
     }
     setInputCommand(e.target.value);
   };
-  const handleCommand = () => {
-    fetch('http://13.125.215.8:8080/comments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        // Refreshtoken: 'JSESSIONID=ACFF49E9002F19E211EB8738AE5E07A0',
-        // Authorization: 'JSESSIONID=ACFF49E9002F19E211EB8738AE5E07A0',
-        // 'Set-Cookie': 'JSESSIONID=ACFF49E9002F19E211EB8738AE5E07A0',
-      },
-      credentials: 'same-origin',
-      body: JSON.stringify({
-        content: 'ㅇㅇㅇ',
-      }),
-    })
-      .then(response => response.json())
-      .then(result => {
-        closeCommandModal();
-      })
-      .catch(error => {
-        console.error('API 통신 실패:', error);
-      });
+  const handleComment = async () => {
+    try {
+      const response = await postComment(userInfo.accessToken, inputCommand);
+      console.log(response);
+      closeCommandModal();
+    } catch (error) {
+      console.error('댓글 등록 API 통신 실패:', error);
+    }
   };
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black z-[100]">
@@ -64,7 +54,7 @@ function CommandInputModal({ closeCommandModal }) {
 
         {inputCommand != '' ? (
           <button
-            onClick={handleCommand}
+            onClick={handleComment}
             className="flex items-center justify-center rounded-full px-1400 py-200 bg-primary-blue"
           >
             <span className="text-neutral-white text-body-3-regular">확인</span>

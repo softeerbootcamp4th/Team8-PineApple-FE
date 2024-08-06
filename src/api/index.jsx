@@ -1,9 +1,13 @@
-const apiRequest = async (url, method, body) => {
+const apiRequest = async (url, method, body, header) => {
   try {
     const options = {
       method,
       headers: {
-        'Content-Type': 'application/json;',
+        'Content-Type': 'application/json',
+        ...(header &&
+          header.accessToken && {
+            Authorization: `Bearer ${header.accessToken}`,
+          }),
       },
       credentials: 'include',
     };
@@ -22,22 +26,22 @@ const apiRequest = async (url, method, body) => {
   }
 };
 
-export const post = (url, body) => {
-  return apiRequest(url, 'POST', body);
+export const post = (url, body, header) => {
+  return apiRequest(url, 'POST', body, header);
 };
 
-export const get = url => {
-  return apiRequest(url, 'GET');
+export const get = (url, header) => {
+  return apiRequest(url, 'GET', null, header);
 };
 
-export const put = (url, body) => {
-  return apiRequest(url, 'PUT', body);
+export const put = (url, body, header) => {
+  return apiRequest(url, 'PUT', body, header);
 };
 
-export const patch = (url, body) => {
-  return apiRequest(url, 'PATCH', body);
+export const patch = (url, body, header) => {
+  return apiRequest(url, 'PATCH', body, header);
 };
 
-export const del = (url, body) => {
-  return apiRequest(url, 'DELETE', body);
+export const del = (url, body, header) => {
+  return apiRequest(url, 'DELETE', body, header);
 };

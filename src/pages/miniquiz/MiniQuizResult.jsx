@@ -1,7 +1,7 @@
 import React from 'react';
 
-function QuizResult() {
+function MiniQuizResult() {
   return <div>result</div>;
 }
 
-export default QuizResult;
+export default MiniQuizResult;

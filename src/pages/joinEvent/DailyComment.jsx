@@ -48,14 +48,14 @@ function DailyComment() {
       <div className="flex items-center gap-400">
         <button
           onClick={openCommandModal}
-          className="flex items-center justify-center transition-transform duration-300 rounded-full bg-primary-blue px-1600 py-400 text-detail-2-medium text-neutral-white hover:scale-110"
+          className="flex items-center justify-center transition-transform duration-300 rounded-full bg-primary-blue px-1600 py-400 text-detail-2-medium text-neutral-white hover:scale-105"
         >
           <img src={Edit} alt="edit icons" className="mr-200" />
           일일 기대평 작성하기
         </button>
         <button
           onClick={handleShareClick}
-          className="flex items-center justify-center bg-transparent border-solid rounded-full border-[1px] border-primary-blue px-1600 py-400 text-detail-2-medium text-primary-blue hover:scale-110 transition-transform duration-300"
+          className="flex items-center justify-center bg-transparent border-solid rounded-full border-[1px] border-primary-blue px-1600 py-400 text-detail-2-medium text-primary-blue hover:scale-105 transition-transform duration-300"
         >
           <img src={Link} alt="link icons" className="mr-200" />
           친구에게 공유하기

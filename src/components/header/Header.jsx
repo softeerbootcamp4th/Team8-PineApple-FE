@@ -21,7 +21,7 @@ function Header() {
   };
 
   const handleLogout = () => {
-    logout()
+    logout(userInfo.accessToken)
       .then(result => {
         localStorage.removeItem('userInfo');
         setUserInfo({});

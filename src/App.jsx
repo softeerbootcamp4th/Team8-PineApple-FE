@@ -6,16 +6,25 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
-  const hideHeaderAndFooter = ['/event/worldCup', '/event/miniQuiz'].includes(
-    location.pathname,
-  );
+  const hideHeader = [
+    '/event/worldCup',
+    '/event/miniQuiz',
+    '/event/worldCupResult',
+    '/event/miniQuizResult',
+  ].includes(location.pathname);
+
+  const hideFooter = [
+    '/event/worldCup',
+    '/event/miniQuiz',
+    '/event/miniQuizResult',
+  ].includes(location.pathname);
 
   return (
     <div className="relative min-w-[1720px]">
       <AuthProvider>
-        {!hideHeaderAndFooter && <Header />}
+        {!hideHeader && <Header />}
         <Outlet />
-        {!hideHeaderAndFooter && <Footer />}
+        {!hideFooter && <Footer />}
       </AuthProvider>
     </div>
   );
