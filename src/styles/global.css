@@ -9,3 +9,16 @@
 .set-center {
   @apply flex items-center justify-center;
 }
+
+.hover-scale-ani {
+  @apply transition-transform hover:scale-105;
+}
+
+.gradient-border {
+  border: 5px solid transparent;
+  border-radius: 15px;
+  background-image: linear-gradient(#e0eaff, #e0eaff),
+    linear-gradient(to right, #0128ff, #ad00ff);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}

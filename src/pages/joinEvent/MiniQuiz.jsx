@@ -13,7 +13,7 @@ function MiniQuiz() {
   });
 
   return (
-    <div className="flex px-3000 pb-2900">
+    <div className="flex px-3000 pt-2000 pb-2900">
       <div className="relative min-w-[610px] h-[400px]">
         {countDownStart && (
           <div className="absolute inset-0 z-10 bg-black opacity-70 p-2000">
@@ -52,6 +52,7 @@ function MiniQuiz() {
         </div>
         <BlueButton
           value="이벤트 참여하기"
+          // 당일 toolbox 수령했으면 이미 아이템을 수령하여 재수령이 불가능합니다 모달 보여주고 돌아가기 참여하기 버튼 만들어서 다시 navigate하면 될 듯 팀원 상의 후 정한 내용
           onClickFunc={() => alert('이벤트 참여하기')}
           styles="px-2000 py-400 text-detail-2-medium"
         />

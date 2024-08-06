@@ -10,16 +10,14 @@ import '@/styles/global.css';
 function Card2() {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
-  const { toolBoxCnt, joinedQuiz } = userInfo;
+  const { toolBoxCnt, alreadyGetTodayToolBox } = userInfo;
   let imageSrc = noToolBoxImage;
-  //QuizJoined 했으면 상품 받음
-  //Card1에 있는 주석 참고!
-  if (joinedQuiz) {
+  if (alreadyGetTodayToolBox) {
     imageSrc = toolBoxImage;
   }
 
   const gotoMiniQuiz = useCallback(() => {
-    navigate('/event/miniquiz');
+    navigate('/event/miniQuiz');
   }, []);
 
   return (
@@ -49,7 +47,9 @@ function Card2() {
           ></img>
         )}
       </div>
-      <div className={`set-center ${joinedQuiz ? 'invisible' : 'visible'}`}>
+      <div
+        className={`set-center ${alreadyGetTodayToolBox ? 'invisible' : 'visible'}`}
+      >
         <BlueButton
           value="도구 얻기"
           onClickFunc={gotoMiniQuiz}
