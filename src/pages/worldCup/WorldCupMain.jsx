@@ -34,7 +34,7 @@ const WorldCupMain = () => {
     } else if (round === 4) {
       setRound(5); // 결승 진행
     } else if (round === 5) {
-      navigate(`/event/worldCupResult`);
+      navigate(`/event/worldCupResult`, { state: updatedData[0] });
     }
 
     // 다음 라운드의 데이터 설정
