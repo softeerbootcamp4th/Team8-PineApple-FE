@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EventHeader from '@/components/header/EventHeader';
-import QuizResult from '@/pages/miniquiz/QuizResult';
+import QuizResult from '@/pages/miniquiz/MiniQuizResult';
 import ClickBox from '@/pages/miniquiz/ClickBox';
 import shuffleArr from '@/utils/shuffleArr';
 import { getMiniQuiz } from '@/api/miniQuiz';
