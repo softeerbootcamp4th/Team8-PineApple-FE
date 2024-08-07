@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WorldCupArrowIcon from '@/assets/icons/worldCupArrowIcon.svg';
+import useToast from '@/hooks/useToast';
+import ToastMessage from '@/components/toastMessage/ToastMessage';
 
 function WorldCupResultTop({ data }) {
+  const { showToast, messageType, handleShareClick } = useToast();
   return (
     <div className="relative flex flex-col items-center pt-2000">
       <img
@@ -24,20 +27,24 @@ function WorldCupResultTop({ data }) {
           className="w-[460px] h-auto"
         />
       </div>
-      <div className="flex justify-center gap-1000 items-center mb-500">
+      <div className="flex items-center justify-center gap-1000 mb-500">
         <p className="text-gradient-blue-purple text-detail-1-semibold">
           CASPER ELECTRIC과 함께한다면?
         </p>
         <p className="text-body-3-bold text-neutral-black">{data.solution}</p>
       </div>
-      <div className="flex justify-center gap-1000 items-center">
-        <button className="bg-transparent rounded-full border-[2px] border-solid border-white px-[140px] py-[16px] text-detail-1-medium text-neutral-white hover-scale-ani">
+      <div className="flex items-center justify-center gap-1000">
+        <button
+          onClick={handleShareClick}
+          className="bg-transparent rounded-full border-[2px] border-solid border-white px-[140px] py-[16px] text-detail-1-medium text-neutral-white hover-scale-ani"
+        >
           공유하기
         </button>
         <button className="bg-neutral-white rounded-full px-[100px] py-[16px] text-detail-1-medium text-neutral-black hover-scale-ani">
           자동차 아이템 받기
         </button>
       </div>
+      {showToast && <ToastMessage messageType={messageType} />}
     </div>
   );
 }

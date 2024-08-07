@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function useScroll() {
   const location = useLocation();
-  const history = useNavigate();
   const mainRef = useRef(null);
   const worldCupRef = useRef(null);
   const miniQuizRef = useRef(null);
@@ -33,8 +32,9 @@ function useScroll() {
       default:
         break;
     }
-    history({ ...location, state: { ...state, scrollTo: null } });
-  }, []);
+
+    window.history.replaceState({}, '');
+  }, [location]);
 
   return {
     refs: {
