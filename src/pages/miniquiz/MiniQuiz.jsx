@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
+import useMiniQuiz from '@/hooks/useMiniQuiz';
 import EventHeader from '@/components/header/EventHeader';
-import QuizResult from '@/pages/miniquiz/MiniQuizResult';
 import ClickBox from '@/pages/miniquiz/ClickBox';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
+import NoQuiz from '@/pages/miniquiz/NoQuiz';
+import ExitModal from '@/components/modal/ExitModal';
+import { useNavigate } from 'react-router-dom';
 import '@/styles/global.css';
-import useMiniQuiz from '@/hooks/useMiniQuiz';
 
 function MiniQuiz() {
   const { loading, error, quizDescription, quizId, shuffledSelectList, code } =
     useMiniQuiz();
   const [isChosen, setIsChosen] = useState(0);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [openExitModal, setopenExitModal] = useState(false);
+  const navigate = useNavigate();
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -19,8 +23,10 @@ function MiniQuiz() {
   } else if (loading) {
     return <div>Loading...</div>;
   } else if (isSubmit) {
-    return <QuizResult quizId={quizId} isChosen={isChosen} />;
+    navigate('/event/miniQuizResult', { state: { quizId, isChosen } });
   }
+
+  const onClose = () => setopenExitModal(false);
 
   return (
     <>
@@ -60,6 +66,7 @@ function MiniQuiz() {
           />
         </div>
       </div>
+      {openExitModal && <ExitModal onClose={onClose} game="MiniQuiz" />}
     </>
   );
 }
