@@ -2,12 +2,11 @@ import React from 'react';
 import modalClose from '@/assets/icons/modalClose.svg';
 import BlueButton from '@/components/buttons/BlueButton';
 import getCarModalImage from '@/assets/images/getCarModalImage.svg';
-import '@/styles/global.css';
 
 function GetItemModal(close) {
   return (
-    <div className="fixed inset-0 set-center bg-opacity-50 bg-neutral-black z-[100]">
-      <div className="bg-neutral-white w-[600px] h-[480px] py-1500 flex flex-col items-center relative rounded-[20px]">
+    <div className="modalContainer">
+      <div className="nextModalContainer w-[600px] h-[480px]">
         <button onClick={close} className="absolute top-[29px] right-[29px]">
           <img src={modalClose} alt="Close" />
         </button>
