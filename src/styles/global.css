@@ -11,7 +11,7 @@
 }
 
 .hover-scale-ani {
-  @apply transition-transform hover:scale-105;
+  @apply transition-transform duration-200 hover:scale-105;
 }
 
 .gradient-border {

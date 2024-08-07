@@ -1,38 +1,39 @@
 import React from 'react';
 import worldCupResultData from '@/constants/worldCup/worldCupResultData';
 import WorldCupResultItem from './WorldCupResultItem';
+import PropTypes from 'prop-types';
 
-function WorldCupResultBottom() {
+function WorldCupResultBottom({ data }) {
   const response = [
     {
       id: 4,
-      people: 10000,
-      probability: 30,
+      count: 10000,
+      percent: 30,
     },
     {
       id: 2,
-      people: 5000,
-      probability: 20,
+      count: 5000,
+      percent: 20,
     },
     {
       id: 3,
-      people: 4000,
-      probability: 10,
+      count: 4000,
+      percent: 10,
     },
     {
       id: 1,
-      people: 3000,
-      probability: 7,
+      count: 3000,
+      percent: 7,
     },
     {
       id: 6,
-      people: 2000,
-      probability: 5,
+      count: 2000,
+      percent: 5,
     },
     {
       id: 5,
-      people: 1000,
-      probability: 3,
+      count: 1000,
+      percent: 3,
     },
   ];
   return (
@@ -40,14 +41,17 @@ function WorldCupResultBottom() {
       <span className="text-heading-1-bold text-neutral-black">전체 랭킹</span>
       <div className="flex justify-between mt-900">
         {response.map((res, index) => {
-          const data = worldCupResultData.find(item => item.id === res.id);
+          const currentItem = worldCupResultData.find(
+            item => item.id === res.id,
+          );
           return (
             <WorldCupResultItem
               key={res.id}
-              data={data}
-              people={res.people}
-              probability={res.probability}
+              data={currentItem}
+              count={res.count}
+              percent={res.percent}
               index={index}
+              choice={res.id === data.id}
             />
           );
         })}
@@ -55,5 +59,9 @@ function WorldCupResultBottom() {
     </div>
   );
 }
+
+WorldCupResultBottom.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 export default WorldCupResultBottom;
