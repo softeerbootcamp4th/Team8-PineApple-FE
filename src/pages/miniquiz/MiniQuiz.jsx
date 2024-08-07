@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useMiniQuiz from '@/hooks/useMiniQuiz';
 import EventHeader from '@/components/header/EventHeader';
 import ClickBox from '@/pages/miniquiz/ClickBox';
@@ -17,15 +17,22 @@ function MiniQuiz() {
 
   const onClose = () => setopenExitModal(false);
 
+  useEffect(() => {
+    if (isSubmit) {
+      navigate('/event/miniQuizResult', {
+        state: { quizId: data.id, isChosen: isChosen },
+      });
+    }
+  }, [isSubmit, navigate, data.id, isChosen]);
+
   if (error) {
-    return <div>Error: {err.message}</div>;
+    return <div>Error: {error.message}</div>;
   } else if (loading) {
     return <LoadingQuiz />;
   } else if (code === 'NO_QUIZ_CONTENT') {
     navigate('/event/invalidAccess');
-  } else if (isSubmit) {
-    navigate('/event/miniQuizResult', { state: { id: data.id, isChosen } });
   }
+
   return (
     <>
       <div className="relative min-h-[860px] text-nowrap">

@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { pushAnswer } from '@/api/miniQuiz';
+import { postAnswer } from '@/api/miniQuiz';
 import { useLocation } from 'react-router-dom';
 
 function MiniQuizResult() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [response, setResponse] = useState({});
   const { quizId, isChosen } = location.state || {};
 
   useEffect(() => {
     const fetchMiniQuiz = async () => {
       try {
         setLoading(true);
+        const response = postAnswer(quizId, isChosen);
+        console.log(response);
       } catch (err) {
         setError(err);
       } finally {
