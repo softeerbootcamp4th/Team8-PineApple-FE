@@ -7,7 +7,7 @@ import '@/styles/global.css';
 function InvalidAccess() {
   const navigate = useNavigate();
   const handleExit = useCallback(() => {
-    navigate('/event');
+    navigate('/event', { state: { scrollTo: 'miniQuiz' } });
   }, [navigate]);
 
   return (
@@ -15,7 +15,7 @@ function InvalidAccess() {
       <img src={alertTriangle} alt="경고" className="w-5000 h-5000"></img>
       <div className="text-body-1-bold py-500">비정상적인 접근입니다.</div>
       <BlueButton
-        value="홈페이지로 돌아가기"
+        value="이벤트 페이지로 돌아가기"
         onClickFunc={handleExit}
         styles="px-3000 py-500 text-detail-2-medium"
       />
