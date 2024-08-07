@@ -9,25 +9,23 @@ import { useNavigate } from 'react-router-dom';
 import '@/styles/global.css';
 
 function MiniQuiz() {
-  const { loading, error, quizDescription, quizId, shuffledSelectList, code } =
-    useMiniQuiz();
+  const navigate = useNavigate();
+  const { loading, error, code, data, shuffledQuizQuestion } = useMiniQuiz();
   const [isChosen, setIsChosen] = useState(0);
   const [isSubmit, setIsSubmit] = useState(false);
   const [openExitModal, setopenExitModal] = useState(false);
-  const navigate = useNavigate();
 
   const onClose = () => setopenExitModal(false);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {err.message}</div>;
   } else if (loading) {
     return <LoadingQuiz />;
   } else if (code === 'NO_QUIZ_CONTENT') {
     navigate('/event/invalidAccess');
   } else if (isSubmit) {
-    navigate('/event/miniQuizResult', { state: { quizId, isChosen } });
+    navigate('/event/miniQuizResult', { state: { id: data.id, isChosen } });
   }
-
   return (
     <>
       <div className="relative min-h-[860px] text-nowrap">
@@ -42,10 +40,10 @@ function MiniQuiz() {
             월드컵 일일 미니퀴즈
           </div>
           <div className="text-center text-body-1-bold mb-2000">
-            {quizDescription}
+            {data.quizDescription}
           </div>
           <div className="grid grid-cols-2 gap-x-600 gap-y-600 mb-2000">
-            {shuffledSelectList.map(item => {
+            {shuffledQuizQuestion.map(item => {
               const id = Number(item[0]);
               const value = item[1];
               return (
