@@ -11,12 +11,14 @@ function App() {
     '/event/miniQuiz',
     '/event/worldCupResult',
     '/event/miniQuizResult',
+    '/event/invalidAccess',
   ].includes(location.pathname);
 
   const hideFooter = [
     '/event/worldCup',
     '/event/miniQuiz',
     '/event/miniQuizResult',
+    '/event/invalidAccess',
   ].includes(location.pathname);
 
   return (
