@@ -3,10 +3,11 @@ import Edit from '@/assets/icons/edit.svg';
 import Link from '@/assets/icons/link.svg';
 import ToastMessage from '@/components/toastMessage/ToastMessage';
 import CommandInputModal from '@/components/modal/CommandInputModal';
+import useToast from '@/hooks/useToast';
 
 function DailyComment() {
-  const [showToast, setShowToast] = useState(false);
   const [openCommandInputModal, setOpenCommandInputModal] = useState(false);
+  const { showToast, messageType, handleShareClick } = useToast();
 
   const openCommandModal = () => {
     setOpenCommandInputModal(true);
@@ -14,22 +15,6 @@ function DailyComment() {
 
   const closeCommandModal = () => {
     setOpenCommandInputModal(false);
-  };
-
-  const handleShareClick = () => {
-    if (showToast) return;
-
-    navigator.clipboard
-      .writeText('www.naver.com')
-      .then(() => {
-        setShowToast(true);
-        setTimeout(() => {
-          setShowToast(false);
-        }, 3000);
-      })
-      .catch(error => {
-        console.error('toast message error', error);
-      });
   };
 
   return (
@@ -61,7 +46,7 @@ function DailyComment() {
           친구에게 공유하기
         </button>
       </div>
-      {showToast && <ToastMessage messageType="copyLink" />}
+      {showToast && <ToastMessage messageType={messageType} />}
       {openCommandInputModal ? (
         <CommandInputModal closeCommandModal={closeCommandModal} />
       ) : null}
