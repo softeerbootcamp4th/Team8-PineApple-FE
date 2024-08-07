@@ -16,7 +16,7 @@ function WorldCupResult() {
         <div>잘못된 접근입니다..!</div>
       ) : (
         <>
-          <div className="h-screen bg-join-event-main">
+          <div className="h-screen bg-join-event-main bg-cover bg-center min-h-[800px]">
             <EventHeader
               eventTitle="Event 1. 차 얻기"
               eventBody="운전 중 피하고 싶은 상황 월드컵"
@@ -24,7 +24,7 @@ function WorldCupResult() {
             />
             <WorldCupResultTop data={data} />
           </div>
-          <WorldCupResultBottom />
+          <WorldCupResultBottom data={data} />
           {openExitModal ? (
             <ExitModal onClose={onClose} game="worldCup" />
           ) : null}
