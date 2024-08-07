@@ -27,6 +27,8 @@ function MiniQuiz() {
   } else if (isSubmit) {
     navigate('/event/miniQuizResult', { state: { quizId, isChosen } });
   }
+
+  navigate('/event/invalidAccess');
   return (
     <>
       <div className="relative min-h-[860px] text-nowrap">

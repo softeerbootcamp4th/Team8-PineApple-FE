@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             element: <MiniQuiz />,
           },
           {
-            path: 'InvalidAccess',
+            path: 'invalidAccess',
             element: <InvalidAccess />,
           },
           {
