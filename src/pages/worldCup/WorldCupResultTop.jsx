@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import WorldCupArrowIcon from '@/assets/icons/worldCupArrowIcon.svg';
 import useToast from '@/hooks/useToast';
 import ToastMessage from '@/components/toastMessage/ToastMessage';
 
-function WorldCupResultTop({ data }) {
+function WorldCupResultTop({ data, setModalOpen }) {
   const { showToast, messageType, handleShareClick } = useToast();
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <div className="relative flex flex-col items-center pt-2000">
       <img
@@ -40,7 +45,10 @@ function WorldCupResultTop({ data }) {
         >
           공유하기
         </button>
-        <button className="bg-neutral-white rounded-full px-[100px] py-[16px] text-detail-1-medium text-neutral-black hover-scale-ani">
+        <button
+          onClick={handleOpenModal}
+          className="bg-neutral-white rounded-full px-[100px] py-[16px] text-detail-1-medium text-neutral-black hover-scale-ani"
+        >
           자동차 아이템 받기
         </button>
       </div>
@@ -51,6 +59,7 @@ function WorldCupResultTop({ data }) {
 
 WorldCupResultTop.propTypes = {
   data: PropTypes.object.isRequired,
+  setModalOpen: PropTypes.func.isRequired,
 };
 
 export default WorldCupResultTop;
