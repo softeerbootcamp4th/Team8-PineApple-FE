@@ -3,7 +3,7 @@ import useMiniQuiz from '@/hooks/useMiniQuiz';
 import EventHeader from '@/components/header/EventHeader';
 import ClickBox from '@/pages/miniquiz/ClickBox';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
-import NoQuiz from '@/pages/miniquiz/NoQuiz';
+import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
 import ExitModal from '@/components/modal/ExitModal';
 import { useNavigate } from 'react-router-dom';
 import '@/styles/global.css';
@@ -16,18 +16,17 @@ function MiniQuiz() {
   const [openExitModal, setopenExitModal] = useState(false);
   const navigate = useNavigate();
 
+  const onClose = () => setopenExitModal(false);
+
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (code === 'NO_QUIZ_CONTENT') {
-    return <NoQuiz />;
   } else if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingQuiz />;
+  } else if (code === 'NO_QUIZ_CONTENT') {
+    navigate('/event/invalidAccess');
   } else if (isSubmit) {
     navigate('/event/miniQuizResult', { state: { quizId, isChosen } });
   }
-
-  const onClose = () => setopenExitModal(false);
-
   return (
     <>
       <div className="relative min-h-[860px] text-nowrap">
