@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-function QuizResult() {
+function MiniQuizResult() {
   const location = useLocation();
   const { quizId, isChosen } = location.state || {};
 
