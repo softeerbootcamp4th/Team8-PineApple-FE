@@ -1,79 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import useMiniQuiz from '@/hooks/useMiniQuiz';
-import EventHeader from '@/components/header/EventHeader';
-import ClickBox from '@/pages/miniquiz/ClickBox';
-import BluePurpleButton from '@/components/buttons/BluePurpleButton';
-import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
-import ExitModal from '@/components/modal/ExitModal';
+import React, { useContext, useCallback } from 'react';
+import BlueButton from '@/components/buttons/BlueButton';
+import noToolBoxImage from '@/assets/images/noToolBoxImage.svg';
+import toolBoxImage from '@/assets/images/toolBoxImage.svg';
+import questionMark from '@/assets/images/questionMark.svg';
+import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
 import '@/styles/global.css';
 
-function MiniQuiz() {
+function Card2() {
   const navigate = useNavigate();
-  const { loading, error, code, data, shuffledQuizQuestion } = useMiniQuiz();
-  const [isChosen, setIsChosen] = useState(0);
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [openExitModal, setopenExitModal] = useState(false);
+  const { userInfo } = useContext(AuthContext);
 
-  const onClose = () => setopenExitModal(false);
-
-  useEffect(() => {
-    if (isSubmit) {
-      navigate('/event/miniQuizResult', {
-        state: { quizId: data.quizId, isChosen: isChosen },
-      });
-    }
-  }, [isSubmit, navigate, data.quizId, isChosen]);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (loading) {
-    return <LoadingQuiz />;
-  } else if (code === 'NO_QUIZ_CONTENT') {
-    navigate('/event/invalidAccess');
-  }
+  const gotoMiniQuiz = useCallback(() => {
+    navigate('/event/miniQuiz');
+  }, []);
 
   return (
-    <>
-      <div className="relative min-h-[860px] text-nowrap">
-        <EventHeader
-          eventTitle="Event 2. 도구 얻기"
-          eventBody="월드컵 일일 미니퀴즈"
-          setopenExitModal={setopenExitModal}
-        />
-
-        <div className="flex flex-col items-center h-screen bg-miniquiz-paper pt-3000">
-          <div className="rounded-[8px] skyblue-box text-detail-1-bold mb-500">
-            월드컵 일일 미니퀴즈
+    <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
+      <div className="text-detail-2-semibold text-primary-blue h-800">
+        Event2
+      </div>
+      <div className="text-detail-1-semibold h-1800 text-neutral-black">
+        일일 미니퀴즈
+        <div
+          className={`items-center justify-end h-900 flex ${userInfo.toolBoxCnt !== undefined ? 'visible' : 'invisible'}`}
+        >
+          <div
+            className={`px-400 py-100 rounded-[8px] text-detail-3-semibold text-primary-blue bg-neutral-white`}
+          >
+            {userInfo.toolBoxCnt}개 보유
           </div>
-          <div className="text-center text-body-1-bold mb-2000">
-            {data.quizDescription}
-          </div>
-          <div className="grid grid-cols-2 gap-x-600 gap-y-600 mb-2000">
-            {shuffledQuizQuestion.map(item => {
-              const id = Number(item[0]);
-              const value = item[1];
-              return (
-                <ClickBox
-                  id={id}
-                  isChosen={isChosen}
-                  value={value}
-                  onClick={() => setIsChosen(id)}
-                  key={id}
-                />
-              );
-            })}
-          </div>
-          <BluePurpleButton
-            value="제출"
-            onClickFunc={() => setIsSubmit(true)}
-            styles="px-3000 py-500 text-detail-1-regular"
-          />
         </div>
       </div>
-      {openExitModal && <ExitModal onClose={onClose} game="MiniQuiz" />}
-    </>
+      <div className="relative h-4000 py-500 px-500">
+        <img
+          className="w-full h-full"
+          src={!userInfo.alreadyGetTodayToolBox ? noToolBoxImage : toolBoxImage}
+          alt="ToolBox"
+        />
+        {!userInfo.alreadyGetTodayToolBox && (
+          <img
+            src={questionMark}
+            alt="questionMark"
+            className="absolute top-[48px] left-[74px]"
+          ></img>
+        )}
+      </div>
+      <div
+        className={`set-center ${userInfo.alreadyGetTodayToolBox ? 'invisible' : 'visible'}`}
+      >
+        <BlueButton
+          value="도구 얻기"
+          onClickFunc={gotoMiniQuiz}
+          styles="px-800 py-400 text-detail-2-medium"
+        />
+      </div>
+    </div>
   );
 }
 
-export default MiniQuiz;
+export default Card2;

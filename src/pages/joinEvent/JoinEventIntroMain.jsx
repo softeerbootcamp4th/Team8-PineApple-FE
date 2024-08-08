@@ -9,11 +9,10 @@ function JoinEventIntroMain() {
   const { userInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
 
-  // 아래 변수들은 벡에서 가져올 내용
-  const { haveCar, toolBoxCnt, phoneNumber } = userInfo;
+  const { car, toolBoxCnt, phoneNumber } = userInfo;
   let day = 2;
   const details = `캐스퍼 EV와 떠날 시간!\n깜빡하고 차키를 안 가져왔네요.. 어떻게 해야할까요?`;
-  const disabled = !phoneNumber || !haveCar || toolBoxCnt === 0; // 결과 보기 버튼 클릭 가능 여부 변수명 변경 필요
+  const disabled = !phoneNumber || !car || toolBoxCnt === 0; // 결과 보기 버튼 클릭 가능 여부 변수명 변경 필요
 
   const openPhoneModal = () => {
     setOpenPhoneInputModal(true);
