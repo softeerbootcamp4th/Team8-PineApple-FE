@@ -39,7 +39,7 @@ function PhoneAuthModal({ inputPhone, closePhoneModal }) {
     };
   }, []);
   return (
-    <div className="bg-neutral-white w-[800px] py-1500 flex flex-col items-center relative rounded-[20px]">
+    <div className="nextModalContainer w-[800px]">
       <button
         onClick={closePhoneModal}
         className="absolute top-[29px] right-[29px]"

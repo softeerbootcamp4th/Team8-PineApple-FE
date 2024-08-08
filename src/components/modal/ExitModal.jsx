@@ -15,7 +15,7 @@ function ExitModal({ onClose, game }) {
     }
   }, []);
   return (
-    <div className="fixed inset-0 set-center bg-opacity-50 bg-neutral-black z-[100]">
+    <div className="modalContainer">
       <div className="bg-neutral-white px-2000 rounded-[20px] pt-1500 pb-800">
         <p className="text-center text-detail-2-medium text-neutral-black">
           지금 창을 나가면 처음부터 다시 시작해야해요.
