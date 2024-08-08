@@ -19,6 +19,7 @@ function MiniQuiz() {
   const onClose = () => setopenExitModal(false);
 
   useEffect(() => {
+    //TODO 해당 부분 useEffect가 필요한가??
     if (isSubmit) {
       navigate('/event/miniQuizResult', {
         state: { quizId: data.quizId, isChosen: isChosen },
@@ -34,7 +35,6 @@ function MiniQuiz() {
     return <NoQuiz />;
   }
 
-  return <NoQuiz />;
   return (
     <>
       <div className="relative min-h-[860px] text-nowrap">

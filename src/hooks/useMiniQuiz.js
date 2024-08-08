@@ -15,7 +15,7 @@ const useMiniQuiz = () => {
         setLoading(true);
         const [data] = await Promise.all([
           getMiniQuiz(),
-          new Promise(resolve => setTimeout(resolve, 5000)),
+          new Promise(resolve => setTimeout(resolve, 500)),
         ]); //Promise.all을 이용하여 둘 중 오래 걸리는 시간 동안 로딩 화면 보여줌
         const { code } = data;
         if (code === 'NO_QUIZ_CONTENT') {
