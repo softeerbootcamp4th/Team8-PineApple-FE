@@ -8,14 +8,6 @@ import '@/styles/global.css';
 
 function Card1() {
   const { userInfo } = useContext(AuthContext);
-  const { haveCar } = userInfo;
-
-  // haveCar 값이 바뀔 때는 어차피 useContext로 재랜더링이 되므로 let으로 선언 아래의 공식 문서에도 let 사용하는 예시가 있음!
-  // https://react.dev/learn/preserving-and-resetting-state
-  let imageSrc = noCarImage;
-  if (haveCar) {
-    imageSrc = carImage;
-  }
 
   return (
     <div className="flex flex-col justify-between bg-card1 px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
@@ -26,8 +18,12 @@ function Card1() {
         {`운전 중 피하고 싶은\n상황 월드컵`}
       </div>
       <div className="relative h-4000 py-500 px-500">
-        <img className="w-full h-full" src={imageSrc} alt="Car" />
-        {imageSrc === noCarImage && (
+        <img
+          className="w-full h-full"
+          src={userInfo.car ? carImage : noCarImage}
+          alt="Car"
+        />
+        {!userInfo.car && (
           <img
             src={questionMark}
             alt="questionMark"
@@ -35,7 +31,7 @@ function Card1() {
           ></img>
         )}
       </div>
-      <div className={`set-center ${haveCar ? 'invisible' : 'visible'}`}>
+      <div className={`set-center ${userInfo.car ? 'invisible' : 'visible'}`}>
         <BlueButton
           value="자동차 얻기 "
           onClickFunc={() => alert('자동차 얻기')}
