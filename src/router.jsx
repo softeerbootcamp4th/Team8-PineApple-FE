@@ -8,7 +8,6 @@ import MiniQuiz from '@/pages/miniquiz/MiniQuiz';
 import WorldCup from '@/pages/worldCup/WorldCupMain';
 import WorldCupResult from '@/pages/worldCup/WorldCupResult';
 import MiniQuizResult from '@/pages/miniquiz/MiniQuizResult';
-import InvalidAccess from '@/pages/miniquiz/InvalidAccess';
 
 const router = createBrowserRouter([
   {
@@ -34,10 +33,6 @@ const router = createBrowserRouter([
           {
             path: 'miniQuiz',
             element: <MiniQuiz />,
-          },
-          {
-            path: 'invalidAccess',
-            element: <InvalidAccess />,
           },
           {
             path: 'miniQuizResult',
