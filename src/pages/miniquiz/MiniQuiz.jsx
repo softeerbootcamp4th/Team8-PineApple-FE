@@ -20,10 +20,10 @@ function MiniQuiz() {
   useEffect(() => {
     if (isSubmit) {
       navigate('/event/miniQuizResult', {
-        state: { quizId: data.id, isChosen: isChosen },
+        state: { quizId: data.quizId, isChosen: isChosen },
       });
     }
-  }, [isSubmit, navigate, data.id, isChosen]);
+  }, [isSubmit, navigate, data.quizId, isChosen]);
 
   if (error) {
     return <div>Error: {error.message}</div>;

@@ -1,18 +1,48 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import miniQuizIntro1 from '@/assets/images/miniQuizIntro1.svg';
 import miniQuizIntro2 from '@/assets/images/miniQuizIntro2.svg';
 import miniQuizIntro3 from '@/assets/images/miniQuizIntro3.svg';
-import getNowTime from '@/utils/getNowTime';
+import calDiffNextOclock from '@/utils/calDiffNextOclock';
+import getSecondsUntil13Hour from '@/utils/getSecondsUntil13Hour';
 import { useNavigate } from 'react-router-dom';
 import '@/styles/global.css';
 
 function MiniQuiz() {
   const navigate = useNavigate();
-  const [countDownStart, setCountDownStart] = useState(() => {
-    const currentTime = getNowTime();
-    return '12시' <= currentTime && currentTime < '13시'; //HH시 MM분 포멧이라 의도한대로 작동
-  });
+  const [seconds, setSeconds] = useState(() => getSecondsUntil13Hour());
+  const [countDownStart, setCountDownStart] = useState(false);
+
+  useEffect(() => {
+    const checkTime = () => {
+      const remainingTime = getSecondsUntil13Hour();
+      if (remainingTime !== -1) {
+        setCountDownStart(true);
+      }
+
+      const sleepTime = calDiffNextOclock();
+      setTimeout(checkTime, sleepTime);
+    };
+
+    checkTime();
+  }, []);
+
+  useEffect(() => {
+    if (countDownStart) {
+      const timer = setInterval(() => {
+        const remainingTime = getSecondsUntil13Hour();
+        setSeconds(remainingTime);
+
+        if (remainingTime === -1) {
+          setCountDownStart(false);
+          clearInterval(timer);
+        }
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [countDownStart]);
+
   const gotoMiniQuiz = useCallback(() => {
     navigate('/event/miniQuiz');
   }, []);
@@ -20,13 +50,14 @@ function MiniQuiz() {
   return (
     <div className="flex px-3000 pt-2000 pb-2900">
       <div className="relative min-w-[610px] h-[400px]">
-        {countDownStart && (
-          <div className="absolute inset-0 z-10 bg-black opacity-70 p-2000">
+        {seconds !== -1 && (
+          <div className="absolute inset-0 z-10 bg-black opacity-50 p-2000">
             <div className="text-center text-body-2-semibold text-primary-blue">
               새 퀴즈 공개
             </div>
             <div className="text-[150px] text-gradient-blue-purple font-pretendard font-bold text-center">
-              59:12
+              {Math.floor(seconds / 60)}:
+              {String(seconds - 60 * Math.floor(seconds / 60)).padStart(2, '0')}
             </div>
           </div>
         )}
@@ -60,6 +91,7 @@ function MiniQuiz() {
           // 당일 toolbox 수령했으면 이미 아이템을 수령하여 재수령이 불가능합니다 모달 보여주고 돌아가기 참여하기 버튼 만들어서 다시 navigate하면 될 듯 팀원 상의 후 정한 내용
           onClickFunc={gotoMiniQuiz}
           styles="px-2000 py-400 text-detail-2-medium"
+          disabled={countDownStart}
         />
       </div>
     </div>

@@ -58,7 +58,7 @@ function MiniQuizResult() {
               퀴즈 성공
             </div>
             <div
-              className={`skyblue-box `} //선착순 조건 넣기
+              className={`skyblue-box text-detail-1-bold rounded-[8px]`} //TODO 선착순 조건 넣기
             >
               선착순 당첨
             </div>
@@ -80,7 +80,7 @@ function MiniQuizResult() {
           onClickFunc={response.isCorrect ? () => alert('선착순') : handleExit}
           styles="text-detail-2-medium px-1500 py-400"
         />
-        {response.isCorrect && ( //선착순 넣기
+        {response.isCorrect && ( //TODO 선착순 넣기
           <BlueButton
             value="툴박스 받기"
             onClickFunc={() => alert('선착순')}

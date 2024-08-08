@@ -10,11 +10,6 @@ import '@/styles/global.css';
 function Card2() {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
-  const { toolBoxCnt, alreadyGetTodayToolBox } = userInfo;
-  let imageSrc = noToolBoxImage;
-  if (alreadyGetTodayToolBox) {
-    imageSrc = toolBoxImage;
-  }
 
   const gotoMiniQuiz = useCallback(() => {
     navigate('/event/miniQuiz');
@@ -28,18 +23,22 @@ function Card2() {
       <div className="text-detail-1-semibold h-1800 text-neutral-black">
         일일 미니퀴즈
         <div
-          className={`items-center justify-end h-900 flex ${toolBoxCnt !== undefined ? 'visible' : 'invisible'}`}
+          className={`items-center justify-end h-900 flex ${userInfo.toolBoxCnt !== undefined ? 'visible' : 'invisible'}`}
         >
           <div
             className={`px-400 py-100 rounded-[8px] text-detail-3-semibold text-primary-blue bg-neutral-white`}
           >
-            {toolBoxCnt}개 보유
+            {userInfo.toolBoxCnt}개 보유
           </div>
         </div>
       </div>
       <div className="relative h-4000 py-500 px-500">
-        <img className="w-full h-full" src={imageSrc} alt="ToolBox" />
-        {imageSrc === noToolBoxImage && (
+        <img
+          className="w-full h-full"
+          src={!userInfo.alreadyGetTodayToolBox ? noToolBoxImage : toolBoxImage}
+          alt="ToolBox"
+        />
+        {!userInfo.alreadyGetTodayToolBox && (
           <img
             src={questionMark}
             alt="questionMark"
@@ -48,7 +47,7 @@ function Card2() {
         )}
       </div>
       <div
-        className={`set-center ${alreadyGetTodayToolBox ? 'invisible' : 'visible'}`}
+        className={`set-center ${userInfo.alreadyGetTodayToolBox ? 'invisible' : 'visible'}`}
       >
         <BlueButton
           value="도구 얻기"
