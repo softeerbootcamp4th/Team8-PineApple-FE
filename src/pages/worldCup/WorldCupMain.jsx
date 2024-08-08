@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import WorldCupGame from './WorldCupGame';
 import worldCupData from '@/constants/worldCup/worldCupData';
 import { useNavigate } from 'react-router-dom';
 import shuffleArr from '@/utils/shuffleArr';
+import { postWorldCupResult } from '@/api/worldCup/index';
+import { AuthContext } from '@/context/authContext';
 
 const WorldCupMain = () => {
+  const { userInfo, setUserInfo } = useContext(AuthContext);
   const navigate = useNavigate();
   const [totalData, setTotalData] = useState(shuffleArr(worldCupData));
   const [roundData, setRoundData] = useState(totalData.slice(0, 2));
   const [round, setRound] = useState(1);
 
-  const handleSelect = isChosen => {
+  const handleSelect = async isChosen => {
     let updatedData = [...totalData];
 
     if (isChosen) {
@@ -34,7 +37,17 @@ const WorldCupMain = () => {
     } else if (round === 4) {
       setRound(5); // 결승 진행
     } else if (round === 5) {
-      navigate(`/event/worldCupResult`, { state: updatedData[0] });
+      console.log(updatedData);
+      try {
+        const response = await postWorldCupResult(
+          updatedData[0].id,
+          userInfo.accessToken,
+        );
+        console.log(response);
+        navigate(`/event/worldCupResult`, { state: updatedData[0] });
+      } catch (error) {
+        console.error('loginPhone API 통신 실패:', error);
+      }
     }
 
     // 다음 라운드의 데이터 설정

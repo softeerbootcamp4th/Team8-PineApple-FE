@@ -7,7 +7,7 @@ import PhoneAuthModal from '@/components/modal/PhoneAuthModal';
 import { loginPhone } from '@/api/auth/index';
 import phoneNumberFormatting from '@/utils/phoneNumberFormatting';
 
-function PhoneInputModal({ closePhoneModal }) {
+function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
   const [inputPhone, setInputPhone] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [isCheck, setIsCheck] = useState(false);
@@ -49,6 +49,8 @@ function PhoneInputModal({ closePhoneModal }) {
         <PhoneAuthModal
           inputPhone={inputPhone}
           closePhoneModal={closePhoneModal}
+          option={option}
+          setResultModalOpen={setResultModalOpen}
         />
       ) : (
         <div className="nextModalContainer w-[800px]">
@@ -58,20 +60,27 @@ function PhoneInputModal({ closePhoneModal }) {
           >
             <img src={modalClose} alt="Close" />
           </button>
+          {option != '' ? (
+            <div className="skyblue-box text-detail-3-semibold mb-400">
+              {option}
+            </div>
+          ) : null}
           <span className="text-body-2-bold text-neutral-black mb-900">
             핸드폰 번호를 입력해주세요
           </span>
-          <input
-            placeholder="핸드폰 번호 입력 (01XXXXXXXXX)"
-            onClick={firstClickEvent}
-            onChange={handleInputText}
-            className={`w-[640px] h-[80px] px-[30px] pl-[40px] mb-800 text-body-3-regular text-neutral-black placeholder:text-body-3-regular placeholder-neutral-black placeholder-opacity-50 border-solid ${!isValid && firstClick ? 'border-red-500 focus:border-red-500' : 'border-neutral-black focus:border-primary-blue'} border-[4px] rounded-[10px] outline-none`}
-          ></input>
-          {!isValid && firstClick && (
-            <span className="absolute text-red-500 text-detail-3-regular top-[235px] left-[100px]">
-              전화번호 형식이 맞지 않습니다!
-            </span>
-          )}
+          <div className="relative">
+            <input
+              placeholder="핸드폰 번호 입력 (01XXXXXXXXX)"
+              onClick={firstClickEvent}
+              onChange={handleInputText}
+              className={`w-[640px] h-[80px] px-[30px] pl-[40px] mb-800 text-body-3-regular text-neutral-black placeholder:text-body-3-regular placeholder-neutral-black placeholder-opacity-50 border-solid ${!isValid && firstClick ? 'border-red-500 focus:border-red-500' : 'border-neutral-black focus:border-primary-blue'} border-[4px] rounded-[10px] outline-none`}
+            ></input>
+            {!isValid && firstClick && (
+              <span className="absolute top-[75%] left-[2%] text-red-500 text-detail-3-regular">
+                전화번호 형식이 맞지 않습니다!
+              </span>
+            )}
+          </div>
           <div
             onClick={handleCheck}
             className="relative flex items-center justify-center cursor-pointer mb-800"
@@ -115,6 +124,8 @@ function PhoneInputModal({ closePhoneModal }) {
 
 PhoneInputModal.propTypes = {
   closePhoneModal: PropTypes.func.isRequired,
+  option: PropTypes.string,
+  setResultModalOpen: PropTypes.func,
 };
 
 export default PhoneInputModal;
