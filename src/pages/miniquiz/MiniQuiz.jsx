@@ -6,6 +6,7 @@ import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
 import ExitModal from '@/components/modal/ExitModal';
 import { useNavigate } from 'react-router-dom';
+import NoQuiz from '@/pages/miniquiz/NoQuiz';
 import '@/styles/global.css';
 
 function MiniQuiz() {
@@ -18,6 +19,7 @@ function MiniQuiz() {
   const onClose = () => setopenExitModal(false);
 
   useEffect(() => {
+    //TODO 해당 부분 useEffect가 필요한가??
     if (isSubmit) {
       navigate('/event/miniQuizResult', {
         state: { quizId: data.quizId, isChosen: isChosen },
@@ -30,7 +32,7 @@ function MiniQuiz() {
   } else if (loading) {
     return <LoadingQuiz />;
   } else if (code === 'NO_QUIZ_CONTENT') {
-    navigate('/event/invalidAccess');
+    return <NoQuiz />;
   }
 
   return (
