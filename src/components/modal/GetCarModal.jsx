@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useContext, useCallback } from 'react';
 import modalClose from '@/assets/icons/modalClose.svg';
 import BlueButton from '@/components/buttons/BlueButton';
 import getCarModalImage from '@/assets/images/getCarModalImage.svg';
+import PropTypes from 'prop-types';
+import { postParticipants } from '@/api/worldCup/index';
+import { AuthContext } from '@/context/authContext';
+import { useNavigate } from 'react-router-dom';
 
-function GetItemModal(close) {
+function GetItemModal({ close }) {
+  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleParticipants = useCallback(() => {
+    postParticipants(userInfo.accessToken)
+      .then(result => {
+        console.log(result);
+        const updatedUserInfo = { ...userInfo, car: true };
+        localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
+        setUserInfo(updatedUserInfo);
+        navigate('/event');
+      })
+      .catch(error => {
+        console.error('WorldCup 참여 등록 API 통신 실패:', error);
+      });
+  }, [navigate]);
   return (
     <div className="modalContainer">
       <div className="nextModalContainer w-[600px] h-[480px]">
@@ -18,11 +37,11 @@ function GetItemModal(close) {
           src={getCarModalImage}
           alt="getCarModalImage"
           className="absolute top-[100px] left-[63px] z-[103]"
-        ></img>
-        <div className="absolute top-[385px]">
+        />
+        <div className="absolute top-[385px] z-[105]">
           <BlueButton
             value="받기"
-            onClickFunc={() => alert('get')}
+            onClickFunc={handleParticipants}
             styles="px-1300 py-400 text-detail-3-semibold"
           />
         </div>
@@ -30,5 +49,9 @@ function GetItemModal(close) {
     </div>
   );
 }
+
+GetItemModal.propTypes = {
+  close: PropTypes.func.isRequired,
+};
 
 export default GetItemModal;

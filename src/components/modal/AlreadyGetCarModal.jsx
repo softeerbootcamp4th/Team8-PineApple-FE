@@ -11,7 +11,7 @@ function AlreadyGetCarModal({ close }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleExit = useCallback(() => {
-    navigate('/event', { state: { scrollTo: 'worldCup' } });
+    navigate('/event');
   }, [navigate]);
   return (
     <div className={`${userInfo.phoneNumber === '' ? '' : 'modalContainer'}`}>

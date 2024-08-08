@@ -1,14 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import WorldCupArrowIcon from '@/assets/icons/worldCupArrowIcon.svg';
 import useToast from '@/hooks/useToast';
 import ToastMessage from '@/components/toastMessage/ToastMessage';
+import { AuthContext } from '@/context/authContext';
+import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
+import GetCarModal from '@/components/modal/GetCarModal';
+import PhoneInputModal from '@/components/modal/PhoneInputModal';
 
-function WorldCupResultTop({ data, setModalOpen }) {
+function WorldCupResultTop({ data }) {
   const { showToast, messageType, handleShareClick } = useToast();
+  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const [resultModalOpen, setResultModalOpen] = useState('');
+  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+  const closeModal = () => {
+    setResultModalOpen('');
+  };
+  const closePhoneModal = () => {
+    setOpenPhoneInputModal(false);
+  };
 
   const handleOpenModal = () => {
-    setModalOpen(true);
+    if (userInfo.phoneNumber === undefined) {
+      setOpenPhoneInputModal(true);
+    } else {
+      if (userInfo.car) {
+        setResultModalOpen('alreadyGetCar');
+      } else {
+        setResultModalOpen('getCar');
+      }
+    }
   };
 
   return (
@@ -53,13 +74,23 @@ function WorldCupResultTop({ data, setModalOpen }) {
         </button>
       </div>
       {showToast && <ToastMessage messageType={messageType} />}
+      {resultModalOpen === 'alreadyGetCar' && (
+        <AlreadyGetCarModal close={closeModal} />
+      )}
+      {resultModalOpen === 'getCar' && <GetCarModal close={closeModal} />}
+      {openPhoneInputModal ? (
+        <PhoneInputModal
+          closePhoneModal={closePhoneModal}
+          option="자동차 아이템"
+          setResultModalOpen={setResultModalOpen}
+        />
+      ) : null}
     </div>
   );
 }
 
 WorldCupResultTop.propTypes = {
   data: PropTypes.object.isRequired,
-  setModalOpen: PropTypes.func.isRequired,
 };
 
 export default WorldCupResultTop;
