@@ -11,13 +11,13 @@ function EventIntroNav() {
   };
   return (
     <div className="flex justify-center pd-2500 gap-1000">
-      {EventIntroNavData.map((item, index) => (
+      {EventIntroNavData.map(item => (
         <div
-          key={index}
+          key={item.id}
           className="nav-item"
           onClick={() => handleNavigation(item.section)}
         >
-          <EventIntroNavItem item={item} key={index} />
+          <EventIntroNavItem item={item} key={item.id} />
         </div>
       ))}
     </div>
