@@ -37,7 +37,6 @@ const WorldCupMain = () => {
     } else if (round === 4) {
       setRound(5); // 결승 진행
     } else if (round === 5) {
-      console.log(updatedData);
       try {
         const response = await postWorldCupResult(
           updatedData[0].id,

@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Edit from '@/assets/icons/edit.svg';
 import Link from '@/assets/icons/link.svg';
 import ToastMessage from '@/components/toastMessage/ToastMessage';
-import CommandInputModal from '@/components/modal/CommandInputModal';
+import CommentInputModal from '@/components/modal/CommentInputModal';
 import useToast from '@/hooks/useToast';
+import PhoneInputModal from '@/components/modal/PhoneInputModal';
+import { AuthContext } from '@/context/authContext';
 
 function DailyComment() {
-  const [openCommandInputModal, setOpenCommandInputModal] = useState(false);
-  const { showToast, messageType, handleShareClick } = useToast();
+  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+  const { showToast, messageType, handleShareClick, AlreadyPostComment } =
+    useToast();
+  const [resultModalOpen, setResultModalOpen] = useState('');
 
-  const openCommandModal = () => {
-    setOpenCommandInputModal(true);
+  const closeCommentModal = () => {
+    setResultModalOpen('');
   };
 
-  const closeCommandModal = () => {
-    setOpenCommandInputModal(false);
+  const closePhoneModal = () => {
+    setOpenPhoneInputModal(false);
+  };
+
+  const handleOpenModal = () => {
+    if (userInfo.phoneNumber === undefined) {
+      setOpenPhoneInputModal(true);
+    } else {
+      setResultModalOpen('comment');
+    }
   };
 
   return (
@@ -32,7 +45,7 @@ function DailyComment() {
       </p>
       <div className="flex items-center gap-400">
         <button
-          onClick={openCommandModal}
+          onClick={handleOpenModal}
           className="flex items-center justify-center transition-transform duration-300 rounded-full bg-primary-blue px-1600 py-400 text-detail-2-medium text-neutral-white hover:scale-105"
         >
           <img src={Edit} alt="edit icons" className="mr-200" />
@@ -47,8 +60,18 @@ function DailyComment() {
         </button>
       </div>
       {showToast && <ToastMessage messageType={messageType} />}
-      {openCommandInputModal ? (
-        <CommandInputModal closeCommandModal={closeCommandModal} />
+      {resultModalOpen === 'comment' ? (
+        <CommentInputModal
+          closeCommentModal={closeCommentModal}
+          AlreadyPostComment={AlreadyPostComment}
+        />
+      ) : null}
+      {openPhoneInputModal ? (
+        <PhoneInputModal
+          closePhoneModal={closePhoneModal}
+          option="기대평 댓글 작성"
+          setResultModalOpen={setResultModalOpen}
+        />
       ) : null}
     </div>
   );
