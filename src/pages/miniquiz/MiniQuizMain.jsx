@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import useMiniQuiz from '@/pages/miniquiz/miniquizhooks/useMiniQuiz';
-import EventHeader from '@/components/header/EventHeader';
 import ClickBox from '@/pages/miniquiz/ClickBox';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
-import ExitModal from '@/components/modal/ExitModal';
 import { useNavigate } from 'react-router-dom';
 import NoQuiz from '@/pages/miniquiz/NoQuiz';
 import '@/styles/global.css';
