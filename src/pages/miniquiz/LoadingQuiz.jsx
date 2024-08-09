@@ -14,14 +14,14 @@ function LoadingQuiz() {
     window.location.reload();
   }, []);
 
-  const [loadingText, setLoadingText] = useState('퀴즈 정보를 가져오는 중');
+  const [loadingText, setLoadingText] = useState('퀴즈 정보를 가져오는 중..!');
 
   useEffect(() => {
     const texts = [
-      '퀴즈 정보를 가져오는 중..!',
       '퀴즈 정보를 가져오는 중.',
       '퀴즈 정보를 가져오는 중..',
       '퀴즈 정보를 가져오는 중...',
+      '퀴즈 정보를 가져오는 중..!',
     ];
     let index = 0;
     const interval = setInterval(() => {
