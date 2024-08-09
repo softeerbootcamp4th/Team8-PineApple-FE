@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import useMiniQuiz from '@/pages/miniquiz/miniquizhooks/useMiniQuiz';
 import ClickBox from '@/pages/miniquiz/ClickBox';
 import SubmitButton from '@/pages/miniquiz/SubmitButton';
+import { useNavigate } from 'react-router-dom';
 import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
-import NoQuiz from '@/pages/miniquiz/NoQuiz';
 import '@/styles/global.css';
 
 function MiniQuiz() {
+  const navigate = useNavigate();
   const { code, loading, error, data, shuffledQuizQuestion } = useMiniQuiz();
   const { quizDescription, quizId } = data;
   const [isChosen, setIsChosen] = useState(0);
 
   if (error) {
-    console.log(data);
     return <div>Error: {error.message}</div>;
   } else if (loading) {
     return <LoadingQuiz />;
   } else if (code === 'NO_QUIZ_CONTENT') {
-    return <NoQuiz />;
+    navigate('/event/noQuiz');
   }
 
   return (
