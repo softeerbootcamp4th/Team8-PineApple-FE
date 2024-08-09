@@ -7,7 +7,8 @@ import { postParticipants } from '@/api/worldCup/index';
 import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
 
-function GetItemModal({ close }) {
+function GetItemModal({ close, item }) {
+  console.log(item);
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleParticipants = useCallback(() => {
@@ -52,6 +53,7 @@ function GetItemModal({ close }) {
 
 GetItemModal.propTypes = {
   close: PropTypes.func.isRequired,
+  item: PropTypes.string.isRequired,
 };
 
 export default GetItemModal;

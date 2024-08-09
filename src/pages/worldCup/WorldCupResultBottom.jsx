@@ -8,7 +8,6 @@ function WorldCupResultBottom({ data }) {
   const [responseData, setResponseData] = useState([]);
   const getResult = async () => {
     const data = await getWorldCupResult();
-    console.log(data);
     if (data) {
       setResponseData(data);
     }

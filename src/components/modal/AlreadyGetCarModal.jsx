@@ -14,7 +14,7 @@ function AlreadyGetCarModal({ close }) {
     navigate('/event');
   }, [navigate]);
   return (
-    <div className={`${userInfo.phoneNumber === '' ? '' : 'modalContainer'}`}>
+    <div className="modalContainer">
       <div className="nextModalContainer w-[600px] h-[480px]">
         <button onClick={close} className="absolute top-[29px] right-[29px]">
           <img src={modalClose} alt="Close" />

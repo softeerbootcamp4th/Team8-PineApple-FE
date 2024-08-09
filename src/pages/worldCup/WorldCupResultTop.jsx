@@ -5,7 +5,7 @@ import useToast from '@/hooks/useToast';
 import ToastMessage from '@/components/toastMessage/ToastMessage';
 import { AuthContext } from '@/context/authContext';
 import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
-import GetCarModal from '@/components/modal/GetCarModal';
+import GetItemModal from '@/components/modal/GetItemModal';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 
 function WorldCupResultTop({ data }) {
@@ -77,7 +77,9 @@ function WorldCupResultTop({ data }) {
       {resultModalOpen === 'alreadyGetCar' && (
         <AlreadyGetCarModal close={closeModal} />
       )}
-      {resultModalOpen === 'getCar' && <GetCarModal close={closeModal} />}
+      {resultModalOpen === 'getCar' && (
+        <GetItemModal close={closeModal} item="car" />
+      )}
       {openPhoneInputModal ? (
         <PhoneInputModal
           closePhoneModal={closePhoneModal}
