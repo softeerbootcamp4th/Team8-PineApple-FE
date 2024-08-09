@@ -15,9 +15,7 @@ function CustomBluePurpleButton({ quizId, isChosen }) {
   const fetchMiniQuiz = async () => {
     try {
       setLoading(true);
-      console.log(quizId, isChosen);
       const response = await postAnswer(quizId, isChosen);
-      console.log(response);
       navigate('/event/miniQuizResult', { state: response });
     } catch (err) {
       setError(err);
