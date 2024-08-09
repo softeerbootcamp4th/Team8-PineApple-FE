@@ -1,13 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import EventHeader from '@/components/header/EventHeader';
 import WorldCupTitle from './WorldCupTitle';
 import PropTypes from 'prop-types';
 import ExitModal from '@/components/modal/ExitModal';
+import { useBlocker } from 'react-router-dom';
 
 function WorldCupGame({ title = '8강', onSelect, roundData }) {
   const [currentState, setCurrentState] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
-  const [openExitModal, setopenExitModal] = useState(false);
+  const [openExitModal, setOpenExitModal] = useState(false);
+
+  // useBlocker(({ nextLocation: newLocation }) => {
+  //   setOpenExitModal(true);
+  //   setNextLocation(newLocation);
+  //   return false; // 차단
+  // });
+
+  useEffect(() => {
+    const handleBeforeUnload = event => {
+      event.preventDefault();
+      event.returnValue = ''; // 표준에 따라 이 메시지는 무시될 수 있습니다.
+      // setOpenExitModal(true);
+      return '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   const getTextLeftStyle = () => {
     return currentState === -1
@@ -79,14 +101,14 @@ function WorldCupGame({ title = '8강', onSelect, roundData }) {
     return baseClass;
   };
 
-  const onClose = () => setopenExitModal(false);
+  const onClose = () => setOpenExitModal(false);
 
   return (
     <div className="relative w-full min-w-[1104px] min-h-[860px]">
       <EventHeader
         eventTitle="Event 1. 차 얻기"
         eventBody="운전 중 피하고 싶은 상황 월드컵"
-        setopenExitModal={setopenExitModal}
+        setOpenExitModal={setOpenExitModal}
       />
       <WorldCupTitle title={title} />
       {animationClass === '' ? (

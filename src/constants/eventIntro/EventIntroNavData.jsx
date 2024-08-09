@@ -1,5 +1,6 @@
 const EventIntroNavData = [
   {
+    id: 1,
     tag: 'CAR ITEM',
     title1: '운전 중 피하고 싶은',
     title2: '상황 월드컵',
@@ -8,6 +9,7 @@ const EventIntroNavData = [
     section: 'worldCup',
   },
   {
+    id: 2,
     tag: 'OPTION ITEM',
     title1: '일일 미니퀴즈 선착순',
     title2: '500명 커피 증정',
@@ -16,6 +18,7 @@ const EventIntroNavData = [
     section: 'miniQuiz',
   },
   {
+    id: 3,
     tag: '아이템 경품 추천',
     title1: '캐스퍼 EV와',
     title2: '함께 떠나기',
@@ -24,6 +27,7 @@ const EventIntroNavData = [
     section: 'main',
   },
   {
+    id: 4,
     tag: '한 번 더 응모하고 싶다면?',
     title1: '기대평 댓글 쓰고',
     title2: '아이템 받기',

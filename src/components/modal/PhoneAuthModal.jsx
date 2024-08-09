@@ -4,7 +4,7 @@ import modalClose from '@/assets/icons/modalClose.svg';
 import { loginCode } from '@/api/auth/index';
 import PropTypes from 'prop-types';
 import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
-import GetCarModal from '@/components/modal/GetCarModal';
+import GetItemModal from '@/components/modal/GetItemModal';
 
 function PhoneAuthModal({
   inputPhone,
@@ -35,11 +35,13 @@ function PhoneAuthModal({
         setUserInfo(response);
 
         if (option === '자동차 아이템') {
-          if (userInfo.car) {
+          if (response.car) {
             setResultModalOpen('alreadyGetCar');
           } else {
             setResultModalOpen('getCar');
           }
+        } else if (option === '기대평 댓글 작성') {
+          setResultModalOpen('comment');
         }
         closePhoneModal();
       } catch (error) {
@@ -108,11 +110,9 @@ function PhoneAuthModal({
         )}
       </div>
       {alreadyGetCarModalOpen ? (
-        <AlreadyGetCarModal close={closeModal} isAuth={true} />
+        <AlreadyGetCarModal close={closeModal} />
       ) : null}
-      {getCarModalOpen ? (
-        <GetCarModal close={closeModal} isAuth={true} />
-      ) : null}
+      {getCarModalOpen ? <GetItemModal close={closeModal} item="car" /> : null}
     </>
   );
 }

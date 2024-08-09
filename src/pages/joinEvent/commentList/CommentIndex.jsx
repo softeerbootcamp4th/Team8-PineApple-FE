@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CommentDate from '@/pages/joinEvent/commentList/CommentDate';
 import RemainingTime from '@/pages/joinEvent/commentList/RemainingTime';
 import RefreshData from '@/pages/joinEvent/commentList/RefreshData';
@@ -9,6 +9,7 @@ import dateFormatting from '@/utils/dateFormatting';
 import getNowTime from '@/utils/getNowTime';
 import { getComment } from '@/api/comment';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '@/context/authContext';
 
 function CommentIndex() {
   const navigate = useNavigate();
@@ -18,18 +19,21 @@ function CommentIndex() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCommentCount, setTotalCommentCount] = useState(0);
   const [nowTime, setNowTime] = useState(getNowTime());
+  const { userInfo, setUserInfo } = useContext(AuthContext);
 
   const updateComments = async () => {
-    const data = await getComment(currentPage - 1, option, today);
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const accessToken = userInfo?.accessToken;
+    const data = await getComment(currentPage - 1, option, today, accessToken);
     if (data) {
-      setCommentList(data.comments);
+      setCommentList([...data.comments]);
       setTotalCommentCount(data.totalPages);
     }
   };
 
   useEffect(() => {
     updateComments();
-  }, [currentPage, option, today]);
+  }, [currentPage, option, today, userInfo]);
 
   const onChangePage = page => {
     setCurrentPage(page);
@@ -63,9 +67,10 @@ function CommentIndex() {
         {commentList.map((comment, index) => (
           <EachComment
             comment={comment}
-            key={index}
+            key={comment.id}
             indexOfFirstPost={(currentPage - 1) * 10 + index}
             option={option}
+            updateComments={updateComments}
           />
         ))}
       </div>

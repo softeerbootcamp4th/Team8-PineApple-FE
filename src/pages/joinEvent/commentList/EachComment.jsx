@@ -1,20 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Heart from '@/assets/icons/heart.svg';
 import FullHeart from '@/assets/icons/fullHeart.svg';
 import timeFormatting from '@/utils/timeFormatting';
+import { postLike } from '@/api/comment/index';
+import { AuthContext } from '@/context/authContext';
+import PhoneInputModal from '@/components/modal/PhoneInputModal';
 
 function EachComment({ comment, indexOfFirstPost, option }) {
-  const [isHeart, setIsHeart] = useState(false);
-  const [likes, setLikes] = useState(comment.likeCount);
-  const handleHeart = () => {
-    setIsHeart(prev => !prev);
-    if (isHeart) {
-      setLikes(prev => prev - 1);
+  const [isLiked, setIsLiked] = useState(comment.isLiked);
+  const [likeCount, setLikeCount] = useState(comment.likeCount);
+  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+
+  useEffect(() => {
+    setIsLiked(comment.isLiked);
+    setLikeCount(comment.likeCount);
+  }, [comment]);
+
+  const closePhoneModal = () => {
+    setOpenPhoneInputModal(false);
+  };
+  const handleHeart = async () => {
+    // 하트 버튼 클릭할때 로그인 안되어있을떄 로직
+    if (userInfo.phoneNumber === undefined) {
+      const phoneVerified = await showPhoneInputModal();
+      if (!phoneVerified) {
+        return;
+      }
     } else {
-      setLikes(prev => prev + 1);
+      // 하트 버튼 클릭할때 로그인 되어있을떄 로직(낙관적 업데이트 방식)
+      setIsLiked(prev => !prev);
+      setLikeCount(prevCount => prevCount + (isLiked ? -1 : 1));
+      try {
+        const userInfoData = JSON.parse(localStorage.getItem('userInfo'));
+        const accessToken = userInfoData?.accessToken;
+        const response = await postLike(accessToken, comment.id);
+      } catch (error) {
+        setIsLiked(isLiked);
+        setLikeCount(prevCount => prevCount + (isLiked ? 1 : -1));
+        alert('네트워크환경이 불안정합니다');
+      }
     }
   };
+
+  const showPhoneInputModal = () => {
+    setOpenPhoneInputModal(true);
+    return new Promise(resolve => {
+      const checkPhoneVerification = () => {
+        if (localStorage.getItem('userInfo')) {
+          setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
+          resolve(true);
+          setOpenPhoneInputModal(false);
+        } else {
+          setTimeout(checkPhoneVerification, 1000);
+        }
+      };
+      checkPhoneVerification();
+    });
+  };
+
   const registerTime = timeFormatting(comment.postTime);
   return (
     <div className="flex items-center w-full py-6 pl-1700 pr-2000 mb-500 bg-neutral-white rounded-xl">
@@ -36,15 +81,19 @@ function EachComment({ comment, indexOfFirstPost, option }) {
       </p>
       <div className="flex items-center">
         <div className="text-detail-2-regular text-neutral-500">
-          {comment.likeCount}
+          {likeCount}
         </div>
         <img
-          src={isHeart ? FullHeart : Heart}
-          alt={isHeart ? 'FullHeart' : 'Heart'}
+          src={isLiked ? FullHeart : Heart}
+          alt={isLiked ? 'FullHeart' : 'Heart'}
+          key={comment.id}
           className="mt-0.5 ml-100"
-          onClick={() => handleHeart()}
+          onClick={handleHeart}
         />
       </div>
+      {openPhoneInputModal ? (
+        <PhoneInputModal closePhoneModal={closePhoneModal} />
+      ) : null}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { AuthContext } from '@/context/authContext';
 import { postComment } from '@/api/comment/index';
 
-function CommandInputModal({ closeCommandModal }) {
+function CommentInputModal({ closeCommentModal, AlreadyPostComment }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   // 모달창이 띄워졌을때 뒷부분 스크롤 막기 위한 코드
   useEffect(() => {
@@ -13,18 +13,20 @@ function CommandInputModal({ closeCommandModal }) {
       document.body.style.overflow = 'unset';
     };
   }, []);
-  const [inputCommand, setInputCommand] = useState('');
+  const [inputComment, setInputComment] = useState('');
   const handleInputText = e => {
     if (e.target.value.length > 50) {
       e.target.value = e.target.value.slice(0, 50);
     }
-    setInputCommand(e.target.value);
+    setInputComment(e.target.value);
   };
   const handleComment = async () => {
     try {
-      const response = await postComment(userInfo.accessToken, inputCommand);
-      console.log(response);
-      closeCommandModal();
+      const response = await postComment(userInfo.accessToken, inputComment);
+      if (response.code === 'ALREADY_REVIEWED') {
+        AlreadyPostComment();
+      }
+      closeCommentModal();
     } catch (error) {
       console.error('댓글 등록 API 통신 실패:', error);
     }
@@ -33,7 +35,7 @@ function CommandInputModal({ closeCommandModal }) {
     <div className="modalContainer">
       <div className="nextModalContainer w-[800px]">
         <button
-          onClick={closeCommandModal}
+          onClick={closeCommentModal}
           className="absolute top-[29px] right-[29px]"
         >
           <img src={modalClose} alt="Close" />
@@ -47,12 +49,12 @@ function CommandInputModal({ closeCommandModal }) {
           maxLength="50"
           className="w-[440px] h-[200px] p-500 mb-700 text-detail-2-medium text-neutral-black placeholder:text-detail-2-medium placeholder-neutral-500 bg-neutral-50 rounded-lg resize-none"
         ></textarea>
-        <span className="absolute top-[55%] left-[70%] text-detail-3-regular text-neutral-500">{`${inputCommand.length}/50`}</span>
+        <span className="absolute top-[55%] left-[70%] text-detail-3-regular text-neutral-500">{`${inputComment.length}/50`}</span>
         <p className="mb-700 text-neutral-500 text-detail-3-regular">
           기대평을 등록한 후에는 다시 수정할 수 없어요!
         </p>
 
-        {inputCommand != '' ? (
+        {inputComment != '' ? (
           <button
             onClick={handleComment}
             className="flex items-center justify-center rounded-full px-1400 py-200 bg-primary-blue"
@@ -69,8 +71,9 @@ function CommandInputModal({ closeCommandModal }) {
   );
 }
 
-CommandInputModal.propTypes = {
-  closeCommandModal: PropTypes.func.isRequired,
+CommentInputModal.propTypes = {
+  closeCommentModal: PropTypes.func.isRequired,
+  AlreadyPostComment: PropTypes.func.isRequired,
 };
 
-export default CommandInputModal;
+export default CommentInputModal;

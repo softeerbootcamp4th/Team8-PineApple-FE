@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BackIcon from '@/assets/icons/back.svg';
 
-function EventHeader({ eventTitle, eventBody, setopenExitModal }) {
+function EventHeader({ eventTitle, eventBody, setOpenExitModal }) {
   return (
     <div className="absolute flex h-[32px] items-center top-[1%] left-[3%] z-[100]">
       <button
-        onClick={() => setopenExitModal(true)}
+        onClick={() => setOpenExitModal(true)}
         className="transition-transform duration-300 hover:scale-125"
       >
         <img src={BackIcon} alt="back" />
@@ -27,7 +27,7 @@ function EventHeader({ eventTitle, eventBody, setopenExitModal }) {
 EventHeader.propTypes = {
   eventTitle: PropTypes.string.isRequired,
   eventBody: PropTypes.string.isRequired,
-  setopenExitModal: PropTypes.func.isRequired,
+  setOpenExitModal: PropTypes.func.isRequired,
 };
 
 export default EventHeader;
