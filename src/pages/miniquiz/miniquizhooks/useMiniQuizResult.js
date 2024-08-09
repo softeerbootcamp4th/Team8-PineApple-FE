@@ -21,7 +21,7 @@ const useMiniQuizResult = (quizId, isChosen) => {
     };
 
     fetchMiniQuiz();
-  }, []);
+  }, [quizId, isChosen]);
 
   return { loading, error, response };
 };
