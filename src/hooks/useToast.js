@@ -27,7 +27,11 @@ const useToast = (duration = 3000) => {
       });
   }, [showToastMessage]);
 
-  return { showToast, messageType, handleShareClick };
+  const AlreadyPostComment = useCallback(() => {
+    showToastMessage('alreadyPostComment');
+  }, [showToastMessage]);
+
+  return { showToast, messageType, handleShareClick, AlreadyPostComment };
 };
 
 export default useToast;
