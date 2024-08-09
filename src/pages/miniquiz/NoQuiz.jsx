@@ -4,15 +4,15 @@ import EventHeader from '@/components/header/EventHeader';
 import NoQuizMain from '@/pages/miniquiz/NoQuizMain';
 
 function NoQuiz() {
-  const [openExitModal, setopenExitModal] = useState(false);
-  const onClose = () => setopenExitModal(false);
+  const [openExitModal, setOpenExitModal] = useState(false);
+  const onClose = () => setOpenExitModal(false);
 
   return (
     <>
       <EventHeader
         eventTitle="Event 2. 도구 얻기"
         eventBody="월드컵 일일 미니퀴즈"
-        setopenExitModal={setopenExitModal}
+        setOpenExitModal={setOpenExitModal}
       />
       <NoQuizMain />
       {openExitModal && <ExitModal onClose={onClose} game="MiniQuiz" />}
