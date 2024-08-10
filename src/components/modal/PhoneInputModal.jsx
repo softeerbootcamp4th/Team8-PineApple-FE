@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import isValidPhoneNumber from '@/utils/isValidPhoneNumber';
-import modalClose from '@/assets/icons/modalClose.svg';
 import PropTypes from 'prop-types';
 import Check from '@/assets/icons/check.svg';
-import PhoneAuthModal from '@/components/modal/PhoneAuthModal';
 import { loginPhone } from '@/api/auth/index';
 import phoneNumberFormatting from '@/utils/phoneNumberFormatting';
+import ModalFrame from './ModalFrame';
+import PhoneAuthModal from './PhoneAuthModal';
+import BlueButton from '@/components/buttons/BlueButton';
 
 function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
   const [inputPhone, setInputPhone] = useState('');
@@ -13,6 +14,8 @@ function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
   const [isCheck, setIsCheck] = useState(false);
   const [firstClick, setFirstClick] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [tag, setTag] = useState('로그인');
+  const [title, setTitle] = useState('핸드폰 번호를 입력해주세요');
 
   const handleInputText = e => {
     setInputPhone(e.target.value);
@@ -22,8 +25,10 @@ function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
   const handleAuth = async () => {
     try {
       const formattedPhone = phoneNumberFormatting(inputPhone);
-      const response = await loginPhone(formattedPhone);
+      await loginPhone(formattedPhone);
       setInputPhone(formattedPhone);
+      setTag('인증번호 입력');
+      setTitle('인증번호를 입력해주세요');
       setShowAuthModal(true);
     } catch (error) {
       console.error('loginPhone API 통신 실패:', error);
@@ -33,48 +38,34 @@ function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
   const handleCheck = () => {
     setIsCheck(prev => !prev);
   };
+
   const firstClickEvent = () => {
     setFirstClick(true);
   };
-  // 모달창이 띄워졌을때 뒷부분 스크롤 막기 위한 코드
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
+
+  const closeAuthModal = () => {
+    setShowAuthModal(false);
+    closePhoneModal();
+  };
+
   return (
-    <div className="modalContainer">
+    <ModalFrame handleExit={closePhoneModal} tag={tag} title={title}>
       {showAuthModal ? (
         <PhoneAuthModal
           inputPhone={inputPhone}
-          closePhoneModal={closePhoneModal}
-          option={option}
           setResultModalOpen={setResultModalOpen}
+          closeAuthModal={closeAuthModal}
+          option={option}
         />
       ) : (
-        <div className="nextModalContainer w-[800px]">
-          <button
-            onClick={closePhoneModal}
-            className="absolute top-[29px] right-[29px]"
-          >
-            <img src={modalClose} alt="Close" />
-          </button>
-          {option != '' ? (
-            <div className="skyblue-box text-detail-3-semibold mb-400">
-              {option}
-            </div>
-          ) : null}
-          <span className="text-body-2-bold text-neutral-black mb-900">
-            핸드폰 번호를 입력해주세요
-          </span>
+        <div className="flex flex-col items-center">
           <div className="relative">
             <input
               placeholder="핸드폰 번호 입력 (01XXXXXXXXX)"
               onClick={firstClickEvent}
               onChange={handleInputText}
               className={`w-[640px] h-[80px] px-[30px] pl-[40px] mb-800 text-body-3-regular text-neutral-black placeholder:text-body-3-regular placeholder-neutral-black placeholder-opacity-50 border-solid ${!isValid && firstClick ? 'border-red-500 focus:border-red-500' : 'border-neutral-black focus:border-primary-blue'} border-[4px] rounded-[10px] outline-none`}
-            ></input>
+            />
             {!isValid && firstClick && (
               <span className="absolute top-[75%] left-[2%] text-red-500 text-detail-3-regular">
                 전화번호 형식이 맞지 않습니다!
@@ -93,39 +84,33 @@ function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
               개인정보 수집 및 이용 제공 동의
             </span>
             {isCheck && (
-              <img
-                src={Check}
-                alt="check"
-                className="absolute left-0 top-2"
-              ></img>
+              <img src={Check} alt="check" className="absolute left-0 top-2" />
             )}
           </div>
           {isValid && isCheck ? (
-            <button
-              onClick={handleAuth}
-              className="w-[400px] h-[70px] flex justify-center items-center bg-primary-blue rounded-full"
-            >
-              <span className="text-neutral-white text-body-3-regular">
-                본인인증하기
-              </span>
-            </button>
+            <BlueButton
+              value="본인인증하기"
+              onClickFunc={handleAuth}
+              styles="px-2000 py-400 text-body-3-semibold"
+            />
           ) : (
-            <button className="w-[400px] h-[70px] flex justify-center items-center bg-primary-blue rounded-full opacity-30 cursor-default">
-              <span className="text-neutral-white text-body-3-regular">
-                본인인증하기
-              </span>
-            </button>
+            <BlueButton
+              value="본인인증하기"
+              onClickFunc={handleAuth}
+              styles="px-2000 py-400 text-body-3-semibold"
+              disabled={true}
+            />
           )}
         </div>
       )}
-    </div>
+    </ModalFrame>
   );
 }
 
 PhoneInputModal.propTypes = {
   closePhoneModal: PropTypes.func.isRequired,
-  option: PropTypes.string,
   setResultModalOpen: PropTypes.func,
+  option: PropTypes.string,
 };
 
 export default PhoneInputModal;
