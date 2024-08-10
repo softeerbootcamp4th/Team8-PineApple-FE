@@ -5,6 +5,7 @@ import ToastMessage from '@/components/toastMessage/ToastMessage';
 import CommentInputModal from '@/components/modal/CommentInputModal';
 import useToast from '@/hooks/useToast';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
+import GetItemModal from '@/components/modal/GetItemModal';
 import { AuthContext } from '@/context/authContext';
 
 function DailyComment() {
@@ -14,7 +15,7 @@ function DailyComment() {
     useToast();
   const [resultModalOpen, setResultModalOpen] = useState('');
 
-  const closeCommentModal = () => {
+  const closeModal = () => {
     setResultModalOpen('');
   };
 
@@ -60,19 +61,23 @@ function DailyComment() {
         </button>
       </div>
       {showToast && <ToastMessage messageType={messageType} />}
-      {resultModalOpen === 'comment' ? (
+      {resultModalOpen === 'comment' && (
         <CommentInputModal
-          closeCommentModal={closeCommentModal}
+          closeCommentModal={closeModal}
           AlreadyPostComment={AlreadyPostComment}
+          setResultModalOpen={setResultModalOpen}
         />
-      ) : null}
-      {openPhoneInputModal ? (
+      )}
+      {resultModalOpen === 'toolBox' && (
+        <GetItemModal close={closeModal} item="툴 박스 1개" />
+      )}
+      {openPhoneInputModal && (
         <PhoneInputModal
           closePhoneModal={closePhoneModal}
           option="기대평 댓글 작성"
           setResultModalOpen={setResultModalOpen}
         />
-      ) : null}
+      )}
     </div>
   );
 }
