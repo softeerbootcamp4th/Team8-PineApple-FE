@@ -78,7 +78,7 @@ function WorldCupResultTop({ data }) {
         <AlreadyGetCarModal close={closeModal} />
       )}
       {resultModalOpen === 'getCar' && (
-        <GetItemModal close={closeModal} item="car" />
+        <GetItemModal close={closeModal} item="자동차 아이템" />
       )}
       {openPhoneInputModal ? (
         <PhoneInputModal

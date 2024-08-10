@@ -5,7 +5,7 @@ import '@/styles/global.css';
 function BlueButton({ value, styles, onClickFunc, disabled = false }) {
   return (
     <button
-      onClick={onClickFunc}
+      onClick={disabled === false ? onClickFunc : undefined}
       // text-detail and padding have to be fixed, 인자로 추가할까??
       className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover-scale-ani'} set-center rounded-full bg-primary-blue text-neutral-white`}
     >

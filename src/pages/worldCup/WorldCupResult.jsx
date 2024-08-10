@@ -8,8 +8,8 @@ import WorldCupResultBottom from './WorldCupResultBottom';
 function WorldCupResult() {
   const location = useLocation();
   const data = location.state;
-  const [openExitModal, setopenExitModal] = useState(false);
-  const onClose = () => setopenExitModal(false);
+  const [openExitModal, setOpenExitModal] = useState(false);
+  const onClose = () => setOpenExitModal(false);
 
   return (
     <div>
@@ -21,7 +21,7 @@ function WorldCupResult() {
             <EventHeader
               eventTitle="Event 1. 차 얻기"
               eventBody="운전 중 피하고 싶은 상황 월드컵"
-              setopenExitModal={setopenExitModal}
+              setOpenExitModal={setOpenExitModal}
             />
             <WorldCupResultTop data={data} />
           </div>
