@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .skyblue-box {
-  @apply bg-background-lightblue px-400 py-100 text-primary-blue;
+  @apply bg-background-lightblue px-700 py-200 text-primary-blue;
 }
 
 .set-center {
@@ -21,12 +21,4 @@
     linear-gradient(to right, #0128ff, #ad00ff);
   background-origin: border-box;
   background-clip: content-box, border-box;
-}
-
-.modalContainer {
-  @apply fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black z-[100];
-}
-
-.nextModalContainer {
-  @apply bg-neutral-white py-1500 flex flex-col items-center relative rounded-[20px];
 }
