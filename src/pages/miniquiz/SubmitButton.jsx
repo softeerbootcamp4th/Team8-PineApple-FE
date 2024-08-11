@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { postAnswer } from '@/api/miniQuiz';
 import { useNavigate } from 'react-router-dom';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
@@ -10,6 +10,11 @@ function CustomBluePurpleButton({ quizId, isChosen }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    if (!disabled) return;
+    fetchMiniQuiz();
+  }, [disabled]);
 
   const fetchMiniQuiz = async () => {
     try {
@@ -23,11 +28,6 @@ function CustomBluePurpleButton({ quizId, isChosen }) {
     }
   };
 
-  const handleClick = () => {
-    setDisabled(true);
-    fetchMiniQuiz();
-  };
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (loading) {
@@ -37,7 +37,7 @@ function CustomBluePurpleButton({ quizId, isChosen }) {
   return (
     <BluePurpleButton
       value="제출"
-      onClickFunc={handleClick}
+      onClickFunc={() => setDisabled(true)}
       disabled={disabled}
       styles="px-3000 py-500 text-detail-1-regular"
     />
