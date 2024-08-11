@@ -28,8 +28,8 @@ function App() {
       <AuthProvider>
         {!hideHeader && <Header />}
         <Outlet />
-        {!hideFooter && <Footer />}
       </AuthProvider>
+      {!hideFooter && <Footer />}
     </div>
   );
 }

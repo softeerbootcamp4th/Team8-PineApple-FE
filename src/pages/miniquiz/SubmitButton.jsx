@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { postAnswer } from '@/api/miniQuiz';
 import { useNavigate } from 'react-router-dom';
+import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import PropTypes from 'prop-types';
 import '@/styles/global.css';
 
@@ -9,8 +10,6 @@ function CustomBluePurpleButton({ quizId, isChosen }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
-
-  const value = '제출';
 
   const fetchMiniQuiz = async () => {
     try {
@@ -21,7 +20,6 @@ function CustomBluePurpleButton({ quizId, isChosen }) {
       setError(err);
     } finally {
       setLoading(false);
-      setDisabled(false);
     }
   };
 
@@ -37,13 +35,12 @@ function CustomBluePurpleButton({ quizId, isChosen }) {
   }
 
   return (
-    <button
-      onClick={handleClick}
-      className={`${disabled ? 'opacity-30' : 'opacity-100 hover-scale-ani'} px-3000 py-500 text-detail-1-regular set-center rounded-full bg-gradient-blue-purple text-neutral-white`}
+    <BluePurpleButton
+      value="제출"
+      onClickFunc={handleClick}
       disabled={disabled}
-    >
-      {value}
-    </button>
+      styles="px-3000 py-500 text-detail-1-regular"
+    />
   );
 }
 
