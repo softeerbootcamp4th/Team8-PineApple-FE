@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    //value 묶는 것을 []로 바꿈!
     <AuthContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
     </AuthContext.Provider>
