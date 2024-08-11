@@ -1,83 +1,61 @@
-.micro-slider {
-  height: 550px;
-  position: relative;
-  width: 100%;
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.slider-wrapper {
+.slider {
   position: relative;
-  transform-style: preserve-3d;
-  transform-origin: 0 50%;
-  height: auto;
-}
-.slider-item {
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.06),
-    0 1px 2px rgba(0, 0, 0, 0.12);
-  display: none;
   height: 500px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1000px;
-  cursor: pointer;
-}
-.indicators {
-  bottom: -20px;
-  left: 50%;
-  list-style-type: none;
-  margin: 0 0 0 -57px;
-  padding: 0;
-  position: absolute;
-}
-.indicators li {
-  color: #fff;
-  float: left;
-  height: 16px;
-  margin-right: 8px;
-  text-align: center;
-  width: 16px;
-}
-.indicators li:last-child {
-  margin: 0;
+  transform-style: preserve-3d;
+  perspective: 400px;
 }
 
-.indicators a {
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e6e9ec;
-  color: #fff;
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-}
-.indicators .active a {
-  background: #e6e9ec;
+.slider-item {
+  width: 1200px;
+  height: 500px;
+  position: absolute;
+  transition:
+    transform 0.25s ease-in-out,
+    z-index 0s 0.2s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .s1 {
-  background: url('@/assets/images/newCarImage1.svg') no-repeat center center;
-  background-size: cover;
-  opacity: 1 !important;
+  transform: translate(-50%, -50%) translateX(0) translateZ(0);
+  z-index: 4;
 }
+
 .s2 {
-  background: url('@/assets/images/newCarImage2.svg') no-repeat center center;
-  background-size: cover;
-  opacity: 1 !important;
+  transform: translate(-50%, -50%) translateX(330px) translateZ(-100px);
+  z-index: 3;
 }
+
 .s3 {
-  background: url('@/assets/images/newCarImage3.svg') no-repeat center center;
-  background-size: cover;
-  opacity: 1 !important;
+  transform: translate(-50%, -50%) translateX(650px) translateZ(-200px);
+  z-index: 2;
 }
 
 .s4 {
-  background: url('@/assets/images/newCarImage4.svg') no-repeat center center;
-  background-size: cover;
-  opacity: 1 !important;
+  transform: translate(-50%, -50%) translateX(-650px) translateZ(-200px);
+  z-index: 2;
 }
+
 .s5 {
-  background: url('@/assets/images/newCarImage5.svg') no-repeat center center;
-  background-size: cover;
-  opacity: 1 !important;
+  transform: translate(-50%, -50%) translateX(-330px) translateZ(-100px);
+  z-index: 3;
+}
+
+.indicator-item {
+  background-color: #fff;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  border: 1px solid lightgrey;
+}
+
+.indicator-item.active {
+  background-color: lightgrey;
 }

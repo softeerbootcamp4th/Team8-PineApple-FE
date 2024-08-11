@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/authContext';
-import MiniQuizModal from '@/components/modal/MiniQuizModal';
 import ButtonCases from '@/pages/miniquiz/ButtonCases';
 import PropTypes from 'prop-types';
 
@@ -63,7 +62,7 @@ function MiniQuizResultMain({ response }) {
         handleExit={handleExit}
         openModal={openModal}
       />
-      {modal && <MiniQuizModal closePhoneModal={closeModal} />}
+      {/* {modal && <MiniQuizModal closePhoneModal={closeModal} />} */}
     </>
   );
 }
