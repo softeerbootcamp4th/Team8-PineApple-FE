@@ -1,37 +1,27 @@
 import React, { useState, useCallback, useContext } from 'react';
-import WhiteButton from '@/components/buttons/WhiteButton';
-import BlueButton from '@/components/buttons/BlueButton';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/authContext';
-import PhoneInputModal from '@/components/modal/PhoneInputModal';
-import GetOrderPrizeModal from '@/components/modal/GetOrderPrizeModal';
+import MiniQuizModal from '@/components/modal/MiniQuizModal';
+import ButtonCases from '@/pages/miniquiz/ButtonCases';
 import PropTypes from 'prop-types';
 
 function MiniQuizResultMain({ response }) {
   const navigate = useNavigate();
   const { successOrder, isCorrect, quizImage, quizParticipantId } = response;
-  const { userInfo } = useContext(AuthContext);
-  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
-  const [prizeName, setPrizeName] = useState('');
+  const [modal, setModal] = useState(false);
   let correctMessage = '정답입니다!';
 
   const handleExit = useCallback(() => {
     navigate('/event', { state: { scrollTo: 'miniQuiz' } });
   }, []);
 
-  const closePhoneModal = () => {
-    setOpenPhoneInputModal(false);
-  };
+  const closeModal = useCallback(() => {
+    setModal(false);
+  }, []);
 
-  const getOrderPrize = () => {
-    if (userInfo.phoneNumber === undefined) {
-      setPrizeName('스타벅스 5천원 쿠폰');
-      setOpenPhoneInputModal(true);
-    } else {
-      setOpenPhoneInputModal(false);
-      setOpenOrderPrizeModal(true);
-    }
-  };
+  const openModal = useCallback(() => {
+    setModal(true);
+  }, []);
 
   if (isCorrect === undefined) {
     return <div>예상치 못한 오류가 발생했습니다.</div>; // MiniQuizResult에 navigate state로 전달된 값이 잘못되었을 때
@@ -67,32 +57,13 @@ function MiniQuizResultMain({ response }) {
         </>
       )}
       <img src={quizImage}></img>
-      <div className="flex mt-1500 gap-1000">
-        {!isCorrect && (
-          <WhiteButton
-            value={`${isCorrect ? '선착순 500명 경품 받기' : '이벤트 홈으로 돌아가기'}`}
-            onClickFunc={isCorrect ? () => getOrderPrize() : () => handleExit()}
-            styles="text-detail-2-medium px-1500 py-400"
-          />
-        )}
-        {successOrder <= 500 && ( // 틀렸을 때는 successOrder 값 없음 (undefined <= 500) === false
-          <WhiteButton
-            value="선착순 500명 경품 받기"
-            onCLickFunc={() => getOrderPrize()}
-            styles="text-detail-2-medium px-1500 py-400"
-          />
-        )}
-        {isCorrect && (
-          <BlueButton
-            value="툴박스 받기"
-            onClickFunc={() => getOrderPrize()}
-            styles="text-detail-2-medium px-2500 py-400"
-          />
-        )}
-      </div>
-      {openPhoneInputModal && (
-        <PhoneInputModal closePhoneModal={closePhoneModal} option={prizeName} />
-      )}
+      <ButtonCases
+        isCorrect={isCorrect}
+        quizParticipantId={quizParticipantId}
+        handleExit={handleExit}
+        openModal={openModal}
+      />
+      {modal && <MiniQuizModal closePhoneModal={closeModal} />}
     </>
   );
 }
@@ -102,7 +73,7 @@ MiniQuizResultMain.propTypes = {
     successOrder: PropTypes.number,
     quizImage: PropTypes.string.isRequired,
     isCorrect: PropTypes.bool.isRequired,
-    quizParticipantId: PropTypes.string.isRequired,
+    quizParticipantId: PropTypes.string,
   }),
 };
 
