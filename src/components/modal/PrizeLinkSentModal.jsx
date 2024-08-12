@@ -5,7 +5,6 @@ import { AuthContext } from '@/context/authContext';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 
 function PrizeLinkSentModal({ closeResultModal, resultImage }) {
-  console.log(resultImage);
   const { userInfo } = useContext(AuthContext);
   return (
     <ModalFrame

@@ -18,10 +18,9 @@ function Reward() {
   };
 
   const handleSendPrize = async () => {
-    const response = await postSendPrize();
-    console.log(response);
+    const response = await postSendPrize(data.prizeId);
     if (response) {
-      setResultImage('./src/assets/images/eventIntroNav3.svg');
+      setResultImage(response.image);
       setOpenResultModal(false);
       setOpenMessageModal(true);
     }

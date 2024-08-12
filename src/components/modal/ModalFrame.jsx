@@ -13,7 +13,7 @@ function ModalFrame({ children, handleExit, tag, title }) {
   }, []);
   return (
     <ModalPortal>
-      <div className="fixed inset-0 set-center bg-opacity-50 bg-neutral-black">
+      <div className="fixed inset-0 set-center bg-opacity-50 bg-neutral-black z-[10]">
         <div className="bg-neutral-white p-1500 flex flex-col items-center relative rounded-[20px]">
           <button
             onClick={handleExit}
