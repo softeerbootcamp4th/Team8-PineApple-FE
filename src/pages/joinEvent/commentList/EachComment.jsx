@@ -47,7 +47,6 @@ function EachComment({ comment, indexOfFirstPost, option }) {
     return new Promise(resolve => {
       const checkPhoneVerification = () => {
         if (localStorage.getItem('userInfo')) {
-          setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
           resolve(true);
           setOpenPhoneInputModal(false);
         } else {

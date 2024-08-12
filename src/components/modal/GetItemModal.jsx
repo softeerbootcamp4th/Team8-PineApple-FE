@@ -10,6 +10,8 @@ import ModalFrame from './ModalFrame';
 
 function GetItemModal({ close, item }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
+  const { toolBoxCnt } = userInfo;
+
   const navigate = useNavigate();
   const handleParticipants = useCallback(async () => {
     try {
@@ -19,6 +21,9 @@ function GetItemModal({ close, item }) {
         setUserInfo(updatedUserInfo);
         navigate('/event');
       } else {
+        console.log(userInfo);
+        const updatedUserInfo = { ...userInfo, toolBoxCnt: toolBoxCnt + 1 };
+        setUserInfo(updatedUserInfo);
         close();
       }
     } catch (error) {
