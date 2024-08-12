@@ -13,8 +13,12 @@ const loginCode = (phoneNumber, validateCode) => {
   });
 };
 
-const logout = accessToken => {
-  return post('/logout', null, { accessToken });
+const logout = () => {
+  return post('/logout', null);
 };
 
-export { loginPhone, loginCode, logout };
+const getMemberInfo = () => {
+  return get('/members');
+};
+
+export { loginPhone, loginCode, logout, getMemberInfo };
