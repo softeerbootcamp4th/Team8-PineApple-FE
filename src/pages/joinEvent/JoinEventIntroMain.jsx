@@ -4,9 +4,12 @@ import Card2 from '@/pages/joinEvent/Card2';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 import { AuthContext } from '@/context/authContext';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
+import { postReward } from '@/api/rapple/index';
+import { useNavigate } from 'react-router-dom';
 
 function JoinEventIntroMain() {
-  const { userInfo } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { userInfo, setUserInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
 
   const { car, toolBoxCnt, phoneNumber } = userInfo;
@@ -20,6 +23,17 @@ function JoinEventIntroMain() {
 
   const closePhoneModal = () => {
     setOpenPhoneInputModal(false);
+  };
+
+  const handleReward = async () => {
+    const response = await postReward();
+    if (response && response.image) {
+      const updatedUserInfo = { ...userInfo, toolBoxCnt: toolBoxCnt - 1 };
+      navigate(`/event/reward`, { state: response });
+      setUserInfo(updatedUserInfo);
+    } else {
+      console.log('유효하지 않은 응답입니다: ', response);
+    }
   };
 
   return (
@@ -54,7 +68,7 @@ function JoinEventIntroMain() {
             <div>
               <BluePurpleButton
                 value="결과 보기"
-                onClickFunc={() => alert('결과 보기')}
+                onClickFunc={handleReward}
                 styles="text-body-3-regular px-5000 py-400"
                 disabled={disabled}
               />

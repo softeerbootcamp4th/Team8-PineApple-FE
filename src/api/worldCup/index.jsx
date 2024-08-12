@@ -1,11 +1,11 @@
 import { post, get, patch, put, del } from '@/api/index';
 
-const postParticipants = accessToken => {
-  return post('/worldcup/participants', null, { accessToken });
+const postParticipants = () => {
+  return post('/worldcup/participants', null);
 };
 
-const postWorldCupResult = (id, accessToken) => {
-  return post('/worldcup/results', { id: id }, { accessToken });
+const postWorldCupResult = id => {
+  return post('/worldcup/results', { id: id });
 };
 
 const getWorldCupResult = () => {

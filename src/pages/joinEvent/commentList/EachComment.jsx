@@ -33,9 +33,7 @@ function EachComment({ comment, indexOfFirstPost, option }) {
       setIsLiked(prev => !prev);
       setLikeCount(prevCount => prevCount + (isLiked ? -1 : 1));
       try {
-        const userInfoData = JSON.parse(localStorage.getItem('userInfo'));
-        const accessToken = userInfoData?.accessToken;
-        const response = await postLike(accessToken, comment.id);
+        const response = await postLike(comment.id);
       } catch (error) {
         setIsLiked(isLiked);
         setLikeCount(prevCount => prevCount + (isLiked ? 1 : -1));

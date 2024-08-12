@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { AuthContext } from '@/context/authContext';
 import { postComment } from '@/api/comment/index';
 import ModalFrame from './ModalFrame';
 import BlueButton from '@/components/buttons/BlueButton';
@@ -10,7 +9,6 @@ function CommentInputModal({
   AlreadyPostComment,
   setResultModalOpen,
 }) {
-  const { userInfo, setUserInfo } = useContext(AuthContext);
   const [inputComment, setInputComment] = useState('');
   const handleInputText = e => {
     if (e.target.value.length > 50) {
@@ -20,7 +18,7 @@ function CommentInputModal({
   };
   const handleComment = async () => {
     try {
-      const response = await postComment(userInfo.accessToken, inputComment);
+      const response = await postComment(inputComment);
       if (response.code === 'ALREADY_REVIEWED') {
         AlreadyPostComment();
         closeCommentModal();
@@ -37,7 +35,7 @@ function CommentInputModal({
       tag="툴 박스 1개"
       title="일일 한줄 기대평 이벤트"
     >
-      <div className="px-3000 set-center flex-col relative">
+      <div className="relative flex-col px-3000 set-center">
         <textarea
           placeholder={`월드컵을 하면서 알게 된 캐스퍼 EV의 기능에 대한\n센스있는 한줄 기대평을 작성해보아요.`}
           onChange={handleInputText}

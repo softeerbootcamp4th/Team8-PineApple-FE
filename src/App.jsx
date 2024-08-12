@@ -13,6 +13,7 @@ function App() {
     '/event/miniQuizResult',
     '/event/invalidAccess',
     '/event/noQuiz',
+    '/event/reward',
   ].includes(location.pathname);
 
   const hideFooter = [
@@ -21,6 +22,7 @@ function App() {
     '/event/miniQuizResult',
     '/event/invalidAccess',
     '/event/noQuiz',
+    '/event/reward',
   ].includes(location.pathname);
 
   return (

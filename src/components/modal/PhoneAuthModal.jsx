@@ -22,7 +22,7 @@ function PhoneAuthModal({
     if (validateCode === '111111') {
       try {
         const response = await loginCode(inputPhone, validateCode);
-        localStorage.setItem('userInfo', JSON.stringify(response));
+        localStorage.setItem('userInfo', response.accessToken);
         setUserInfo(response);
 
         if (option === '자동차 아이템') {
