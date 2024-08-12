@@ -14,7 +14,7 @@ function GetItemModal({ close, item }) {
   const handleParticipants = useCallback(async () => {
     try {
       if (item === '자동차 아이템') {
-        const result = await postParticipants(userInfo.accessToken);
+        const result = await postParticipants();
         const updatedUserInfo = { ...userInfo, car: true };
         localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
         setUserInfo(updatedUserInfo);
@@ -28,7 +28,7 @@ function GetItemModal({ close, item }) {
   }, [navigate]);
   return (
     <ModalFrame handleExit={close} tag={item} title="아이템을 얻었어요!">
-      <div className="px-1500 set-center flex-col">
+      <div className="flex-col px-1500 set-center">
         <img
           src={`${item === '툴 박스 1개' ? getItemModalImage : getCarModalImage}`}
           alt="getCarModalImage"

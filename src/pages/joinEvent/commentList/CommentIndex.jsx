@@ -22,9 +22,7 @@ function CommentIndex() {
   const { userInfo, setUserInfo } = useContext(AuthContext);
 
   const updateComments = async () => {
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const accessToken = userInfo?.accessToken;
-    const data = await getComment(currentPage - 1, option, today, accessToken);
+    const data = await getComment(currentPage - 1, option, today);
     if (data) {
       setCommentList([...data.comments]);
       setTotalCommentCount(data.totalPages);

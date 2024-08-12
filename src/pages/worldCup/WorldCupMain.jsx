@@ -1,13 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import WorldCupGame from './WorldCupGame';
 import worldCupData from '@/constants/worldCup/worldCupData';
 import { useNavigate } from 'react-router-dom';
 import shuffleArr from '@/utils/shuffleArr';
 import { postWorldCupResult } from '@/api/worldCup/index';
-import { AuthContext } from '@/context/authContext';
 
 const WorldCupMain = () => {
-  const { userInfo, setUserInfo } = useContext(AuthContext);
   const navigate = useNavigate();
   const [totalData, setTotalData] = useState(shuffleArr(worldCupData));
   const [roundData, setRoundData] = useState(totalData.slice(0, 2));
@@ -38,11 +36,7 @@ const WorldCupMain = () => {
       setRound(5); // 결승 진행
     } else if (round === 5) {
       try {
-        const response = await postWorldCupResult(
-          updatedData[0].id,
-          userInfo.accessToken,
-        );
-        console.log(response);
+        const response = await postWorldCupResult(updatedData[0].id);
         navigate(`/event/worldCupResult`, { state: updatedData[0] });
       } catch (error) {
         console.error('loginPhone API 통신 실패:', error);
