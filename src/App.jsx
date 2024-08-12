@@ -1,6 +1,5 @@
 import React from 'react';
 import { AuthProvider } from '@/context/authContext';
-import { GetItemProvider } from '@/context/getItemContext';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -28,9 +27,7 @@ function App() {
     <div className="relative min-w-[1720px]">
       <AuthProvider>
         {!hideHeader && <Header />}
-        <GetItemProvider>
-          <Outlet />
-        </GetItemProvider>
+        <Outlet />
       </AuthProvider>
       {!hideFooter && <Footer />}
     </div>
