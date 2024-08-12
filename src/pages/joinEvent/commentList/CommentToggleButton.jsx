@@ -12,7 +12,7 @@ function SortCommentButton({ option, setOption }) {
         }`}
       ></div>
       <button
-        className={`flex-1 text-center z-10 text-detail-3-regular ${
+        className={`flex-1 text-center z-[1] text-detail-3-regular ${
           option === 'like' ? 'text-white' : 'text-primary-blue'
         }`}
         onClick={() => setOption('like')}
@@ -20,7 +20,7 @@ function SortCommentButton({ option, setOption }) {
         인기순
       </button>
       <button
-        className={`flex-1 text-center z-10 text-detail-3-regular ${
+        className={`flex-1 text-center z-[1] text-detail-3-regular ${
           option === 'newest' ? 'text-white' : 'text-primary-blue'
         }`}
         onClick={() => setOption('newest')}
