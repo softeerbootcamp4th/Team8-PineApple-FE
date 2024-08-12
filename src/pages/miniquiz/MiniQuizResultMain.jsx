@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '@/context/authContext';
 import ButtonCases from '@/pages/miniquiz/ButtonCases';
 import PropTypes from 'prop-types';
 
 function MiniQuizResultMain({ response }) {
   const navigate = useNavigate();
   const { successOrder, isCorrect, quizImage, quizParticipantId } = response;
+  const [userGetPrize, setUserGetPrize] = useState(false); //선착순 받았는지 확인하는 api받기 로그인 안 했으면 그냥 false로 설정
   const [modal, setModal] = useState(false);
   let correctMessage = '정답입니다!';
 
@@ -59,6 +59,7 @@ function MiniQuizResultMain({ response }) {
       <ButtonCases
         isCorrect={isCorrect}
         quizParticipantId={quizParticipantId}
+        userGetPrize={userGetPrize}
         handleExit={handleExit}
         openModal={openModal}
       />
