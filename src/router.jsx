@@ -9,6 +9,7 @@ import WorldCup from '@/pages/worldCup/WorldCupMain';
 import WorldCupResult from '@/pages/worldCup/WorldCupResult';
 import MiniQuizResult from '@/pages/miniquiz/MiniQuizResult';
 import NoQuiz from '@/pages/miniquiz/NoQuiz';
+import Reward from '@/pages/joinEvent/Reward';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: 'miniQuizResult',
             element: <MiniQuizResult />,
+          },
+          {
+            path: 'reward',
+            element: <Reward />,
           },
         ],
       },
