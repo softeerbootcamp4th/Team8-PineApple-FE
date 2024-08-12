@@ -1,14 +1,9 @@
 import React from 'react';
+import { linkToFreeRide, linkToPreOrder } from '@/utils/linkToFunc';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import WhiteButton from '@/components/buttons/WhiteButton';
 
 function Footer() {
-  const linkToFreeRide = () => {
-    window.open('https://casper.hyundai.com/vehicles/test-driving/intro');
-  };
-  const linkToPreOrder = () => {
-    window.open('https://casper.hyundai.com/vehicles/test-driving/intro');
-  };
   return (
     <footer className="flex flex-col items-center justify-start gap-900 px-[236px] pt-[50px] pb-[80px] bg-neutral-50">
       <div className="text-center text-primary-berrypurple text-detail-1-medium">

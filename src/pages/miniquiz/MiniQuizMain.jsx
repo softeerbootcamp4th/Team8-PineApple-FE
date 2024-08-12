@@ -1,28 +1,23 @@
 import React, { useState } from 'react';
 import useMiniQuiz from '@/pages/miniquiz/miniquizhooks/useMiniQuiz';
 import ClickBox from '@/pages/miniquiz/ClickBox';
-import BluePurpleButton from '@/components/buttons/BluePurpleButton';
-import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
+import SubmitButton from '@/pages/miniquiz/SubmitButton';
 import { useNavigate } from 'react-router-dom';
-import NoQuiz from '@/pages/miniquiz/NoQuiz';
+import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
 import '@/styles/global.css';
 
 function MiniQuiz() {
   const navigate = useNavigate();
-  const { loading, error, code, data, shuffledQuizQuestion } = useMiniQuiz();
+  const { code, loading, error, data, shuffledQuizQuestion } = useMiniQuiz();
+  const { quizDescription, quizId } = data;
   const [isChosen, setIsChosen] = useState(0);
-  const [isSubmit, setIsSubmit] = useState(false);
 
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (loading) {
     return <LoadingQuiz />;
   } else if (code === 'NO_QUIZ_CONTENT') {
-    return <NoQuiz />;
-  } else if (isSubmit) {
-    navigate('/event/miniQuizResult', {
-      state: { quizId: data.quizId, isChosen: isChosen },
-    });
+    navigate('/event/noQuiz');
   }
 
   return (
@@ -31,7 +26,7 @@ function MiniQuiz() {
         월드컵 일일 미니퀴즈
       </div>
       <div className="text-center text-body-1-bold mb-2000">
-        {data.quizDescription}
+        {quizDescription}
       </div>
       <div className="grid grid-cols-2 gap-x-600 gap-y-600 mb-2000">
         {shuffledQuizQuestion.map(item => {
@@ -48,11 +43,7 @@ function MiniQuiz() {
           );
         })}
       </div>
-      <BluePurpleButton
-        value="제출"
-        onClickFunc={() => setIsSubmit(true)}
-        styles="px-3000 py-500 text-detail-1-regular"
-      />
+      <SubmitButton quizId={quizId} isChosen={isChosen} />
     </div>
   );
 }

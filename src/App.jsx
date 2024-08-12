@@ -12,6 +12,7 @@ function App() {
     '/event/worldCupResult',
     '/event/miniQuizResult',
     '/event/invalidAccess',
+    '/event/noQuiz',
   ].includes(location.pathname);
 
   const hideFooter = [
@@ -19,6 +20,7 @@ function App() {
     '/event/miniQuiz',
     '/event/miniQuizResult',
     '/event/invalidAccess',
+    '/event/noQuiz',
   ].includes(location.pathname);
 
   return (
@@ -26,8 +28,8 @@ function App() {
       <AuthProvider>
         {!hideHeader && <Header />}
         <Outlet />
-        {!hideFooter && <Footer />}
       </AuthProvider>
+      {!hideFooter && <Footer />}
     </div>
   );
 }

@@ -1,69 +1,80 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import arrowLeftCircle from '@/assets/images/arrowLeftCircle.svg';
 import arrowRightCircle from '@/assets/images/arrowRightCircle.svg';
-import loadMicroSlider from '@/utils/loadMicroSlider';
+import newCarCarouselData from '@/constants/newCarIntro/newCarCarouselData';
 import '@/styles/newCarCarousel.css';
 
 function NewCarCarousel() {
-  const sliderRef = useRef(null);
-  const [slider, setSlider] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalItems = 5;
 
-  useEffect(() => {
-    const cleanup = loadMicroSlider(() => {
-      const __ms = sliderRef.current;
-      if (__ms) {
-        const msSlider = new MicroSlider(__ms, {
-          indicators: true,
-          indicatorText: '',
-        });
-        setSlider(msSlider);
-      }
-    });
-    return cleanup;
-  }, []);
+  const getSliderClasses = index => {
+    const positions = ['s1', 's2', 's3', 's4', 's5'];
+    return positions[(index - currentIndex + totalItems) % totalItems];
+  };
 
   const handlePrevButton = () => {
-    if (slider) {
-      slider.prev();
-    }
+    setCurrentIndex(prevIndex => (prevIndex + (totalItems - 1)) % totalItems);
   };
 
   const handleNextButton = () => {
-    if (slider) {
-      slider.next();
-    }
+    setCurrentIndex(prevIndex => (prevIndex + 1) % totalItems);
+  };
+
+  const handleIndicatorClick = idx => {
+    setCurrentIndex(idx);
   };
 
   return (
-    <>
-      <div className="mx-5000 mb-1101">
+    <div className="new-car-carousel">
+      <div className="mx-5000 mb-1100">
         <div className="text-body-3-semibold text-primary-blue">Highlights</div>
         <div className="text-heading-2-bold">전력을 다해, CASPER Electric</div>
       </div>
-      <div className="mt-1500 mb-1200" id="micro-slider">
-        <div className="micro-slider px-1000" ref={sliderRef}>
-          <div className="slider-item s1"></div>
-          <div className="slider-item s2"></div>
-          <div className="slider-item s3"></div>
-          <div className="slider-item s4"></div>
-          <div className="slider-item s5"></div>
+
+      <div className="slider-container">
+        <div className="slider">
+          {newCarCarouselData.map((item, idx) => (
+            <div
+              key={item.id}
+              className={`slider-item ${getSliderClasses(idx)}`}
+            >
+              <img
+                src={item.imageSrc}
+                alt={`Car Image ${item.id}`}
+                className="object-cover w-full h-full"
+                onClick={() => setCurrentIndex(item.id - 1)}
+              />
+            </div>
+          ))}
         </div>
       </div>
-      <div className="flex justify-center mt-1200 mb-3000 gap-600">
+
+      <div className="flex justify-center mt-600">
+        {newCarCarouselData.map((item, idx) => (
+          <div
+            key={item.id}
+            className={`indicator-item m-2 ${currentIndex === idx ? 'active' : ''}`}
+            onClick={() => handleIndicatorClick(idx)}
+          ></div>
+        ))}
+      </div>
+      <div className="flex justify-center mt-600 mb-3000 gap-600">
         <img
           src={arrowLeftCircle}
-          alt="leftButton"
+          alt="Previous Slide"
           onClick={handlePrevButton}
           className="hover:cursor-pointer"
-        ></img>
+        />
         <img
           src={arrowRightCircle}
-          alt="rightButton"
+          alt="Next Slide"
           onClick={handleNextButton}
           className="hover:cursor-pointer"
-        ></img>
+        />
       </div>
-    </>
+    </div>
   );
 }
+
 export default NewCarCarousel;

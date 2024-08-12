@@ -3,25 +3,32 @@ import BlueButton from '@/components/buttons/BlueButton';
 import miniQuizIntro1 from '@/assets/images/miniQuizIntro1.svg';
 import miniQuizIntro2 from '@/assets/images/miniQuizIntro2.svg';
 import miniQuizIntro3 from '@/assets/images/miniQuizIntro3.svg';
-import calDiffNextOclock from '@/utils/calDiffNextOclock';
-import getSecondsUntil13Hour from '@/utils/getSecondsUntil13Hour';
+import {
+  getMillisecondsUntilNextSecond,
+  getMillisecondsUntilNextHour,
+  getSecondsUntilNextHourFromNoon,
+} from '@/utils/miniQuizUtils';
+
 import { useNavigate } from 'react-router-dom';
 import '@/styles/global.css';
 
 function MiniQuiz() {
   const navigate = useNavigate();
-  const [seconds, setSeconds] = useState(() => getSecondsUntil13Hour());
+  const [seconds, setSeconds] = useState(() =>
+    getSecondsUntilNextHourFromNoon(),
+  );
   const [countDownStart, setCountDownStart] = useState(false);
 
   useEffect(() => {
     const checkTime = () => {
-      const remainingTime = getSecondsUntil13Hour();
+      const remainingTime = getSecondsUntilNextHourFromNoon();
       if (remainingTime !== -1) {
         setCountDownStart(true);
       }
 
-      const sleepTime = calDiffNextOclock();
-      setTimeout(checkTime, sleepTime);
+      const sleepTime = getMillisecondsUntilNextHour();
+      const timeoutId = setTimeout(checkTime, sleepTime);
+      return () => clearTimeout(timeoutId);
     };
 
     checkTime();
@@ -29,17 +36,19 @@ function MiniQuiz() {
 
   useEffect(() => {
     if (countDownStart) {
-      const timer = setInterval(() => {
-        const remainingTime = getSecondsUntil13Hour();
+      const tick = () => {
+        const remainingTime = getSecondsUntilNextHourFromNoon();
         setSeconds(remainingTime);
 
-        if (remainingTime === -1) {
+        if (remainingTime !== -1) {
+          const timeoutId = setTimeout(tick, getMillisecondsUntilNextSecond());
+          return () => clearTimeout(timeoutId);
+        } else {
           setCountDownStart(false);
-          clearInterval(timer);
         }
-      }, 1000);
+      };
 
-      return () => clearInterval(timer);
+      tick();
     }
   }, [countDownStart]);
 

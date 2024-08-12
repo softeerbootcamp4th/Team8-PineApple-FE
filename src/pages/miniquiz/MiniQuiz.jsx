@@ -5,9 +5,9 @@ import MiniQuizMain from '@/pages/miniquiz/MiniQuizMain';
 import '@/styles/global.css';
 
 function MiniQuiz() {
-  const [openExitModal, setopenExitModal] = useState(false);
+  const [openExitModal, setOpenExitModal] = useState(false);
 
-  const onClose = () => setopenExitModal(false);
+  const onClose = () => setOpenExitModal(false);
 
   return (
     <>
@@ -15,7 +15,7 @@ function MiniQuiz() {
         <EventHeader
           eventTitle="Event 2. 도구 얻기"
           eventBody="월드컵 일일 미니퀴즈"
-          setopenExitModal={setopenExitModal}
+          setOpenExitModal={setOpenExitModal}
         />
         <MiniQuizMain />
       </div>

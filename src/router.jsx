@@ -8,6 +8,7 @@ import MiniQuiz from '@/pages/miniquiz/MiniQuiz';
 import WorldCup from '@/pages/worldCup/WorldCupMain';
 import WorldCupResult from '@/pages/worldCup/WorldCupResult';
 import MiniQuizResult from '@/pages/miniquiz/MiniQuizResult';
+import NoQuiz from '@/pages/miniquiz/NoQuiz';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
           {
             path: 'miniQuiz',
             element: <MiniQuiz />,
+          },
+          {
+            path: 'noQuiz',
+            element: <NoQuiz />,
           },
           {
             path: 'miniQuizResult',

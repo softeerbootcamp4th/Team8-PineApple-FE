@@ -7,10 +7,6 @@ import { useLocation } from 'react-router-dom';
 function MiniQuizResult() {
   const location = useLocation();
   const [openExitModal, setOpenExitModal] = useState(false);
-  const { quizId, isChosen } = location.state || {};
-  if (quizId === undefined || isChosen === undefined) {
-    return <div>예상치 못한 오류가 발생했습니다.</div>;
-  } //TODO
 
   const onClose = () => setOpenExitModal(false);
 
@@ -21,7 +17,7 @@ function MiniQuizResult() {
         eventBody="월드컵 일일 미니퀴즈"
         setOpenExitModal={setOpenExitModal}
       />
-      <MiniQuizResultMain quizId={quizId} isChosen={isChosen} />
+      <MiniQuizResultMain response={location.state || {}} />
       {openExitModal && <ExitModal onClose={onClose} game="MiniQuiz" />}
     </div>
   );
