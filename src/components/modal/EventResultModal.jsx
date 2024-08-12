@@ -13,7 +13,6 @@ import { AuthContext } from '@/context/authContext';
 function EventResultModal({ closeResultModal, data, handleSendPrize }) {
   const { userInfo } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(data);
 
   const navigateDailyComment = () => {
     navigate(`/event`, { state: { scrollTo: 'dailyComment' } });
