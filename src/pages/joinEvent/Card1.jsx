@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import noCarImage from '@/assets/images/noCarImage.svg';
 import carImage from '@/assets/images/carImage.svg';
 import BlueButton from '@/components/buttons/BlueButton';
 import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
-import '@/styles/global.css';
+import { useNavigate } from 'react-router-dom';
 
 function Card1() {
   const { userInfo } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const gotoWorldCup = useCallback(() => {
+    navigate('/event/worldCup');
+  }, []);
 
   return (
     <div className="flex flex-col justify-between bg-card1 px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
@@ -34,7 +39,7 @@ function Card1() {
       <div className={`set-center ${userInfo.car ? 'invisible' : 'visible'}`}>
         <BlueButton
           value="자동차 얻기 "
-          onClickFunc={() => alert('자동차 얻기')}
+          onClickFunc={gotoWorldCup}
           styles="px-800 py-400 text-detail-2-medium"
         />
       </div>
