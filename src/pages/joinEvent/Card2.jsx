@@ -35,10 +35,10 @@ function Card2() {
       <div className="relative h-4000 py-500 px-500">
         <img
           className="w-full h-full"
-          src={!userInfo.alreadyGetTodayToolBox ? noToolBoxImage : toolBoxImage}
+          src={!userInfo.quizParticipated ? noToolBoxImage : toolBoxImage}
           alt="ToolBox"
         />
-        {!userInfo.alreadyGetTodayToolBox && (
+        {!userInfo.quizParticipated && (
           <img
             src={questionMark}
             alt="questionMark"
@@ -47,7 +47,7 @@ function Card2() {
         )}
       </div>
       <div
-        className={`set-center ${userInfo.alreadyGetTodayToolBox ? 'invisible' : 'visible'}`}
+        className={`set-center ${userInfo.quizParticipated ? 'invisible' : 'visible'}`}
       >
         <BlueButton
           value="도구 얻기"

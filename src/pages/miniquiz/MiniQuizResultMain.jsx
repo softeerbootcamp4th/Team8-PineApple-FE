@@ -1,32 +1,59 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ButtonCases from '@/pages/miniquiz/ButtonCases';
+import GetOrderModal from '@/components/modal/GetOrderModal';
+import GetToolBoxModal from '@/components/modal/GetToolBoxModal';
+import { getRewardCheck } from '@/api/miniQuiz';
 import PropTypes from 'prop-types';
 
 function MiniQuizResultMain({ response }) {
   const navigate = useNavigate();
   const { successOrder, isCorrect, quizImage, quizParticipantId } = response;
-  const [userGetPrize, setUserGetPrize] = useState(false); //선착순 받았는지 확인하는 api받기 로그인 안 했으면 그냥 false로 설정
-  const [modal, setModal] = useState(false);
+  const [userGotPrize, setUserGotPrize] = useState(false);
+  const [toolBoxModal, setToolBoxModal] = useState(false);
+  const [orderModal, setOrderModal] = useState(false);
   let correctMessage = '정답입니다!';
+
+  useEffect(() => {
+    const check = async () => {
+      try {
+        const result = await getRewardCheck();
+        const { rewarded } = result;
+        if (rewarded) {
+          setUserGotPrize(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    check();
+  }, []);
 
   const handleExit = useCallback(() => {
     navigate('/event', { state: { scrollTo: 'miniQuiz' } });
   }, []);
 
-  const closeModal = useCallback(() => {
-    setModal(false);
+  const closeToolBoxModal = useCallback(() => {
+    setToolBoxModal(false);
   }, []);
 
-  const openModal = useCallback(() => {
-    setModal(true);
+  const openToolBoxModal = useCallback(() => {
+    setToolBoxModal(true);
+  }, []);
+
+  const closeOrderModal = useCallback(() => {
+    setOrderModal(false);
+  }, []);
+
+  const openOrderModal = useCallback(() => {
+    setOrderModal(true);
   }, []);
 
   if (isCorrect === undefined) {
     return <div>예상치 못한 오류가 발생했습니다.</div>; // MiniQuizResult에 navigate state로 전달된 값이 잘못되었을 때
   }
 
-  if (successOrder <= 500)
+  if (successOrder <= 500 && !userGotPrize)
     correctMessage = successOrder + '번째 ' + correctMessage;
 
   return (
@@ -38,7 +65,7 @@ function MiniQuizResultMain({ response }) {
               퀴즈 성공
             </div>
             <div
-              className={`skyblue-box text-detail-1-bold rounded-[8px] ${successOrder <= 500 ? '' : 'hidden'}`}
+              className={`skyblue-box text-detail-1-bold rounded-[8px] ${successOrder <= 500 && !userGotPrize ? '' : 'hidden'}`}
             >
               선착순 당첨
             </div>
@@ -58,12 +85,25 @@ function MiniQuizResultMain({ response }) {
       <img src={quizImage}></img>
       <ButtonCases
         isCorrect={isCorrect}
-        quizParticipantId={quizParticipantId}
-        userGetPrize={userGetPrize}
+        participantId={quizParticipantId}
+        userGotPrize={userGotPrize}
         handleExit={handleExit}
-        openModal={openModal}
+        openToolBoxModal={openToolBoxModal}
+        openOrderModal={openOrderModal}
       />
-      {/* {modal && <MiniQuizModal closePhoneModal={closeModal} />} */}
+      {toolBoxModal && (
+        <GetToolBoxModal
+          close={closeToolBoxModal}
+          userGotPrize={userGotPrize}
+        />
+      )}
+      {orderModal && (
+        <GetOrderModal
+          close={closeOrderModal}
+          participantId={quizParticipantId}
+          setUserGotPrize={setUserGotPrize}
+        />
+      )}
     </>
   );
 }
