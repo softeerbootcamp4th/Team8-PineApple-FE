@@ -12,6 +12,7 @@
 }
 
 .slider-item {
+  cursor: pointer;
   width: 1200px;
   height: 500px;
   position: absolute;
@@ -49,6 +50,7 @@
 }
 
 .indicator-item {
+  cursor: pointer;
   background-color: #fff;
   border-radius: 10px;
   height: 20px;
