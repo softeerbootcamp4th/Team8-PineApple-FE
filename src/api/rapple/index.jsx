@@ -4,8 +4,8 @@ const postReward = () => {
   return post(`/draw`);
 };
 
-const postSendPrize = () => {
-  return post(`/draw/rewards/send-prize`);
+const postSendPrize = prizeId => {
+  return post(`/draw/rewards/send-prize`, { prizeId: prizeId });
 };
 
 export { postReward, postSendPrize };
