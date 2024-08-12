@@ -16,7 +16,6 @@ function GetItemModal({ close, item }) {
       if (item === '자동차 아이템') {
         const result = await postParticipants();
         const updatedUserInfo = { ...userInfo, car: true };
-        localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
         setUserInfo(updatedUserInfo);
         navigate('/event');
       } else {
