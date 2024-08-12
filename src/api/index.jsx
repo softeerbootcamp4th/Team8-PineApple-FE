@@ -1,19 +1,22 @@
-const apiRequest = async (url, method, body, header) => {
+const ApiRequest = async (url, method, body) => {
+  const accessToken = localStorage.getItem('userInfo');
+
   try {
     const options = {
       method,
       headers: {
         'Content-Type': 'application/json',
-        ...(header &&
-          header.accessToken && {
-            Authorization: `Bearer ${header.accessToken}`,
-          }),
+        ...(accessToken && {
+          Authorization: `Bearer ${accessToken}`,
+        }),
       },
       credentials: 'include',
     };
+
     if (body) {
       options.body = JSON.stringify(body);
     }
+
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}${url}`,
       options,
@@ -26,22 +29,22 @@ const apiRequest = async (url, method, body, header) => {
   }
 };
 
-export const post = (url, body, header) => {
-  return apiRequest(url, 'POST', body, header);
+export const post = (url, body) => {
+  return ApiRequest(url, 'POST', body);
 };
 
-export const get = (url, header) => {
-  return apiRequest(url, 'GET', null, header);
+export const get = url => {
+  return ApiRequest(url, 'GET', null);
 };
 
-export const put = (url, body, header) => {
-  return apiRequest(url, 'PUT', body, header);
+export const put = (url, body) => {
+  return ApiRequest(url, 'PUT', body);
 };
 
-export const patch = (url, body, header) => {
-  return apiRequest(url, 'PATCH', body, header);
+export const patch = (url, body) => {
+  return ApiRequest(url, 'PATCH', body);
 };
 
 export const del = (url, body, header) => {
-  return apiRequest(url, 'DELETE', body, header);
+  return ApiRequest(url, 'DELETE', body, header);
 };
