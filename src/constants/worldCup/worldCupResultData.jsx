@@ -27,7 +27,7 @@ const worldCupResultData = [
     story2: '차가 멈췄어요!',
     solution: '캐스퍼 EV는 1회 충전 시',
     solution2: '315km를 달릴 수 있답니다!',
-    image: FrontImage2,
+    image: FrontImage3,
     backImage: BackImage2,
   },
   {
@@ -36,7 +36,7 @@ const worldCupResultData = [
     story2: '보행자가 앞을 비켜주지 않아요!',
     solution: '가상 엔진 사운드로',
     solution2: '보행자들에게 알릴 수 있어요!',
-    image: FrontImage3,
+    image: FrontImage5,
     backImage: BackImage3,
   },
   {
@@ -45,7 +45,7 @@ const worldCupResultData = [
     story2: '주변에 차량이 너무 많아요',
     solution: '서라운드뷰 모니터를 통해',
     solution2: '차량 주변을 확인할 수 있어요!',
-    image: FrontImage4,
+    image: FrontImage2,
     backImage: BackImage4,
   },
   {
@@ -54,7 +54,7 @@ const worldCupResultData = [
     story2: '갑자기 잠이 쏟아져요!',
     solution: '잠시 멈추고, 길어진 휠 베이스로',
     solution2: '넓은 2열 공간에서 쉬다 가세요!',
-    image: FrontImage5,
+    image: FrontImage4,
     backImage: BackImage5,
   },
   {
