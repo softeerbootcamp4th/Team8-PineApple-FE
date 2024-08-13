@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
 import '@/styles/global.css';
 
-function MiniQuiz() {
+function MiniQuizMain() {
   const navigate = useNavigate();
   const { code, loading, error, data, shuffledQuizQuestion } = useMiniQuiz();
   const { quizDescription, quizId } = data;
   const [isChosen, setIsChosen] = useState(0);
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     if (code === 'NO_QUIZ_CONTENT') {
@@ -18,11 +19,11 @@ function MiniQuiz() {
     }
   }, [code]);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (loading) {
-    return <LoadingQuiz />;
-  }
+  const handleClickBox = id => {
+    setIsChosen(id);
+    setDisabled(false); // ClickBox가 클릭될 때 SubmitButton 활성화
+  };
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (loading) {
@@ -46,15 +47,20 @@ function MiniQuiz() {
               id={id}
               isChosen={isChosen}
               value={value}
-              onClick={() => setIsChosen(id)}
+              onClick={() => handleClickBox(id)}
               key={id}
             />
           );
         })}
       </div>
-      <SubmitButton quizId={quizId} isChosen={isChosen} />
+      <SubmitButton
+        quizId={quizId}
+        isChosen={isChosen}
+        disabled={disabled}
+        setDisabled={setDisabled} // setDisabled를 전달
+      />
     </div>
   );
 }
 
-export default MiniQuiz;
+export default MiniQuizMain;
