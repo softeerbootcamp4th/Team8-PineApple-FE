@@ -8,4 +8,10 @@ const postAnswer = (quizId, answerNum) =>
     answerNum,
   });
 
-export { getMiniQuiz, postAnswer };
+const getToolBox = () => get('/quiz/participants');
+
+const getRewardCheck = () => get('/quiz/reward/check');
+
+const postReward = participantId => post('/quiz/reward', { participantId });
+
+export { getMiniQuiz, postAnswer, getToolBox, postReward, getRewardCheck };
