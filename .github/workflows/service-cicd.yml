@@ -21,7 +21,7 @@ jobs:
         run: yarn build
 
       - name: Sync S3
-        uses: jakejarvis/s3-sync-action@v1
+        uses: jakejarvis/s3-sync-action@v0.5.1
         with:
           args: --acl public-read --delete
         env:
@@ -31,7 +31,7 @@ jobs:
           SOURCE_DIR: "dist" # 빌드된 파일들이 위치한 디렉토리
 
       - name: Invalidate CloudFront
-        uses: chetan/invalidate-cloudfront-action@v1.5.0
+        uses: chetan/invalidate-cloudfront-action@v1
         with:
           distribution-id: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
           paths: "/*"
