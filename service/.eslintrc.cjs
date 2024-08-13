@@ -23,7 +23,7 @@ module.exports = {
     },
     'import/resolver': {
       alias: {
-        map: [['@', './src']],
+        map: [['@', './service/src']],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
       node: {
