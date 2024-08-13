@@ -14,15 +14,14 @@ function GetToolBoxModal({ close, userGotPrize }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [openPhoneModal, setOpenPhoneModal] = useState(false);
   const [openToolBoxModal, setOpenToolBoxModal] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const authed = useRef(false);
+  const [openAlreadyModal, setOpenAlreadyModal] = useState(false);
+  const already = useRef(false); //api 통신을 한 번만 하기 위한 상태
 
   useEffect(() => {
     const handleToolBox = async () => {
       if (userInfo.phoneNumber === undefined) {
-        setOpenModal(true);
-        authed.current = true;
-      } else {
+        setOpenPhoneModal(true);
+      } else if (already.current === false) {
         try {
           const response = await getToolBox();
           if (response.phoneNumber !== undefined) {
@@ -33,14 +32,16 @@ function GetToolBoxModal({ close, userGotPrize }) {
             };
             setUserInfo(updatedUserInfo);
           } else if (response.code === 'PARTICIPATION_EXISTS') {
+            setOpenAlreadyModal(true);
           }
         } catch (error) {
           console.log(error);
         }
+        already.current = true;
       }
     };
     handleToolBox();
-  }, [authed]); // userInfo로 설정 시 도구 수령하면 다시 userInfo가 수정되어 useEffect를 재호출하여 이미 수령했다라는 오류 출력 그렇기에 로그인 유무를 검사하는 authed를 useRef로 선언
+  }, [userInfo]);
 
   const handleClick = () => {
     if (userGotPrize) {
@@ -75,7 +76,7 @@ function GetToolBoxModal({ close, userGotPrize }) {
       {openPhoneModal && (
         <PhoneInputModal closePhoneModal={() => setOpenPhoneModal(false)} />
       )}
-      {openModal && (
+      {openAlreadyModal && (
         <AlreadyGetCarModal close={() => setOpenPhoneModal(false)} />
       )}
     </>

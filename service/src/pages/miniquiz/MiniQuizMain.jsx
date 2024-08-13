@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useMiniQuiz from '@/pages/miniquiz/miniquizhooks/useMiniQuiz';
 import ClickBox from '@/pages/miniquiz/ClickBox';
 import SubmitButton from '@/pages/miniquiz/SubmitButton';
@@ -12,12 +12,21 @@ function MiniQuiz() {
   const { quizDescription, quizId } = data;
   const [isChosen, setIsChosen] = useState(0);
 
+  useEffect(() => {
+    if (code === 'NO_QUIZ_CONTENT') {
+      navigate('/event/noQuiz');
+    }
+  }, [code]);
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (loading) {
     return <LoadingQuiz />;
-  } else if (code === 'NO_QUIZ_CONTENT') {
-    navigate('/event/noQuiz');
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (loading) {
+    return <LoadingQuiz />;
   }
 
   return (
