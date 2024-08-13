@@ -14,6 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install AWS CLI
+        run: sudo apt-get install -y awscli
+
       - name: Install Dependencies
         run: yarn install
         working-directory: ./service
@@ -32,12 +35,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SOURCE_DIR: "./service/dist" # 빌드된 파일들이 위치한 디렉토리
 
-      - name: Invalidate CloudFront
-        uses: aws-actions/aws-cloudfront-invalidate-cache@v2
-        with:
-          distribution-id: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
-          paths: "/*"
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
         env:
-          AWS_REGION: "ap-northeast-2" # 사용 중인 AWS 리전
+          AWS_REGION: "ap-northeast-2"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
