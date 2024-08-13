@@ -9,7 +9,7 @@ import { postReward } from '@/api/miniQuiz';
 import Prize5_1 from '@/assets/images/prize5_1.png';
 import Prize5_2 from '@/assets/images/prize5_2.png';
 
-function GetOrderModal({ close, participantId, setUserGotPrize }) {
+function GetOrderPrizeModal({ close, participantId, setUserGotPrize }) {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
   const [openPhoneModal, setOpenPhoneModal] = useState(false);
@@ -85,10 +85,10 @@ function GetOrderModal({ close, participantId, setUserGotPrize }) {
   );
 }
 
-GetOrderModal.propTypes = {
+GetOrderPrizeModal.propTypes = {
   close: PropTypes.func.isRequired,
   participantId: PropTypes.string.isRequired,
   setUserGotPrize: PropTypes.func.isRequired,
 };
 
-export default GetOrderModal;
+export default GetOrderPrizeModal;

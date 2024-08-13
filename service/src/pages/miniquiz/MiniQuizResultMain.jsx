@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ButtonCases from '@/pages/miniquiz/ButtonCases';
-import GetOrderModal from '@/components/modal/GetOrderModal';
+import GetOrderPrizeModal from '@/components/modal/GetOrderPrizeModal';
 import GetToolBoxModal from '@/components/modal/GetToolBoxModal';
 import { getRewardCheck } from '@/api/miniQuiz';
 import PropTypes from 'prop-types';
@@ -98,7 +98,7 @@ function MiniQuizResultMain({ response }) {
         />
       )}
       {orderModal && (
-        <GetOrderModal
+        <GetOrderPrizeModal
           close={closeOrderModal}
           participantId={quizParticipantId}
           setUserGotPrize={setUserGotPrize}
