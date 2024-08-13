@@ -16,9 +16,11 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
+        working-directory: ./service
 
       - name: Build Project
         run: yarn build
+        working-directory: ./service
 
       - name: Sync S3
         uses: jakejarvis/s3-sync-action@v0.5.1
