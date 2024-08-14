@@ -19,11 +19,11 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
-        working-directory: ./service
+        working-directory: ./admin
 
       - name: Build Project
         run: yarn build
-        working-directory: ./service
+        working-directory: ./admin
         env:
           VITE_API_URL: ${{ secrets.API_URL }}
 
