@@ -14,6 +14,7 @@ function PhoneAuthModal({
   const [validateCode, setValidateCode] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [firstClick, setFirstClick] = useState(false);
+  const [alertText, setAlertText] = useState('인증번호 형식이 맞지 않습니다!');
   const handleInputText = e => {
     setValidateCode(e.target.value);
     setIsValid(e.target.value.length === 6);
@@ -39,7 +40,8 @@ function PhoneAuthModal({
         console.error('API 통신 실패:', error);
       }
     } else {
-      alert('ddd');
+      setAlertText('인증번호를 다시 확인해주세요!');
+      setIsValid(false);
     }
   };
   const firstClickEvent = () => {
@@ -57,7 +59,7 @@ function PhoneAuthModal({
         ></input>
         {!isValid && firstClick && (
           <span className="absolute top-[60%] left-[2%] text-red-500 text-detail-3-regular">
-            인증번호 형식이 맞지 않습니다!
+            {alertText}
           </span>
         )}
       </div>

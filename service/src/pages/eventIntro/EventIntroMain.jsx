@@ -34,12 +34,12 @@ function EventIntroMain() {
         </p>
         <div className="flex mt-600 gap-300">
           <Link to="event">
-            <button className="flex items-center justify-center transition-transform rounded-full px-800 py-400 bg-neutral-white text-neutral-black text-detail-3-semibold hover:scale-105">
+            <button className="flex items-center justify-center rounded-full px-1000 py-500 bg-neutral-white text-neutral-black text-detail-3-semibold hover:scale-105 duration-200">
               이벤트 참여하기
             </button>
           </Link>
           <Link to="introduce">
-            <button className="flex items-center justify-center bg-transparent rounded-full px-800 py-400 text-neutral-black text-detail-3-semibold border-[2px] border-solid border-neutral-black hover:scale-105 transition-transform">
+            <button className="flex items-center justify-center bg-transparent rounded-full px-800 py-400 text-neutral-black text-detail-3-semibold border-[2px] border-solid border-neutral-black hover:scale-105 duration-200">
               캐스퍼 EV 알아보기
               <img src={arrow} alt="move" />
             </button>

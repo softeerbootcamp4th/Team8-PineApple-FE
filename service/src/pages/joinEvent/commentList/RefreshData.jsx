@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReloadComment from '@/assets/icons/reloadComment.svg';
 import PropTypes from 'prop-types';
-import getNowTime from '@/utils/getNowTime';
 
-function RefreshData({ nowTime, setNowTime, onClickrefreshData }) {
+function RefreshData({ nowTime, onClickrefreshData }) {
+  const [isRotating, setIsRotating] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const handleRefresh = () => {
+    if (isDisabled) return;
+
+    setIsRotating(true);
+    setIsDisabled(true);
+    onClickrefreshData();
+
+    setTimeout(() => {
+      setIsRotating(false);
+      setIsDisabled(false);
+    }, 1000);
+  };
+
   return (
     <div className="flex items-center mr-600 gap-400">
       <span className="text-detail-3-regular text-neutral-500">{nowTime}</span>
       <img
         src={ReloadComment}
         alt="ReloadComment"
-        onClick={onClickrefreshData}
-        className="cursor-pointer"
+        onClick={handleRefresh}
+        className={`cursor-pointer ${isRotating ? 'rotate-180' : ''} `}
       />
     </div>
   );
@@ -19,7 +34,6 @@ function RefreshData({ nowTime, setNowTime, onClickrefreshData }) {
 
 RefreshData.propTypes = {
   nowTime: PropTypes.string.isRequired,
-  setNowTime: PropTypes.func.isRequired,
   onClickrefreshData: PropTypes.func.isRequired,
 };
 
