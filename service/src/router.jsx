@@ -11,7 +11,7 @@ import MiniQuizResult from '@/pages/miniquiz/MiniQuizResult';
 import NoQuiz from '@/pages/miniquiz/NoQuiz';
 import Reward from '@/pages/joinEvent/Reward';
 import AdminIndex from '@/pages/admin/AdminIndex';
-import AdminEditEvent from '@/pages/admin/AdminEditEvent';
+import AdminEditEvent from '@/pages/admin/adminEditEvent/AdminEditEvent';
 
 const router = createBrowserRouter([
   {
