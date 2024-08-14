@@ -35,7 +35,7 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_ADMIN_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          SOURCE_DIR: "./service/dist" # 빌드된 파일들이 위치한 디렉토리
+          SOURCE_DIR: "./admin/dist" # 빌드된 파일들이 위치한 디렉토리
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ADMIN_DISTRIBUTION_ID }} --paths "/*"
