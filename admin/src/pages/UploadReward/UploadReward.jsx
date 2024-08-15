@@ -8,7 +8,6 @@ import { DateContext } from '@/context/dateContext';
 import '@/styles/global.css';
 
 function UploadReward() {
-  const [fileCount, setFileCount] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null); // 파일 객체를 저장할 상태
@@ -52,7 +51,6 @@ function UploadReward() {
   const handleFileChange = async files => {
     if (!files.length) return;
     setErrorMessage('');
-    setFileCount(null);
     setIsLoading(true);
 
     if (files.length > 1) {
@@ -125,13 +123,11 @@ function UploadReward() {
         console.log(validFileCount);
         setErrorMessage(`파일의 개수는 ${totalReward}이어야 합니다.`);
       } else {
-        setFileCount(validFileCount);
         setProcessMessage('업로드 가능합니다.');
         setSelectedFile(file);
       }
     } catch (error) {
       setErrorMessage('zip 파일을 읽는 동안 오류가 발생했습니다.');
-      setFileCount(null);
     }
     setIsLoading(false);
   };
