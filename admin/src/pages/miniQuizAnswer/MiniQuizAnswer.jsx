@@ -1,43 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AdminEditHeader from '@/components/header/AdminEditHeader';
-import AdminEditMiniQuizAnswerContent from './MiniQuizAnswerContent';
+import MiniQuizAnswerContent from './MiniQuizAnswerContent';
 import BlackButton from '@/components/buttons/BlackButton';
+import {
+  getAdminMiniQuizAnswer,
+  putAdminMiniQuizAnswer,
+} from '@/api/miniQuizAnswer/index';
+import { DateContext } from '@/context/dateContext';
+import useFetch from '@/hooks/useFetch';
+import ModalFrame from '@/components/modal/ModalFrame';
 
 function MiniQuizAnswer() {
-  const [quizAnswerData, setAnswerData] = useState({
-    id: 1,
-    answer_num: 1,
-    quiz_image:
-      'https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/%E1%84%8C%E1%85%A1%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%80%E1%85%A5.svg',
-  });
+  const { dateInfo } = useContext(DateContext);
+  const {
+    data: initialData,
+    loading,
+    error,
+    refetch,
+  } = useFetch(getAdminMiniQuizAnswer, dateInfo);
+  const [quizAnswerData, setQuizAnswerData] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    if (initialData) {
+      setQuizAnswerData(initialData);
+    }
+  }, [initialData]);
+
+  const handleSubmit = async () => {
+    // quizAnswerData.quizImage 를 현재는 File형식으로 json 으로 보내는데 이 부분에서 formData 형식으로 바꿔서 보내야함..
+    // const formData = new FormData();
+    // formData.append('answerNum', quizAnswerData.answerNum);
+
+    // if (quizAnswerData.quizImage) {
+    //   formData.append('quizImage', quizAnswerData.quizImage);
+    // }
+
+    const response = await putAdminMiniQuizAnswer(dateInfo, quizAnswerData);
+    if (response.status === 200) {
+      await refetch();
+    } else {
+      alert('수정이 불가능합니다!');
+    }
+    setOpenModal(false);
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!quizAnswerData) {
+    return <div>No quiz data available</div>;
+  }
 
   const handleChange = (field, value) => {
-    setAnswerData(prevState => ({
+    setQuizAnswerData(prevState => ({
       ...prevState,
       [field]: value,
     }));
-  };
-
-  const handleSubmit = async () => {
-    // try {
-    //   const response = await axios.put(`/api/quiz/${quizAnswerData.id}`, quizAnswerData);
-    //   console.log('수정된 데이터가 서버에 저장되었습니다.', response.data);
-    // } catch (error) {
-    //   console.error('수정 요청 중 오류가 발생했습니다.', error);
-    // }
-    console.log('dddd');
   };
 
   return (
     <div className="w-[100%] mt-1000">
       <AdminEditHeader info="미니퀴즈 답변 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
-        <AdminEditMiniQuizAnswerContent
+        <MiniQuizAnswerContent
           response={quizAnswerData}
           onChange={handleChange}
         />
-        <BlackButton onClickFunc={handleSubmit} />
+        <BlackButton onClickFunc={() => setOpenModal(true)} />
       </div>
+      {openModal && (
+        <ModalFrame
+          text="정말 미니퀴즈 답변을 수정하실 건가요?"
+          onClickNo={() => setOpenModal(false)}
+          onClickYes={handleSubmit}
+        />
+      )}
     </div>
   );
 }

@@ -37,7 +37,7 @@ function Draw() {
 
   return (
     <div className="w-[100%] mt-1000">
-      <AdminEditHeader info="응모 결과 메세지 수정" />
+      <AdminEditHeader info="응모 결과 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
         <AdminEditDrawContent response={drawData} onChange={handleChange} />
         <BlackButton onClickFunc={handleSubmit} />
