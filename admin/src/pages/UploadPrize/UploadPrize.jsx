@@ -20,7 +20,7 @@ function UploadPrize() {
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
 
   useEffect(() => {
-    setTotalPrize({ 2: 5, 3: 10, 4: 100, 5: 1000 });
+    setTotalPrize({ 2: 5, 3: 10, 4: 100, 5: 1000 }); //TODO API 나오면 구현
   }, []);
 
   const handleRank = rank => {
