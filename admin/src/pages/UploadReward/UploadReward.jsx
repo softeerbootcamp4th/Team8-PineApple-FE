@@ -16,6 +16,7 @@ function UploadReward() {
   const introduce = '파일을 여기로 드래그하거나 클릭하여 선택';
   const [openModal, setOpenModal] = useState(false);
   const { dateInfo } = useContext(DateContext);
+  const [processMessage, setProcessMessage] = useState('업로드 가능합니다.');
 
   useEffect(() => {
     setTotalReward(5); // 가져오는 api
@@ -34,10 +35,10 @@ function UploadReward() {
       setIsLoading(true);
       const response = await postQuizReward(selectedFile, dateInfo);
       setOpenModal(false);
-      console.log(response);
       //확인 필요
-      if (response.ok);
-      else {
+      if (response.message === 'success') {
+        setProcessMessage('파일 업로드를 완료했습니다.');
+      } else {
         setErrorMessage('파일 업로드에 실패했습니다.');
       }
     } catch (error) {
@@ -81,17 +82,34 @@ function UploadReward() {
       const zipContent = await zip.loadAsync(file);
       const fileKeys = Object.keys(zipContent.files);
 
-      // 디렉토리 파일이 포함되어 있는지 체크
-      const containsDirectory = fileKeys.some(key => zipContent.files[key].dir);
-      // 이후 이미지 형식의 파일만 있는지 확인하는 과정도 있으면 좋을 거 같음
+      // 허용된 확장자 목록
+      const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
 
-      if (containsDirectory) {
-        setErrorMessage(
-          '디렉토리(폴더)가 포함된 ZIP 파일은 업로드할 수 없습니다. 파일만을 선택하여 압축해주세요!',
-        );
+      // 디렉토리 파일이 포함되어 있거나, 허용되지 않은 확장자가 포함된 경우 체크
+      const hasInvalidFiles = fileKeys.some(key => {
+        if (zipContent.files[key].dir) {
+          setErrorMessage(
+            '디렉토리(폴더)가 포함된 ZIP 파일은 업로드할 수 없습니다. 파일만을 선택하여 압축해주세요!',
+          );
+          return true; // 디렉토리 포함
+        }
+
+        const fileExt = key.split('.').pop().toLowerCase();
+        if (!allowedExtensions.includes(fileExt)) {
+          setErrorMessage(
+            `허용되지 않은 파일 형식이 포함되어 있습니다: ${fileExt}`,
+          );
+          return true; // 허용되지 않은 확장자 포함
+        }
+
+        return false;
+      });
+
+      if (hasInvalidFiles) {
         setIsLoading(false);
         return;
       }
+
       const validFileCount = fileKeys.reduce((count, key) => {
         if (!key.startsWith('__MACOSX/')) {
           return count + 1;
@@ -148,7 +166,7 @@ function UploadReward() {
         )}
         {fileCount === totalReward && !errorMessage && (
           <>
-            <div className="text-green-600">업로드 가능합니다.</div>
+            <div className="text-green-600">{processMessage}</div>
           </>
         )}
         <label
