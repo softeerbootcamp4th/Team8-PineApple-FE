@@ -70,7 +70,7 @@ function Reward() {
       <AdminEditHeader info="상품 목록 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-100 rounded-b-[10px] py-1000">
         <RewardContent response={rewardData} onChange={handleChange} />
-        <BlackButton onClickFunc={handleSubmit} />
+        <BlackButton value="수정하기" onClickFunc={handleSubmit} />
       </div>
     </div>
   );

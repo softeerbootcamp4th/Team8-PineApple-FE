@@ -72,7 +72,7 @@ function MiniQuizAnswer() {
           response={quizAnswerData}
           onChange={handleChange}
         />
-        <BlackButton onClickFunc={() => setOpenModal(true)} />
+        <BlackButton value="수정하기" onClickFunc={() => setOpenModal(true)} />
       </div>
       {openModal && (
         <ModalFrame

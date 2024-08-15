@@ -58,7 +58,7 @@ function MiniQuiz() {
       <AdminEditHeader info="미니퀴즈 질문 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
         <AdminEditMiniQuizContent response={quizData} onChange={handleChange} />
-        <BlackButton onClickFunc={() => setOpenModal(true)} />
+        <BlackButton value="수정하기" onClickFunc={() => setOpenModal(true)} />
       </div>
       {openModal && (
         <ModalFrame
