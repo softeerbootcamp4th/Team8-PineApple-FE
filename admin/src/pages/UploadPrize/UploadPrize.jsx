@@ -36,7 +36,6 @@ function UploadPrize() {
     setRank(tempRank.current);
     tempRank.current = null;
     setSelectedFile(null);
-    setFileCount(null);
     setErrorMessage('');
     setIsLoading(false);
     setProcessMessage(
