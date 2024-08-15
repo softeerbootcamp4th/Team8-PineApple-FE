@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TableRow from '@/pages/AdminEventStatus/TableRow';
+import EntryRow from '@/pages/AdminEventStatus/EntryRow';
 import RadioButton from '@/pages/AdminEventStatus/RadioButton';
+import PageButton from '@/pages/AdminEventStatus/PageButton';
 
-const TableComponent = () => {
+const EntryTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [totalRows, setTotalRows] = useState(-1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -75,7 +76,7 @@ const TableComponent = () => {
           <div className="flex-1 border border-black set-center">응모 결과</div>
         </div>
         {pageData.map(item => (
-          <TableRow
+          <EntryRow
             id={item.id}
             phoneNumber={item.phoneNumber}
             time={item.time}
@@ -83,48 +84,16 @@ const TableComponent = () => {
             key={item.id}
           />
         ))}
-        <div className="flex justify-center gap-2 mt-10">
-          <button
-            onClick={() => handlePageChange(Math.max(1, currentPage - 10))}
-            disabled={1 === currentPage}
-          >
-            &laquo; {/* << 기호 */}
-          </button>
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            &lt;
-          </button>
-          {Array.from({ length: endPage - startPage + 1 }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(startPage + index)}
-              className={`${
-                currentPage === startPage + index ? 'font-bold' : 'font-normal'
-              }`}
-            >
-              {startPage + index}
-            </button>
-          ))}
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === 1}
-          >
-            &gt;
-          </button>
-          <button
-            onClick={() =>
-              handlePageChange(Math.min(totalPages, currentPage + 10))
-            }
-            disabled={currentPage === totalPages}
-          >
-            &raquo; {/* >> 기호 */}
-          </button>
-        </div>
+        <PageButton
+          startPage={startPage}
+          endPage={endPage}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </div>
   );
 };
 
-export default TableComponent;
+export default EntryTable;
