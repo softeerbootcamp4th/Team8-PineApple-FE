@@ -5,7 +5,7 @@ function BlackButton({ onClickFunc }) {
   return (
     <button
       onClick={onClickFunc}
-      className={`font-bold text-white rounded py-200 px-1000 bg-neutral-700 hover:bg-neutral-black`}
+      className={`text-body-3-semibold text-white rounded py-200 px-1000 bg-neutral-700 hover:bg-neutral-black`}
     >
       수정하기
     </button>
