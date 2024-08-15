@@ -47,51 +47,49 @@ const EntryTable = () => {
   };
 
   return (
-    <div className="flex flex-col text-nowrap w-[90%]">
-      <div className="h-screen">
-        <div className="flex justify-between py-400">
-          <div className="text-body-3-regular">전체 {totalRows}</div>
-          <div className="flex gap-6">
-            <RadioButton
-              value={10}
-              rowsPerPage={rowsPerPage}
-              onChange={handleRowsPerPageChange}
-            />
-            <RadioButton
-              value={30}
-              rowsPerPage={rowsPerPage}
-              onChange={handleRowsPerPageChange}
-            />
-            <RadioButton
-              value={50}
-              rowsPerPage={rowsPerPage}
-              onChange={handleRowsPerPageChange}
-            />
-          </div>
-        </div>
-        <div className="flex">
-          <div className="set-center w-[275px] border border-black">순번</div>
-          <div className="flex-1 border border-black set-center">전화번호</div>
-          <div className="flex-1 border border-black set-center">응모 시간</div>
-          <div className="flex-1 border border-black set-center">응모 결과</div>
-        </div>
-        {pageData.map(item => (
-          <EntryRow
-            id={item.id}
-            phoneNumber={item.phoneNumber}
-            time={item.time}
-            result={item.result}
-            key={item.id}
+    <div className="flex flex-col h-screen">
+      <div className="flex justify-between py-400">
+        <div className="text-body-3-regular">전체 {totalRows}</div>
+        <div className="flex gap-6">
+          <RadioButton
+            value={10}
+            rowsPerPage={rowsPerPage}
+            onChange={handleRowsPerPageChange}
           />
-        ))}
-        <PageButton
-          startPage={startPage}
-          endPage={endPage}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
-        />
+          <RadioButton
+            value={30}
+            rowsPerPage={rowsPerPage}
+            onChange={handleRowsPerPageChange}
+          />
+          <RadioButton
+            value={50}
+            rowsPerPage={rowsPerPage}
+            onChange={handleRowsPerPageChange}
+          />
+        </div>
       </div>
+      <div className="flex">
+        <div className="set-center w-[275px] border border-black">순번</div>
+        <div className="flex-1 border border-black set-center">전화번호</div>
+        <div className="flex-1 border border-black set-center">응모 시간</div>
+        <div className="flex-1 border border-black set-center">응모 결과</div>
+      </div>
+      {pageData.map(item => (
+        <EntryRow
+          id={item.id}
+          phoneNumber={item.phoneNumber}
+          time={item.time}
+          result={item.result}
+          key={item.id}
+        />
+      ))}
+      <PageButton
+        startPage={startPage}
+        endPage={endPage}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };
