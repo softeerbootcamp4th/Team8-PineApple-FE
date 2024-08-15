@@ -40,7 +40,7 @@ function Draw() {
       <AdminEditHeader info="응모 결과 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
         <AdminEditDrawContent response={drawData} onChange={handleChange} />
-        <BlackButton onClickFunc={handleSubmit} />
+        <BlackButton value="수정하기" onClickFunc={handleSubmit} />
       </div>
     </div>
   );

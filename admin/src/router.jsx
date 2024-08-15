@@ -5,6 +5,8 @@ import MiniQuiz from '@/pages/miniQuiz/MiniQuiz';
 import MiniQuizAnswer from '@/pages/miniQuizAnswer/MiniQuizAnswer';
 import Draw from '@/pages/draw/Draw';
 import Reward from '@/pages/reward/Reward';
+import AdminEventStatus from '@/pages/AdminEventStatus/AdminEventStatus';
+import UploadReward from '@/pages/UploadReward/UploadReward';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,18 @@ const router = createBrowserRouter([
       {
         path: 'reward',
         element: <Reward />,
+      },
+      {
+        path: 'adminEventStatus',
+        element: <AdminEventStatus />,
+      },
+      {
+        path: 'uploadReward',
+        element: <UploadReward />,
+      },
+      {
+        path: 'adminEventStatus',
+        element: <AdminEventStatus />,
       },
     ],
   },

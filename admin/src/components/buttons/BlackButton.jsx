@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BlackButton({ onClickFunc }) {
+function BlackButton({ value, onClickFunc }) {
   return (
     <button
       onClick={onClickFunc}
       className={`text-body-3-semibold text-white rounded py-200 px-1000 bg-neutral-700 hover:bg-neutral-black`}
     >
-      수정하기
+      {value}
     </button>
   );
 }
 
 BlackButton.propTypes = {
+  value: PropTypes.string.isRequired,
   onClickFunc: PropTypes.func.isRequired,
 };
 
