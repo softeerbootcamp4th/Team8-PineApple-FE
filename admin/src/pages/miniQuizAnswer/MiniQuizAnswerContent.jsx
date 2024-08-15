@@ -9,14 +9,14 @@ function MiniQuizAnswerContent({ response, onChange }) {
       <InputForm
         label="정답"
         id="answer"
-        placeholder={String(response.answer_num)}
-        value={String(response.answer_num)}
-        onChange={value => onChange('answer_num', value)}
+        placeholder={String(response.answerNum)}
+        value={String(response.answerNum)}
+        onChange={value => onChange('answerNum', value)}
       />
       <ImageUploader
         label="정답 이미지"
-        imagePreview={response.quiz_image}
-        onChange={file => onChange('quiz_image', file)}
+        imagePreview={response.quizImage}
+        onChange={file => onChange('quizImage', file)}
       />
     </>
   );
