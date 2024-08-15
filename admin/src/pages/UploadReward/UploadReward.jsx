@@ -19,7 +19,7 @@ function UploadReward() {
   const [processMessage, setProcessMessage] = useState('업로드 가능합니다.');
 
   useEffect(() => {
-    setTotalReward(5); // 가져오는 api
+    setTotalReward(5); // 가져오는 api TODO
   }, []);
 
   const handleClick = () => {
@@ -35,7 +35,6 @@ function UploadReward() {
       setIsLoading(true);
       const response = await postQuizReward(selectedFile, dateInfo);
       setOpenModal(false);
-      //확인 필요
       if (response.message === 'success') {
         setProcessMessage('파일 업로드를 완료했습니다.');
       } else {
@@ -97,7 +96,7 @@ function UploadReward() {
         const fileExt = key.split('.').pop().toLowerCase();
         if (!allowedExtensions.includes(fileExt)) {
           setErrorMessage(
-            `허용되지 않은 파일 형식이 포함되어 있습니다: ${fileExt}`,
+            `파일 형식은 'jpg', 'jpeg', 'png', 'gif', 'svg'만 가능합니다. ${fileExt} 해당 형식이 있습니다.`,
           );
           return true; // 허용되지 않은 확장자 포함
         }
