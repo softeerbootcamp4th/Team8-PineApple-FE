@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import AdminEditHeader from '../AdminEditHeader';
-import AdminEditDrawContent from './AdminEditDrawContent';
+import AdminEditHeader from '@/components/header/AdminEditHeader';
+import AdminEditDrawContent from './DrawContent';
 import BlackButton from '@/components/buttons/BlackButton';
 
-function AdminEditDraw() {
-  const [date, setDate] = useState(1);
-  const [quizAnswerData, setAnswerData] = useState({
+function Draw() {
+  const [drawData, setDrawData] = useState({
     id: 1,
     draw_date: '2024-08-12',
     lose_image:
@@ -20,7 +19,7 @@ function AdminEditDraw() {
   });
 
   const handleChange = (field, value) => {
-    setAnswerData(prevState => ({
+    setDrawData(prevState => ({
       ...prevState,
       [field]: value,
     }));
@@ -28,7 +27,7 @@ function AdminEditDraw() {
 
   const handleSubmit = async () => {
     // try {
-    //   const response = await axios.put(`/api/quiz/${quizAnswerData.id}`, quizAnswerData);
+    //   const response = await axios.put(`/api/quiz/${drawData.id}`, drawData);
     //   console.log('수정된 데이터가 서버에 저장되었습니다.', response.data);
     // } catch (error) {
     //   console.error('수정 요청 중 오류가 발생했습니다.', error);
@@ -38,20 +37,13 @@ function AdminEditDraw() {
 
   return (
     <div className="w-[100%] mt-1000">
-      <AdminEditHeader
-        info="응모 결과 메세지 수정"
-        date={date}
-        setDate={setDate}
-      />
+      <AdminEditHeader info="응모 결과 메세지 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
-        <AdminEditDrawContent
-          response={quizAnswerData}
-          onChange={handleChange}
-        />
+        <AdminEditDrawContent response={drawData} onChange={handleChange} />
         <BlackButton onClickFunc={handleSubmit} />
       </div>
     </div>
   );
 }
 
-export default AdminEditDraw;
+export default Draw;

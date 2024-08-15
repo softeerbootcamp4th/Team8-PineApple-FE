@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import AdminEditHeader from '../AdminEditHeader';
-import AdminEditMiniQuizAnswerContent from './AdminEditMiniQuizAnswerContent';
+import AdminEditHeader from '@/components/header/AdminEditHeader';
+import AdminEditMiniQuizAnswerContent from './MiniQuizAnswerContent';
 import BlackButton from '@/components/buttons/BlackButton';
 
-function AdminEditMiniQuizAnswer() {
-  const [date, setDate] = useState(1);
+function MiniQuizAnswer() {
   const [quizAnswerData, setAnswerData] = useState({
     id: 1,
     answer_num: 1,
@@ -31,11 +30,7 @@ function AdminEditMiniQuizAnswer() {
 
   return (
     <div className="w-[100%] mt-1000">
-      <AdminEditHeader
-        info="미니퀴즈 답변 수정"
-        date={date}
-        setDate={setDate}
-      />
+      <AdminEditHeader info="미니퀴즈 답변 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
         <AdminEditMiniQuizAnswerContent
           response={quizAnswerData}
@@ -47,4 +42,4 @@ function AdminEditMiniQuizAnswer() {
   );
 }
 
-export default AdminEditMiniQuizAnswer;
+export default MiniQuizAnswer;
