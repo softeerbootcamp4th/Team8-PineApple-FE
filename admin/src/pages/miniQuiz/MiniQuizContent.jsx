@@ -8,19 +8,19 @@ function MiniQuizContent({ response, onChange }) {
       <InputForm
         label="퀴즈 질문"
         id="question"
-        placeholder={response.quiz_description}
-        value={response.quiz_description}
-        onChange={value => onChange('quiz_description', value)}
+        placeholder={response.quizDescription}
+        value={response.quizDescription}
+        onChange={value => onChange('quizDescription', value)}
       />
 
-      {[1, 2, 3, 4].map(num => (
+      {Object.keys(response.quizQuestions).map(key => (
         <InputForm
-          key={num}
-          label={`선택지${num}`}
-          id={`quizSelect_${num}`}
-          placeholder={response[`quiz_question_${num}`]}
-          value={response[`quiz_question_${num}`]}
-          onChange={value => onChange(`quiz_question_${num}`, value)}
+          key={key}
+          label={`선택지 ${key}`}
+          id={`quizSelect_${key}`}
+          placeholder={response.quizQuestions[key]}
+          value={response.quizQuestions[key]}
+          onChange={value => onChange(`quizQuestions.${key}`, value)}
         />
       ))}
     </>
