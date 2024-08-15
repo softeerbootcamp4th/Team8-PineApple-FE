@@ -16,7 +16,9 @@ function UploadReward() {
   const introduce = '파일을 여기로 드래그하거나 클릭하여 선택';
   const [openModal, setOpenModal] = useState(false);
   const { dateInfo } = useContext(DateContext);
-  const [processMessage, setProcessMessage] = useState('업로드 가능합니다.');
+  const [processMessage, setProcessMessage] = useState(
+    '폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을 업로드해주세요.',
+  );
 
   useEffect(() => {
     setTotalReward(5); // 가져오는 api TODO
@@ -48,6 +50,7 @@ function UploadReward() {
   };
 
   const handleFileChange = async files => {
+    if (!files.length) return;
     setErrorMessage('');
     setFileCount(null);
     setIsLoading(true);
@@ -123,6 +126,7 @@ function UploadReward() {
         setErrorMessage(`파일의 개수는 ${totalReward}이어야 합니다.`);
       } else {
         setFileCount(validFileCount);
+        setProcessMessage('업로드 가능합니다.');
         setSelectedFile(file);
       }
     } catch (error) {
@@ -142,36 +146,19 @@ function UploadReward() {
     event.preventDefault();
   };
 
-  const handleDeleteFile = () => {
-    setSelectedFile(null); // 파일 객체 초기화
-    setFileCount(null);
-    setErrorMessage('');
-  };
-
   return (
     <div className="w-full mt-10">
       <AdminEditHeader info="선착순 경품 코드 업로드" />
       <div className="flex flex-col items-center gap-y-4 w-full bg-neutral-white rounded-b-[10px] py-4">
-        {selectedFile ? (
-          <div className="text-gray-700">파일을 삭제하시려면 클릭하세요.</div>
-        ) : (
-          <div>
-            폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을
-            업로드해주세요.
-          </div>
-        )}
         {errorMessage && (
           <div className="mt-2 text-red-600">{errorMessage}</div>
         )}
-        {fileCount === totalReward && !errorMessage && (
-          <>
-            <div className="text-green-600">{processMessage}</div>
-          </>
+        {!errorMessage && (
+          <div className="text-green-600">{processMessage}</div>
         )}
         <label
           htmlFor="file-upload"
           className="w-[85%] h-[300px] set-center border-[2px] border-dashed border-neutral-black rounded-[10px] bg-gray-100 cursor-pointer"
-          onClick={selectedFile ? handleDeleteFile : null}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
