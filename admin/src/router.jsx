@@ -8,40 +8,52 @@ import Reward from '@/pages/reward/Reward';
 import AdminEventStatus from '@/pages/AdminEventStatus/AdminEventStatus';
 import UploadReward from '@/pages/UploadReward/UploadReward';
 import UploadPrize from '@/pages/UploadPrize/UploadPrize';
+import Login from '@/pages/login/Login';
+import ProtectedRoute from '@/pages/ProtectedRoute';
+import ErrorPage from '@/pages/ErrorPage';
 
 const router = createBrowserRouter([
+  {
+    path: '/login',
+    element: <Login />, // Login 페이지를 루트로 설정
+  },
   {
     path: '/',
     element: <App />,
     children: [
-      { index: true, element: <MiniQuiz /> },
       {
-        path: 'miniQuizAnswer',
-        element: <MiniQuizAnswer />,
-      },
-      {
-        path: 'draw',
-        element: <Draw />,
-      },
-      {
-        path: 'reward',
-        element: <Reward />,
-      },
-      {
-        path: 'adminEventStatus',
-        element: <AdminEventStatus />,
-      },
-      {
-        path: 'adminEventStatus',
-        element: <AdminEventStatus />,
-      },
-      {
-        path: 'uploadReward',
-        element: <UploadReward />,
-      },
-      {
-        path: 'uploadPrize',
-        element: <UploadPrize />,
+        element: <ProtectedRoute />,
+        children: [
+          { index: true, element: <MiniQuiz /> },
+          {
+            path: 'miniQuizAnswer',
+            element: <MiniQuizAnswer />,
+          },
+          {
+            path: 'draw',
+            element: <Draw />,
+          },
+          {
+            path: 'reward',
+            element: <Reward />,
+          },
+          {
+            path: 'adminEventStatus',
+            element: <AdminEventStatus />,
+          },
+          {
+            path: 'uploadReward',
+            element: <UploadReward />,
+          },
+          {
+            path: 'uploadPrize',
+            element: <UploadPrize />,
+          },
+          {
+            path: 'error',
+            element: <ErrorPage />,
+          },
+        ],
       },
     ],
   },
