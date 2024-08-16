@@ -1,9 +1,13 @@
-import { post } from '@/api/indexFormData';
+import { post } from '@/api/index';
 
 const postQuizReward = (file, quizDate) =>
-  post('/admin/quizReward', {
-    file,
-    quizDate,
-  });
+  post(
+    '/admin/quizReward',
+    {
+      file,
+      quizDate,
+    },
+    true,
+  );
 
 export { postQuizReward };

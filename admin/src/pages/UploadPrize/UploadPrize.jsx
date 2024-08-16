@@ -143,7 +143,6 @@ function UploadPrize() {
       if (validFileCount === 0) {
         setErrorMessage('ZIP 파일이 비어 있습니다.');
       } else if (validFileCount !== totalPrize[rank]) {
-        console.log(validFileCount);
         setErrorMessage(`파일의 개수는 ${totalPrize[rank]}이어야 합니다.`);
       } else {
         setProcessMessage('업로드 가능합니다.');
