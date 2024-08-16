@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BlackButton({ value, onClickFunc }) {
+function BlackButton({ value, onClickFunc, disabled = false }) {
   return (
     <button
       onClick={onClickFunc}
-      className={`text-body-3-semibold text-white rounded py-200 px-1000 bg-neutral-700 hover:bg-neutral-black`}
+      className={`${disabled ? 'opacity-30' : 'opacity-100 hover:bg-neutral-black'} text-body-3-semibold text-white rounded py-200 px-1000 bg-neutral-700`}
+      disabled={disabled}
     >
       {value}
     </button>
@@ -15,6 +16,7 @@ function BlackButton({ value, onClickFunc }) {
 BlackButton.propTypes = {
   value: PropTypes.string.isRequired,
   onClickFunc: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 //memo를 이용하여 rerender 방지

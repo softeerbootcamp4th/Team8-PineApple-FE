@@ -2,8 +2,8 @@ import { post, get, patch, put, del } from '@/api/index';
 
 const getAdminMiniQuiz = day => get(`/admin/quiz/${day}`);
 
-const putAdminMiniQuiz = body =>
-  put(`/admin/quiz`, {
+const putAdminMiniQuiz = (day, body) =>
+  put(`/admin/quiz/${day}`, {
     quizId: body.quizId,
     quizDescription: body.quizDescription,
     quizQuestions: {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import InputForm from '@/components/form/InputForm';
 
 function MiniQuizContent({ response, onChange }) {
+  // console.log(response);
   return (
     <>
       <InputForm
@@ -20,7 +21,7 @@ function MiniQuizContent({ response, onChange }) {
           id={`quizSelect_${key}`}
           placeholder={response.quizQuestions[key]}
           value={response.quizQuestions[key]}
-          onChange={value => onChange(`quizQuestions.${key}`, value)}
+          onChange={value => onChange(key, value)}
         />
       ))}
     </>
