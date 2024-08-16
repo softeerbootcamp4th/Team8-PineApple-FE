@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AdminEditHeader from '@/components/header/AdminEditHeader';
-import AdminEditMiniQuizContent from './MiniQuizContent';
+import MiniQuizContent from './MiniQuizContent';
 import BlackButton from '@/components/buttons/BlackButton';
 import { getAdminMiniQuiz, putAdminMiniQuiz } from '@/api/miniQuiz/index';
 import { DateContext } from '@/context/dateContext';
@@ -24,15 +24,25 @@ function MiniQuiz() {
     }
   }, [initialData]);
 
-  const handleChange = (field, value) => {
-    setQuizData(prevState => ({
-      ...prevState,
-      [field]: value,
-    }));
+  const handleChange = (key, value) => {
+    if (key === 'quizDescription') {
+      setQuizData(prevState => ({
+        ...prevState,
+        [key]: value,
+      }));
+    } else {
+      setQuizData(prevState => ({
+        ...prevState,
+        quizQuestions: {
+          ...prevState.quizQuestions,
+          [key]: value,
+        },
+      }));
+    }
   };
 
   const handleSubmit = async () => {
-    const response = await putAdminMiniQuiz(quizData);
+    const response = await putAdminMiniQuiz(dateInfo, quizData);
     if (response.status === 200) {
       await refetch();
     } else {
@@ -57,7 +67,7 @@ function MiniQuiz() {
     <div className="w-[100%] mt-1000">
       <AdminEditHeader info="미니퀴즈 질문 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
-        <AdminEditMiniQuizContent response={quizData} onChange={handleChange} />
+        <MiniQuizContent response={quizData} onChange={handleChange} />
         <BlackButton value="수정하기" onClickFunc={() => setOpenModal(true)} />
       </div>
       {openModal && (
