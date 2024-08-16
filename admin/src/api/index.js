@@ -1,11 +1,9 @@
 const ApiRequest = async (url, method, body) => {
   const accessToken = sessionStorage.getItem('userInfo');
-
   try {
     const options = {
       method,
       headers: {
-        'Content-Type': 'application/json',
         ...(accessToken && {
           Authorization: `Bearer ${accessToken}`,
         }),
@@ -14,7 +12,12 @@ const ApiRequest = async (url, method, body) => {
     };
 
     if (body) {
-      options.body = JSON.stringify(body);
+      if (!(body instanceof FormData)) {
+        options.headers['Content-Type'] = 'application/json';
+        options.body = JSON.stringify(body);
+      } else {
+        options.body = body;
+      }
     }
 
     const response = await fetch(
