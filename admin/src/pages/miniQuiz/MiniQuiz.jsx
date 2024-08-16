@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate, useLocation, useBlocker } from 'react-router-dom';
 import AdminEditHeader from '@/components/header/AdminEditHeader';
 import MiniQuizContent from './MiniQuizContent';
 import BlackButton from '@/components/buttons/BlackButton';
@@ -17,6 +18,16 @@ function MiniQuiz() {
   } = useFetch(getAdminMiniQuiz, dateInfo);
   const [quizData, setQuizData] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [unsavedChangesModal, setUnsavedChangesModal] = useState(false);
+  const [modified, setModified] = useState(false);
+
+  const blocker = useBlocker(({ currentLocation, nextLocation }) => {
+    if (modified && currentLocation.pathname !== nextLocation.pathname) {
+      setUnsavedChangesModal(true);
+      return true;
+    }
+    return false;
+  });
 
   useEffect(() => {
     if (initialData) {
@@ -38,6 +49,7 @@ function MiniQuiz() {
   }, [initialData]);
 
   const handleChange = (key, value) => {
+    setModified(true);
     if (key === 'quizDescription') {
       setQuizData(prevState => ({
         ...prevState,
@@ -58,10 +70,22 @@ function MiniQuiz() {
     const response = await putAdminMiniQuiz(dateInfo, quizData);
     if (response.status === 200) {
       await refetch();
+      setModified(false);
     } else {
       alert('수정이 불가능합니다!');
     }
     setOpenModal(false);
+  };
+
+  const handleConfirmNavigation = () => {
+    setUnsavedChangesModal(false);
+    setModified(false);
+    blocker.proceed();
+  };
+
+  const handleCancelNavigation = () => {
+    setUnsavedChangesModal(false);
+    blocker.reset();
   };
 
   if (loading) {
@@ -88,6 +112,13 @@ function MiniQuiz() {
           text="정말 미니퀴즈를 수정하실 건가요?"
           onClickNo={() => setOpenModal(false)}
           onClickYes={handleSubmit}
+        />
+      )}
+      {unsavedChangesModal && (
+        <ModalFrame
+          text={`지금 페이지를 나가시면 작성중인 내용이 삭제됩니다. 정말 페이지를 나가시겠습니까?`}
+          onClickNo={handleCancelNavigation}
+          onClickYes={handleConfirmNavigation}
         />
       )}
     </div>

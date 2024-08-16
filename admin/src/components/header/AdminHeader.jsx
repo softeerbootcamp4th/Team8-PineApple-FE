@@ -19,7 +19,6 @@ function AdminHeader() {
       const previousDay = new Date(dateInfo);
       previousDay.setDate(previousDay.getDate() - 1);
       setDateInfo(dateFormatting(previousDay));
-      console.log(previousDay);
     }
   };
 
@@ -28,7 +27,6 @@ function AdminHeader() {
       const nextDay = new Date(dateInfo);
       nextDay.setDate(nextDay.getDate() + 1);
       setDateInfo(dateFormatting(nextDay));
-      console.log(nextDay);
     }
   };
   return (

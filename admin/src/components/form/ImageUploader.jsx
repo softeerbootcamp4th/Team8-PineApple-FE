@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ImageAddIcon from '@/assets/icons/imageAddIcon.svg';
 
 function ImageUploader({ onChange, imageUrl, label }) {
   const [imagePreview, setImagePreview] = useState(imageUrl || '');
+
+  useEffect(() => {
+    if (typeof imageUrl === 'string') {
+      setImagePreview(imageUrl);
+    }
+  }, [imageUrl]);
 
   const handleImageChange = e => {
     const file = e.target.files[0];
@@ -13,7 +19,7 @@ function ImageUploader({ onChange, imageUrl, label }) {
     const reader = new FileReader();
     reader.onloadend = () => {
       setImagePreview(reader.result);
-      onChange(file);
+      onChange(file); // 파일 객체를 onChange로 전달
     };
     reader.readAsDataURL(file);
   };
@@ -57,7 +63,7 @@ function ImageUploader({ onChange, imageUrl, label }) {
 
 ImageUploader.propTypes = {
   onChange: PropTypes.func.isRequired,
-  imageUrl: PropTypes.string,
+  imageUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   label: PropTypes.string.isRequired,
 };
 
