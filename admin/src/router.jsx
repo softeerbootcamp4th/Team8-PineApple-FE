@@ -7,6 +7,7 @@ import Draw from '@/pages/draw/Draw';
 import Reward from '@/pages/reward/Reward';
 import AdminEventStatus from '@/pages/AdminEventStatus/AdminEventStatus';
 import UploadReward from '@/pages/UploadReward/UploadReward';
+import UploadPrize from '@/pages/UploadPrize/UploadPrize';
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,16 @@ const router = createBrowserRouter([
         element: <AdminEventStatus />,
       },
       {
+        path: 'adminEventStatus',
+        element: <AdminEventStatus />,
+      },
+      {
         path: 'uploadReward',
         element: <UploadReward />,
       },
       {
-        path: 'adminEventStatus',
-        element: <AdminEventStatus />,
+        path: 'uploadPrize',
+        element: <UploadPrize />,
       },
     ],
   },

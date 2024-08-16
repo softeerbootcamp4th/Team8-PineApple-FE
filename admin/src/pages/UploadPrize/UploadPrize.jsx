@@ -1,41 +1,64 @@
-import React, { useState, useEffect, useContext } from 'react';
-import JSZip from 'jszip';
+import React, { useState, useEffect, useRef } from 'react';
 import BlackButton from '@/components/buttons/BlackButton';
-import AdminEditHeader from '@/components/header/AdminEditHeader';
-import { postQuizReward } from '@/api/UploadReward';
 import ModalFrame from '@/components/modal/ModalFrame';
-import { DateContext } from '@/context/dateContext';
+import { postPrize } from '@/api/UploadPrize';
 import '@/styles/global.css';
+import JSZip from 'jszip';
 
-function UploadReward() {
+function UploadPrize() {
+  const [rank, setRank] = useState(2);
+  const tempRank = useRef(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null); // 파일 객체를 저장할 상태
-  const [totalReward, setTotalReward] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const introduce = '파일을 여기로 드래그하거나 클릭하여 선택';
-  const [openModal, setOpenModal] = useState(false);
-  const { dateInfo } = useContext(DateContext);
   const [processMessage, setProcessMessage] = useState(
     '폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을 업로드해주세요.',
   );
+  const [totalPrize, setTotalPrize] = useState({});
+  const [openChangeModal, setOpenChangeModal] = useState(false);
+  const [openSubmitModal, setOpenSubmitModal] = useState(false);
 
   useEffect(() => {
-    setTotalReward(5); // 가져오는 api TODO
+    setTotalPrize({ 2: 5, 3: 10, 4: 100, 5: 1000 }); //TODO API 나오면 구현
   }, []);
 
-  const handleClick = () => {
+  const handleRank = rank => {
     if (!selectedFile) {
-      setErrorMessage('업로드할 파일이 없습니다.');
-      return;
+      setRank(rank);
+    } else {
+      tempRank.current = rank;
+      setOpenChangeModal(true);
     }
-    setOpenModal(true);
+  };
+
+  const handleMove = () => {
+    setRank(tempRank.current);
+    tempRank.current = null;
+    setSelectedFile(null);
+    setErrorMessage('');
+    setIsLoading(false);
+    setProcessMessage(
+      '폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을 업로드해주세요.',
+    );
+    setOpenChangeModal(false);
+  };
+
+  const handleDrop = event => {
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+    handleFileChange(files);
+  };
+
+  const handleDragOver = event => {
+    event.preventDefault();
   };
 
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
-      const response = await postQuizReward(selectedFile, dateInfo);
-      setOpenModal(false);
+      const response = await postPrize(selectedFile, rank);
+      setOpenSubmitModal(false);
       if (response.message === 'success') {
         setProcessMessage('파일 업로드를 완료했습니다.');
       } else {
@@ -119,9 +142,9 @@ function UploadReward() {
 
       if (validFileCount === 0) {
         setErrorMessage('ZIP 파일이 비어 있습니다.');
-      } else if (validFileCount !== totalReward) {
+      } else if (validFileCount !== totalPrize[rank]) {
         console.log(validFileCount);
-        setErrorMessage(`파일의 개수는 ${totalReward}이어야 합니다.`);
+        setErrorMessage(`파일의 개수는 ${totalPrize[rank]}이어야 합니다.`);
       } else {
         setProcessMessage('업로드 가능합니다.');
         setSelectedFile(file);
@@ -132,19 +155,28 @@ function UploadReward() {
     setIsLoading(false);
   };
 
-  const handleDrop = event => {
-    event.preventDefault();
-    const files = event.dataTransfer.files;
-    handleFileChange(files);
-  };
-
-  const handleDragOver = event => {
-    event.preventDefault();
+  const handleClick = () => {
+    if (!selectedFile) {
+      setErrorMessage('업로드할 파일이 없습니다.');
+      return;
+    }
+    setOpenSubmitModal(true);
   };
 
   return (
     <div className="w-full mt-10">
-      <AdminEditHeader info="선착순 경품 코드 업로드" />
+      경품 등록은 날짜와 상관없습니다.
+      <div className="h-[80px] bg-[#F2F2F2] flex items-center rounded-t-[10px]">
+        {[2, 3, 4, 5].map(item => (
+          <div
+            className={`${rank === item && 'bg-neutral-white'} h-[100%] flex-1 set-center cursor-pointer text-body-3-semibold`}
+            onClick={() => handleRank(item)}
+            key={item}
+          >
+            {item}등
+          </div>
+        ))}
+      </div>
       <div className="flex flex-col items-center gap-y-4 w-full bg-neutral-white rounded-b-[10px] py-4">
         {errorMessage && (
           <div className="mt-2 text-red-600">{errorMessage}</div>
@@ -174,10 +206,17 @@ function UploadReward() {
         </label>
         <BlackButton value="등록하기" onClickFunc={handleClick} />
       </div>
-      {openModal && (
+      {openChangeModal && (
         <ModalFrame
-          text="정말로 등록하시겠습니까??"
-          onClickNo={() => setOpenModal(false)}
+          text="지금 이동하면 등록한 파일이 삭제됩니다. 이동하시겠습니까??"
+          onClickNo={() => setOpenSubmitModal(false)}
+          onClickYes={() => handleMove()}
+        />
+      )}
+      {openSubmitModal && (
+        <ModalFrame
+          text={`정말로 ${rank}등 상품을 등록하시겠습니까??`}
+          onClickNo={() => setOpenSubmitModal(false)}
           onClickYes={() => handleSubmit()}
         />
       )}
@@ -185,4 +224,4 @@ function UploadReward() {
   );
 }
 
-export default UploadReward;
+export default UploadPrize;

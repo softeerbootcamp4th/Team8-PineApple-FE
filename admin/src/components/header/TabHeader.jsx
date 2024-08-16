@@ -10,6 +10,7 @@ function TabHeader() {
       <NavLinkItem path="/reward" value="상품 목록" />
       <NavLinkItem path="/adminEventStatus" value="이벤트 현황" />
       <NavLinkItem path="/uploadReward" value="선착순 업로드" />
+      <NavLinkItem path="/uploadPrize" value="경품 업로드" />
     </div>
   );
 }
