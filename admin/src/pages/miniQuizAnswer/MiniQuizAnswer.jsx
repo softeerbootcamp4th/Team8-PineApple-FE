@@ -9,6 +9,7 @@ import {
 import { DateContext } from '@/context/dateContext';
 import useFetch from '@/hooks/useFetch';
 import ModalFrame from '@/components/modal/ModalFrame';
+import useFormData from '@/hooks/useFormData';
 
 function MiniQuizAnswer() {
   const { dateInfo } = useContext(DateContext);
@@ -20,6 +21,7 @@ function MiniQuizAnswer() {
   } = useFetch(getAdminMiniQuizAnswer, dateInfo);
   const [quizAnswerData, setQuizAnswerData] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const createFormData = useFormData();
 
   useEffect(() => {
     if (initialData) {
@@ -27,16 +29,10 @@ function MiniQuizAnswer() {
     }
   }, [initialData]);
 
-  const handleSubmit = async () => {
-    // quizAnswerData.quizImage 를 현재는 File형식으로 json 으로 보내는데 이 부분에서 formData 형식으로 바꿔서 보내야함..
-    // const formData = new FormData();
-    // formData.append('answerNum', quizAnswerData.answerNum);
+  const HandleSubmit = async () => {
+    const formData = createFormData(quizAnswerData);
 
-    // if (quizAnswerData.quizImage) {
-    //   formData.append('quizImage', quizAnswerData.quizImage);
-    // }
-
-    const response = await putAdminMiniQuizAnswer(dateInfo, quizAnswerData);
+    const response = await putAdminMiniQuizAnswer(dateInfo, formData);
     if (response.status === 200) {
       await refetch();
     } else {
@@ -78,7 +74,7 @@ function MiniQuizAnswer() {
         <ModalFrame
           text="정말 미니퀴즈 답변을 수정하실 건가요?"
           onClickNo={() => setOpenModal(false)}
-          onClickYes={handleSubmit}
+          onClickYes={HandleSubmit}
         />
       )}
     </div>

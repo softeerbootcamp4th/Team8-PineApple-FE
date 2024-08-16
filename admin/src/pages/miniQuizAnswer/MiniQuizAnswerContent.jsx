@@ -15,7 +15,7 @@ function MiniQuizAnswerContent({ response, onChange }) {
       />
       <ImageUploader
         label="정답 이미지"
-        imagePreview={response.quizImage}
+        imageUrl={response.quizImage}
         onChange={file => onChange('quizImage', file)}
       />
     </>
