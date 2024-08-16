@@ -20,7 +20,20 @@ function MiniQuiz() {
 
   useEffect(() => {
     if (initialData) {
-      setQuizData(initialData);
+      if (initialData.code === 'NO_QUIZ_INFO') {
+        setQuizData({
+          quizId: '0',
+          quizDescription: '',
+          quizQuestions: {
+            1: '',
+            2: '',
+            3: '',
+            4: '',
+          },
+        });
+      } else {
+        setQuizData(initialData);
+      }
     }
   }, [initialData]);
 
