@@ -70,9 +70,7 @@ function MiniQuizResultMain({ response }) {
               선착순 당첨
             </div>
           </div>
-          <div className="py-500 text-body-1-bold mb-1200">
-            {correctMessage}
-          </div>
+          <div className="py-500 text-body-1-bold mb-400">{correctMessage}</div>
         </>
       ) : (
         <>

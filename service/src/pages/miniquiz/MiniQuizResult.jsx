@@ -11,7 +11,7 @@ function MiniQuizResult() {
   const onClose = () => setOpenExitModal(false);
 
   return (
-    <div className="relative flex flex-col items-center h-screen bg-miniquiz-paper pt-4000">
+    <div className="relative flex flex-col items-center h-screen bg-miniquiz-paper pt-2500">
       <EventHeader
         eventTitle="Event 2. 도구 얻기"
         eventBody="월드컵 일일 미니퀴즈"
