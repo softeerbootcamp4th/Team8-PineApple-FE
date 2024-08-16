@@ -13,7 +13,9 @@ function ModalFrame({ text, onClickNo, onClickYes }) {
     <ModalPortal>
       <div className="fixed inset-0 set-center bg-opacity-50 bg-neutral-black z-[10]">
         <div className="bg-neutral-white px-1000 pt-2000 pb-1000 flex flex-col items-center rounded-[20px]">
-          <p className="text-body-3-bold text-neutral-black mb-900">{text}</p>
+          <p className="text-body-3-bold text-neutral-black mb-900 w-[590px] text-center">
+            {text}
+          </p>
           <div className="set-center gap-500">
             <button
               onClick={onClickNo}
