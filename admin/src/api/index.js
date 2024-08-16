@@ -1,5 +1,5 @@
 const ApiRequest = async (url, method, body, isFormData) => {
-  const accessToken = localStorage.getItem('userInfo');
+  const accessToken = sessionStorage.getItem('userInfo');
 
   try {
     const options = {
