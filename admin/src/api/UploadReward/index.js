@@ -1,4 +1,4 @@
-import { post } from '@/api/index';
+import { post } from '@/api/_index';
 
 const postQuizReward = (file, quizDate) =>
   post(

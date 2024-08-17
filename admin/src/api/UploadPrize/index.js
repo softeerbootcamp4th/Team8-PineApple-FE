@@ -1,4 +1,4 @@
-import { post, get } from '@/api/index';
+import { post, get } from '@/api/_index';
 
 const postPrize = (file, ranking) =>
   post(
