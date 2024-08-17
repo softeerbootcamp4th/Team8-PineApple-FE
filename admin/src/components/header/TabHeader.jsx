@@ -11,6 +11,7 @@ function TabHeader() {
       <NavLinkItem path="/adminEventStatus" value="이벤트 현황" />
       <NavLinkItem path="/uploadReward" value="선착순 업로드" />
       <NavLinkItem path="/uploadPrize" value="경품 업로드" />
+      <NavLinkItem path="/analyticsPage" value="지표 분석" />
     </div>
   );
 }
