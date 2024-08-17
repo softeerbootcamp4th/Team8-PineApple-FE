@@ -8,41 +8,41 @@ function DrawContent({ response, onChange }) {
     <>
       <InputForm
         label="일일 메세지"
-        id="dailyMessage"
-        placeholder={response.daily_message}
-        value={response.daily_message}
-        onChange={value => onChange('daily_message', value)}
+        id="commonScenario"
+        placeholder={response.commonScenario}
+        value={response.commonScenario}
+        onChange={value => onChange('commonScenario', value)}
       />
       <InputForm
         label="실패 메세지"
         id="loseMessage"
-        placeholder={response.lose_message}
-        value={response.lose_message}
-        onChange={value => onChange('lose_message', value)}
+        placeholder={response.loseMessage}
+        value={response.loseMessage}
+        onChange={value => onChange('loseMessage', value)}
       />
       <InputForm
         label="실패 시나리오"
         id="loseScenario"
-        placeholder={response.lose_scenario}
-        value={response.lose_scenario}
-        onChange={value => onChange('lose_scenario', value)}
+        placeholder={response.loseScenario}
+        value={response.loseScenario}
+        onChange={value => onChange('loseScenario', value)}
       />
       <ImageUploader
         label="실패 이미지"
-        imageUrl={response.lose_image}
-        onChange={file => onChange('lose_image', file)}
+        imageUrl={response.loseImage}
+        onChange={file => onChange('loseImage', file)}
       />
       <InputForm
         label="성공 메세지"
         id="winMessage"
-        placeholder={response.win_message}
-        value={response.win_message}
-        onChange={value => onChange('win_message', value)}
+        placeholder={response.winMessage}
+        value={response.winMessage}
+        onChange={value => onChange('winMessage', value)}
       />
       <ImageUploader
         label="성공 이미지"
-        imageUrl={response.win_image}
-        onChange={file => onChange('win_image', file)}
+        imageUrl={response.winImage}
+        onChange={file => onChange('winImage', file)}
       />
     </>
   );
