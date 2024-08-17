@@ -1,4 +1,4 @@
-import { post } from '@/api/index';
+import { post, get } from '@/api/index';
 
 const postPrize = (file, ranking) =>
   post(
@@ -10,4 +10,6 @@ const postPrize = (file, ranking) =>
     true,
   );
 
-export { postPrize };
+const getProbability = () => get('/admin/drawProbability');
+
+export { postPrize, getProbability };

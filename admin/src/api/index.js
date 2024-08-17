@@ -1,6 +1,5 @@
-const ApiRequest = async (url, method, body, isFormData) => {
+const ApiRequest = async (url, method, body) => {
   const accessToken = sessionStorage.getItem('userInfo');
-
   try {
     const options = {
       method,
@@ -8,13 +7,17 @@ const ApiRequest = async (url, method, body, isFormData) => {
         ...(accessToken && {
           Authorization: `Bearer ${accessToken}`,
         }),
-        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
       },
       credentials: 'include',
     };
 
     if (body) {
-      options.body = isFormData ? createFormData(body) : JSON.stringify(body);
+      if (!(body instanceof FormData)) {
+        options.headers['Content-Type'] = 'application/json';
+        options.body = JSON.stringify(body);
+      } else {
+        options.body = body;
+      }
     }
 
     const response = await fetch(
@@ -29,30 +32,22 @@ const ApiRequest = async (url, method, body, isFormData) => {
   }
 };
 
-const createFormData = body => {
-  const formData = new FormData();
-  for (const key in body) {
-    formData.append(key, body[key]);
-  }
-  return formData;
+export const post = (url, body) => {
+  return ApiRequest(url, 'POST', body);
 };
 
-export const post = (url, body, isFormData = false) => {
-  return ApiRequest(url, 'POST', body, isFormData);
+export const get = url => {
+  return ApiRequest(url, 'GET', null);
 };
 
-export const get = (url, isFormData = false) => {
-  return ApiRequest(url, 'GET', null, isFormData);
+export const put = (url, body) => {
+  return ApiRequest(url, 'PUT', body);
 };
 
-export const put = (url, body, isFormData = false) => {
-  return ApiRequest(url, 'PUT', body, isFormData);
+export const patch = (url, body) => {
+  return ApiRequest(url, 'PATCH', body);
 };
 
-export const patch = (url, body, isFormData = false) => {
-  return ApiRequest(url, 'PATCH', body, isFormData);
-};
-
-export const del = (url, body, isFormData = false) => {
-  return ApiRequest(url, 'DELETE', body, isFormData);
+export const del = (url, body, header) => {
+  return ApiRequest(url, 'DELETE', body, header);
 };
