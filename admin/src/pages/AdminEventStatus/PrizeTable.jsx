@@ -1,39 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getDrawRemaining } from '@/api/AdminEventStatus';
 
 function PrizeTable() {
-  //TODO api 통신으로 정보 가져오기
+  const [remaining, setRemaining] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const remaining = await getDrawRemaining();
+      setRemaining(remaining.drawRemaining);
+    };
+    getData();
+  }, []);
+
   return (
     <table className="w-full border border-collapse table-auto">
       <thead>
         <tr>
-          <th className="px-4 py-2 text-center border" rowSpan="2">
-            잔여 상품 수 / 전체 개수
-          </th>
-          <th className="px-4 py-2 text-center border">1등</th>
-          <th className="px-4 py-2 text-center border">2등</th>
-          <th className="px-4 py-2 text-center border">3등</th>
-          <th className="px-4 py-2 text-center border">4등</th>
-          <th className="px-4 py-2 text-center border">5등</th>
+          <th
+            className="px-4 py-2 text-center border border-black"
+            rowSpan="2"
+          ></th>
+          <th className="px-4 py-2 text-center border border-black">2등</th>
+          <th className="px-4 py-2 text-center border border-black">3등</th>
+          <th className="px-4 py-2 text-center border border-black">4등</th>
+          <th className="px-4 py-2 text-center border border-black">5등</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td className="px-4 py-2 text-center border bg-neutral-white"></td>
-          <td className="px-4 py-2 text-center border bg-neutral-white">
-            nn/nn
+          <td className="px-4 py-2 text-center border border-black">
+            잔여 상품 수 / 전체 개수
           </td>
-          <td className="px-4 py-2 text-center border bg-neutral-white">
-            nn/nn
-          </td>
-          <td className="px-4 py-2 text-center border bg-neutral-white">
-            nn/nn
-          </td>
-          <td className="px-4 py-2 text-center border bg-neutral-white">
-            nn/nn
-          </td>
-          <td className="px-4 py-2 text-center border bg-neutral-white">
-            nn/nn
-          </td>
+          {remaining
+            .filter(item => item.ranking > 1)
+            .map(value => (
+              <td
+                key={value.ranking}
+                className="px-4 py-2 text-center border border-black bg-neutral-white"
+              >
+                {value.nowStock} / {value.totalStock}
+              </td>
+            ))}
         </tr>
       </tbody>
     </table>

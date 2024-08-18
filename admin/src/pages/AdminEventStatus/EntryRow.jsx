@@ -17,7 +17,7 @@ EntryRow.propTypes = {
   id: PropTypes.number.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
-  result: PropTypes.string.isRequired,
+  result: PropTypes.number.isRequired,
 };
 
 export default EntryRow;
