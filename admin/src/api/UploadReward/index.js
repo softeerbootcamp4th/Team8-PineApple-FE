@@ -1,13 +1,5 @@
-import { post } from '@/api/_index';
+import { post } from '@/api/index';
 
-const postQuizReward = (file, quizDate) =>
-  post(
-    '/admin/quiz-reward',
-    {
-      file,
-      quizDate,
-    },
-    true,
-  );
+const postQuizReward = body => post('/admin/quiz-reward', body);
 
 export { postQuizReward };
