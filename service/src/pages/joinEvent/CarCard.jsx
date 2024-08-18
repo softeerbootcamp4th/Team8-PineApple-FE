@@ -6,7 +6,7 @@ import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
 
-function Card1() {
+function CarCard() {
   const { userInfo } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ function Card1() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between bg-card1 px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-carCard px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event1
       </div>
@@ -47,4 +47,4 @@ function Card1() {
   );
 }
 
-export default Card1;
+export default CarCard;
