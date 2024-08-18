@@ -15,8 +15,6 @@ function Indicator() {
       try {
         const response = await getIndicator();
         const dayNRetention = response.dayNRetention;
-        console.log(response);
-        console.log(dayNRetention);
         const dau = response.dau;
         setRow(dayNRetention.length);
         setCol(dayNRetention[0].length);
