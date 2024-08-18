@@ -16,11 +16,11 @@ const EntryTable = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await getDrawHistory(currentPage - 1, rowsPerPage, sort);
+      console.log(response);
       const { drawHistories, totalPages, totalItems } = response;
       setPageData(drawHistories);
       setTotalPages(totalPages);
-      //setTotalRows(response.totalItems);
-      setTotalRows(totalPages * rowsPerPage);
+      setTotalRows(totalItems);
     };
     getData();
   }, [rowsPerPage, currentPage, sort]);
