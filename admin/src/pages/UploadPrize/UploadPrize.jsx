@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import BlackButton from '@/components/buttons/BlackButton';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { postPrize, getProbability } from '@/api/UploadPrize';
+import useFormData from '@/hooks/useFormData';
 import '@/styles/global.css';
 import JSZip from 'jszip';
 
@@ -18,6 +19,8 @@ function UploadPrize() {
   const [totalPrize, setTotalPrize] = useState({});
   const [openChangeModal, setOpenChangeModal] = useState(false);
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
+
+  const createFormData = useFormData();
 
   useEffect(() => {
     const get = async () => {
@@ -59,9 +62,13 @@ function UploadPrize() {
   };
 
   const handleSubmit = async () => {
+    const body = createFormData({
+      file: selectedFile,
+      ranking: rank,
+    });
     try {
       setIsLoading(true);
-      const response = await postPrize(selectedFile, rank);
+      const response = await postPrize(body);
       setOpenSubmitModal(false);
       if (response.message === 'success') {
         setProcessMessage('파일 업로드를 완료했습니다.');
