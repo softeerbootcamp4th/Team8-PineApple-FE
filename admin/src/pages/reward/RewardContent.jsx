@@ -14,36 +14,36 @@ function RewardContent({ response, onChange }) {
 
   return (
     <>
-      {response.map(item => (
+      {response.map((item, index) => (
         <div
-          key={item.id}
+          key={index} // 인덱스를 key로 사용
           className="rounded-[20px] bg-white w-[90%] shadow-xl set-center flex-col pt-1000 mb-1000"
         >
           <InputForm
             label="등수"
-            id={`ranking-${String(item.id)}`}
+            id={`ranking-${index}`}
             placeholder={String(item.ranking)}
             value={String(item.ranking)}
-            onChange={value => handleInputChange(item.id, 'ranking', value)}
+            onChange={value => handleInputChange(index, 'ranking', value)}
           />
           <InputForm
             label="이름"
-            id={`name-${String(item.id)}`}
+            id={`name-${index}`}
             placeholder={item.name}
             value={item.name}
-            onChange={value => handleInputChange(item.id, 'name', value)}
+            onChange={value => handleInputChange(index, 'name', value)}
           />
           <InputForm
             label="재고"
-            id={`stock-${String(item.id)}`}
+            id={`stock-${index}`}
             placeholder={String(item.stock)}
             value={String(item.stock)}
-            onChange={value => handleInputChange(item.id, 'stock', value)}
+            onChange={value => handleInputChange(index, 'stock', value)}
           />
           <ImageUploader
             label="이미지"
             imageUrl={item.image}
-            onChange={file => handleImageChange(item.id, file)}
+            onChange={file => handleImageChange(index, file)}
           />
         </div>
       ))}
@@ -52,15 +52,7 @@ function RewardContent({ response, onChange }) {
 }
 
 RewardContent.propTypes = {
-  response: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      ranking: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      stock: PropTypes.number,
-      image: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  response: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

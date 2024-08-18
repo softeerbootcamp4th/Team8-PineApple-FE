@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, useLocation, useBlocker } from 'react-router-dom';
 import AdminEditHeader from '@/components/header/AdminEditHeader';
 import MiniQuizContent from './MiniQuizContent';
 import BlackButton from '@/components/buttons/BlackButton';
@@ -7,6 +6,8 @@ import { getAdminMiniQuiz, putAdminMiniQuiz } from '@/api/miniQuiz/index';
 import { DateContext } from '@/context/dateContext';
 import useFetch from '@/hooks/useFetch';
 import ModalFrame from '@/components/modal/ModalFrame';
+import useNavigationBlocker from '@/hooks/useNavigationBlocker';
+import useBeforeUnload from '@/hooks/useBeforeUnload';
 
 function MiniQuiz() {
   const { dateInfo } = useContext(DateContext);
@@ -18,15 +19,16 @@ function MiniQuiz() {
   } = useFetch(getAdminMiniQuiz, dateInfo);
   const [quizData, setQuizData] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const [unsavedChangesModal, setUnsavedChangesModal] = useState(false);
   const [modified, setModified] = useState(false);
 
-  const blocker = useBlocker(({ currentLocation, nextLocation }) => {
-    if (modified && currentLocation.pathname !== nextLocation.pathname) {
-      setUnsavedChangesModal(true);
-      return true;
-    }
-    return false;
+  useBeforeUnload();
+
+  const {
+    unsavedChangesModal,
+    handleConfirmNavigation,
+    handleCancelNavigation,
+  } = useNavigationBlocker(modified, () => {
+    setModified(false);
   });
 
   useEffect(() => {
@@ -75,17 +77,6 @@ function MiniQuiz() {
       alert('수정이 불가능합니다!');
     }
     setOpenModal(false);
-  };
-
-  const handleConfirmNavigation = () => {
-    setUnsavedChangesModal(false);
-    setModified(false);
-    blocker.proceed();
-  };
-
-  const handleCancelNavigation = () => {
-    setUnsavedChangesModal(false);
-    blocker.reset();
   };
 
   if (loading) {

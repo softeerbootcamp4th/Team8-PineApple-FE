@@ -1,27 +1,26 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminEditHeader from '@/components/header/AdminEditHeader';
-import AdminEditDrawContent from './DrawContent';
+import ProbabilityContent from './ProbabilityContent';
 import BlackButton from '@/components/buttons/BlackButton';
-import { getAdminDraw, putAdminDraw } from '@/api/draw/index';
-import { DateContext } from '@/context/dateContext';
+import {
+  getAdminProbability,
+  putAdminProbability,
+} from '@/api/probability/index';
 import useFetch from '@/hooks/useFetch';
 import ModalFrame from '@/components/modal/ModalFrame';
-import useFormData from '@/hooks/useFormData';
 import useNavigationBlocker from '@/hooks/useNavigationBlocker';
 import useBeforeUnload from '@/hooks/useBeforeUnload';
 
-function Draw() {
-  const { dateInfo } = useContext(DateContext);
+function Probability() {
   const {
     data: initialData,
     loading,
     error,
     refetch,
-  } = useFetch(getAdminDraw, dateInfo);
-  const [drawData, setDrawData] = useState(null);
+  } = useFetch(getAdminProbability);
+  const [probabilityData, setProbabilityData] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [modified, setModified] = useState(false);
-  const createFormData = useFormData();
 
   useBeforeUnload();
 
@@ -35,33 +34,22 @@ function Draw() {
 
   useEffect(() => {
     if (initialData) {
-      if (initialData.code === 'NO_DAILY_INFO') {
-        setDrawData({
-          drawDate: '',
-          loseImage: '',
-          loseMessage: '',
-          loseScenario: '',
-          winImage: '',
-          winMessage: '',
-          commonScenario: '',
-        });
-      } else {
-        setDrawData(initialData);
-      }
+      setProbabilityData(initialData);
     }
   }, [initialData]);
 
   const handleChange = (key, value) => {
     setModified(true);
-    setDrawData(prevState => ({
-      ...prevState,
-      [key]: value,
+    setProbabilityData(prevState => ({
+      probabilities: {
+        ...prevState.probabilities,
+        [key]: Number(value),
+      },
     }));
   };
 
   const handleSubmit = async () => {
-    const formData = createFormData(drawData);
-    const response = await putAdminDraw(formData);
+    const response = await putAdminProbability(probabilityData);
     if (response.status === 200) {
       await refetch();
       setModified(false);
@@ -79,20 +67,23 @@ function Draw() {
     return <div>Error: {error}</div>;
   }
 
-  if (!drawData) {
-    return <div>No draw data available</div>;
+  if (!probabilityData) {
+    return <div>No probability data available</div>;
   }
 
   return (
     <div className="w-[100%] mt-1000">
-      <AdminEditHeader info="응모 결과 수정" />
+      <AdminEditHeader info="응모 당첨 확률 수정" />
       <div className="flex-col w-[100%] set-center bg-neutral-white rounded-b-[10px] py-1000">
-        <AdminEditDrawContent response={drawData} onChange={handleChange} />
+        <ProbabilityContent
+          response={probabilityData}
+          onChange={handleChange}
+        />
         <BlackButton value="수정하기" onClickFunc={() => setOpenModal(true)} />
       </div>
       {openModal && (
         <ModalFrame
-          text="정말 응모 결과를 수정하실 건가요?"
+          text="정말 응모당첨 확률을 수정하실 건가요?"
           onClickNo={() => setOpenModal(false)}
           onClickYes={handleSubmit}
         />
@@ -108,4 +99,4 @@ function Draw() {
   );
 }
 
-export default Draw;
+export default Probability;
