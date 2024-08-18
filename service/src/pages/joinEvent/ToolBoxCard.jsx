@@ -16,7 +16,7 @@ function ToolBoxCard() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between bg-ToolBoxCard px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-toolBoxCard px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event2
       </div>
