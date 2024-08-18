@@ -1,9 +1,6 @@
 name: Deploy to S3 and CloudFront
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
       - main

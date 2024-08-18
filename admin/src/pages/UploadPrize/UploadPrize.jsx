@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import BlackButton from '@/components/buttons/BlackButton';
 import ModalFrame from '@/components/modal/ModalFrame';
-import { postPrize } from '@/api/UploadPrize';
+import { postPrize, getProbability } from '@/api/UploadPrize';
 import '@/styles/global.css';
 import JSZip from 'jszip';
 
@@ -20,7 +20,11 @@ function UploadPrize() {
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
 
   useEffect(() => {
-    setTotalPrize({ 2: 5, 3: 10, 4: 100, 5: 1000 }); //TODO API 나오면 구현
+    const get = async () => {
+      const response = await getProbability();
+      setTotalPrize(response.probabilities);
+    };
+    get();
   }, []);
 
   const handleRank = rank => {
@@ -143,7 +147,6 @@ function UploadPrize() {
       if (validFileCount === 0) {
         setErrorMessage('ZIP 파일이 비어 있습니다.');
       } else if (validFileCount !== totalPrize[rank]) {
-        console.log(validFileCount);
         setErrorMessage(`파일의 개수는 ${totalPrize[rank]}이어야 합니다.`);
       } else {
         setProcessMessage('업로드 가능합니다.');
@@ -165,7 +168,7 @@ function UploadPrize() {
 
   return (
     <div className="w-full mt-10">
-      경품 등록은 날짜와 상관없습니다.
+      경품 등록은 날짜와 상관이 없습니다.
       <div className="h-[80px] bg-[#F2F2F2] flex items-center rounded-t-[10px]">
         {[2, 3, 4, 5].map(item => (
           <div
@@ -197,12 +200,11 @@ function UploadPrize() {
             className="hidden"
             id="file-upload"
           />
-          {!isLoading && (
-            <div style={{ whiteSpace: 'pre-line' }}>
-              {selectedFile?.name || introduce}
-            </div>
+          {!isLoading ? (
+            <div>{selectedFile?.name || introduce}</div>
+          ) : (
+            <div>Loading...</div>
           )}
-          {isLoading && <div className="mt-2 loader">Loading...</div>}
         </label>
         <BlackButton value="등록하기" onClickFunc={handleClick} />
       </div>

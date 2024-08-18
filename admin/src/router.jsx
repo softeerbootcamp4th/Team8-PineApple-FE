@@ -11,6 +11,7 @@ import UploadPrize from '@/pages/UploadPrize/UploadPrize';
 import Login from '@/pages/login/Login';
 import ProtectedRoute from '@/pages/ProtectedRoute';
 import ErrorPage from '@/pages/ErrorPage';
+import AnalyticsPage from '@/pages/AnalyticsPage/AnalyticsPage';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
           {
             path: 'error',
             element: <ErrorPage />,
+          },
+          {
+            path: 'analyticsPage',
+            element: <AnalyticsPage />,
           },
         ],
       },

@@ -1,9 +1,15 @@
-import { post } from '@/api/indexFormData';
+import { post, get } from '@/api/_index';
 
 const postPrize = (file, ranking) =>
-  post('/admin/drawPrize', {
-    file,
-    ranking,
-  });
+  post(
+    '/admin/draw-prize',
+    {
+      file,
+      ranking,
+    },
+    true,
+  );
 
-export { postPrize };
+const getProbability = () => get('/admin/draw-probability');
+
+export { postPrize, getProbability };
