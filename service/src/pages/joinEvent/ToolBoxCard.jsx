@@ -7,7 +7,7 @@ import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
 import '@/styles/global.css';
 
-function Card2() {
+function ToolBoxCard() {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
 
@@ -16,7 +16,7 @@ function Card2() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between bg-card2 px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
+    <div className="flex flex-col justify-between bg-ToolBoxCard px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event2
       </div>
@@ -59,4 +59,4 @@ function Card2() {
   );
 }
 
-export default Card2;
+export default ToolBoxCard;
