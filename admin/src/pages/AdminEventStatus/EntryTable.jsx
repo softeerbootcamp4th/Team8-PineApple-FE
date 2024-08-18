@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import EntryRow from '@/pages/AdminEventStatus/EntryRow';
 import RadioButton from '@/pages/AdminEventStatus/RadioButton';
 import PageButton from '@/pages/AdminEventStatus/PageButton';
+import { getDrawHistory } from '@/api/AdminEventStatus';
 
 const EntryTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [totalRows, setTotalRows] = useState(-1);
+  const [totalRows, setTotalRows] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageData, setPageData] = useState([
-    { id: 1, phoneNumber: '10', time: 's', result: '1' },
-    { id: 2, phoneNumber: '10', time: 's', result: '1' },
-    { id: 3, phoneNumber: '10', time: 's', result: '1' },
-    { id: 4, phoneNumber: '10', time: 's', result: '1' },
-    { id: 5, phoneNumber: '10', time: 's', result: '1' },
-    { id: 6, phoneNumber: '10', time: 's', result: '1' },
-    { id: 7, phoneNumber: '10', time: 's', result: '1' },
-    { id: 8, phoneNumber: '10', time: 's', result: '1' },
-  ]);
+  const [pageData, setPageData] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [sort, setSort] = useState('desc');
+  const table = useRef(null);
 
   useEffect(() => {
-    getCurrentPageData(currentPage);
-  }, [rowsPerPage, currentPage]);
+    const getData = async () => {
+      const response = await getDrawHistory(currentPage - 1, rowsPerPage, sort);
+      const { drawHistories, totalPages, totalItems } = response;
+      setPageData(drawHistories);
+      setTotalPages(totalPages);
+      //setTotalRows(response.totalItems);
+      setTotalRows(totalPages * rowsPerPage);
+    };
+    getData();
+  }, [rowsPerPage, currentPage, sort]);
 
-  useEffect(() => {
-    setTotalRows(156); //TODO API 통신으로 가져오기 및 데이터를 가져오기
-  }, []);
-
-  const totalPages = Math.ceil(totalRows / rowsPerPage);
   const startPage = Math.floor((currentPage - 1) / 10) * 10 + 1;
   const endPage = Math.min(startPage + 9, totalPages);
 
@@ -37,17 +35,11 @@ const EntryTable = () => {
 
   const handlePageChange = newPage => {
     setCurrentPage(newPage);
-  };
-
-  const getCurrentPageData = currentPage => {
-    // try{
-    // const data //API 통신
-    // }
-    //setPageData(data); // data의 정보 array 가져오기
+    table.current.scrollIntoView();
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-full" ref={table}>
       <div className="flex justify-between py-400">
         <div className="text-body-3-regular">전체 {totalRows}</div>
         <div className="flex gap-6">
@@ -69,7 +61,11 @@ const EntryTable = () => {
         </div>
       </div>
       <div className="flex">
-        <div className="set-center w-[275px] border border-black">순번</div>
+        <div className="set-center w-[275px] border border-black">
+          순번
+          <button onClick={() => setSort('desc')}>▼</button>
+          <button onClick={() => setSort('asc')}>▲</button>
+        </div>
         <div className="flex-1 border border-black set-center">전화번호</div>
         <div className="flex-1 border border-black set-center">응모 시간</div>
         <div className="flex-1 border border-black set-center">응모 결과</div>
@@ -78,8 +74,8 @@ const EntryTable = () => {
         <EntryRow
           id={item.id}
           phoneNumber={item.phoneNumber}
-          time={item.time}
-          result={item.result}
+          time={item.createdDate}
+          result={item.drawResult}
           key={item.id}
         />
       ))}

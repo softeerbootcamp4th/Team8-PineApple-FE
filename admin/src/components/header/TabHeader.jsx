@@ -8,10 +8,10 @@ function TabHeader() {
       <NavLinkItem path="/miniQuizAnswer" value="미니퀴즈 답변" />
       <NavLinkItem path="/draw" value="응모 결과" />
       <NavLinkItem path="/reward" value="상품 목록" />
-      <NavLinkItem path="/adminEventStatus" value="이벤트 현황" />
       <NavLinkItem path="/uploadReward" value="선착순 업로드" />
       <NavLinkItem path="/uploadPrize" value="경품 업로드" />
-      <NavLinkItem path="/analyticsPage" value="지표 분석" />
+      <NavLinkItem path="/adminEventStatus" value="이벤트 현황" />
+      <NavLinkItem path="/indicator" value="지표 분석" />
     </div>
   );
 }

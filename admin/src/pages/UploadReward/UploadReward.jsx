@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
-import JSZip from 'jszip';
-import BlackButton from '@/components/buttons/BlackButton';
+import React, { useState, useContext } from 'react';
 import AdminEditHeader from '@/components/header/AdminEditHeader';
-import { postQuizReward } from '@/api/UploadReward';
+import BlackButton from '@/components/buttons/BlackButton';
 import ModalFrame from '@/components/modal/ModalFrame';
+import { postQuizReward } from '@/api/UploadReward';
 import { DateContext } from '@/context/dateContext';
+import useFormData from '@/hooks/useFormData';
 import '@/styles/global.css';
+import JSZip from 'jszip';
 
 function UploadReward() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null); // 파일 객체를 저장할 상태
-  const [totalReward, setTotalReward] = useState(null);
   const introduce = '파일을 여기로 드래그하거나 클릭하여 선택';
   const [openModal, setOpenModal] = useState(false);
   const { dateInfo } = useContext(DateContext);
@@ -19,9 +19,8 @@ function UploadReward() {
     '폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을 업로드해주세요.',
   );
 
-  useEffect(() => {
-    setTotalReward(5); // 가져오는 api TODO
-  }, []);
+  const totalReward = 500;
+  const createFormData = useFormData();
 
   const handleClick = () => {
     if (!selectedFile) {
@@ -32,9 +31,13 @@ function UploadReward() {
   };
 
   const handleSubmit = async () => {
+    const body = createFormData({
+      file: selectedFile,
+      quizDate: dateInfo,
+    });
     try {
       setIsLoading(true);
-      const response = await postQuizReward(selectedFile, dateInfo);
+      const response = await postQuizReward(body);
       setOpenModal(false);
       if (response.message === 'success') {
         setProcessMessage('파일 업로드를 완료했습니다.');

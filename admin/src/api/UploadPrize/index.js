@@ -1,14 +1,6 @@
-import { post, get } from '@/api/_index';
+import { post, get } from '@/api/index';
 
-const postPrize = (file, ranking) =>
-  post(
-    '/admin/draw-prize',
-    {
-      file,
-      ranking,
-    },
-    true,
-  );
+const postPrize = body => post('/admin/draw-prize', body);
 
 const getProbability = () => get('/admin/draw-probability');
 
