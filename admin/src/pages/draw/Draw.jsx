@@ -7,6 +7,8 @@ import { DateContext } from '@/context/dateContext';
 import useFetch from '@/hooks/useFetch';
 import ModalFrame from '@/components/modal/ModalFrame';
 import useFormData from '@/hooks/useFormData';
+import useNavigationBlocker from '@/hooks/useNavigationBlocker';
+import useBeforeUnload from '@/hooks/useBeforeUnload';
 
 function Draw() {
   const { dateInfo } = useContext(DateContext);
@@ -18,7 +20,18 @@ function Draw() {
   } = useFetch(getAdminDraw, dateInfo);
   const [drawData, setDrawData] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [modified, setModified] = useState(false);
   const createFormData = useFormData();
+
+  useBeforeUnload();
+
+  const {
+    unsavedChangesModal,
+    handleConfirmNavigation,
+    handleCancelNavigation,
+  } = useNavigationBlocker(modified, () => {
+    setModified(false);
+  });
 
   useEffect(() => {
     if (initialData) {
@@ -39,6 +52,7 @@ function Draw() {
   }, [initialData]);
 
   const handleChange = (key, value) => {
+    setModified(true);
     setDrawData(prevState => ({
       ...prevState,
       [key]: value,
@@ -48,9 +62,9 @@ function Draw() {
   const handleSubmit = async () => {
     const formData = createFormData(drawData);
     const response = await putAdminDraw(formData);
-    console.log(response);
     if (response.status === 200) {
       await refetch();
+      setModified(false);
     } else {
       alert('수정이 불가능합니다!');
     }
@@ -81,6 +95,13 @@ function Draw() {
           text="정말 응모 결과를 수정하실 건가요?"
           onClickNo={() => setOpenModal(false)}
           onClickYes={handleSubmit}
+        />
+      )}
+      {unsavedChangesModal && (
+        <ModalFrame
+          text="지금 페이지를 나가시면 작성중인 내용이 삭제됩니다. 정말 페이지를 나가시겠습니까?"
+          onClickNo={handleCancelNavigation}
+          onClickYes={handleConfirmNavigation}
         />
       )}
     </div>
