@@ -19,7 +19,7 @@ function UploadReward() {
     '폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을 업로드해주세요.',
   );
 
-  const totalReward = 5;
+  const totalReward = 500;
   const createFormData = useFormData();
 
   const handleClick = () => {
