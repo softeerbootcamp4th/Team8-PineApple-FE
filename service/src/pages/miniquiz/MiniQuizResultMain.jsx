@@ -23,7 +23,7 @@ function MiniQuizResultMain({ response }) {
           setUserGotPrize(true);
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
     check();

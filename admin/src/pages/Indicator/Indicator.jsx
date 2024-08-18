@@ -21,7 +21,7 @@ function Indicator() {
         setDayNRetention(dayNRetention);
         setDau(dau);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
     getData();

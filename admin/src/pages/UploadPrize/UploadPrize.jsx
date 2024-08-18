@@ -24,8 +24,12 @@ function UploadPrize() {
 
   useEffect(() => {
     const get = async () => {
-      const response = await getProbability();
-      setTotalPrize(response.probabilities);
+      try {
+        const response = await getProbability();
+        setTotalPrize(response.probabilities);
+      } catch (error) {
+        console.error(error);
+      }
     };
     get();
   }, []);
