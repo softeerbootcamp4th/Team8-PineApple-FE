@@ -53,7 +53,7 @@ function DailyComment() {
           일일 기대평 작성하기
         </button>
         <button
-          onClick={handleShareClick}
+          onClick={() => handleShareClick(true)}
           className="flex items-center justify-center bg-transparent border-solid rounded-full border-[1px] border-primary-blue px-1600 py-400 text-detail-2-medium text-primary-blue hover:scale-105 transition-transform duration-300"
         >
           <img src={Link} alt="link icons" className="mr-200" />

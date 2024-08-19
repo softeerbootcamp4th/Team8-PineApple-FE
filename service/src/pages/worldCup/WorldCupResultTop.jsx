@@ -61,7 +61,7 @@ function WorldCupResultTop({ data }) {
       </div>
       <div className="flex items-center justify-center gap-1000">
         <button
-          onClick={handleShareClick}
+          onClick={() => handleShareClick(false)}
           className="bg-transparent rounded-full border-[2px] border-solid border-white px-[140px] py-[16px] text-detail-1-medium text-neutral-white hover-scale-ani"
         >
           공유하기
