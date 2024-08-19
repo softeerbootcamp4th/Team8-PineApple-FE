@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import EntryTable from '@/pages/AdminEventStatus/EntryTable';
 import PrizeTable from '@/pages/AdminEventStatus/PrizeTable';
 
