@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { DateContext } from '@/context/dateContext';
 
 function NavLinkItem({ path, value }) {
+  const { dateInfo } = useContext(DateContext);
+
+  const fullPath = `/${dateInfo}${path}`;
+
   return (
     <NavLink
-      to={path}
+      to={fullPath}
+      end
       className={({ isActive }) =>
         `${
           isActive
