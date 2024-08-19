@@ -94,9 +94,6 @@ function UploadReward() {
       const zipContent = await zip.loadAsync(file);
       const fileKeys = Object.keys(zipContent.files);
 
-      // 허용된 확장자 목록
-      const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
-
       // 디렉토리 파일이 포함되어 있거나, 허용되지 않은 확장자가 포함된 경우 체크
       const hasInvalidFiles = fileKeys.some(key => {
         if (zipContent.files[key].dir) {
@@ -107,9 +104,9 @@ function UploadReward() {
         }
 
         const fileExt = key.split('.').pop().toLowerCase();
-        if (!allowedExtensions.includes(fileExt)) {
+        if ('jpg' !== fileExt) {
           setErrorMessage(
-            `파일 형식은 'jpg', 'jpeg', 'png', 'gif', 'svg'만 가능합니다. ${fileExt} 해당 형식이 있습니다.`,
+            `파일 형식은 'jpg'만 가능합니다. ${fileExt} 형식 파일이 있습니다.`,
           );
           return true; // 허용되지 않은 확장자 포함
         }
