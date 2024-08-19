@@ -6,24 +6,35 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
-  const hideHeader = [
-    '/event/worldCup',
-    '/event/miniQuiz',
-    '/event/worldCupResult',
-    '/event/miniQuizResult',
-    '/event/invalidAccess',
-    '/event/noQuiz',
-    '/event/reward',
-  ].includes(location.pathname);
 
-  const hideFooter = [
-    '/event/worldCup',
-    '/event/miniQuiz',
-    '/event/miniQuizResult',
-    '/event/invalidAccess',
-    '/event/noQuiz',
-    '/event/reward',
-  ].includes(location.pathname);
+  const hideHeaderPattern = [
+    /^\/event\/worldCup$/,
+    /^\/event\/miniQuiz$/,
+    /^\/event\/worldCupResult$/,
+    /^\/event\/miniQuizResult$/,
+    /^\/event\/invalidAccess$/,
+    /^\/event\/noQuiz$/,
+    /^\/event\/reward$/,
+    /^\/event\/comments\/commentId\/\d+$/,
+  ];
+
+  const hideHeader = hideHeaderPattern.some(pattern =>
+    pattern.test(location.pathname),
+  );
+
+  const hideFooterPattern = [
+    /^\/event\/worldCup$/,
+    /^\/event\/miniQuiz$/,
+    /^\/event\/miniQuizResult$/,
+    /^\/event\/invalidAccess$/,
+    /^\/event\/noQuiz$/,
+    /^\/event\/reward$/,
+    /^\/event\/comments\/commentId\/\d+$/,
+  ];
+
+  const hideFooter = hideFooterPattern.some(pattern =>
+    pattern.test(location.pathname),
+  );
 
   return (
     <div className="relative min-w-[1720px]">
