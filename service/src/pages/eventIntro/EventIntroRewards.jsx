@@ -14,9 +14,7 @@ function EventIntroRewards() {
       </span>
       <div className="py-[17px] pl-[31px] pr-[21px] w-full flex justify-between rounded-xl shadow-3xl gap-5000 items-center bg-neutral-white mt-800 mb-[24px]">
         <div>
-          <span className="text-detail-1-bold text-primary-blue mb-500">
-            1등
-          </span>
+          <span className="text-body-2-bold text-primary-blue mb-500">1등</span>
           <p className="text-body-2-bold mb-[16px] text-neutral-black">
             캐스퍼 EV 1명
           </p>
@@ -38,7 +36,7 @@ function EventIntroRewards() {
       <div className="flex justify-between gap-600 mb-600">
         <div className="flex items-center justify-between rounded-xl shadow-3xl bg-neutral-white gap-[100px] w-[700px] h-[260px] px-[31px] relative">
           <div>
-            <span className="text-detail-1-bold text-primary-blue">2등</span>
+            <span className="text-body-2-bold text-primary-blue">2등</span>
             <p className="text-body-2-bold text-neutral-black">
               전기차 구매 보조금
             </p>
@@ -55,7 +53,7 @@ function EventIntroRewards() {
         </div>
         <div className="flex items-center justify-between rounded-xl shadow-3xl bg-neutral-white gap-[100px] w-[700px] h-[260px] px-[31px] relative">
           <div>
-            <span className="text-detail-1-bold text-primary-blue">3등</span>
+            <span className="text-body-2-bold text-primary-blue">3등</span>
             <p className="text-body-2-bold text-neutral-black">
               캐스퍼 EV 옵션
             </p>
@@ -74,7 +72,7 @@ function EventIntroRewards() {
       <div className="flex justify-between gap-600 mb-600">
         <div className="flex items-center justify-between rounded-xl shadow-3xl bg-neutral-white gap-[100px] w-[700px] h-[260px] px-[31px] relative">
           <div>
-            <span className="text-detail-1-bold text-primary-blue">4등</span>
+            <span className="text-body-2-bold text-primary-blue">4등</span>
             <p className="text-body-2-bold text-neutral-black">전기차 충전</p>
             <p className="text-body-2-bold text-neutral-black">
               3만원 쿠폰 100명
@@ -89,7 +87,7 @@ function EventIntroRewards() {
         </div>
         <div className="flex items-center rounded-xl shadow-3xl bg-neutral-white gap-[100px] w-[700px] h-[260px] px-[31px] pr-[30px] relative">
           <div>
-            <span className="text-detail-1-bold text-primary-blue">5등</span>
+            <span className="text-body-2-bold text-primary-blue">5등</span>
             <p className="text-body-2-bold text-neutral-black">
               스타벅스 1만원 쿠폰
             </p>

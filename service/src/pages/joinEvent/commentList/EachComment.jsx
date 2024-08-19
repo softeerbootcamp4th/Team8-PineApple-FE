@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import Heart from '@/assets/icons/heart.svg';
 import FullHeart from '@/assets/icons/fullHeart.svg';
 import timeFormatting from '@/utils/timeFormatting';
@@ -8,9 +9,10 @@ import { AuthContext } from '@/context/authContext';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 
 function EachComment({ comment, indexOfFirstPost, option }) {
+  const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(comment.isLiked);
   const [likeCount, setLikeCount] = useState(comment.likeCount);
-  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
 
   useEffect(() => {
@@ -21,15 +23,14 @@ function EachComment({ comment, indexOfFirstPost, option }) {
   const closePhoneModal = () => {
     setOpenPhoneInputModal(false);
   };
+
   const handleHeart = async () => {
-    // 하트 버튼 클릭할때 로그인 안되어있을떄 로직
     if (userInfo.phoneNumber === undefined) {
       const phoneVerified = await showPhoneInputModal();
       if (!phoneVerified) {
         return;
       }
     } else {
-      // 하트 버튼 클릭할때 로그인 되어있을떄 로직(낙관적 업데이트 방식)
       setIsLiked(prev => !prev);
       setLikeCount(prevCount => prevCount + (isLiked ? -1 : 1));
       try {
@@ -58,8 +59,16 @@ function EachComment({ comment, indexOfFirstPost, option }) {
   };
 
   const registerTime = timeFormatting(comment.postTime);
+
+  const handleCommentClick = () => {
+    navigate(`/event/comment/${comment.id}`);
+  };
+
   return (
-    <div className="flex items-center w-full py-6 pl-1700 pr-2000 mb-500 bg-neutral-white rounded-xl">
+    <div
+      className="flex items-center w-full py-6 pl-1700 pr-2000 mb-500 bg-neutral-white rounded-xl"
+      onClick={handleCommentClick}
+    >
       {option === 'like' ? (
         <div className="flex items-center justify-center w-16 h-10 rounded-full bg-primary-blue text-detail-3-semibold text-neutral-white mr-1000">
           {indexOfFirstPost + 1}등
@@ -85,12 +94,15 @@ function EachComment({ comment, indexOfFirstPost, option }) {
           alt={isLiked ? 'FullHeart' : 'Heart'}
           key={comment.id}
           className="mt-0.5 ml-100"
-          onClick={handleHeart}
+          onClick={e => {
+            e.stopPropagation(); // Prevent event bubbling
+            handleHeart();
+          }}
         />
       </div>
-      {openPhoneInputModal ? (
+      {openPhoneInputModal && (
         <PhoneInputModal closePhoneModal={closePhoneModal} />
-      ) : null}
+      )}
     </div>
   );
 }

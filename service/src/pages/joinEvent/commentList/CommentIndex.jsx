@@ -62,15 +62,21 @@ function CommentIndex() {
         </div>
       </div>
       <div className="mb-2900">
-        {commentList.map((comment, index) => (
-          <EachComment
-            comment={comment}
-            key={comment.id}
-            indexOfFirstPost={(currentPage - 1) * 10 + index}
-            option={option}
-            updateComments={updateComments}
-          />
-        ))}
+        {commentList.length === 0 ? (
+          <div className="set-center text-body-1-bold text-neutral-500 mt-2000">
+            현재 등록된 댓글이 없습니다!!
+          </div>
+        ) : (
+          commentList.map((comment, index) => (
+            <EachComment
+              comment={comment}
+              key={comment.id}
+              indexOfFirstPost={(currentPage - 1) * 10 + index}
+              option={option}
+              updateComments={updateComments}
+            />
+          ))
+        )}
       </div>
       <div className="mb-2000">
         <PagingComment
