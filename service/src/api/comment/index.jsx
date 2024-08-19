@@ -12,4 +12,23 @@ const postLike = commentId => {
   return post('/comments/likes', { commentId: commentId });
 };
 
-export { getComment, postComment, postLike };
+const getEachComment = commentId => {
+  return get(`/comments/commentId?id=${commentId}`);
+};
+
+const getShortenLink = () => {
+  return get(`/shorten-url`);
+};
+
+const getRedirectLink = url => {
+  return get(`/redirect/${url}`);
+};
+
+export {
+  getComment,
+  postComment,
+  postLike,
+  getEachComment,
+  getShortenLink,
+  getRedirectLink,
+};
