@@ -24,6 +24,16 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: 'error',
+        element: <ErrorPage />,
+      },
+    ],
+  },
+  {
+    path: '/:date',
+    element: <App />,
+    children: [
+      {
         element: <ProtectedRoute />,
         children: [
           { index: true, element: <MiniQuiz /> },
@@ -54,10 +64,6 @@ const router = createBrowserRouter([
           {
             path: 'uploadPrize',
             element: <UploadPrize />,
-          },
-          {
-            path: 'error',
-            element: <ErrorPage />,
           },
           {
             path: 'Indicator',

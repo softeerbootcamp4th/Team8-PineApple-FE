@@ -4,7 +4,7 @@ import NavLinkItem from '@/components/header/NavLinkItem';
 function TabHeader() {
   return (
     <div className="pt-1000 flex justify-between items-center w-[90%]">
-      <NavLinkItem path="/" value="미니퀴즈 질문" />
+      <NavLinkItem path="" value="미니퀴즈 질문" />
       <NavLinkItem path="/miniQuizAnswer" value="미니퀴즈 답변" />
       <NavLinkItem path="/draw" value="응모 결과" />
       <NavLinkItem path="/reward" value="상품 목록" />
