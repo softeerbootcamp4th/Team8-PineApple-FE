@@ -22,9 +22,13 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    children: {
+      path: 'error',
+      element: <ErrorPage />,
+    },
   },
   {
-    path: '/:data',
+    path: '/:date',
     element: <App />,
     children: [
       {
@@ -58,10 +62,6 @@ const router = createBrowserRouter([
           {
             path: 'uploadPrize',
             element: <UploadPrize />,
-          },
-          {
-            path: 'error',
-            element: <ErrorPage />,
           },
           {
             path: 'Indicator',
