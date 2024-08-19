@@ -7,11 +7,7 @@ function EventIntroNav() {
   const navigate = useNavigate();
 
   const handleNavigation = section => {
-    if (section != 'main') {
-      navigate(`/event`, { state: { scrollTo: section } });
-    } else {
-      navigate(`/event`);
-    }
+    navigate(`/event`, { state: { scrollTo: section } });
   };
   return (
     <div className="flex justify-center pd-2500 gap-1000">
