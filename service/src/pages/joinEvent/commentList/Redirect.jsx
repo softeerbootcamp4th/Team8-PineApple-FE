@@ -6,7 +6,8 @@ function Redirect() {
   const { commentId } = useParams();
   console.log(commentId);
   const getLink = async () => {
-    await getRedirectLink(commentId);
+    const response = await getRedirectLink(commentId);
+    console.log(response);
   };
 
   useEffect(() => {

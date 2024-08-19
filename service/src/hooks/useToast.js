@@ -27,7 +27,9 @@ const useToast = (duration = 3000) => {
           showToastMessage('notAlreadyComment');
         } else {
           navigator.clipboard
-            .writeText(`http://localhost:5173/event/${response.shortenUrl}`)
+            .writeText(
+              `https://casper-event.store/event/${response.shortenUrl}`,
+            )
             .then(() => {
               showToastMessage('copyLink');
             })
