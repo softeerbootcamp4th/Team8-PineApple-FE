@@ -1,36 +1,21 @@
-import React, { useState, useContext, useEffect } from 'react';
-import CarCard from '@/pages/joinEvent/CarCard';
-import ToolBoxCard from '@/pages/joinEvent/ToolBoxCard';
+import React, { useState, useContext } from 'react';
+import Card1 from '@/pages/joinEvent/Card1';
+import Card2 from '@/pages/joinEvent/Card2';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 import { AuthContext } from '@/context/authContext';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import { postReward } from '@/api/rapple/index';
 import { useNavigate } from 'react-router-dom';
-import { getScenario } from '@/api/scenario';
 
 function JoinEventIntroMain() {
   const navigate = useNavigate();
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
-  const [day, setDay] = useState(null);
-  const [scenario, setScenario] = useState('');
-  const { car, toolBoxCnt, phoneNumber } = userInfo;
-  const isRewardButtonDisabled = !phoneNumber || !car || toolBoxCnt === 0;
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await getScenario();
-        console.log(response);
-        const { day, commonScenario } = response;
-        setDay(day);
-        setScenario(commonScenario);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getData();
-  }, []);
+  const { car, toolBoxCnt, phoneNumber } = userInfo;
+  let day = 2;
+  const details = `캐스퍼 EV와 떠날 시간!\n깜빡하고 차키를 안 가져왔네요.. 어떻게 해야할까요?`;
+  const disabled = !phoneNumber || !car || toolBoxCnt === 0; // 결과 보기 버튼 클릭 가능 여부 변수명 변경 필요
 
   const openPhoneModal = () => {
     setOpenPhoneInputModal(true);
@@ -41,17 +26,13 @@ function JoinEventIntroMain() {
   };
 
   const handleReward = async () => {
-    try {
-      const response = await postReward();
-      if (response && response.image) {
-        const updatedUserInfo = { ...userInfo, toolBoxCnt: toolBoxCnt - 1 };
-        setUserInfo(updatedUserInfo);
-        navigate(`/event/reward`, { state: response });
-      } else {
-        console.log('유효하지 않은 응답입니다: ', response);
-      }
-    } catch (error) {
-      console.error(error);
+    const response = await postReward();
+    if (response && response.image) {
+      const updatedUserInfo = { ...userInfo, toolBoxCnt: toolBoxCnt - 1 };
+      navigate(`/event/reward`, { state: response });
+      setUserInfo(updatedUserInfo);
+    } else {
+      console.log('유효하지 않은 응답입니다: ', response);
     }
   };
 
@@ -61,9 +42,9 @@ function JoinEventIntroMain() {
         <div className="flex gap-2000 px-3000">
           <div className="space-y-1200">
             <div className="flex items-center gap-300">
-              <CarCard />
+              <Card1 />
               <div className="text-heading-1-bold text-neutral-white">+</div>
-              <ToolBoxCard />
+              <Card2 />
             </div>
             <div
               className={`text-center underline text-neutral-white text-shadow-default ${phoneNumber ? 'invisible' : 'visible'}`}
@@ -82,17 +63,17 @@ function JoinEventIntroMain() {
               Day {day}
             </div>
             <div className="whitespace-pre-line h-1800 text-detail-1-regular text-neutral-black mb-1500">
-              {scenario}
+              {details}
             </div>
             <div>
               <BluePurpleButton
                 value="결과 보기"
                 onClickFunc={handleReward}
                 styles="text-body-3-regular px-5000 py-400"
-                disabled={isRewardButtonDisabled}
+                disabled={disabled}
               />
             </div>
-            {isRewardButtonDisabled && (
+            {disabled && (
               <>
                 <div className="absolute top-[417px] left-[279px] h-0 w-0 border-x-[12px] border-b-[12px] border-x-transparent border-b-neutral-white"></div>
                 <div className="absolute top-[423px] left-[91px] w-[400px] rounded-[5px] py-300 text-center bg-neutral-white text-primary-blue">
