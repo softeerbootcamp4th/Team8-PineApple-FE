@@ -21,12 +21,14 @@ function EventIntroNavItem({ item }) {
           </span>
         </div>
       ) : null}
-      <div className="bg-neutral-white p-[17px] ">
+      <div className="bg-neutral-white p-[17px]">
         <span className="text-detail-3-semibold text-primary-blue">
           {item.tag}
         </span>
-        <p className="text-detail-1-bold text-neutral-black">{item.title1}</p>
-        <p className="text-detail-1-bold text-neutral-black mb-[12px]">
+        <p className="text-detail-1-bold text-neutral-black mt-[5px]">
+          {item.title1}
+        </p>
+        <p className="text-detail-1-bold text-neutral-black mb-[16px]">
           {item.title2}
         </p>
         <p className="text-detail-3-regular text-neutral-500">{item.body}</p>

@@ -10,6 +10,8 @@ import { DateContext } from '@/context/dateContext';
 import useFetch from '@/hooks/useFetch';
 import ModalFrame from '@/components/modal/ModalFrame';
 import useFormData from '@/hooks/useFormData';
+import useNavigationBlocker from '@/hooks/useNavigationBlocker';
+import useBeforeUnload from '@/hooks/useBeforeUnload';
 
 function MiniQuizAnswer() {
   const { dateInfo } = useContext(DateContext);
@@ -22,6 +24,17 @@ function MiniQuizAnswer() {
   const [quizAnswerData, setQuizAnswerData] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const createFormData = useFormData();
+  const [modified, setModified] = useState(false);
+
+  useBeforeUnload();
+
+  const {
+    unsavedChangesModal,
+    handleConfirmNavigation,
+    handleCancelNavigation,
+  } = useNavigationBlocker(modified, () => {
+    setModified(false);
+  });
 
   useEffect(() => {
     if (initialData) {
@@ -35,6 +48,7 @@ function MiniQuizAnswer() {
     const response = await putAdminMiniQuizAnswer(dateInfo, formData);
     if (response.status === 200) {
       await refetch();
+      setModified(false);
     } else {
       alert('수정이 불가능합니다!');
     }
@@ -54,6 +68,7 @@ function MiniQuizAnswer() {
   }
 
   const handleChange = (field, value) => {
+    setModified(true);
     setQuizAnswerData(prevState => ({
       ...prevState,
       [field]: value,
@@ -75,6 +90,13 @@ function MiniQuizAnswer() {
           text="정말 미니퀴즈 답변을 수정하실 건가요?"
           onClickNo={() => setOpenModal(false)}
           onClickYes={HandleSubmit}
+        />
+      )}
+      {unsavedChangesModal && (
+        <ModalFrame
+          text="지금 페이지를 나가시면 작성중인 내용이 삭제됩니다. 정말 페이지를 나가시겠습니까?"
+          onClickNo={handleCancelNavigation}
+          onClickYes={handleConfirmNavigation}
         />
       )}
     </div>

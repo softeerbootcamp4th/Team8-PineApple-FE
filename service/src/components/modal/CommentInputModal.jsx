@@ -43,7 +43,7 @@ function CommentInputModal({
           className="w-[440px] h-[200px] p-500 mb-700 text-detail-2-medium text-neutral-black placeholder:text-detail-2-medium placeholder-neutral-500 bg-neutral-50 rounded-lg resize-none"
         ></textarea>
         <span className="absolute top-[45%] left-[70%] text-detail-3-regular text-neutral-500">{`${inputComment.length}/50`}</span>
-        <p className="mb-700 text-neutral-500 text-detail-3-regular">
+        <p className="mb-700 text-neutral-black text-detail-2-bold">
           기대평을 등록한 후에는 다시 수정할 수 없어요!
         </p>
 

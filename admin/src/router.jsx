@@ -5,6 +5,7 @@ import MiniQuiz from '@/pages/miniQuiz/MiniQuiz';
 import MiniQuizAnswer from '@/pages/miniQuizAnswer/MiniQuizAnswer';
 import Draw from '@/pages/draw/Draw';
 import Reward from '@/pages/reward/Reward';
+import Probability from '@/pages/probability/Probability';
 import AdminEventStatus from '@/pages/AdminEventStatus/AdminEventStatus';
 import UploadReward from '@/pages/UploadReward/UploadReward';
 import UploadPrize from '@/pages/UploadPrize/UploadPrize';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: 'reward',
             element: <Reward />,
+          },
+          {
+            path: 'probability',
+            element: <Probability />,
           },
           {
             path: 'adminEventStatus',

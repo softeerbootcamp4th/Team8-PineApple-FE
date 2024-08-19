@@ -6,8 +6,16 @@ const useFormData = () => {
 
     Object.keys(data).forEach(key => {
       if (data[key] !== undefined && data[key] !== null) {
-        console.log(data[key]);
-        formData.append(key, data[key]);
+        if (
+          typeof data[key] === 'string' &&
+          data[key].includes(
+            'https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/',
+          )
+        ) {
+          // 아무것도 안함
+        } else {
+          formData.append(key, data[key]);
+        }
       }
     });
 
