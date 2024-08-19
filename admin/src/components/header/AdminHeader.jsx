@@ -3,9 +3,11 @@ import NextDayArrow from '@/assets/icons/nextDayArrow.svg';
 import PreviousDayArrow from '@/assets/icons/previousDayArrow.svg';
 import dateFormatting from '@/utils/dateFormatting';
 import { DateContext } from '@/context/dateContext';
+import { useNavigate } from 'react-router-dom';
 
 function AdminHeader() {
-  const { dateInfo, setDateInfo } = useContext(DateContext);
+  const navigator = useNavigate();
+  const { dateInfo } = useContext(DateContext);
   const [isNextDayDisabled, setIsNextDayDisabled] = useState(false);
   const [isPreviousDayDisabled, setIsPreviousDayDisabled] = useState(false);
 
@@ -18,7 +20,7 @@ function AdminHeader() {
     if (!isPreviousDayDisabled) {
       const previousDay = new Date(dateInfo);
       previousDay.setDate(previousDay.getDate() - 1);
-      setDateInfo(dateFormatting(previousDay));
+      navigator(`/${dateFormatting(previousDay)}`);
     }
   };
 
@@ -26,7 +28,7 @@ function AdminHeader() {
     if (!isNextDayDisabled) {
       const nextDay = new Date(dateInfo);
       nextDay.setDate(nextDay.getDate() + 1);
-      setDateInfo(dateFormatting(nextDay));
+      navigator(`/${dateFormatting(nextDay)}`);
     }
   };
   return (
