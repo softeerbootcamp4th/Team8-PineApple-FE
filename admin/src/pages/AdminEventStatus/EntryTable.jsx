@@ -15,12 +15,19 @@ const EntryTable = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await getDrawHistory(currentPage - 1, rowsPerPage, sort);
-      const { drawHistories, totalPages, totalItems } = response;
-      setPageData(drawHistories);
-      setTotalPages(totalPages);
-      //setTotalRows(response.totalItems);
-      setTotalRows(totalPages * rowsPerPage);
+      try {
+        const response = await getDrawHistory(
+          currentPage - 1,
+          rowsPerPage,
+          sort,
+        );
+        const { drawHistories, totalPages, totalItems } = response;
+        setPageData(drawHistories);
+        setTotalPages(totalPages);
+        setTotalRows(totalItems);
+      } catch (error) {
+        console.error(error);
+      }
     };
     getData();
   }, [rowsPerPage, currentPage, sort]);

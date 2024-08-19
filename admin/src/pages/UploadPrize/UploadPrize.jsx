@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import BlackButton from '@/components/buttons/BlackButton';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { postPrize, getProbability } from '@/api/UploadPrize';
+import useNavigationBlocker from '@/hooks/useNavigationBlocker';
 import useFormData from '@/hooks/useFormData';
 import '@/styles/global.css';
 import JSZip from 'jszip';
@@ -22,10 +23,22 @@ function UploadPrize() {
 
   const createFormData = useFormData();
 
+  const {
+    unsavedChangesModal,
+    handleConfirmNavigation,
+    handleCancelNavigation,
+  } = useNavigationBlocker(selectedFile, () => {
+    setSelectedFile(null);
+  });
+
   useEffect(() => {
     const get = async () => {
-      const response = await getProbability();
-      setTotalPrize(response.probabilities);
+      try {
+        const response = await getProbability();
+        setTotalPrize(response.probabilities);
+      } catch (error) {
+        console.error(error);
+      }
     };
     get();
   }, []);
@@ -227,6 +240,13 @@ function UploadPrize() {
           text={`정말로 ${rank}등 상품을 등록하시겠습니까??`}
           onClickNo={() => setOpenSubmitModal(false)}
           onClickYes={() => handleSubmit()}
+        />
+      )}
+      {unsavedChangesModal && (
+        <ModalFrame
+          text="지금 페이지를 나가시면 작성중인 내용이 삭제됩니다. 정말 페이지를 나가시겠습니까?"
+          onClickNo={handleCancelNavigation}
+          onClickYes={handleConfirmNavigation}
         />
       )}
     </div>

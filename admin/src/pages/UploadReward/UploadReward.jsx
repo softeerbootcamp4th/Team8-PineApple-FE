@@ -5,6 +5,7 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { postQuizReward } from '@/api/UploadReward';
 import { DateContext } from '@/context/dateContext';
 import useFormData from '@/hooks/useFormData';
+import useNavigationBlocker from '@/hooks/useNavigationBlocker';
 import '@/styles/global.css';
 import JSZip from 'jszip';
 
@@ -21,6 +22,14 @@ function UploadReward() {
 
   const totalReward = 500;
   const createFormData = useFormData();
+
+  const {
+    unsavedChangesModal,
+    handleConfirmNavigation,
+    handleCancelNavigation,
+  } = useNavigationBlocker(selectedFile, () => {
+    setSelectedFile(null);
+  });
 
   const handleClick = () => {
     if (!selectedFile) {
@@ -181,6 +190,13 @@ function UploadReward() {
           text="정말로 등록하시겠습니까??"
           onClickNo={() => setOpenModal(false)}
           onClickYes={() => handleSubmit()}
+        />
+      )}
+      {unsavedChangesModal && (
+        <ModalFrame
+          text="지금 페이지를 나가시면 작성중인 내용이 삭제됩니다. 정말 페이지를 나가시겠습니까?"
+          onClickNo={handleCancelNavigation}
+          onClickYes={handleConfirmNavigation}
         />
       )}
     </div>

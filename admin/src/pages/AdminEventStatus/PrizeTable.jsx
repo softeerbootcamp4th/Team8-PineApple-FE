@@ -6,8 +6,12 @@ function PrizeTable() {
 
   useEffect(() => {
     const getData = async () => {
-      const remaining = await getDrawRemaining();
-      setRemaining(remaining.drawRemaining);
+      try {
+        const remaining = await getDrawRemaining();
+        setRemaining(remaining.drawRemaining);
+      } catch (error) {
+        console.error(error);
+      }
     };
     getData();
   }, []);

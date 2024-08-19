@@ -45,8 +45,8 @@
             'linear-gradient(180deg, #E0EAFF 0%, #FFF 100%)',
           'gradient-cobaltblue-white-vertical':
             'linear-gradient(180deg, #C5F0FF 0%, #FFF 100%)',
-          card1: 'linear-gradient(180deg, #C5F0FF 0%, #FFF 99.95%)',
-          card2: 'linear-gradient(180deg, #E0EAFF 0%, #FFF 99.95%)',
+          carCard: 'linear-gradient(180deg, #C5F0FF 0%, #FFF 99.95%)',
+          toolBoxCard: 'linear-gradient(180deg, #E0EAFF 0%, #FFF 99.95%)',
         },
         fontFamily: { poppins: ['"Poppins"', 'sans-serif'] },
         fontSize: {
