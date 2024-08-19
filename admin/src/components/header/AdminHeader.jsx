@@ -4,17 +4,31 @@ import PreviousDayArrow from '@/assets/icons/previousDayArrow.svg';
 import dateFormatting from '@/utils/dateFormatting';
 import { DateContext } from '@/context/dateContext';
 import { useNavigate } from 'react-router-dom';
+import { putEventSchedules, getEventSchedules } from '@/api/header/index';
 
 function AdminHeader() {
   const navigator = useNavigate();
   const { dateInfo } = useContext(DateContext);
   const [isNextDayDisabled, setIsNextDayDisabled] = useState(false);
   const [isPreviousDayDisabled, setIsPreviousDayDisabled] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
-    setIsNextDayDisabled(dateInfo === '2024-08-31');
-    setIsPreviousDayDisabled(dateInfo === '2024-07-28');
+    const getDate = async () => {
+      const response = await getEventSchedules();
+      const startDate = new Date(response[0].date);
+      const finishDate = new Date(startDate);
+      const currentDate = new Date(dateInfo);
+      finishDate.setDate(startDate.getDate() + 13);
+      setIsPreviousDayDisabled(currentDate.getTime() === startDate.getTime());
+      setIsNextDayDisabled(currentDate.getTime() === finishDate.getTime());
+    };
+    getDate();
   }, [dateInfo]);
+
+  const handleDateChange = event => {
+    setSelectedDate(event.target.value);
+  };
 
   const handlePreviousDay = () => {
     if (!isPreviousDayDisabled) {
@@ -31,8 +45,13 @@ function AdminHeader() {
       navigator(`/${dateFormatting(nextDay)}`);
     }
   };
+
+  const handleSubmit = () => {
+    putEventSchedules(selectedDate);
+  };
+
   return (
-    <div className="pt-1000 flex justify-between w-[90%]">
+    <div className="pt-1000 flex justify-between w-[90%] items-center">
       <div className="set-center gap-500">
         <span className="text-heading-2-bold text-neutral-black">
           이벤트 관리
@@ -54,6 +73,23 @@ function AdminHeader() {
             className={`w-[35px] h-auto ${isNextDayDisabled ? 'cursor-default opacity-50' : 'cursor-pointer hover:scale-110 transition-transform duration-200'}`}
             onClick={handleNextDay}
           />
+        </div>
+      </div>
+      <div>
+        <div className="flex gap-300">
+          <label htmlFor="date">시작일 설정: </label>
+          <input
+            type="date"
+            id="date"
+            value={selectedDate}
+            onChange={handleDateChange}
+          />
+          <button
+            className="text-white bg-neutral-black"
+            onClick={handleSubmit}
+          >
+            전송
+          </button>
         </div>
       </div>
     </div>
