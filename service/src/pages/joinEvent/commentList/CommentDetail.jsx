@@ -1,28 +1,27 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-// import { getCommentDetail } from '@/api/comment/index';
+import { useParams, useNavigate } from 'react-router-dom';
 import CommentModal from '@/components/modal/CommentModal';
 import { AuthContext } from '@/context/authContext';
-import { useNavigate } from 'react-router-dom';
+import { getEachComment, postLike } from '@/api/comment';
+import PhoneInputModal from '@/components/modal/PhoneInputModal';
 
 function CommentDetail() {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
-  const { commentId } = useParams(); // Get commentId from URL params
-  const [comment, setComment] = useState({
-    content: '하이',
-    id: 21,
-    isLiked: false,
-    likeCount: 1,
-    phoneNumber: '010-4xxx-1xxx',
-    postTime: '2024-08-17T10:30:19.44571',
-  });
-
+  const { commentId } = useParams();
+  const [comment, setComment] = useState({});
+  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
   const [openCommentModal, setOpenCommentModal] = useState(true);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
 
   const closeCommentModal = () => {
     setOpenCommentModal(false);
     navigate(`/`);
+  };
+
+  const closePhoneModal = () => {
+    setOpenPhoneInputModal(false);
   };
 
   const handleHeart = async () => {
@@ -32,25 +31,30 @@ function CommentDetail() {
         return;
       }
     } else {
-      setIsLiked(prev => !prev);
-      setLikeCount(prevCount => prevCount + (isLiked ? -1 : 1));
+      const newLikeStatus = !isLiked;
+      setIsLiked(newLikeStatus);
+      setLikeCount(prevCount => prevCount + (newLikeStatus ? 1 : -1));
+
       try {
-        const response = await postLike(comment.id);
+        await postLike(comment.id);
       } catch (error) {
         setIsLiked(isLiked);
         setLikeCount(prevCount => prevCount + (isLiked ? 1 : -1));
-        alert('네트워크환경이 불안정합니다');
+        alert('네트워크 환경이 불안정합니다');
       }
     }
+    setOpenCommentModal(true);
   };
 
   const showPhoneInputModal = () => {
-    // setOpenPhoneInputModal(true);
+    setOpenCommentModal(false);
+    setOpenPhoneInputModal(true);
     return new Promise(resolve => {
       const checkPhoneVerification = () => {
         if (localStorage.getItem('userInfo')) {
           resolve(true);
-          //   setOpenPhoneInputModal(false);
+          setOpenPhoneInputModal(false);
+          fetchComment();
         } else {
           setTimeout(checkPhoneVerification, 1000);
         }
@@ -59,22 +63,28 @@ function CommentDetail() {
     });
   };
 
-  //   useEffect(() => {
-  //     const fetchComment = async () => {
-  //       try {
-  //         const response = await getCommentDetail(commentId);
-  //         setComment(response.data);
-  //       } catch (error) {
-  //         console.error('Failed to fetch comment detail:', error);
-  //       }
-  //     };
+  const fetchComment = async () => {
+    try {
+      const response = await getEachComment(commentId);
+      setComment(response);
+      setIsLiked(response.isLiked);
+      setLikeCount(response.likeCount);
+    } catch (error) {
+      console.error('Failed to fetch comment detail:', error);
+    }
+  };
 
-  //     fetchComment();
-  //   }, [commentId]);
+  useEffect(() => {
+    if (userInfo.phoneNumber !== undefined) {
+      fetchComment();
+    }
 
-  //   if (!comment) {
-  //     return <div>Loading...</div>;
-  //   }
+    fetchComment();
+  }, [userInfo]);
+
+  if (!comment) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -83,7 +93,12 @@ function CommentDetail() {
           data={comment}
           closeCommentModal={closeCommentModal}
           handleHeart={handleHeart}
+          isLiked={isLiked}
+          likeCount={likeCount}
         />
+      )}
+      {openPhoneInputModal && (
+        <PhoneInputModal closePhoneModal={closePhoneModal} />
       )}
     </div>
   );
