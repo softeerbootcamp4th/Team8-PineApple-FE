@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { postComment } from '@/api/comment/index';
 import ModalFrame from './ModalFrame';
 import BlueButton from '@/components/buttons/BlueButton';
+import { useAnimation } from 'framer-motion';
 
 function CommentInputModal({
   closeCommentModal,
   AlreadyPostComment,
   setResultModalOpen,
 }) {
+  const controls = useAnimation();
+
   const [inputComment, setInputComment] = useState('');
   const handleInputText = e => {
     if (e.target.value.length > 50) {
@@ -29,11 +32,20 @@ function CommentInputModal({
       console.error('댓글 등록 API 통신 실패:', error);
     }
   };
+
+  const handleDisabledClick = () => {
+    controls.start({
+      x: [0, -20, 20, -20, 20, 0],
+      transition: { duration: 0.5, ease: 'easeInOut' },
+    });
+  };
+
   return (
     <ModalFrame
       handleExit={closeCommentModal}
       tag="툴 박스 1개"
       title="일일 한줄 기대평 이벤트"
+      controls={controls}
     >
       <div className="relative flex-col px-3000 set-center">
         <textarea
@@ -47,20 +59,12 @@ function CommentInputModal({
           기대평을 등록한 후에는 다시 수정할 수 없어요!
         </p>
 
-        {inputComment != '' ? (
-          <BlueButton
-            value="확인"
-            onClickFunc={handleComment}
-            styles="px-2000 py-200 text-body-3-semibold"
-          />
-        ) : (
-          <BlueButton
-            value="확인"
-            onClickFunc={handleComment}
-            styles="px-2000 py-200 text-body-3-semibold"
-            disabled={true}
-          />
-        )}
+        <BlueButton
+          value="확인"
+          onClickFunc={inputComment != '' ? handleComment : handleDisabledClick}
+          styles="px-2000 py-200 text-body-3-semibold"
+          disabled={inputComment === ''}
+        />
       </div>
     </ModalFrame>
   );
