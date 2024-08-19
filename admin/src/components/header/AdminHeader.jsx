@@ -3,10 +3,11 @@ import NextDayArrow from '@/assets/icons/nextDayArrow.svg';
 import PreviousDayArrow from '@/assets/icons/previousDayArrow.svg';
 import dateFormatting from '@/utils/dateFormatting';
 import { DateContext } from '@/context/dateContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { putEventSchedules, getEventSchedules } from '@/api/header/index';
 
 function AdminHeader() {
+  const location = useLocation();
   const navigator = useNavigate();
   const { dateInfo } = useContext(DateContext);
   const [isNextDayDisabled, setIsNextDayDisabled] = useState(false);
@@ -17,9 +18,8 @@ function AdminHeader() {
     const getDate = async () => {
       const response = await getEventSchedules();
       const startDate = new Date(response[0].date);
-      const finishDate = new Date(startDate);
+      const finishDate = new Date(response[13].date);
       const currentDate = new Date(dateInfo);
-      finishDate.setDate(startDate.getDate() + 13);
       setIsPreviousDayDisabled(currentDate.getTime() === startDate.getTime());
       setIsNextDayDisabled(currentDate.getTime() === finishDate.getTime());
     };
@@ -34,7 +34,9 @@ function AdminHeader() {
     if (!isPreviousDayDisabled) {
       const previousDay = new Date(dateInfo);
       previousDay.setDate(previousDay.getDate() - 1);
-      navigator(`/${dateFormatting(previousDay)}`);
+      const pathSegments = location.pathname.split('/');
+      const tabName = pathSegments[2];
+      navigator(`/${dateFormatting(previousDay)}/${tabName}`);
     }
   };
 
@@ -42,7 +44,9 @@ function AdminHeader() {
     if (!isNextDayDisabled) {
       const nextDay = new Date(dateInfo);
       nextDay.setDate(nextDay.getDate() + 1);
-      navigator(`/${dateFormatting(nextDay)}`);
+      const pathSegments = location.pathname.split('/');
+      const tabName = pathSegments[2];
+      navigator(`/${dateFormatting(nextDay)}/${tabName}`);
     }
   };
 
