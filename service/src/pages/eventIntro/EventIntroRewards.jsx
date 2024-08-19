@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Prize1 from '@/assets/images/1stPrize.png';
 import Prize2 from '@/assets/images/prize2.png';
 import Prize3 from '@/assets/images/prize3.png';
 import Prize4 from '@/assets/images/prize4.png';
 import Prize5_1 from '@/assets/images/prize5_1.png';
 import Prize5_2 from '@/assets/images/prize5_2.png';
+import { getPrizeInfo } from '@/api/rapple/index';
 
 function EventIntroRewards() {
+  const getInfo = async () => {
+    const data = await getPrizeInfo();
+    if (data) {
+      console.log(data);
+    }
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, []);
+
   return (
     <div className="pt-2500 pb-4000 px-4000">
       <span className="text-heading-2-bold text-neutral-black">

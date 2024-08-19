@@ -8,4 +8,8 @@ const postSendPrize = prizeId => {
   return post(`/draw/rewards/send-prize`, { prizeId: prizeId });
 };
 
-export { postReward, postSendPrize };
+const getPrizeInfo = () => {
+  return get(`/draw/prize-infos`);
+};
+
+export { postReward, postSendPrize, getPrizeInfo };

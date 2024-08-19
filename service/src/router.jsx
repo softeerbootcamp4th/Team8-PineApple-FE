@@ -11,6 +11,7 @@ import MiniQuizResult from '@/pages/miniquiz/MiniQuizResult';
 import NoQuiz from '@/pages/miniquiz/NoQuiz';
 import Reward from '@/pages/joinEvent/Reward';
 import CommentDetail from '@/pages/joinEvent/commentList/CommentDetail';
+import Redirect from '@/pages/joinEvent/commentList/Redirect';
 
 const router = createBrowserRouter([
   {
@@ -50,8 +51,12 @@ const router = createBrowserRouter([
             element: <Reward />,
           },
           {
-            path: 'comment/:commentId',
+            path: 'comments/commentId/:commentId',
             element: <CommentDetail />,
+          },
+          {
+            path: ':commentId',
+            element: <Redirect />,
           },
         ],
       },
