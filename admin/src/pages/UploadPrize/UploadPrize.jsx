@@ -79,6 +79,7 @@ function UploadPrize() {
       file: selectedFile,
       ranking: rank,
     });
+
     try {
       setIsLoading(true);
       const response = await postPrize(body);
@@ -230,7 +231,7 @@ function UploadPrize() {
       {openChangeModal && (
         <ModalFrame
           text="지금 이동하면 등록한 파일이 삭제됩니다. 이동하시겠습니까??"
-          onClickNo={() => setOpenSubmitModal(false)}
+          onClickNo={() => setOpenChangeModal(false)}
           onClickYes={() => handleMove()}
         />
       )}
