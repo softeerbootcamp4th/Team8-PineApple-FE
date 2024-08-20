@@ -9,6 +9,7 @@ function PhoneAuthModal({
   option,
   setResultModalOpen,
   closeAuthModal,
+  handleDisabledClick,
 }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [validateCode, setValidateCode] = useState('');
@@ -63,20 +64,12 @@ function PhoneAuthModal({
           </span>
         )}
       </div>
-      {isValid ? (
-        <BlueButton
-          value="인증번호 확인"
-          onClickFunc={handleAuth}
-          styles="px-2000 py-400 text-body-3-semibold"
-        />
-      ) : (
-        <BlueButton
-          value="인증번호 확인"
-          onClickFunc={handleAuth}
-          styles="px-2000 py-400 text-body-3-semibold"
-          disabled={true}
-        />
-      )}
+      <BlueButton
+        value="인증번호 확인"
+        onClickFunc={isValid ? handleAuth : handleDisabledClick}
+        styles="px-2000 py-400 text-body-3-semibold"
+        disabled={!isValid}
+      />
     </>
   );
 }
@@ -86,6 +79,7 @@ PhoneAuthModal.propTypes = {
   setResultModalOpen: PropTypes.func,
   closeAuthModal: PropTypes.func.isRequired,
   option: PropTypes.string,
+  handleDisabledClick: PropTypes.func.isRequired,
 };
 
 export default PhoneAuthModal;

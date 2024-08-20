@@ -7,7 +7,6 @@ function BlueButton({ value, styles, onClickFunc, disabled = false }) {
     <button
       onClick={onClickFunc}
       className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover-scale-ani'} set-center rounded-full bg-primary-blue text-neutral-white`}
-      disabled={disabled}
     >
       {value}
     </button>
