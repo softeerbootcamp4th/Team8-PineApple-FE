@@ -4,7 +4,6 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { postPrize, getProbability } from '@/api/UploadPrize';
 import useNavigationBlocker from '@/hooks/useNavigationBlocker';
 import useFormData from '@/hooks/useFormData';
-import '@/styles/global.css';
 import JSZip from 'jszip';
 
 function UploadPrize() {

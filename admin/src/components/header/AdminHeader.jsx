@@ -36,7 +36,9 @@ function AdminHeader() {
       previousDay.setDate(previousDay.getDate() - 1);
       const pathSegments = location.pathname.split('/');
       const tabName = pathSegments[2];
-      navigator(`/${dateFormatting(previousDay)}/${tabName}`);
+      navigator(
+        `/${dateFormatting(previousDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
+      );
     }
   };
 
@@ -46,7 +48,9 @@ function AdminHeader() {
       nextDay.setDate(nextDay.getDate() + 1);
       const pathSegments = location.pathname.split('/');
       const tabName = pathSegments[2];
-      navigator(`/${dateFormatting(nextDay)}/${tabName}`);
+      navigator(
+        `/${dateFormatting(nextDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
+      );
     }
   };
 

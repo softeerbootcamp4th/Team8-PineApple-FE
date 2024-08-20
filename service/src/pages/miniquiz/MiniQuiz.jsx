@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import EventHeader from '@/components/header/EventHeader';
 import ExitModal from '@/components/modal/ExitModal';
 import MiniQuizMain from '@/pages/miniquiz/MiniQuizMain';
-import '@/styles/global.css';
 
 function MiniQuiz() {
   const [openExitModal, setOpenExitModal] = useState(false);

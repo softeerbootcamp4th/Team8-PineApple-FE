@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '@/styles/global.css';
 
 function BlueButton({ value, styles, onClickFunc, disabled = false }) {
   return (

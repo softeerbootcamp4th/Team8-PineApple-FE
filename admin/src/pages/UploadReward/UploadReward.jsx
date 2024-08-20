@@ -6,7 +6,6 @@ import { postQuizReward } from '@/api/UploadReward';
 import { DateContext } from '@/context/dateContext';
 import useFormData from '@/hooks/useFormData';
 import useNavigationBlocker from '@/hooks/useNavigationBlocker';
-import '@/styles/global.css';
 import JSZip from 'jszip';
 
 function UploadReward() {

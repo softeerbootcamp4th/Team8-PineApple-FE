@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '@/styles/global.css';
 
 function ClickBox({ id, value, isChosen, onClick }) {
   let className =

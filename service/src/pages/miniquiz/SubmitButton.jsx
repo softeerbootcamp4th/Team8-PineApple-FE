@@ -3,7 +3,6 @@ import { postAnswer } from '@/api/miniQuiz';
 import { useNavigate } from 'react-router-dom';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import PropTypes from 'prop-types';
-import '@/styles/global.css';
 
 function SubmitButton({ quizId, isChosen, disabled, setDisabled }) {
   const navigate = useNavigate();

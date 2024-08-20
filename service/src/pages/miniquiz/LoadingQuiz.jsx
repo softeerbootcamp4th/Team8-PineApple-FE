@@ -2,7 +2,6 @@ import React, { useEffect, useCallback, useState } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import WhiteButton from '@/components/buttons/WhiteButton';
 import { useNavigate } from 'react-router-dom';
-import '@/styles/global.css';
 
 function LoadingQuiz() {
   const navigate = useNavigate();
