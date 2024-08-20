@@ -4,11 +4,13 @@ import WorldCupTitle from './WorldCupTitle';
 import PropTypes from 'prop-types';
 import ExitModal from '@/components/modal/ExitModal';
 import useBeforeUnload from '@/hooks/useBeforeUnload';
+import { motion } from 'framer-motion';
 
 function WorldCupGame({ title = '8강', onSelect, roundData }) {
   const [currentState, setCurrentState] = useState(0);
   const [animationClass, setAnimationClass] = useState('');
   const [openExitModal, setOpenExitModal] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useBeforeUnload();
 
@@ -33,22 +35,28 @@ function WorldCupGame({ title = '8강', onSelect, roundData }) {
   };
 
   const handleCurrentState = isChosen => {
-    if (animationClass) return;
+    if (isAnimating) return;
     setCurrentState(isChosen ? -1 : 1);
   };
 
   const handleMouseLeave = () => setCurrentState(0);
 
   const handleAnimation = isChosen => {
+    if (isAnimating) return;
+
+    setIsAnimating(true);
     setCurrentState(0);
+
     if (isChosen) {
       setAnimationClass('animate-slide-left-to-right');
     } else {
       setAnimationClass('animate-slide-right-to-left');
     }
+
     setTimeout(() => {
       setAnimationClass('');
       onSelect(isChosen);
+      setIsAnimating(false);
     }, 1500);
   };
 
@@ -99,45 +107,59 @@ function WorldCupGame({ title = '8강', onSelect, roundData }) {
       ) : null}
       <div className="flex h-screen">
         <div className={getContainerClass(true)}>
-          <div
-            className={`w-[455px] h-[435px] rounded-[35px] z-[50] flex items-start pt-2 mb-1000 justify-center ${currentState === -1 ? 'bg-gradient-blue-purple' : 'bg-transparent'}`}
+          <motion.div
+            key={roundData[0].id + title}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <img
-              src={getLeftImageSrc()}
-              alt={roundData[0].story}
-              key={roundData[0].id}
-              onMouseEnter={() => handleCurrentState(true)}
-              onMouseLeave={handleMouseLeave}
-              onClick={() => handleAnimation(true)}
-              className={`z-[100] w-[440px] h-[490px] ${animationClass === 'animate-slide-right-to-left' ? 'hidden' : null}`}
-            />
-          </div>
+            <div
+              className={`w-[455px] h-[435px] cursor-pointer rounded-[35px] z-[50] flex items-start pt-2 mb-1000 justify-center ${currentState === -1 ? 'bg-gradient-blue-purple' : 'bg-transparent'}`}
+            >
+              <img
+                src={getLeftImageSrc()}
+                alt={roundData[0].story}
+                key={roundData[0].id}
+                onMouseEnter={() => handleCurrentState(true)}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleAnimation(true)}
+                className={`z-[100] w-[440px] h-[490px] ${animationClass === 'animate-slide-right-to-left' ? 'hidden' : null}`}
+              />
+            </div>
 
-          <p
-            className={`text-detail-2-semibold ${getTextLeftStyle()} ${animationClass === 'animate-slide-right-to-left' ? 'hidden' : null}`}
-          >
-            {roundData[0].story}
-          </p>
+            <p
+              className={`text-center text-detail-2-semibold ${getTextLeftStyle()} ${animationClass === 'animate-slide-right-to-left' ? 'hidden' : null}`}
+            >
+              {roundData[0].story}
+            </p>
+          </motion.div>
         </div>
         <div className={getContainerClass(false)}>
-          <div
-            className={`w-[455px] h-[435px] rounded-[35px] z-[50] flex items-start pt-2 mb-1000 justify-center ${currentState === 1 ? 'bg-gradient-blue-purple' : 'bg-transparent'}`}
+          <motion.div
+            key={roundData[1].id + title}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <img
-              src={getRightImageSrc()}
-              alt={roundData[1].story}
-              key={roundData[1].id}
-              onMouseEnter={() => handleCurrentState(false)}
-              onMouseLeave={handleMouseLeave}
-              onClick={() => handleAnimation(false)}
-              className={`z-[100] w-[440px] h-[490px] ${animationClass === 'animate-slide-left-to-right' ? 'hidden' : null}`}
-            />
-          </div>
-          <p
-            className={`text-detail-2-semibold ${getTextRightStyle()} ${animationClass === 'animate-slide-left-to-right' ? 'hidden' : null}`}
-          >
-            {roundData[1].story}
-          </p>
+            <div
+              className={`w-[455px] h-[435px] cursor-pointer rounded-[35px] z-[50] flex items-start pt-2 mb-1000 justify-center ${currentState === 1 ? 'bg-gradient-blue-purple' : 'bg-transparent'}`}
+            >
+              <img
+                src={getRightImageSrc()}
+                alt={roundData[1].story}
+                key={roundData[1].id}
+                onMouseEnter={() => handleCurrentState(false)}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleAnimation(false)}
+                className={`z-[100] w-[440px] h-[490px] ${animationClass === 'animate-slide-left-to-right' ? 'hidden' : null}`}
+              />
+            </div>
+            <p
+              className={`text-center text-detail-2-semibold ${getTextRightStyle()} ${animationClass === 'animate-slide-left-to-right' ? 'hidden' : null}`}
+            >
+              {roundData[1].story}
+            </p>
+          </motion.div>
         </div>
       </div>
       {openExitModal && <ExitModal onClose={onClose} game="worldCup" />}

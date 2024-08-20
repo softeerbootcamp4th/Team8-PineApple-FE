@@ -36,6 +36,7 @@ const WorldCupMain = () => {
       setRound(5); // 결승 진행
     } else if (round === 5) {
       try {
+        setRound(6);
         const response = await postWorldCupResult(updatedData[0].id);
         navigate(`/event/worldCupResult`, { state: updatedData[0] });
       } catch (error) {

@@ -5,11 +5,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 function Redirect() {
   const navigate = useNavigate();
   const { commentId } = useParams();
-  console.log(commentId);
   const getLink = async () => {
     const response = await getRedirectLink(commentId);
-    console.log(response);
-    navigate(response);
+    console.log(response.originalUrl);
+    navigate(response.originalUrl);
   };
 
   useEffect(() => {

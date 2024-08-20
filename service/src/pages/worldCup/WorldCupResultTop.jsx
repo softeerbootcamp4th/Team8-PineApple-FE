@@ -8,6 +8,8 @@ import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
 import GetItemModal from '@/components/modal/GetItemModal';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 import '@/styles/worldCupArrowAnimation.css';
+import { animationVariants } from '@/styles/FramerMotion';
+import { motion } from 'framer-motion';
 
 function WorldCupResultTop({ data }) {
   const { showToast, messageType, handleShareClick } = useToast();
@@ -17,7 +19,10 @@ function WorldCupResultTop({ data }) {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    setAnimate(true);
+    const timer = setTimeout(() => {
+      setAnimate(true);
+    }, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   const closeModal = () => {
@@ -45,42 +50,65 @@ function WorldCupResultTop({ data }) {
       <img
         src={WorldCupArrowIcon}
         alt="worldCupArrowIcon"
-        className={`${animate ? 'arrow-animation' : ''} absolute top-[45%]`}
+        className={`${animate ? 'arrow-animation' : 'opacity-0'} absolute top-[45%]`}
       />
-      <div className="px-[58px] py-[5px] bg-primary-babyblue rounded-md flex justify-center items-center text-detail-1-bold text-primary-blue mb-300">
-        우승
-      </div>
-      <p className="text-center text-heading-3-bold mb-700 text-neutral-black">
-        {data.story}
-      </p>
-      <div className="flex justify-center gap-1500 pl-500 mb-[-35px]">
-        <img src={data.image} alt="dataImage" className="w-[420px] h-auto" />
-        <img
-          src={data.resultImage}
-          alt="resultImage"
-          className="w-[460px] h-auto"
-        />
-      </div>
-      <div className="flex items-center justify-center gap-1000 mb-500">
-        <p className="text-gradient-blue-purple text-detail-1-semibold">
-          CASPER ELECTRIC과 함께한다면?
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={animationVariants}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
+        <div className="set-center">
+          <div className="w-[100px] py-[5px] bg-primary-babyblue rounded-md flex justify-center items-center text-detail-1-bold text-primary-blue mb-300">
+            우승
+          </div>
+        </div>
+        <p className="text-center text-heading-3-bold mb-700 text-neutral-black">
+          {data.story}
         </p>
-        <p className="text-body-3-bold text-neutral-black">{data.solution}</p>
-      </div>
-      <div className="flex items-center justify-center gap-1000">
-        <button
-          onClick={() => handleShareClick(false)}
-          className="bg-transparent rounded-full border-[2px] border-solid border-white px-[140px] py-[16px] text-detail-1-medium text-neutral-white hover-scale-ani"
-        >
-          공유하기
-        </button>
-        <button
-          onClick={handleOpenModal}
-          className="bg-neutral-white rounded-full px-[100px] py-[16px] text-detail-1-medium text-neutral-black hover-scale-ani"
-        >
-          자동차 아이템 받기
-        </button>
-      </div>
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={animationVariants}
+        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.5 }}
+      >
+        <div className="flex justify-center gap-1500 pl-500 mb-[-35px]">
+          <img src={data.image} alt="dataImage" className="w-[420px] h-auto" />
+          <img
+            src={data.resultImage}
+            alt="resultImage"
+            className="w-[460px] h-auto"
+          />
+        </div>
+        <div className="flex items-center justify-center gap-1000 mb-500">
+          <p className="text-gradient-blue-purple text-detail-1-semibold">
+            CASPER ELECTRIC과 함께한다면?
+          </p>
+          <p className="text-body-3-bold text-neutral-black">{data.solution}</p>
+        </div>
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={animationVariants}
+        transition={{ duration: 0.5, ease: 'easeOut', delay: 1.0 }}
+      >
+        <div className="flex items-center justify-center gap-1000">
+          <button
+            onClick={() => handleShareClick(false)}
+            className="bg-transparent rounded-full border-[2px] border-solid border-white px-[140px] py-[16px] text-detail-1-medium text-neutral-white hover-scale-ani"
+          >
+            공유하기
+          </button>
+          <button
+            onClick={handleOpenModal}
+            className="bg-neutral-white rounded-full px-[100px] py-[16px] text-detail-1-medium text-neutral-black hover-scale-ani"
+          >
+            자동차 아이템 받기
+          </button>
+        </div>
+      </motion.div>
       {showToast && <ToastMessage messageType={messageType} />}
       {resultModalOpen === 'alreadyGetCar' && (
         <AlreadyGetCarModal close={closeModal} />
