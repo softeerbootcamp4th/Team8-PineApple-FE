@@ -37,7 +37,7 @@ function AdminHeader() {
       const pathSegments = location.pathname.split('/');
       const tabName = pathSegments[2];
       navigator(
-        `/${dateFormatting(previousDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
+        `/${dateFormatting(previousDay)}${tabName !== undefined ? `/${tabName}` : ' '}`,
       );
     }
   };
@@ -49,7 +49,7 @@ function AdminHeader() {
       const pathSegments = location.pathname.split('/');
       const tabName = pathSegments[2];
       navigator(
-        `/${dateFormatting(nextDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
+        `/${dateFormatting(nextDay)}${tabName !== undefined ? `/${tabName}` : ' '}`,
       );
     }
   };
