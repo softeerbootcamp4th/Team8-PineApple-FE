@@ -10,13 +10,17 @@ function EventIntro() {
     <div>
       <EventIntroMain />
       <div className="bg-gradient-lightblue-white-vertical mt-[1px]">
+        <EventIntroNav />
         <motion.div
           initial="hidden"
           animate="visible"
           variants={animationVariants}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
+          transition={{
+            duration: 0.6,
+            ease: 'easeOut',
+            delay: 0.1,
+          }}
         >
-          <EventIntroNav />
           <EventIntroRewards />
         </motion.div>
       </div>
