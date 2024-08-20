@@ -19,6 +19,7 @@ function UploadPrize() {
   const [totalPrize, setTotalPrize] = useState({});
   const [openChangeModal, setOpenChangeModal] = useState(false);
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
+  const [modified, setModified] = useState(false);
 
   const createFormData = useFormData();
 
@@ -26,8 +27,8 @@ function UploadPrize() {
     unsavedChangesModal,
     handleConfirmNavigation,
     handleCancelNavigation,
-  } = useNavigationBlocker(selectedFile, () => {
-    setSelectedFile(null);
+  } = useNavigationBlocker(modified, () => {
+    setModified(false);
   });
 
   useEffect(() => {
@@ -43,7 +44,7 @@ function UploadPrize() {
   }, []);
 
   const handleRank = rank => {
-    if (!selectedFile) {
+    if (!modified) {
       setRank(rank);
     } else {
       tempRank.current = rank;
@@ -91,11 +92,13 @@ function UploadPrize() {
       setErrorMessage('파일 업로드 중 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
+      setModified(false);
     }
   };
 
   const handleFileChange = async files => {
     if (!files.length) return;
+    setModified(true);
     setErrorMessage('');
     setIsLoading(true);
 
