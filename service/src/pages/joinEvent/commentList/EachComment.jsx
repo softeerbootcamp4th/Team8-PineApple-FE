@@ -24,10 +24,7 @@ function EachComment({ comment, indexOfFirstPost, option }) {
     setOpenPhoneInputModal(false);
   };
 
-  const handleHeart = async e => {
-    e.stopPropagation();
-    e.preventDefault();
-
+  const handleHeart = async () => {
     if (userInfo.phoneNumber === undefined) {
       const phoneVerified = await showPhoneInputModal();
       if (!phoneVerified) {
@@ -63,22 +60,15 @@ function EachComment({ comment, indexOfFirstPost, option }) {
 
   const registerTime = timeFormatting(comment.postTime);
 
-  const handleCommentClick = e => {
-    navigate(`/event/comments/commentId/${comment.id}`);
-  };
-
   return (
     <>
-      <div
-        className="flex items-center w-full py-6 cursor-pointer pl-1700 pr-2000 mb-500 bg-neutral-white rounded-xl"
-        onClick={handleCommentClick}
-      >
+      <div className="flex items-center w-full py-6 pl-1700 pr-2000 mb-500 bg-neutral-white rounded-xl">
         {option === 'like' ? (
-          <div className="flex items-center justify-center w-16 h-10 rounded-full bg-primary-blue text-detail-3-semibold text-neutral-white mr-1000">
+          <div className="flex items-center justify-center w-20 h-10 rounded-full bg-primary-blue text-detail-3-semibold text-neutral-white mr-1000">
             {indexOfFirstPost + 1}등
           </div>
         ) : (
-          <div className="flex items-center justify-center w-16 h-10 text-detail-3-semibold text-primary-blue mr-1000">
+          <div className="flex items-center justify-center w-20 h-10 text-detail-3-semibold text-primary-blue mr-1000">
             {registerTime}
           </div>
         )}
@@ -89,10 +79,7 @@ function EachComment({ comment, indexOfFirstPost, option }) {
         <p className="text-detail-2-regular text-neutral-950 overflow-hidden whitespace-nowrap text-ellipsis w-[1000px]">
           {comment.content}
         </p>
-        <div
-          className="flex items-center w-[100px] h-[50px] z-100"
-          onClick={handleHeart} // Handle heart click
-        >
+        <div className="flex items-center">
           <div className="text-detail-2-regular text-neutral-500">
             {likeCount}
           </div>
@@ -101,6 +88,7 @@ function EachComment({ comment, indexOfFirstPost, option }) {
             alt={isLiked ? 'FullHeart' : 'Heart'}
             key={comment.id}
             className="mt-0.5 ml-100"
+            onClick={handleHeart}
           />
         </div>
       </div>

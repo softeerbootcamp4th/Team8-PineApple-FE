@@ -8,7 +8,6 @@ function EventIntroRewards() {
     const fetchInfo = async () => {
       try {
         const data = await getPrizeInfo();
-        console.log(data);
         if (Array.isArray(data)) {
           setInfo(data);
         } else {
@@ -22,7 +21,7 @@ function EventIntroRewards() {
     };
     fetchInfo();
   }, []);
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="h-[1258px]">Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   return (
     <div className="pt-2500 pb-4000 px-4000">
