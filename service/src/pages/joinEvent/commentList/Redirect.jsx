@@ -7,13 +7,12 @@ function Redirect() {
   const { commentId } = useParams();
   const getLink = async () => {
     const response = await getRedirectLink(commentId);
-    console.log(response.originalUrl);
-    navigate(response.originalUrl);
+    navigate(`/${response.originalUrl}`);
   };
 
   useEffect(() => {
     getLink();
-  }, [commentId]);
+  }, []);
 }
 
 export default Redirect;
