@@ -7,6 +7,7 @@ import { AuthContext } from '@/context/authContext';
 import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
 import GetItemModal from '@/components/modal/GetItemModal';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
+import '@/styles/worldCupArrowIcon.css';
 
 function WorldCupResultTop({ data }) {
   const { showToast, messageType, handleShareClick } = useToast();
@@ -37,7 +38,7 @@ function WorldCupResultTop({ data }) {
       <img
         src={WorldCupArrowIcon}
         alt="worldCupArrowIcon"
-        className="absolute top-[50%]"
+        className="arrowIcon absolute top-[45%]"
       />
       <div className="px-[58px] py-[5px] bg-primary-babyblue rounded-md flex justify-center items-center text-detail-1-bold text-primary-blue mb-300">
         우승
