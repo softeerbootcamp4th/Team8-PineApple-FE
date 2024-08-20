@@ -13,6 +13,7 @@ function TabHeader() {
       <NavLinkItem path="/uploadPrize" value="경품 코드 업로드" />
       <NavLinkItem path="/adminEventStatus" value="이벤트 현황" />
       <NavLinkItem path="/indicator" value="지표 분석" />
+      <NavLinkItem path="/drawCasper" value="1등 추첨" />
     </div>
   );
 }

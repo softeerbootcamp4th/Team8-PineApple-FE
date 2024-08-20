@@ -13,6 +13,7 @@ import Login from '@/pages/login/Login';
 import ProtectedRoute from '@/pages/ProtectedRoute';
 import ErrorPage from '@/pages/ErrorPage';
 import Indicator from '@/pages/Indicator/Indicator';
+import DrawCasper from '@/pages/drawCasper/DrawCasper';
 
 const router = createBrowserRouter([
   {
@@ -66,8 +67,12 @@ const router = createBrowserRouter([
             element: <UploadPrize />,
           },
           {
-            path: 'Indicator',
+            path: 'indicator',
             element: <Indicator />,
+          },
+          {
+            path: 'drawCasper',
+            element: <DrawCasper />,
           },
         ],
       },
