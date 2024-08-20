@@ -22,7 +22,7 @@ function NewCarCarousel() {
     setCurrentIndex(prevIndex => (prevIndex + (totalItems - 1)) % totalItems);
     setTimeout(() => {
       setIsButtonDisabled(false);
-    }, 200);
+    }, 250);
   };
 
   const handleNextButton = () => {
@@ -31,7 +31,7 @@ function NewCarCarousel() {
     setCurrentIndex(prevIndex => (prevIndex + 1) % totalItems);
     setTimeout(() => {
       setIsButtonDisabled(false);
-    }, 200);
+    }, 250);
   };
 
   const handleIndicatorClick = idx => {
@@ -66,13 +66,12 @@ function NewCarCarousel() {
             {newCarCarouselData.map((item, idx) => (
               <div
                 key={item.id}
-                className={`slider-item ${getSliderClasses(idx)}`}
+                className={`slider-item ${getSliderClasses(idx)} ${currentIndex === idx ? 'active' : ''}`}
               >
                 <img
                   src={item.imageSrc}
                   alt={`Car Image ${item.id}`}
                   className="object-cover w-full h-full"
-                  onClick={() => setCurrentIndex(item.id)}
                 />
               </div>
             ))}
