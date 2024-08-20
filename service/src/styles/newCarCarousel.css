@@ -29,6 +29,11 @@
   z-index: 4;
 }
 
+.s1:hover {
+  transform: translate(-50%, -50%) translateX(0) translateZ(0) scale(1.05);
+  transition: transform 200ms;
+}
+
 .s2 {
   transform: translate(-50%, -50%) translateX(330px) translateZ(-100px);
   z-index: 3;
