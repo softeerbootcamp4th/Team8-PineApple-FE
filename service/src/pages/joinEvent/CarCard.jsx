@@ -5,6 +5,7 @@ import BlueButton from '@/components/buttons/BlueButton';
 import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
+import '@/styles/global.css';
 
 function CarCard() {
   const { userInfo } = useContext(AuthContext);
@@ -15,7 +16,7 @@ function CarCard() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between bg-carCard px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
+    <div className="flex flex-col justify-between hover-scale-ani bg-carCard px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
       <div className="text-detail-2-semibold text-primary-blue h-800">
         Event1
       </div>
