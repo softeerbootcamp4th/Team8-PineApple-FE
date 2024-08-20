@@ -4,7 +4,6 @@ import ClickBox from '@/pages/miniquiz/ClickBox';
 import SubmitButton from '@/pages/miniquiz/SubmitButton';
 import { useNavigate } from 'react-router-dom';
 import LoadingQuiz from '@/pages/miniquiz/LoadingQuiz';
-import '@/styles/global.css';
 
 function MiniQuizMain() {
   const navigate = useNavigate();

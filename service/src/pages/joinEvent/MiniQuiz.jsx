@@ -10,7 +10,6 @@ import {
 } from '@/utils/miniQuizUtils';
 
 import { useNavigate } from 'react-router-dom';
-import '@/styles/global.css';
 
 function MiniQuiz() {
   const navigate = useNavigate();

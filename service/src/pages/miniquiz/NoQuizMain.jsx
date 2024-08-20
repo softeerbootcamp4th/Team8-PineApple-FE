@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import WhiteButton from '@/components/buttons/WhiteButton';
 import { useNavigate } from 'react-router-dom';
-import '@/styles/global.css';
 
 function NoQuizMain() {
   const navigate = useNavigate(); //useNavigate은 리렌더링 시에는 재생성이 되지 않음 그렇기에 useCallback 안 씀

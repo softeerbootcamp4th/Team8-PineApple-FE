@@ -6,7 +6,6 @@ import { postQuizReward } from '@/api/UploadReward';
 import { DateContext } from '@/context/dateContext';
 import useFormData from '@/hooks/useFormData';
 import useNavigationBlocker from '@/hooks/useNavigationBlocker';
-import '@/styles/global.css';
 import JSZip from 'jszip';
 
 function UploadReward() {
@@ -19,6 +18,7 @@ function UploadReward() {
   const [processMessage, setProcessMessage] = useState(
     '폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을 업로드해주세요.',
   );
+  const [modified, setModified] = useState(false);
 
   const totalReward = 500;
   const createFormData = useFormData();
@@ -27,8 +27,8 @@ function UploadReward() {
     unsavedChangesModal,
     handleConfirmNavigation,
     handleCancelNavigation,
-  } = useNavigationBlocker(selectedFile, () => {
-    setSelectedFile(null);
+  } = useNavigationBlocker(modified, () => {
+    setModified(false);
   });
 
   const handleClick = () => {
@@ -44,24 +44,28 @@ function UploadReward() {
       file: selectedFile,
       quizDate: dateInfo,
     });
+    console.log(body);
     try {
       setIsLoading(true);
       const response = await postQuizReward(body);
+      console.log(response);
       setOpenModal(false);
       if (response.message === 'success') {
         setProcessMessage('파일 업로드를 완료했습니다.');
       } else {
-        setErrorMessage('파일 업로드에 실패했습니다.');
+        setErrorMessage(`${response.message}`);
       }
     } catch (error) {
       setErrorMessage('파일 업로드 중 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
+      setModified(false);
     }
   };
 
   const handleFileChange = async files => {
     if (!files.length) return;
+    setModified(true);
     setErrorMessage('');
     setIsLoading(true);
 

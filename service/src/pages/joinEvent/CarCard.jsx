@@ -5,7 +5,6 @@ import BlueButton from '@/components/buttons/BlueButton';
 import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
-import '@/styles/global.css';
 
 function CarCard() {
   const { userInfo } = useContext(AuthContext);

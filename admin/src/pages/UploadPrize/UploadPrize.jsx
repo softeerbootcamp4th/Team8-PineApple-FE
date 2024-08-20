@@ -4,7 +4,6 @@ import ModalFrame from '@/components/modal/ModalFrame';
 import { postPrize, getProbability } from '@/api/UploadPrize';
 import useNavigationBlocker from '@/hooks/useNavigationBlocker';
 import useFormData from '@/hooks/useFormData';
-import '@/styles/global.css';
 import JSZip from 'jszip';
 
 function UploadPrize() {
@@ -20,6 +19,7 @@ function UploadPrize() {
   const [totalPrize, setTotalPrize] = useState({});
   const [openChangeModal, setOpenChangeModal] = useState(false);
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
+  const [modified, setModified] = useState(false);
 
   const createFormData = useFormData();
 
@@ -27,8 +27,8 @@ function UploadPrize() {
     unsavedChangesModal,
     handleConfirmNavigation,
     handleCancelNavigation,
-  } = useNavigationBlocker(selectedFile, () => {
-    setSelectedFile(null);
+  } = useNavigationBlocker(modified, () => {
+    setModified(false);
   });
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function UploadPrize() {
   }, []);
 
   const handleRank = rank => {
-    if (!selectedFile) {
+    if (!modified) {
       setRank(rank);
     } else {
       tempRank.current = rank;
@@ -79,6 +79,7 @@ function UploadPrize() {
       file: selectedFile,
       ranking: rank,
     });
+
     try {
       setIsLoading(true);
       const response = await postPrize(body);
@@ -92,11 +93,13 @@ function UploadPrize() {
       setErrorMessage('파일 업로드 중 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
+      setModified(false);
     }
   };
 
   const handleFileChange = async files => {
     if (!files.length) return;
+    setModified(true);
     setErrorMessage('');
     setIsLoading(true);
 
@@ -228,7 +231,7 @@ function UploadPrize() {
       {openChangeModal && (
         <ModalFrame
           text="지금 이동하면 등록한 파일이 삭제됩니다. 이동하시겠습니까??"
-          onClickNo={() => setOpenSubmitModal(false)}
+          onClickNo={() => setOpenChangeModal(false)}
           onClickYes={() => handleMove()}
         />
       )}

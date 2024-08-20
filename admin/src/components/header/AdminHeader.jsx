@@ -8,20 +8,41 @@ import { putEventSchedules, getEventSchedules } from '@/api/header/index';
 
 function AdminHeader() {
   const location = useLocation();
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const { dateInfo } = useContext(DateContext);
   const [isNextDayDisabled, setIsNextDayDisabled] = useState(false);
   const [isPreviousDayDisabled, setIsPreviousDayDisabled] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+
+        if (decodedToken && decodedToken.role === 'ADMIN') {
+          // Do Nothing
+        } else {
+          navigate('/error');
+        }
+      } catch (error) {
+        console.error(error);
+        navigate('/error');
+      }
+    } else {
+      navigate('/login');
+    }
     const getDate = async () => {
       const response = await getEventSchedules();
-      const startDate = new Date(response[0].date);
-      const finishDate = new Date(response[13].date);
-      const currentDate = new Date(dateInfo);
-      setIsPreviousDayDisabled(currentDate.getTime() === startDate.getTime());
-      setIsNextDayDisabled(currentDate.getTime() === finishDate.getTime());
+      if (response.code === 'UNAUTHORIZED') {
+        navigate('/error');
+      } else {
+        const startDate = new Date(response[0].date);
+        const finishDate = new Date(response[13].date);
+        const currentDate = new Date(dateInfo);
+        setIsPreviousDayDisabled(currentDate.getTime() === startDate.getTime());
+        setIsNextDayDisabled(currentDate.getTime() === finishDate.getTime());
+      }
     };
     getDate();
   }, [dateInfo]);
@@ -36,7 +57,9 @@ function AdminHeader() {
       previousDay.setDate(previousDay.getDate() - 1);
       const pathSegments = location.pathname.split('/');
       const tabName = pathSegments[2];
-      navigator(`/${dateFormatting(previousDay)}/${tabName}`);
+      navigate(
+        `/${dateFormatting(previousDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
+      );
     }
   };
 
@@ -46,7 +69,9 @@ function AdminHeader() {
       nextDay.setDate(nextDay.getDate() + 1);
       const pathSegments = location.pathname.split('/');
       const tabName = pathSegments[2];
-      navigator(`/${dateFormatting(nextDay)}/${tabName}`);
+      navigate(
+        `/${dateFormatting(nextDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
+      );
     }
   };
 

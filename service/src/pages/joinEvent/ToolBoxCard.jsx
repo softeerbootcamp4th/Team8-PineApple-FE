@@ -5,7 +5,6 @@ import toolBoxImage from '@/assets/images/toolBoxImage.svg';
 import questionMark from '@/assets/images/questionMark.svg';
 import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
-import '@/styles/global.css';
 
 function ToolBoxCard() {
   const navigate = useNavigate();
