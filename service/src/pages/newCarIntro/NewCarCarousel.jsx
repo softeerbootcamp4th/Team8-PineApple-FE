@@ -72,6 +72,7 @@ function NewCarCarousel() {
                   src={item.imageSrc}
                   alt={`Car Image ${item.id}`}
                   className="object-cover w-full h-full"
+                  onClick={() => setCurrentIndex(idx)}
                 />
               </div>
             ))}
