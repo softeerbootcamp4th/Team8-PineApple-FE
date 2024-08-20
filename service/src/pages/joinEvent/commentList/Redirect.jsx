@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { getRedirectLink } from '@/api/comment/index';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function Redirect() {
+  const navigate = useNavigate();
   const { commentId } = useParams();
   console.log(commentId);
   const getLink = async () => {
     const response = await getRedirectLink(commentId);
+    navigate(response);
     console.log(response);
   };
 
