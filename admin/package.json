@@ -19,6 +19,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "json-server": "^1.0.0-beta.1",
     "jszip": "^3.10.1",
+    "jwt-decode": "^4.0.0",
     "micro-slider": "^1.1.0",
     "postcss": "^8.4.39",
     "prop-types": "^15.8.1",
