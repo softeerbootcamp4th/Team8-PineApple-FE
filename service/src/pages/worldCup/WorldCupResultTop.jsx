@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import WorldCupArrowIcon from '@/assets/icons/worldCupArrowIcon.svg';
 import useToast from '@/hooks/useToast';
@@ -7,16 +7,23 @@ import { AuthContext } from '@/context/authContext';
 import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
 import GetItemModal from '@/components/modal/GetItemModal';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
-import '@/styles/worldCupArrowIcon.css';
+import '@/styles/worldCupArrowAnimation.css';
 
 function WorldCupResultTop({ data }) {
   const { showToast, messageType, handleShareClick } = useToast();
-  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
   const [resultModalOpen, setResultModalOpen] = useState('');
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
   const closeModal = () => {
     setResultModalOpen('');
   };
+
   const closePhoneModal = () => {
     setOpenPhoneInputModal(false);
   };
@@ -38,7 +45,7 @@ function WorldCupResultTop({ data }) {
       <img
         src={WorldCupArrowIcon}
         alt="worldCupArrowIcon"
-        className="arrowIcon absolute top-[45%]"
+        className={`${animate ? 'arrow-animation' : ''} absolute top-[45%]`}
       />
       <div className="px-[58px] py-[5px] bg-primary-babyblue rounded-md flex justify-center items-center text-detail-1-bold text-primary-blue mb-300">
         우승

@@ -1,4 +1,4 @@
-.arrowIcon:hover {
+.arrow-animation {
   animation-name: tilting;
   animation-duration: 1s;
   animation-iteration-count: 1;
