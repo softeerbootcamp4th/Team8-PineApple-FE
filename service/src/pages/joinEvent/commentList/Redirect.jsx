@@ -12,7 +12,7 @@ function Redirect() {
 
   useEffect(() => {
     getLink();
-  }, []);
+  }, [commentId]);
 }
 
 export default Redirect;
