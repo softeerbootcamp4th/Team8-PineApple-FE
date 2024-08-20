@@ -12,7 +12,6 @@
 }
 
 .slider-item {
-  cursor: pointer;
   width: 1200px;
   height: 500px;
   position: absolute;
@@ -21,12 +20,16 @@
     z-index 0s 0.2s;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .s1 {
   transform: translate(-50%, -50%) translateX(0) translateZ(0);
   z-index: 4;
+}
+
+.s1:hover {
+  transition: transform 0.2s;
+  transform: translate(-50%, -50%) translateX(0) translateZ(0) scale(1.05);
 }
 
 .s2 {

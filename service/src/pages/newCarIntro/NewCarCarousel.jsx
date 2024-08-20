@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 
 function NewCarCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const totalItems = 5;
 
   const getSliderClasses = index => {
@@ -16,11 +17,21 @@ function NewCarCarousel() {
   };
 
   const handlePrevButton = () => {
+    if (isButtonDisabled) return;
+    setIsButtonDisabled(true);
     setCurrentIndex(prevIndex => (prevIndex + (totalItems - 1)) % totalItems);
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 250);
   };
 
   const handleNextButton = () => {
+    if (isButtonDisabled) return;
+    setIsButtonDisabled(true);
     setCurrentIndex(prevIndex => (prevIndex + 1) % totalItems);
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 250);
   };
 
   const handleIndicatorClick = idx => {
@@ -44,47 +55,53 @@ function NewCarCarousel() {
           </div>
         </div>
       </motion.div>
-      <div className="slider-container">
-        <div className="slider">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={animationVariants}
+        transition={{ duration: 0.6, ease: 'easeOut', delay: 1.5 }}
+      >
+        <div className="slider-container">
+          <div className="slider">
+            {newCarCarouselData.map((item, idx) => (
+              <div
+                key={item.id}
+                className={`slider-item ${getSliderClasses(idx)} ${currentIndex === idx ? 'active' : ''}`}
+              >
+                <img
+                  src={item.imageSrc}
+                  alt={`Car Image ${item.id}`}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-center mt-600">
           {newCarCarouselData.map((item, idx) => (
             <div
               key={item.id}
-              className={`slider-item ${getSliderClasses(idx)}`}
-            >
-              <img
-                src={item.imageSrc}
-                alt={`Car Image ${item.id}`}
-                className="object-cover w-full h-full"
-                onClick={() => setCurrentIndex(item.id - 1)}
-              />
-            </div>
+              className={`indicator-item m-2 ${currentIndex === idx ? 'active' : ''}`}
+              onClick={() => handleIndicatorClick(idx)}
+            ></div>
           ))}
         </div>
-      </div>
-
-      <div className="flex justify-center mt-600">
-        {newCarCarouselData.map((item, idx) => (
-          <div
-            key={item.id}
-            className={`indicator-item m-2 ${currentIndex === idx ? 'active' : ''}`}
-            onClick={() => handleIndicatorClick(idx)}
-          ></div>
-        ))}
-      </div>
-      <div className="flex justify-center mt-600 mb-3000 gap-600">
-        <img
-          src={arrowLeftCircle}
-          alt="Previous Slide"
-          onClick={handlePrevButton}
-          className="hover:cursor-pointer"
-        />
-        <img
-          src={arrowRightCircle}
-          alt="Next Slide"
-          onClick={handleNextButton}
-          className="hover:cursor-pointer"
-        />
-      </div>
+        <div className="flex justify-center mt-600 mb-3000 gap-600">
+          <img
+            src={arrowLeftCircle}
+            alt="Previous Slide"
+            onClick={handlePrevButton}
+            className="hover:cursor-pointer"
+          />
+          <img
+            src={arrowRightCircle}
+            alt="Next Slide"
+            onClick={handleNextButton}
+            className="hover:cursor-pointer"
+          />
+        </div>
+      </motion.div>
     </div>
   );
 }
