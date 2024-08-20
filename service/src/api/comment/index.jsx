@@ -13,15 +13,38 @@ const postLike = commentId => {
 };
 
 const getEachComment = commentId => {
-  return get(`/comments/commentId?id=${commentId}`);
+  return get(`/comments/commentId/${commentId}`);
 };
 
 const getShortenLink = () => {
   return get(`/shorten-url`);
 };
 
-const getRedirectLink = url => {
-  return get(`/redirect/${url}`);
+const getRedirectLink = async commentId => {
+  const accessToken = localStorage.getItem('userInfo');
+
+  try {
+    const response = await fetch(
+      `https://hyundai-server.store/redirect/${commentId}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(accessToken && {
+            Authorization: `Bearer ${accessToken}`,
+          }),
+        },
+        credentials: 'include',
+      },
+    );
+
+    // 응답의 헤더에서 Location 값을 추출
+    const redirectUrl = response.headers.get('Location');
+    return redirectUrl;
+  } catch (error) {
+    console.error('API 호출 실패: ', error);
+    throw error;
+  }
 };
 
 export {
