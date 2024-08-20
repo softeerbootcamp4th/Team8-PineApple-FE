@@ -22,6 +22,8 @@ const getShortenLink = () => {
 
 const getRedirectLink = async commentId => {
   console.log('dddd');
+  const accessToken = localStorage.getItem('userInfo');
+
   try {
     const response = await fetch(
       `${import.meta.env.VITE_API_URL}/redirect/${commentId}`,
