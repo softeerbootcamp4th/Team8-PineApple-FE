@@ -8,8 +8,8 @@ function Redirect() {
   console.log(commentId);
   const getLink = async () => {
     const response = await getRedirectLink(commentId);
-    navigate(response);
     console.log(response);
+    navigate(response);
   };
 
   useEffect(() => {
