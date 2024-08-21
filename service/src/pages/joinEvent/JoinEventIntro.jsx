@@ -25,7 +25,7 @@ function JoinEventIntro() {
         />
         <meta
           property="og:image"
-          content="https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/OGImage.svg"
+          content="https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/OGImage.png"
         />
       </Helmet>
       <div ref={refs.mainRef}>
