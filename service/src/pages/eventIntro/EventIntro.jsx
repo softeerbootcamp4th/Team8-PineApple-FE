@@ -22,7 +22,7 @@ function EventIntro() {
         />
         <meta
           property="og:image"
-          content="https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/%E1%84%86%E1%85%B5%E1%84%82%E1%85%B5+%E1%84%8F%E1%85%B1%E1%84%8C%E1%85%B3+7.svg"
+          content="https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/OGImage.svg"
         />
       </Helmet>
       <EventIntroMain />
