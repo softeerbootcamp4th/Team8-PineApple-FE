@@ -18,6 +18,10 @@ function MiniQuiz() {
             name="description"
             content="미니퀴즈을 통해 선착순 경품과 툴박스 아이템을 획득하세요!"
           />
+          <meta
+            property="og:url"
+            content="https://casper-event.store/event/miniquiz"
+          />
           <meta property="og:title" content="캐스퍼 미니퀴즈" />
           <meta
             property="og:description"
