@@ -16,26 +16,32 @@ function NewCarCarousel() {
     return positions[(index - currentIndex + totalItems) % totalItems];
   };
 
-  const handlePrevButton = () => {
+  const handleCarousel = direction => {
     if (isButtonDisabled) return;
     setIsButtonDisabled(true);
-    setCurrentIndex(prevIndex => (prevIndex + (totalItems - 1)) % totalItems);
+    setCurrentIndex(
+      prevIndex => (prevIndex + (totalItems + direction)) % totalItems,
+    );
     setTimeout(() => {
       setIsButtonDisabled(false);
     }, 250);
   };
 
-  const handleNextButton = () => {
+  const moveToIndex = async targetIndex => {
     if (isButtonDisabled) return;
     setIsButtonDisabled(true);
-    setCurrentIndex(prevIndex => (prevIndex + 1) % totalItems);
-    setTimeout(() => {
-      setIsButtonDisabled(false);
-    }, 250);
-  };
 
-  const handleIndicatorClick = idx => {
-    setCurrentIndex(idx);
+    let diff = targetIndex - currentIndex;
+    if (diff >= 3) diff = -5 + diff;
+    else if (diff <= -3) diff = 5 + diff;
+
+    const direction = Math.sign(diff);
+    for (let i = 0; i < Math.abs(diff); i++) {
+      handleCarousel(direction);
+      await new Promise(resolve => setTimeout(resolve, 250));
+    }
+
+    setIsButtonDisabled(false);
   };
 
   return (
@@ -72,7 +78,7 @@ function NewCarCarousel() {
                   src={item.imageSrc}
                   alt={`Car Image ${item.id}`}
                   className="object-cover w-full h-full"
-                  onClick={() => setCurrentIndex(idx)}
+                  onClick={() => moveToIndex(idx)}
                 />
               </div>
             ))}
@@ -84,7 +90,7 @@ function NewCarCarousel() {
             <div
               key={item.id}
               className={`indicator-item m-2 ${currentIndex === idx ? 'active' : ''}`}
-              onClick={() => handleIndicatorClick(idx)}
+              onClick={() => moveToIndex(idx)}
             ></div>
           ))}
         </div>
@@ -92,13 +98,13 @@ function NewCarCarousel() {
           <img
             src={arrowLeftCircle}
             alt="Previous Slide"
-            onClick={handlePrevButton}
+            onClick={() => handleCarousel(-1)}
             className="hover:cursor-pointer"
           />
           <img
             src={arrowRightCircle}
             alt="Next Slide"
-            onClick={handleNextButton}
+            onClick={() => handleCarousel(1)}
             className="hover:cursor-pointer"
           />
         </div>

@@ -3,5 +3,5 @@ export const linkToFreeRide = () => {
 };
 
 export const linkToPreOrder = () => {
-  window.open('https://casper.hyundai.com/vehicles/test-driving/intro');
+  window.open('https://casper.hyundai.com/vehicles/electric/making/model');
 };

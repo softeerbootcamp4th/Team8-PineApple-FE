@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import worldCupIntro1 from '@/assets/images/worldCupIntro1.svg';
 import worldCupIntro2 from '@/assets/images/worldCupIntro2.svg';
@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 function WorldCup() {
   const navigate = useNavigate();
 
-  const gotoWorldCup = useCallback(() => {
+  const gotoWorldCup = () => {
     navigate('/event/worldCup');
-  }, []);
+  };
+
   return (
     <>
       <div className="px-3000 pt-2000 pb-500">

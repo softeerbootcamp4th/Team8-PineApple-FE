@@ -24,8 +24,8 @@ function InputForm({ label, id, placeholder, value, onChange }) {
 InputForm.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
 };
 

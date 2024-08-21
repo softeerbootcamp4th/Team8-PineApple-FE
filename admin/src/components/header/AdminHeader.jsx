@@ -32,6 +32,9 @@ function AdminHeader() {
     } else {
       navigate('/login');
     }
+  }, []);
+
+  useEffect(() => {
     const getDate = async () => {
       const response = await getEventSchedules();
       if (response.code === 'UNAUTHORIZED') {
@@ -55,8 +58,7 @@ function AdminHeader() {
     if (!isPreviousDayDisabled) {
       const previousDay = new Date(dateInfo);
       previousDay.setDate(previousDay.getDate() - 1);
-      const pathSegments = location.pathname.split('/');
-      const tabName = pathSegments[2];
+      const [, , tabName] = location.pathname.split('/');
       navigate(
         `/${dateFormatting(previousDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
       );
@@ -67,8 +69,7 @@ function AdminHeader() {
     if (!isNextDayDisabled) {
       const nextDay = new Date(dateInfo);
       nextDay.setDate(nextDay.getDate() + 1);
-      const pathSegments = location.pathname.split('/');
-      const tabName = pathSegments[2];
+      const [, , tabName] = location.pathname.split('/');
       navigate(
         `/${dateFormatting(nextDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
       );

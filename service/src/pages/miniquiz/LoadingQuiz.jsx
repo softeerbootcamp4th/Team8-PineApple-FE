@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 function LoadingQuiz() {
   const navigate = useNavigate();
-  const handleExit = useCallback(() => {
+
+  const handleExit = () => {
     navigate('/event');
-  }, [navigate]);
+  };
 
   const handleRefresh = useCallback(() => {
     window.location.reload();

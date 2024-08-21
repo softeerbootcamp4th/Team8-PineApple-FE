@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import { AuthContext } from '@/context/authContext';
 import { useNavigate } from 'react-router-dom';
@@ -11,9 +11,7 @@ function AlreadyGetCarModal({ close }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleExit = useCallback(() => {
-    navigate('/event');
-  }, [navigate]);
+  const handleExit = () => navigate('/event');
 
   return (
     <ModalFrame
