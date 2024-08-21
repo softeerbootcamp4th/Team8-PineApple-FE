@@ -39,14 +39,19 @@ function Reward() {
 
   const handleChange = (index, field, value) => {
     setModified(true);
+
+    const newValue =
+      field === 'ranking' || field === 'stock' ? Number(value) : value;
+
     setRewardData(prevState =>
       prevState.map((item, i) =>
-        i === index ? { ...item, [field]: value } : item,
+        i === index ? { ...item, [field]: newValue } : item,
       ),
     );
   };
 
   const handleSubmit = async () => {
+    console.log(rewardData);
     const formData = createFormData(rewardData);
     try {
       const response = await putAdminReward(formData);

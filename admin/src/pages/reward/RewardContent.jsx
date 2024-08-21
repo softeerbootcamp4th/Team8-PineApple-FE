@@ -22,8 +22,8 @@ function RewardContent({ response, onChange }) {
           <InputForm
             label="등수"
             id={`ranking-${index}`}
-            placeholder={String(item.ranking)}
-            value={String(item.ranking)}
+            placeholder={item.ranking}
+            value={item.ranking}
             onChange={value => handleInputChange(index, 'ranking', value)}
           />
           <InputForm
@@ -36,8 +36,8 @@ function RewardContent({ response, onChange }) {
           <InputForm
             label="재고"
             id={`stock-${index}`}
-            placeholder={String(item.stock)}
-            value={String(item.stock)}
+            placeholder={item.stock}
+            value={item.stock}
             onChange={value => handleInputChange(index, 'stock', value)}
           />
           <ImageUploader
