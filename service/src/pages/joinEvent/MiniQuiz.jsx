@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import miniQuizIntro1 from '@/assets/images/miniQuizIntro1.svg';
 import miniQuizIntro2 from '@/assets/images/miniQuizIntro2.svg';
@@ -51,10 +51,6 @@ function MiniQuiz() {
     }
   }, [countDownStart]);
 
-  const gotoMiniQuiz = useCallback(() => {
-    navigate('/event/miniQuiz');
-  }, []);
-
   return (
     <div className="flex px-3000 pt-2000 pb-2900">
       <div className="relative min-w-[610px] h-[400px]">
@@ -75,7 +71,7 @@ function MiniQuiz() {
           <img src={miniQuizIntro3} alt="miniQuizIntro3" />
         </div>
       </div>
-      <div className="w-[780px] z-0 ml-3000">
+      <div className="relative w-[780px] z-0 ml-3000">
         <div className="space-y-800">
           <div className="text-primary-blue text-detail-1-bold">
             Event2. 툴박스 얻기
@@ -90,14 +86,16 @@ function MiniQuiz() {
             </div>
           </div>
         </div>
-        <div className="whitespace-pre-line text-detail-2-medium mt-400 mb-1200">
+        <div className="whitespace-pre-line text-detail-2-medium mt-400 mb-200">
           {`월드컵에서 알 수 있는 캐스퍼 EV에 대한  일일 미니 퀴즈를 맞추고
                     툴박스 아이템을 받아요. 툴박스 아이템은 응모에 한번 참여하면 사라져요.`}
         </div>
+        <div className="text-gray-500 text-detail-3-regular mb-400">
+          *12시부터 13시까지는 퀴즈 준비시간으로 퀴즈 참여가 불가능합니다.
+        </div>
         <BlueButton
           value="이벤트 참여하기"
-          // 당일 toolbox 수령했으면 이미 아이템을 수령하여 재수령이 불가능합니다 모달 보여주고 돌아가기 참여하기 버튼 만들어서 다시 navigate하면 될 듯 팀원 상의 후 정한 내용
-          onClickFunc={gotoMiniQuiz}
+          onClickFunc={() => navigate('/event/miniQuiz')}
           styles="px-2000 py-400 text-detail-2-medium"
         />
       </div>
