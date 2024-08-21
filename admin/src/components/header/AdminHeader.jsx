@@ -5,6 +5,7 @@ import dateFormatting from '@/utils/dateFormatting';
 import { DateContext } from '@/context/dateContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { putEventSchedules, getEventSchedules } from '@/api/header/index';
+import { jwtDecode } from 'jwt-decode';
 
 function AdminHeader() {
   const location = useLocation();
@@ -15,7 +16,7 @@ function AdminHeader() {
   const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('userInfo');
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
