@@ -4,7 +4,6 @@ import ToolBoxCard from '@/pages/joinEvent/ToolBoxCard';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 import { AuthContext } from '@/context/authContext';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
-import { postReward } from '@/api/rapple/index';
 import { useNavigate } from 'react-router-dom';
 import { getScenario } from '@/api/scenario';
 import { animationVariants } from '@/styles/FramerMotion';
@@ -12,7 +11,7 @@ import { motion } from 'framer-motion';
 
 function JoinEventIntroMain() {
   const navigate = useNavigate();
-  const { userInfo, setUserInfo } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
   const [day, setDay] = useState(null);
   const [scenario, setScenario] = useState('');
@@ -42,18 +41,7 @@ function JoinEventIntroMain() {
   };
 
   const handleReward = async () => {
-    try {
-      const response = await postReward();
-      if (response && response.image) {
-        const updatedUserInfo = { ...userInfo, toolBoxCnt: toolBoxCnt - 1 };
-        setUserInfo(updatedUserInfo);
-        navigate(`/event/reward`, { state: response });
-      } else {
-        console.log('유효하지 않은 응답입니다: ', response);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    navigate(`/event/reward`);
   };
 
   return (

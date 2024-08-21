@@ -21,6 +21,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "framer-motion": "^11.3.28",
+    "js-confetti": "^0.12.0",
     "json-server": "^1.0.0-beta.1",
     "micro-slider": "^1.1.0",
     "postcss": "^8.4.39",

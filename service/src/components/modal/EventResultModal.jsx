@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-
 import ModalFrame from './ModalFrame';
 import BlueButton from '@/components/buttons/BlueButton';
 import BlueCheckIcon from '@/assets/icons/blueCheckIcon.svg';
@@ -26,7 +25,11 @@ function EventResultModal({ closeResultModal, data, handleSendPrize }) {
     >
       {data.isDrawWin ? (
         <div className="flex-col px-3000 set-center min-w-[800px]">
-          <img src={data.image} alt="successImage" className="mb-900" />
+          <img
+            src={data.image}
+            alt="successImage"
+            className="mb-900 max-w-[450px] h-auto"
+          />
           <BlueButton
             value="상품 받기"
             onClickFunc={handleSendPrize}
