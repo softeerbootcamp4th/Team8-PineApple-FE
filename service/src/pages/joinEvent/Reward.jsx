@@ -82,7 +82,7 @@ function Reward() {
     return (
       <div className="flex-col h-screen set-center">
         <p className="text-heading-banner-title-3 text-gradient-blue-purple mb-2500">
-          보유하신 툴박스가 없어요...
+          예상하지 못한 에러가 발생했습니다..!
         </p>
         <BlueButton
           value="돌아가기"
