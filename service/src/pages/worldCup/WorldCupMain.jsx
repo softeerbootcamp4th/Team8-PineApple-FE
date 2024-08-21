@@ -73,6 +73,10 @@ const WorldCupMain = () => {
           name="description"
           content="월드컵 게임을 통해 자동차 아이템을 획득하세요!"
         />
+        <meta
+          property="og:url"
+          content="https://casper-event.store/event/worldcup"
+        />
         <meta property="og:title" content="캐스퍼 상황 월드컵" />
         <meta
           property="og:description"

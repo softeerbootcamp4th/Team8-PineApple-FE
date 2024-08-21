@@ -18,6 +18,7 @@ function JoinEventIntro() {
           name="description"
           content="다양한 게임을 즐기고 응모권을 모아 캐스퍼 EV를 받을 수 있는 기회를 잡아보세요!"
         />
+        <meta property="og:url" content="https://casper-event.store/event" />
         <meta property="og:title" content="캐스퍼 이벤트 참여" />
         <meta
           property="og:description"

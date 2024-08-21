@@ -15,6 +15,7 @@ function EventIntro() {
           name="description"
           content="캐스퍼 EV를 받을 수 있는 이벤트에 대해 자세히 알아보세요. 이벤트 참여 방법과 다양한 보상을 소개합니다."
         />
+        <meta property="og:url" content="https://casper-event.store/" />
         <meta property="og:title" content="캐스퍼 이벤트 소개" />
         <meta
           property="og:description"
