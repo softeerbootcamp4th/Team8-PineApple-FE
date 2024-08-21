@@ -39,7 +39,8 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="relative min-w-[1720px]">
+      {/* 드레그 시 파란색으로 칠해지는 거 방지 */}
+      <div className="relative min-w-[1720px] select-none">
         <AuthProvider>
           {!hideHeader && <Header />}
           <Outlet />
