@@ -16,6 +16,7 @@ function App() {
     /^\/event\/noQuiz$/,
     /^\/event\/reward$/,
     /^\/event\/comments\/commentId\/\d+$/,
+    /^\/event\/\w+$/,
   ];
 
   const hideHeader = hideHeaderPattern.some(pattern =>
@@ -30,6 +31,7 @@ function App() {
     /^\/event\/noQuiz$/,
     /^\/event\/reward$/,
     /^\/event\/comments\/commentId\/\d+$/,
+    /^\/event\/\w+$/,
   ];
 
   const hideFooter = hideFooterPattern.some(pattern =>
