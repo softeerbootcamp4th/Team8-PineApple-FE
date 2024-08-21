@@ -37,7 +37,7 @@ function App() {
   );
 
   return (
-    <div className="relative min-w-[1720px] select-none">
+    <div className="relative min-w-[1720px]">
       <AuthProvider>
         {!hideHeader && <Header />}
         <Outlet />
