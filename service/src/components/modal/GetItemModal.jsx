@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import getCarModalImage from '@/assets/images/getCarModalImage.svg';
 import getItemModalImage from '@/assets/images/getItemModalImage.svg';
@@ -13,7 +13,7 @@ function GetItemModal({ close, item }) {
   const { toolBoxCnt } = userInfo;
 
   const navigate = useNavigate();
-  const handleParticipants = useCallback(async () => {
+  const handleParticipants = async () => {
     try {
       if (item === '자동차 아이템') {
         const result = await postParticipants();
@@ -29,7 +29,7 @@ function GetItemModal({ close, item }) {
     } catch (error) {
       console.error('WorldCup 참여 등록 API 통신 실패:', error);
     }
-  }, [navigate]);
+  };
   return (
     <ModalFrame handleExit={close} tag={item} title="아이템을 얻었어요!">
       <div className="flex-col px-1500 set-center">

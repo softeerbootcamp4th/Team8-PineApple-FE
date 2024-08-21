@@ -29,9 +29,9 @@ function MiniQuizResultMain({ response }) {
     check();
   }, []);
 
-  const handleExit = useCallback(() => {
+  const handleExit = () => {
     navigate('/event', { state: { scrollTo: 'miniQuiz' } });
-  }, []);
+  };
 
   const closeToolBoxModal = useCallback(() => {
     setToolBoxModal(false);

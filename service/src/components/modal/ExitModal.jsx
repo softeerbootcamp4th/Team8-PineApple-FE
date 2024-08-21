@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import WhiteButton from '@/components/buttons/WhiteButton';
 import PropTypes from 'prop-types';
@@ -7,13 +7,13 @@ import { useNavigate } from 'react-router-dom';
 function ExitModal({ onClose, game }) {
   const navigate = useNavigate();
 
-  const gotoBack = useCallback(() => {
+  const gotoBack = () => {
     if (game === 'worldCup') {
       navigate(`/event`, { state: { scrollTo: 'worldCup' } });
     } else {
       navigate(`/event`, { state: { scrollTo: 'miniQuiz' } });
     }
-  }, []);
+  };
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-black z-[100]">
       <div className="bg-neutral-white px-2000 rounded-[20px] pt-1500 pb-800">

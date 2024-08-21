@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 import noCarImage from '@/assets/images/noCarImage.svg';
 import carImage from '@/assets/images/carImage.svg';
 import BlueButton from '@/components/buttons/BlueButton';
@@ -10,9 +10,9 @@ function CarCard() {
   const { userInfo } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const gotoWorldCup = useCallback(() => {
+  const gotoWorldCup = () => {
     navigate('/event/worldCup');
-  }, []);
+  };
 
   return (
     <div className="flex flex-col justify-between hover-scale-ani bg-carCard px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
