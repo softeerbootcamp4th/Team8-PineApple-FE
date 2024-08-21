@@ -3,7 +3,6 @@ import { AuthProvider } from '@/context/authContext';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const location = useLocation();
@@ -38,17 +37,13 @@ function App() {
   );
 
   return (
-    <HelmetProvider>
-      {/* 드레그 시 파란색으로 칠해지는 거 방지 */}
-      <div className="relative min-w-[1720px] select-none">
-        <AuthProvider>
-          {!hideHeader && <Header />}
-          <Outlet />
-        </AuthProvider>
-        {!hideFooter && <Footer />}
-      </div>
-      /
-    </HelmetProvider>
+    <div className="relative min-w-[1720px] select-none">
+      <AuthProvider>
+        {!hideHeader && <Header />}
+        <Outlet />
+      </AuthProvider>
+      {!hideFooter && <Footer />}
+    </div>
   );
 }
 
