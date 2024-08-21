@@ -1,10 +1,17 @@
 import React from 'react';
 import NewCarDetailBox from '@/pages/newCarIntro/NewCarDetailBox';
 import newCarDetailData from '@/constants/newCarIntro/newCarDetailData';
+import { animationVariants } from '@/styles/FramerMotion';
+import { motion } from 'framer-motion';
 
 function NewCarDetail() {
   return (
-    <>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={animationVariants}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: 1.0 }}
+    >
       <div className="flex px-5000">
         <div>
           <div className="text-primary-berrypurple text-body-2-regular">
@@ -21,12 +28,13 @@ function NewCarDetail() {
           <div>(15인치 알로이 휠, 인스퍼레이션 트림 기준)</div>
         </div>
       </div>
+
       <div className="grid grid-cols-2 mx-5000 gap-x-600 gap-y-2900">
         {newCarDetailData.map(item => (
           <NewCarDetailBox details={item} key={item.id} />
         ))}
       </div>
-    </>
+    </motion.div>
   );
 }
 
