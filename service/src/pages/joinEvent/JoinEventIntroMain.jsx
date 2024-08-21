@@ -23,7 +23,6 @@ function JoinEventIntroMain() {
     const getData = async () => {
       try {
         const response = await getScenario();
-        console.log(response);
         const { day, commonScenario } = response;
         setDay(day);
         setScenario(commonScenario);
