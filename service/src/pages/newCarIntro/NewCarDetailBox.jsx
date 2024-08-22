@@ -9,6 +9,7 @@ function NewCarDetailBox({ details }) {
         src={imageSrc}
         alt={alt}
         className="h-[435px] w-[703px]"
+        loading="lazy"
         draggable="false"
       ></img>
       <div className="text-body-1-bold text-neutral-black">{title}</div>
