@@ -27,9 +27,9 @@
         },
         backgroundImage: {
           //그림 배경 정의
-          'new-car-intro': "url('@/assets/images/newCarIntroBg.svg')",
-          'join-event-main': "url('@/assets/images/joinEventMainBg.svg')",
-          'miniquiz-paper': "url('@/assets/images/miniQuizBg.svg')",
+          'new-car-intro': "url('@/assets/images/newCarIntroBg.webp')",
+          'join-event-main': "url('@/assets/images/joinEventMainBg.webp')",
+          'miniquiz-paper': "url('@/assets/images/miniQuizBg.webp')",
           // 그라데이션 색상 정의
           'gradient-blue-purple':
             'linear-gradient(90deg, #0128FF 0%, #AD00FF 100%)',

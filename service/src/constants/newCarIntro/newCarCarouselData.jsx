@@ -1,8 +1,8 @@
-import newCarImage1 from '@/assets/images/newCarImage1.svg';
-import newCarImage3 from '@/assets/images/newCarImage3.svg';
-import newCarImage2 from '@/assets/images/newCarImage2.svg';
-import newCarImage4 from '@/assets/images/newCarImage4.svg';
-import newCarImage5 from '@/assets/images/newCarImage5.svg';
+import newCarImage1 from '@/assets/images/newCarImage1.webp';
+import newCarImage3 from '@/assets/images/newCarImage3.webp';
+import newCarImage2 from '@/assets/images/newCarImage2.webp';
+import newCarImage4 from '@/assets/images/newCarImage4.webp';
+import newCarImage5 from '@/assets/images/newCarImage5.webp';
 
 const newCarCarouselData = [
   { id: 0, imageSrc: newCarImage1 },
