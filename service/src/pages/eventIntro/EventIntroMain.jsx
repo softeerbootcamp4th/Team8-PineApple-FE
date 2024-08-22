@@ -3,18 +3,12 @@ import casperCarImage from '@/assets/images/casper_car_image.webp';
 import arrow from '@/assets/icons/arrow.svg';
 import casperCarImageShadow from '@/assets/images/casperCarImageShadow.webp';
 import { Link } from 'react-router-dom';
-import { animationVariants } from '@/styles/FramerMotion';
-import { motion } from 'framer-motion';
+import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function EventIntroMain() {
   return (
     <div className="bg-gradient-violetblue-cobaltblue h-[872px] pt-[151px]">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
+      <SlideUpMotion>
         <div className="flex justify-between">
           <div className="ml-3000">
             <div className="inline-block px-500 py-200 bg-primary-berrypurple mb-600">
@@ -80,7 +74,7 @@ function EventIntroMain() {
             />
           </div>
         </div>
-      </motion.div>
+      </SlideUpMotion>
     </div>
   );
 }

@@ -10,9 +10,7 @@ function ToolBoxCard() {
   const navigate = useNavigate();
   const { userInfo } = useContext(AuthContext);
 
-  const gotoMiniQuiz = () => {
-    navigate('/event/miniQuiz');
-  };
+  const gotoMiniQuiz = () => navigate('/event/miniQuiz');
 
   return (
     <div className="flex flex-col justify-between hover-scale-ani bg-toolBoxCard px-800 pt-700 pb-500 h-[417px] w-[320px] rounded-[30px]">

@@ -2,8 +2,7 @@ import React from 'react';
 import EventIntroNavItem from '@/pages/eventIntro/EventIntroNavItem';
 import EventIntroNavData from '@/constants/eventIntro/EventIntroNavData';
 import { useNavigate } from 'react-router-dom';
-import { animationVariants } from '@/styles/FramerMotion';
-import { motion } from 'framer-motion';
+import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function EventIntroNav() {
   const navigate = useNavigate();
@@ -20,18 +19,9 @@ function EventIntroNav() {
           className="nav-item"
           onClick={() => handleNavigation(item.section)}
         >
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={animationVariants}
-            transition={{
-              duration: 0.6,
-              ease: 'easeOut',
-              delay: 0.5 + (index * 2) / 10,
-            }}
-          >
+          <SlideUpMotion delay={0.5 + (index * 2) / 10}>
             <EventIntroNavItem item={item} />
-          </motion.div>
+          </SlideUpMotion>
         </div>
       ))}
     </div>

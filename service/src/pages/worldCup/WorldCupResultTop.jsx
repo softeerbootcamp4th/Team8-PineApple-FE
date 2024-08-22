@@ -8,8 +8,7 @@ import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
 import GetItemModal from '@/components/modal/GetItemModal';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 import '@/styles/worldCupArrowAnimation.css';
-import { animationVariants } from '@/styles/FramerMotion';
-import { motion } from 'framer-motion';
+import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function WorldCupResultTop({ data }) {
   const { showToast, messageType, handleShareClick } = useToast();
@@ -52,12 +51,7 @@ function WorldCupResultTop({ data }) {
         alt="worldCupArrowIcon"
         className={`${animate ? 'arrow-animation' : 'opacity-0'} absolute top-[45%]`}
       />
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-      >
+      <SlideUpMotion>
         <div className="set-center">
           <div className="w-[100px] py-[5px] bg-primary-babyblue rounded-md flex justify-center items-center text-detail-1-bold text-primary-blue mb-300">
             우승
@@ -66,13 +60,8 @@ function WorldCupResultTop({ data }) {
         <p className="text-center text-heading-3-bold mb-700 text-neutral-black">
           {data.story}
         </p>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.5 }}
-      >
+      </SlideUpMotion>
+      <SlideUpMotion delay={0.5}>
         <div className="flex justify-center gap-1500 pl-500 mb-[-35px]">
           <img src={data.image} alt="dataImage" className="w-[420px] h-auto" />
           <img
@@ -87,13 +76,8 @@ function WorldCupResultTop({ data }) {
           </p>
           <p className="text-body-3-bold text-neutral-black">{data.solution}</p>
         </div>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.5, ease: 'easeOut', delay: 1.0 }}
-      >
+      </SlideUpMotion>
+      <SlideUpMotion delay={1.0}>
         <div className="flex items-center justify-center gap-1000">
           <button
             onClick={() => handleShareClick(false)}
@@ -108,7 +92,7 @@ function WorldCupResultTop({ data }) {
             자동차 아이템 받기
           </button>
         </div>
-      </motion.div>
+      </SlideUpMotion>
       {showToast && <ToastMessage messageType={messageType} />}
       {resultModalOpen === 'alreadyGetCar' && (
         <AlreadyGetCarModal close={closeModal} />

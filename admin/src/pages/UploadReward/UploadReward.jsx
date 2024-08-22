@@ -18,7 +18,6 @@ function UploadReward() {
   const [processMessage, setProcessMessage] = useState(
     '폴더 안에 들어가서 파일만을 선택하여 압축한 zip 파일을 업로드해주세요.',
   );
-  const [modified, setModified] = useState(false);
 
   const totalReward = 500;
   const createFormData = useFormData();
@@ -27,8 +26,8 @@ function UploadReward() {
     unsavedChangesModal,
     handleConfirmNavigation,
     handleCancelNavigation,
-  } = useNavigationBlocker(modified, () => {
-    setModified(false);
+  } = useNavigationBlocker(selectedFile, () => {
+    setSelectedFile(null);
   });
 
   const handleClick = () => {
@@ -59,7 +58,7 @@ function UploadReward() {
       setErrorMessage('파일 업로드 중 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
-      setModified(false);
+      setSelectedFile(null);
     }
   };
 
