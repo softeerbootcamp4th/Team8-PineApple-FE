@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 function BaseButton({
   value,
   onClickFunc,
-  styles,
-  disabled,
+  styles = '',
+  disabled = false,
   bgColor,
   textColor,
 }) {
@@ -27,11 +27,6 @@ BaseButton.propTypes = {
   disabled: PropTypes.bool,
   bgColor: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
-};
-
-BaseButton.defaultProps = {
-  styles: '',
-  disabled: false,
 };
 
 export default React.memo(BaseButton);
