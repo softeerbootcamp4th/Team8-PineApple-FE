@@ -6,27 +6,26 @@ import miniQuizIntro3 from '@/assets/images/miniQuizIntro3.svg';
 import {
   getMillisecondsUntilNextSecond,
   getMillisecondsUntilNextHour,
-  getSecondsUntilNextHourFromNoon,
+  getSecondsUntilNextQuiz,
 } from '@/utils/miniQuizUtils';
 
 import { useNavigate } from 'react-router-dom';
 
 function MiniQuiz() {
   const navigate = useNavigate();
-  const [seconds, setSeconds] = useState(() =>
-    getSecondsUntilNextHourFromNoon(),
-  );
+  const [seconds, setSeconds] = useState(() => getSecondsUntilNextQuiz());
   const [countDownStart, setCountDownStart] = useState(false);
 
   useEffect(() => {
     const checkTime = () => {
-      const remainingTime = getSecondsUntilNextHourFromNoon();
+      const remainingTime = getSecondsUntilNextQuiz(); //12시까지 몇 초 남았는지 계산
       if (remainingTime !== -1) {
+        //-1이 아니면 12시와 13시 사이라는 의미로 카운트 다운 시작
         setCountDownStart(true);
       }
 
-      const sleepTime = getMillisecondsUntilNextHour();
-      const timeoutId = setTimeout(checkTime, sleepTime);
+      const sleepTime = getMillisecondsUntilNextHour(); //다음 정각까지 남은 시간 계산
+      const timeoutId = setTimeout(checkTime, sleepTime); //다음 정각에 checkTime 함수 호출
       return () => clearTimeout(timeoutId);
     };
 
@@ -36,14 +35,15 @@ function MiniQuiz() {
   useEffect(() => {
     if (countDownStart) {
       const tick = () => {
-        const remainingTime = getSecondsUntilNextHourFromNoon();
+        const remainingTime = getSecondsUntilNextQuiz(); //퀴즈 시간까지 남은 초 확인
         setSeconds(remainingTime);
 
         if (remainingTime !== -1) {
-          const timeoutId = setTimeout(tick, getMillisecondsUntilNextSecond());
+          //12시와 13시 사이
+          const timeoutId = setTimeout(tick, getMillisecondsUntilNextSecond()); //다음 초에 tick 함수 재호출로 남은 시간 재설정
           return () => clearTimeout(timeoutId);
         } else {
-          setCountDownStart(false);
+          setCountDownStart(false); //12시와 13시 사이가 아니면 카운트 다운을 종료
         }
       };
 
@@ -66,9 +66,9 @@ function MiniQuiz() {
           </div>
         )}
         <div className="absolute inset-0 flex gap-600">
-          <img src={miniQuizIntro1} alt="miniQuizIntro1" />
-          <img src={miniQuizIntro2} alt="miniQuizIntro2" />
-          <img src={miniQuizIntro3} alt="miniQuizIntro3" />
+          <img src={miniQuizIntro1} alt="miniQuizIntro1" loading="lazy" />
+          <img src={miniQuizIntro2} alt="miniQuizIntro2" loading="lazy" />
+          <img src={miniQuizIntro3} alt="miniQuizIntro3" loading="lazy" />
         </div>
       </div>
       <div className="relative w-[780px] z-0 ml-3000">
