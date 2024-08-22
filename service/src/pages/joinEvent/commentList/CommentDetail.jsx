@@ -4,6 +4,7 @@ import CommentModal from '@/components/modal/CommentModal';
 import { AuthContext } from '@/context/authContext';
 import { getEachComment, postLike } from '@/api/comment';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
+import Loading from '@/assets/icons/Loading.svg';
 
 function CommentDetail() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function CommentDetail() {
   const [openCommentModal, setOpenCommentModal] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const closeCommentModal = () => {
     setOpenCommentModal(false);
@@ -69,6 +71,7 @@ function CommentDetail() {
       setComment(response);
       setIsLiked(response.isLiked);
       setLikeCount(response.likeCount);
+      setLoading(false);
     } catch (error) {
       console.error('Failed to fetch comment detail:', error);
     }
@@ -82,8 +85,12 @@ function CommentDetail() {
     fetchComment();
   }, [userInfo]);
 
-  if (!comment) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="w-screen h-screen set-center bg-neutral-400">
+        <img src={Loading} alt="Loading" className="rotate-360" />
+      </div>
+    );
   }
 
   return (

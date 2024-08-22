@@ -39,17 +39,17 @@ function Login() {
   };
 
   const handleCodeAuth = async () => {
-    if (validateCode === '111111') {
-      try {
-        const response = await loginCode(inputPhone, validateCode);
+    try {
+      const response = await loginCode(inputPhone, validateCode);
+      if (response.code && response.code === 'CODE_INCORRECT') {
+        setAlertText('인증번호를 다시 확인해주세요!');
+        setCodeValid(false);
+      } else {
         sessionStorage.setItem('userInfo', response.accessToken);
         navigate('/');
-      } catch (error) {
-        console.error('API 통신 실패:', error);
       }
-    } else {
-      setAlertText('인증번호를 다시 확인해주세요!');
-      setCodeValid(false);
+    } catch (error) {
+      console.error('API 통신 실패:', error);
     }
   };
 

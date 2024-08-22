@@ -10,6 +10,7 @@ function PhoneAuthModal({
   setResultModalOpen,
   closeAuthModal,
   handleDisabledClick,
+  controls,
 }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [validateCode, setValidateCode] = useState('');
@@ -21,12 +22,18 @@ function PhoneAuthModal({
     setIsValid(e.target.value.length === 6);
   };
   const handleAuth = async () => {
-    if (validateCode === '111111') {
-      try {
-        const response = await loginCode(inputPhone, validateCode);
+    try {
+      const response = await loginCode(inputPhone, validateCode);
+      if (response.code && response.code === 'CODE_INCORRECT') {
+        controls.start({
+          x: [0, -20, 20, -20, 20, 0],
+          transition: { duration: 0.5, ease: 'easeInOut' },
+        });
+        setAlertText('인증번호를 다시 확인해주세요!');
+        setIsValid(false);
+      } else {
         localStorage.setItem('userInfo', response.accessToken);
         setUserInfo(response);
-
         if (option === '자동차 아이템') {
           if (response.car) {
             setResultModalOpen('alreadyGetCar');
@@ -37,12 +44,9 @@ function PhoneAuthModal({
           setResultModalOpen('comment');
         }
         closeAuthModal();
-      } catch (error) {
-        console.error('API 통신 실패:', error);
       }
-    } else {
-      setAlertText('인증번호를 다시 확인해주세요!');
-      setIsValid(false);
+    } catch (error) {
+      console.error('API 통신 실패:', error);
     }
   };
   const firstClickEvent = () => {
@@ -80,6 +84,7 @@ PhoneAuthModal.propTypes = {
   closeAuthModal: PropTypes.func.isRequired,
   option: PropTypes.string,
   handleDisabledClick: PropTypes.func.isRequired,
+  controls: PropTypes.object.isRequired,
 };
 
 export default PhoneAuthModal;
