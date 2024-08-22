@@ -42,7 +42,7 @@ function DailyComment() {
       <p className="text-detail-2-medium text-neutral-black mb-1200">
         매일 1회 월드컵 상황과 관련된 캐스퍼 기대평을 작성하면 툴 박스 1개를
         받을 수 있어요.
-        <br />그 날의 인기 기대평 작성자는 아이템 10개를 추가로 받는 혜택까지!
+        <br />그 날의 TOP10 기대평 작성자는 아이템 10개를 추가로 받는 혜택까지!
       </p>
       <div className="flex items-center gap-400">
         <button
