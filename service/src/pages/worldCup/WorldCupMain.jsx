@@ -10,7 +10,6 @@ const WorldCupMain = () => {
   const [totalData, setTotalData] = useState(shuffleArr(worldCupData));
   const [roundData, setRoundData] = useState(totalData.slice(0, 2));
   const [round, setRound] = useState(1);
-
   const handleSelect = async isChosen => {
     let updatedData = [...totalData];
 
@@ -36,7 +35,7 @@ const WorldCupMain = () => {
       setRound(5); // 결승 진행
     } else if (round === 5) {
       try {
-        setRound(6);
+        setRound(6); // 로딩 페이지
         const response = await postWorldCupResult(updatedData[0].id);
         navigate(`/event/worldCupResult`, { state: updatedData[0] });
       } catch (error) {
@@ -60,7 +59,7 @@ const WorldCupMain = () => {
       case 5:
         return '결승';
       default:
-        return '';
+        return '로딩';
     }
   };
 

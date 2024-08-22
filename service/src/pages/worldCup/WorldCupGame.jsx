@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ExitModal from '@/components/modal/ExitModal';
 import useBeforeUnload from '@/hooks/useBeforeUnload';
 import { motion } from 'framer-motion';
+import Loading from '@/assets/icons/Loading.svg';
 
 function WorldCupGame({ title = '8강', onSelect, roundData }) {
   const [currentState, setCurrentState] = useState(0);
@@ -91,6 +92,14 @@ function WorldCupGame({ title = '8강', onSelect, roundData }) {
   };
 
   const onClose = () => setOpenExitModal(false);
+
+  if (title === '로딩') {
+    return (
+      <div className="w-screen h-screen set-center bg-neutral-white">
+        <img src={Loading} alt="Loading" className="rotate-360" />
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full min-w-[1104px] min-h-[860px]">
