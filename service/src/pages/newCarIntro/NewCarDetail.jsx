@@ -1,17 +1,11 @@
 import React from 'react';
 import NewCarDetailBox from '@/pages/newCarIntro/NewCarDetailBox';
 import newCarDetailData from '@/constants/newCarIntro/newCarDetailData';
-import { animationVariants } from '@/styles/FramerMotion';
-import { motion } from 'framer-motion';
+import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function NewCarDetail() {
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={animationVariants}
-      transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
-    >
+    <SlideUpMotion delay={0.5}>
       <div className="flex px-5000">
         <div>
           <div className="text-primary-berrypurple text-body-2-regular">
@@ -34,7 +28,7 @@ function NewCarDetail() {
           <NewCarDetailBox details={item} key={item.id} />
         ))}
       </div>
-    </motion.div>
+    </SlideUpMotion>
   );
 }
 

@@ -3,8 +3,7 @@ import arrowLeftCircle from '@/assets/images/arrowLeftCircle.svg';
 import arrowRightCircle from '@/assets/images/arrowRightCircle.svg';
 import newCarCarouselData from '@/constants/newCarIntro/newCarCarouselData';
 import '@/styles/newCarCarousel.css';
-import { animationVariants } from '@/styles/FramerMotion';
-import { motion } from 'framer-motion';
+import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function NewCarCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,12 +45,7 @@ function NewCarCarousel() {
 
   return (
     <div className="new-car-carousel">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 1.0 }}
-      >
+      <SlideUpMotion delay={1.0}>
         <div className="mx-5000 mb-1100">
           <div className="text-body-3-semibold text-primary-blue">
             Highlights
@@ -102,7 +96,7 @@ function NewCarCarousel() {
             className="hover:cursor-pointer"
           />
         </div>
-      </motion.div>
+      </SlideUpMotion>
     </div>
   );
 }

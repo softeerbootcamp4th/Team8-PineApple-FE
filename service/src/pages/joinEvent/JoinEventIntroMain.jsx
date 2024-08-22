@@ -6,8 +6,7 @@ import { AuthContext } from '@/context/authContext';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import { useNavigate } from 'react-router-dom';
 import { getScenario } from '@/api/scenario';
-import { animationVariants } from '@/styles/FramerMotion';
-import { motion } from 'framer-motion';
+import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function JoinEventIntroMain() {
   const navigate = useNavigate();
@@ -49,40 +48,25 @@ function JoinEventIntroMain() {
       <div className="bg-join-event-main bg-cover bg-center h-screen pt-[250px] flex flex-col">
         <div className="flex gap-2000 px-3000">
           <div className="space-y-1200">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={animationVariants}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
+            <SlideUpMotion>
               <div className="flex items-center gap-300">
                 <CarCard />
                 <div className="text-heading-1-bold text-neutral-white">+</div>
                 <ToolBoxCard />
               </div>
-            </motion.div>
+            </SlideUpMotion>
             <div
               className={`text-center underline text-neutral-white text-shadow-default ${phoneNumber ? 'invisible' : 'visible'}`}
             >
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={animationVariants}
-                transition={{ duration: 0.5, ease: 'easeOut', delay: 1.0 }}
-              >
+              <SlideUpMotion dalay={1}>
                 <span className="cursor-pointer" onClick={openPhoneModal}>
                   보유 아이템이 있다면? 전화번호 입력하고 내 아이템 개수
                   확인하기
                 </span>
-              </motion.div>
+              </SlideUpMotion>
             </div>
           </div>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={animationVariants}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
-          >
+          <SlideUpMotion delay={0.5}>
             <div className="relative flex flex-col">
               <div className="text-heading-banner-title-2 text-nowrap mb-1000">
                 <span className="text-gradient-blue-purple">캐스퍼 EV</span>와
@@ -111,7 +95,7 @@ function JoinEventIntroMain() {
                 </>
               )}
             </div>
-          </motion.div>
+          </SlideUpMotion>
         </div>
       </div>
       {openPhoneInputModal && (

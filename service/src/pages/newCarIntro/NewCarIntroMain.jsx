@@ -1,26 +1,17 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import BluePurpleButton from '@/components/buttons/BluePurpleButton';
 import WhiteButton from '@/components/buttons/WhiteButton';
 import { linkToFreeRide, linkToPreOrder } from '@/utils/linkToFunc';
-import { animationVariants } from '@/styles/FramerMotion';
-import { motion } from 'framer-motion';
+import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function NewCarIntroMain() {
-  const handleFreeRide = useCallback(() => {
-    linkToFreeRide();
-  }, []);
+  const handleFreeRide = () => linkToFreeRide();
 
-  const handlePreOrder = useCallback(() => {
-    linkToPreOrder();
-  }, []);
+  const handlePreOrder = () => linkToPreOrder();
+
   return (
     <div className="bg-new-car-intro bg-cover bg-center h-[680px] pt-[250px] flex flex-col gap-1300">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
+      <SlideUpMotion>
         <div className="flex flex-col items-center">
           <div className="text-detail-1-medium text-neutral-white">
             전력을 다해, CASPER Eletric 사전계약 진행중
@@ -29,13 +20,8 @@ function NewCarIntroMain() {
             CASPER Electric
           </div>
         </div>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
-      >
+      </SlideUpMotion>
+      <SlideUpMotion delay={0.5}>
         <div className="flex justify-center gap-300">
           <BluePurpleButton
             value="무료 시승 신청 (최대 연 6회)"
@@ -48,7 +34,7 @@ function NewCarIntroMain() {
             styles="text-detail-3-semibold px-800 py-400"
           />
         </div>
-      </motion.div>
+      </SlideUpMotion>
     </div>
   );
 }
