@@ -19,7 +19,7 @@ function NewCarDetail() {
           <div>
             49kWh 배터리를 적용하여 여유 있는 주행 기능 거리를 제공합니다.
           </div>
-          <div>(15인치 알로이 휠, 인스퍼레이션 트림 기준)</div>
+          <div>15인치 알로이 휠, 인스퍼레이션 트림 기준</div>
         </div>
       </div>
 
