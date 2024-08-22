@@ -4,6 +4,7 @@ import worldCupData from '@/constants/worldCup/worldCupData';
 import { useNavigate } from 'react-router-dom';
 import shuffleArr from '@/utils/shuffleArr';
 import { postWorldCupResult } from '@/api/worldCup/index';
+import { Helmet } from 'react-helmet-async';
 
 const WorldCupMain = () => {
   const navigate = useNavigate();
@@ -65,6 +66,26 @@ const WorldCupMain = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>캐스퍼 상황 월드컵</title>
+        <meta
+          name="description"
+          content="월드컵 게임을 통해 자동차 아이템을 획득하세요!"
+        />
+        <meta
+          property="og:url"
+          content="https://casper-event.store/event/worldcup"
+        />
+        <meta property="og:title" content="캐스퍼 상황 월드컵" />
+        <meta
+          property="og:description"
+          content="월드컵 게임을 통해 자동차 아이템을 획득하세요!"
+        />
+        <meta
+          property="og:image"
+          content="https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/OGImage.png"
+        />
+      </Helmet>
       <WorldCupGame
         title={getTitle()}
         roundData={roundData}
