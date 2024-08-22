@@ -79,11 +79,13 @@ function CommentIndex() {
         )}
       </div>
       <div className="mb-2000">
-        <PagingComment
-          page={currentPage}
-          onChangePage={onChangePage}
-          count={totalCommentCount}
-        />
+        {commentList.length > 0 && (
+          <PagingComment
+            page={currentPage}
+            onChangePage={onChangePage}
+            count={totalCommentCount}
+          />
+        )}
       </div>
     </div>
   );

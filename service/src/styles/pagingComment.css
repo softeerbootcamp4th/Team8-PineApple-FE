@@ -9,7 +9,8 @@ ul {
 }
 
 ul.pagination li {
-  width: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
   height: 40px;
   display: flex;
   justify-content: center;

@@ -37,11 +37,14 @@ function PhoneAuthModal({
         if (option === '자동차 아이템') {
           if (response.car) {
             setResultModalOpen('alreadyGetCar');
+            return;
           } else {
             setResultModalOpen('getCar');
+            return;
           }
         } else if (option === '기대평 댓글 작성') {
           setResultModalOpen('comment');
+          return;
         }
         closeAuthModal();
       }
