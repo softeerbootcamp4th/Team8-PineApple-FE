@@ -10,9 +10,7 @@ function CarCard() {
   const { userInfo } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const gotoWorldCup = () => {
-    navigate('/event/worldCup');
-  };
+  const gotoWorldCup = () => navigate('/event/worldCup');
 
   return (
     <div className="flex flex-col justify-between hover-scale-ani bg-carCard px-800 pt-700 pb-500 w-[320px] h-[417px] rounded-[30px]">
@@ -38,7 +36,7 @@ function CarCard() {
       </div>
       <div className={`set-center ${userInfo.car ? 'invisible' : 'visible'}`}>
         <BlueButton
-          value="자동차 얻기 "
+          value="자동차 얻기"
           onClickFunc={gotoWorldCup}
           styles="px-800 py-400 text-detail-2-medium"
         />

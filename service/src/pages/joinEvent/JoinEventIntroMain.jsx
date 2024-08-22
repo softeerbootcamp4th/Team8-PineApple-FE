@@ -26,6 +26,7 @@ function JoinEventIntroMain() {
         setScenario(commonScenario);
       } catch (error) {
         console.error(error);
+        setScenario('시나리오를 불러오는 데 실패했습니다. 다시 시도해주세요.');
       }
     };
     getData();
@@ -72,7 +73,7 @@ function JoinEventIntroMain() {
                 <span className="text-gradient-blue-purple">캐스퍼 EV</span>와
                 떠나기
               </div>
-              <div className="w-[84px] bg-op-30-blue px-400 py-100 mb-400 text-detail-2-medium text-neutral-white">
+              <div className="w-max bg-op-30-blue px-400 py-100 mb-400 text-detail-2-medium text-neutral-white">
                 Day {day}
               </div>
               <div className="whitespace-pre-line h-1800 text-detail-1-regular text-neutral-black mb-1500">
