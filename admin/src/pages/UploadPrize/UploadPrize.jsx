@@ -27,8 +27,8 @@ function UploadPrize() {
     unsavedChangesModal,
     handleConfirmNavigation,
     handleCancelNavigation,
-  } = useNavigationBlocker(modified, () => {
-    setModified(false);
+  } = useNavigationBlocker(selectedFile, () => {
+    setSelectedFile(null);
   });
 
   useEffect(() => {
@@ -93,7 +93,7 @@ function UploadPrize() {
       setErrorMessage('파일 업로드 중 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
-      setModified(false);
+      setSelectedFile(null);
     }
   };
 
