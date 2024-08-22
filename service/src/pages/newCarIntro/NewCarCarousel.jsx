@@ -60,13 +60,6 @@ function NewCarCarousel() {
             전력을 다해, CASPER Electric
           </div>
         </div>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={animationVariants}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 1.5 }}
-      >
         <div className="slider-container">
           <div className="slider">
             {newCarCarouselData.map((item, idx) => (
