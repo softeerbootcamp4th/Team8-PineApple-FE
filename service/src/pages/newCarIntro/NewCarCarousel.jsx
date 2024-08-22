@@ -79,6 +79,7 @@ function NewCarCarousel() {
                   alt={`Car Image ${item.id}`}
                   className="object-cover w-full h-full"
                   onClick={() => moveToIndex(idx)}
+                  loading="lazy"
                 />
               </div>
             ))}
