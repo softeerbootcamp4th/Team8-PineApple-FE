@@ -19,7 +19,7 @@ function EventIntroNav() {
           className="nav-item"
           onClick={() => handleNavigation(item.section)}
         >
-          <SlideUpMotion dalay={0.5 + (index * 2) / 10}>
+          <SlideUpMotion delay={0.5 + (index * 2) / 10}>
             <EventIntroNavItem item={item} />
           </SlideUpMotion>
         </div>

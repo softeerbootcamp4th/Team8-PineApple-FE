@@ -58,7 +58,7 @@ function JoinEventIntroMain() {
             <div
               className={`text-center underline text-neutral-white text-shadow-default ${phoneNumber ? 'invisible' : 'visible'}`}
             >
-              <SlideUpMotion dalay={1}>
+              <SlideUpMotion delay={1}>
                 <span className="cursor-pointer" onClick={openPhoneModal}>
                   보유 아이템이 있다면? 전화번호 입력하고 내 아이템 개수
                   확인하기
