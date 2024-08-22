@@ -1,9 +1,9 @@
-import image1 from '@/assets/images/newCarDetailImage1.svg';
-import image2 from '@/assets/images/newCarDetailImage2.svg';
-import image3 from '@/assets/images/newCarDetailImage3.svg';
-import image4 from '@/assets/images/newCarDetailImage4.svg';
-import image5 from '@/assets/images/newCarDetailImage5.svg';
-import image6 from '@/assets/images/newCarDetailImage6.svg';
+import image1 from '@/assets/images/newCarDetailImage1.webp';
+import image2 from '@/assets/images/newCarDetailImage2.webp';
+import image3 from '@/assets/images/newCarDetailImage3.webp';
+import image4 from '@/assets/images/newCarDetailImage4.webp';
+import image5 from '@/assets/images/newCarDetailImage5.webp';
+import image6 from '@/assets/images/newCarDetailImage6.webp';
 
 const newCarDetailData = [
   {

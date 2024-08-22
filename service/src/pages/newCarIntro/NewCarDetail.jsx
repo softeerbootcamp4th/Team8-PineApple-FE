@@ -10,7 +10,7 @@ function NewCarDetail() {
       initial="hidden"
       animate="visible"
       variants={animationVariants}
-      transition={{ duration: 0.6, ease: 'easeOut', delay: 1.0 }}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
     >
       <div className="flex px-5000">
         <div>
