@@ -1,46 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import arrowLeftCircle from '@/assets/images/arrowLeftCircle.svg';
 import arrowRightCircle from '@/assets/images/arrowRightCircle.svg';
 import newCarCarouselData from '@/constants/newCarIntro/newCarCarouselData';
-import '@/styles/newCarCarousel.css';
 import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
+import '@/styles/newCarCarousel.css';
 
 function NewCarCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const isClickDisabled = useRef(false); //isClickDisabled는 랜더링과 관련이 없음을 의미하기 위해 useRef로 선언
   const totalItems = 5;
 
   const getSliderClasses = index => {
     const positions = ['s1', 's2', 's3', 's4', 's5'];
-    return positions[(index - currentIndex + totalItems) % totalItems];
+    return positions[(index - currentIndex + totalItems) % totalItems]; //s1,s2,s3,s4,s5는 위치를 지정
   };
 
   const handleCarousel = direction => {
-    if (isButtonDisabled) return;
-    setIsButtonDisabled(true);
+    if (isClickDisabled.current) return; //화살표 버튼 클릭 시 추가 클릭 방지
+    isClickDisabled.current = true;
     setCurrentIndex(
       prevIndex => (prevIndex + (totalItems + direction)) % totalItems,
     );
     setTimeout(() => {
-      setIsButtonDisabled(false);
-    }, 250);
+      isClickDisabled.current = false;
+    }, 350);
   };
 
   const moveToIndex = async targetIndex => {
-    if (isButtonDisabled) return;
-    setIsButtonDisabled(true);
-
+    if (isClickDisabled.current) return; //화살표 버튼 클릭 시 추가 클릭 방지
     let diff = targetIndex - currentIndex;
     if (diff >= 3) diff = -5 + diff;
     else if (diff <= -3) diff = 5 + diff;
 
     const direction = Math.sign(diff);
+    isClickDisabled.current = true;
     for (let i = 0; i < Math.abs(diff); i++) {
-      handleCarousel(direction);
-      await new Promise(resolve => setTimeout(resolve, 250));
+      setCurrentIndex(
+        prevIndex => (prevIndex + (totalItems + direction)) % totalItems,
+      );
+      await new Promise(resolve => setTimeout(resolve, 350));
     }
-
-    setIsButtonDisabled(false);
+    isClickDisabled.current = false;
   };
 
   return (
@@ -59,14 +59,15 @@ function NewCarCarousel() {
             {newCarCarouselData.map((item, idx) => (
               <div
                 key={item.id}
-                className={`slider-item ${getSliderClasses(idx)} ${currentIndex === idx ? 'active' : ''}`}
+                className={`slider-item ${getSliderClasses(idx)}`}
               >
                 <img
                   src={item.imageSrc}
                   alt={`Car Image ${item.id}`}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full select-none"
                   onClick={() => moveToIndex(idx)}
                   loading="lazy"
+                  draggable="false"
                 />
               </div>
             ))}
