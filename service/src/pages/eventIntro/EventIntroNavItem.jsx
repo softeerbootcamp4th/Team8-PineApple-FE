@@ -21,7 +21,7 @@ function EventIntroNavItem({ item }) {
           </span>
         </div>
       ) : null}
-      <div className="bg-neutral-white p-[17px]">
+      <div className="bg-neutral-white p-[17px] rounded-[25.86px]">
         <span className="text-detail-3-semibold text-primary-blue">
           {item.tag}
         </span>

@@ -1,7 +1,7 @@
 import React from 'react';
-import casperCarImage from '@/assets/images/casper_car_image.svg';
+import casperCarImage from '@/assets/images/casper_car_image.webp';
 import arrow from '@/assets/icons/arrow.svg';
-import casperCarImageShadow from '@/assets/icons/casperCarImageShadow.svg';
+import casperCarImageShadow from '@/assets/images/casperCarImageShadow.webp';
 import { Link } from 'react-router-dom';
 import { animationVariants } from '@/styles/FramerMotion';
 import { motion } from 'framer-motion';
@@ -43,7 +43,7 @@ function EventIntroMain() {
             </p>
             <div className="flex mt-600 gap-300">
               <Link to="event">
-                <button className="flex items-center justify-center rounded-full px-1000 py-500 bg-neutral-white text-neutral-black text-detail-3-semibold hover:scale-105 duration-200">
+                <button className="flex items-center justify-center duration-200 rounded-full px-1000 py-500 bg-neutral-white text-neutral-black text-detail-3-semibold hover:scale-105">
                   이벤트 참여하기
                 </button>
               </Link>
