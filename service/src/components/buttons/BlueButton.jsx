@@ -1,23 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import BaseButton from '@/components/buttons/BaseButton';
 
-function BlueButton({ value, styles, onClickFunc, disabled = false }) {
+function BlueButton(props) {
   return (
-    <button
-      onClick={onClickFunc}
-      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover-scale-ani'} set-center rounded-full bg-primary-blue text-neutral-white`}
-    >
-      {value}
-    </button>
+    <BaseButton
+      {...props}
+      bgColor="bg-primary-blue"
+      textColor="text-neutral-white"
+    />
   );
 }
 
-BlueButton.propTypes = {
-  value: PropTypes.string.isRequired,
-  onClickFunc: PropTypes.func.isRequired,
-  styles: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
-};
-
-//memo를 이용하여 rerender 방지
 export default React.memo(BlueButton);
