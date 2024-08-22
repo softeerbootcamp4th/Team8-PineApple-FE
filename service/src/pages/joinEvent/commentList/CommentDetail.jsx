@@ -86,7 +86,6 @@ function CommentDetail() {
   }, [userInfo]);
 
   if (loading) {
-    console.log('ddd');
     return (
       <div className="w-screen h-screen set-center bg-neutral-400">
         <img src={Loading} alt="Loading" className="rotate-360" />

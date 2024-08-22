@@ -22,7 +22,7 @@ function CommentModal({
     >
       <div className="px-1500 set-center gap-500">
         <p>{data.phoneNumber}</p>
-        <div className="flex items-center">
+        <div className="flex items-center w-[50px]">
           <div className="text-detail-2-regular text-neutral-500">
             {likeCount}
           </div>
