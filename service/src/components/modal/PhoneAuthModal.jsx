@@ -10,6 +10,7 @@ function PhoneAuthModal({
   setResultModalOpen,
   closeAuthModal,
   handleDisabledClick,
+  controls,
 }) {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [validateCode, setValidateCode] = useState('');
@@ -24,6 +25,10 @@ function PhoneAuthModal({
     try {
       const response = await loginCode(inputPhone, validateCode);
       if (response.code && response.code === 'CODE_INCORRECT') {
+        controls.start({
+          x: [0, -20, 20, -20, 20, 0],
+          transition: { duration: 0.5, ease: 'easeInOut' },
+        });
         setAlertText('인증번호를 다시 확인해주세요!');
         setIsValid(false);
       } else {
@@ -79,6 +84,7 @@ PhoneAuthModal.propTypes = {
   closeAuthModal: PropTypes.func.isRequired,
   option: PropTypes.string,
   handleDisabledClick: PropTypes.func.isRequired,
+  controls: PropTypes.object.isRequired,
 };
 
 export default PhoneAuthModal;
