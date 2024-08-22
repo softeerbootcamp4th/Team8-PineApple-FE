@@ -72,6 +72,7 @@ function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
           closeAuthModal={closeAuthModal}
           option={option}
           handleDisabledClick={handleDisabledClick}
+          controls={controls}
         />
       ) : (
         <>
