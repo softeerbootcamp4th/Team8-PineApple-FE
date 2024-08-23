@@ -7,14 +7,16 @@ import { AuthContext } from '@/context/authContext';
 import AlreadyGetCarModal from '@/components/modal/AlreadyGetCarModal';
 import GetItemModal from '@/components/modal/GetItemModal';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
+import useFunnel from '@/hooks/useFunnel';
 import '@/styles/worldCupArrowAnimation.css';
 import SlideUpMotion from '@/components/SlideUpMotion/SlideUpMotion';
 
 function WorldCupResultTop({ data }) {
   const { showToast, messageType, handleShareClick } = useToast();
   const { userInfo } = useContext(AuthContext);
-  const [resultModalOpen, setResultModalOpen] = useState('');
-  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+  const MODAL_STEPS = ['none', 'phoneInput', 'alreadyGetCar', 'getCar'];
+  const [Funnel, setStep] = useFunnel(MODAL_STEPS);
+
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
@@ -24,24 +26,24 @@ function WorldCupResultTop({ data }) {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleOpenModal = () => {
+    if (userInfo.phoneNumber === undefined) {
+      setStep('phoneInput');
+    } else {
+      if (userInfo.car) {
+        setStep('alreadyGetCar');
+      } else {
+        setStep('getCar');
+      }
+    }
+  };
+
   const closeModal = () => {
-    setResultModalOpen('');
+    setStep('none');
   };
 
   const closePhoneModal = () => {
-    setOpenPhoneInputModal(false);
-  };
-
-  const handleOpenModal = () => {
-    if (userInfo.phoneNumber === undefined) {
-      setOpenPhoneInputModal(true);
-    } else {
-      if (userInfo.car) {
-        setResultModalOpen('alreadyGetCar');
-      } else {
-        setResultModalOpen('getCar');
-      }
-    }
+    setStep('none');
   };
 
   return (
@@ -94,19 +96,21 @@ function WorldCupResultTop({ data }) {
         </div>
       </SlideUpMotion>
       {showToast && <ToastMessage messageType={messageType} />}
-      {resultModalOpen === 'alreadyGetCar' && (
-        <AlreadyGetCarModal close={closeModal} />
-      )}
-      {resultModalOpen === 'getCar' && (
-        <GetItemModal close={closeModal} item="자동차 아이템" />
-      )}
-      {openPhoneInputModal ? (
-        <PhoneInputModal
-          closePhoneModal={closePhoneModal}
-          option="자동차 아이템"
-          setResultModalOpen={setResultModalOpen}
-        />
-      ) : null}
+      <Funnel>
+        <Funnel.Step name="phoneInput">
+          <PhoneInputModal
+            closePhoneModal={closePhoneModal}
+            option="자동차 아이템"
+            setResultModalOpen={setStep}
+          />
+        </Funnel.Step>
+        <Funnel.Step name="alreadyGetCar">
+          <AlreadyGetCarModal close={closeModal} />
+        </Funnel.Step>
+        <Funnel.Step name="getCar">
+          <GetItemModal close={closeModal} item="자동차 아이템" />
+        </Funnel.Step>
+      </Funnel>
     </div>
   );
 }

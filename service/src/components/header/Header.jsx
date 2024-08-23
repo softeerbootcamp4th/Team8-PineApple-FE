@@ -33,11 +33,12 @@ function Header() {
 
   return (
     <header className="absolute flex justify-between w-full bg-transparent px-3000 py-500">
-      <span
+      <NavLink
+        to="/"
         className={`flex items-center justify-center text-detail-1-bold text-neutral-black text-nowrap ${textColor}`}
       >
         CASPER ELECTRONIC
-      </span>
+      </NavLink>
       <div className="flex items-center justify-between">
         <NavLink
           to="/"

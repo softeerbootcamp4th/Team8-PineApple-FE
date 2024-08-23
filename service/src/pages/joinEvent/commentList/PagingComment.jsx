@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore
 import Pagination from 'react-js-pagination';
 import '@/styles/pagingComment.css';
 import PropTypes from 'prop-types';
@@ -10,7 +11,7 @@ function PagingComment({ page, count, onChangePage }) {
         activePage={page}
         itemsCountPerPage={10}
         totalItemsCount={count * 10}
-        pageRangeDisplayed={Math.floor(count / 10)}
+        pageRangeDisplayed={10}
         prevPageText={'<'}
         nextPageText={'>'}
         onChange={onChangePage}
