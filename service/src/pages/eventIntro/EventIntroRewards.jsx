@@ -81,8 +81,7 @@ function EventIntroRewards() {
             <p className="text-body-2-bold text-neutral-black w-[250px]">
               {info[3].rewardName}
               &nbsp;
-              {/* {info[3].rewardCount}명 */}
-              10명
+              {info[3].rewardCount}명
             </p>
           </div>
           <span className="absolute text-primary-blue text-detail-3-semibold top-52 right-8">
@@ -102,8 +101,7 @@ function EventIntroRewards() {
             <p className="text-body-2-bold text-neutral-black w-[250px]">
               {info[4].rewardName}
               &nbsp;
-              {/* {info[4].rewardCount}명 */}
-              100명
+              {info[4].rewardCount}명
             </p>
           </div>
           <span className="absolute text-primary-blue text-detail-3-semibold top-52 right-8">
@@ -121,8 +119,7 @@ function EventIntroRewards() {
             <p className="text-body-2-bold text-neutral-black w-[200px]">
               {info[5].rewardName}
               &nbsp;
-              {/* {info[5].rewardCount}명 */}
-              1000명
+              {info[5].rewardCount}명
             </p>
           </div>
           <span className="absolute text-primary-blue text-detail-3-semibold top-52 right-8">
