@@ -68,33 +68,35 @@ function JoinEventIntroMain() {
             </div>
           </div>
           <SlideUpMotion delay={0.5}>
-            <div className="relative flex flex-col">
+            <div className="relative flex-col">
               <div className="text-heading-banner-title-2 text-nowrap mb-1000">
                 <span className="text-gradient-blue-purple">캐스퍼 EV</span>와
                 떠나기
               </div>
-              <div className="w-max bg-op-30-blue px-400 py-100 mb-400 text-detail-2-medium text-neutral-white">
-                Day {day}
+              <div className="inline-block w-auto bg-op-30-blue px-400 py-100 mb-400">
+                <p className="text-detail-2-medium text-neutral-white">
+                  Day {day}
+                </p>
               </div>
               <div className="whitespace-pre-line h-1800 text-detail-1-regular text-neutral-black mb-1500">
                 {scenario}
               </div>
-              <div>
+              <div className="relative">
                 <BluePurpleButton
                   value="결과 보기"
                   onClickFunc={handleReward}
                   styles="text-body-3-regular px-5000 py-400"
                   disabled={isRewardButtonDisabled}
                 />
+                {isRewardButtonDisabled && (
+                  <>
+                    <div className="absolute top-[97px] left-[279px] h-0 w-0 border-x-[12px] border-b-[12px] border-x-transparent border-b-neutral-white"></div>
+                    <div className="absolute top-[103px] left-[91px] w-[400px] rounded-[5px] py-300 text-center bg-neutral-white text-primary-blue">
+                      이벤트에 참여해서 추첨을 위한 아이템을 모아보아요!
+                    </div>
+                  </>
+                )}
               </div>
-              {isRewardButtonDisabled && (
-                <>
-                  <div className="absolute top-[417px] left-[279px] h-0 w-0 border-x-[12px] border-b-[12px] border-x-transparent border-b-neutral-white"></div>
-                  <div className="absolute top-[423px] left-[91px] w-[400px] rounded-[5px] py-300 text-center bg-neutral-white text-primary-blue">
-                    이벤트에 참여해서 추첨을 위한 아이템을 모아보아요!
-                  </div>
-                </>
-              )}
             </div>
           </SlideUpMotion>
         </div>
