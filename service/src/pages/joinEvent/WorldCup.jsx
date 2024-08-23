@@ -39,20 +39,20 @@ const WorldCupImages = () => (
       className="absolute top-[51px] left-[6px] z-0"
       src={worldCupIntro1}
       alt="출차 시 고급승용차에 둘러 싸이기"
-      style={{ clipPath: 'polygon(0 10%, 100% 0%, 100% 90%, 10% 100%)' }} //clipPath를 이용한 밑줄 삭제
+      style={{ clipPath: 'polygon(0% 18%, 78% 0%, 100% 79%, 22% 100%)' }} //clipPath를 이용한 밑줄 삭제
       loading="lazy"
     />
     <img
       className="absolute top-[25px] left-[206px] z-50"
       src={worldCupIntro2}
       alt="산 중턱에서 전기차 배터리 방전되기"
-      style={{ clipPath: 'polygon(10% 0, 100% 10%, 90% 100%, 0 90%)' }}
       loading="lazy"
     />
     <img
       className="absolute top-[57px] left-[410px] z-0"
       src={worldCupIntro3}
       alt="골목에서 천천히 걸어가는 보행자 만나기"
+      style={{ clipPath: 'polygon(22% 0%, 100% 18%, 78% 100%, 0% 79%)' }} //clipPath를 이용한 밑줄 삭제
       loading="lazy"
     />
   </div>
