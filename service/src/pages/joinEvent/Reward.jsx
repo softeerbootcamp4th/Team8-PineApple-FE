@@ -33,7 +33,6 @@ function Reward() {
     if (userInfo.toolBoxCnt > 0) {
       try {
         const response = await postReward();
-        console.log(response);
         if (response && response.image) {
           setData(response);
           const updatedUserInfo = { ...userInfo, toolBoxCnt: toolBoxCnt - 1 };
@@ -51,11 +50,10 @@ function Reward() {
           setError(true);
         }
       } catch (error) {
-        console.error(error);
         setError(true);
       }
     } else {
-      setError(true);
+      goToEventPage();
     }
   };
 
