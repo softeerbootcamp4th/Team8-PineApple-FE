@@ -21,7 +21,6 @@ function GetItemModal({ close, item }) {
         setUserInfo(updatedUserInfo);
         navigate('/event');
       } else {
-        console.log(userInfo);
         const updatedUserInfo = { ...userInfo, toolBoxCnt: toolBoxCnt + 1 };
         setUserInfo(updatedUserInfo);
         close();

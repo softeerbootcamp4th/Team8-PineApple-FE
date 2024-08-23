@@ -12,7 +12,6 @@ function MiniQuizResultMain({ response }) {
   const [userGotPrize, setUserGotPrize] = useState(false);
   const [toolBoxModal, setToolBoxModal] = useState(false);
   const [orderModal, setOrderModal] = useState(false);
-  let correctMessage = '정답입니다!';
 
   useEffect(() => {
     const check = async () => {
@@ -53,9 +52,6 @@ function MiniQuizResultMain({ response }) {
     return <div>예상치 못한 오류가 발생했습니다.</div>; // MiniQuizResult에 navigate state로 전달된 값이 잘못되었을 때
   }
 
-  if (successOrder <= 500 && !userGotPrize)
-    correctMessage = successOrder + '번째 ' + correctMessage;
-
   return (
     <>
       {isCorrect ? (
@@ -70,7 +66,15 @@ function MiniQuizResultMain({ response }) {
               선착순 당첨
             </div>
           </div>
-          <div className="py-500 text-body-1-bold mb-400">{correctMessage}</div>
+          <div className="flex gap-500">
+            {successOrder <= 500 && !userGotPrize && (
+              <span className="py-500 text-body-1-bold mb-400">
+                {successOrder + '번째 '}
+              </span>
+            )}
+
+            <span className="py-500 text-body-1-bold mb-400"> 정답입니다!</span>
+          </div>
         </>
       ) : (
         <>

@@ -8,6 +8,7 @@ function EventIntroRewards() {
     const fetchInfo = async () => {
       try {
         const data = await getPrizeInfo();
+        console.log(data);
         if (Array.isArray(data)) {
           setInfo(data);
         } else {
@@ -46,7 +47,7 @@ function EventIntroRewards() {
             응모에 많이 참여할 수록 당첨 확률이 높아져요.
           </p>
           <p className="text-detail-3-semibold text-primary-blue">
-            1등 당첨자 발표: nnnn.nn.nn nn시
+            1등 당첨자 발표: 2024.08.29 13시
           </p>
         </div>
         <div>

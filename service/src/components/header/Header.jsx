@@ -8,7 +8,7 @@ function Header() {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
   const textColor =
-    useLocation().pathname === '/introduce'
+    useLocation().pathname === '/intro'
       ? 'text-neutral-white'
       : 'text-neutral-black';
 
@@ -65,7 +65,7 @@ function Header() {
           이벤트 참여하기
         </NavLink>
         <NavLink
-          to="introduce"
+          to="intro"
           className={({ isActive }) =>
             `text-nowrap pr-[44px] ${textColor} ${
               isActive
