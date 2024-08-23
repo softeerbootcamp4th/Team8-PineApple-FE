@@ -58,6 +58,16 @@ function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
     });
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      if (isValid && isCheck) {
+        handleAuth();
+      } else {
+        handleDisabledClick();
+      }
+    }
+  };
+
   return (
     <ModalFrame
       handleExit={closePhoneModal}
@@ -82,6 +92,7 @@ function PhoneInputModal({ closePhoneModal, option = '', setResultModalOpen }) {
                 placeholder="핸드폰 번호 입력 (01XXXXXXXXX)"
                 onClick={firstClickEvent}
                 onChange={handleInputText}
+                onKeyDown={handleKeyDown}
                 className={`w-[640px] h-[80px] px-[30px] pl-[40px] mb-800 text-body-3-regular text-neutral-black placeholder:text-body-3-regular placeholder-neutral-black placeholder-opacity-50 border-solid ${!isValid && firstClick ? 'border-red-500 focus:border-red-500' : 'border-neutral-black focus:border-primary-blue'} border-[4px] rounded-[10px] outline-none`}
               />
               {!isValid && firstClick && (
