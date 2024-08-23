@@ -19,11 +19,19 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const token = localStorage.getItem('userInfo');
-      if (token) {
-        const storedUserInfo = await fetchGetUserInfo();
-        if (storedUserInfo) {
-          setUserInfo(storedUserInfo);
+      const storedData = localStorage.getItem('userInfo');
+      if (storedData) {
+        const parsedData = JSON.parse(storedData);
+        const currentTime = new Date().getTime();
+
+        if (parsedData.expiresAt && currentTime > parsedData.expiresAt) {
+          localStorage.removeItem('userInfo');
+          setUserInfo({});
+        } else {
+          const fetchedUserInfo = await fetchGetUserInfo();
+          if (fetchedUserInfo) {
+            setUserInfo(fetchedUserInfo);
+          }
         }
       }
     };

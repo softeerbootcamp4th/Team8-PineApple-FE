@@ -68,6 +68,10 @@ function CommentDetail() {
   const fetchComment = async () => {
     try {
       const response = await getEachComment(commentId);
+      if (response.code === 'NO_COMMENT') {
+        navigate('/');
+        return;
+      }
       setComment(response);
       setIsLiked(response.isLiked);
       setLikeCount(response.likeCount);

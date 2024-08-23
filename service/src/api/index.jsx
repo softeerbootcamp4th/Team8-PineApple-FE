@@ -1,5 +1,8 @@
 const ApiRequest = async (url, method, body) => {
-  const accessToken = localStorage.getItem('userInfo');
+  const userInfoString = localStorage.getItem('userInfo');
+
+  const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
+  const accessToken = userInfo ? userInfo.accessToken : null;
 
   try {
     const options = {
