@@ -32,7 +32,14 @@ function PhoneAuthModal({
         setAlertText('인증번호를 다시 확인해주세요!');
         setIsValid(false);
       } else {
-        localStorage.setItem('userInfo', response.accessToken);
+        const expiresAt = new Date().getTime() + 2 * 24 * 60 * 60 * 1000;
+
+        const userInfoLocalStorage = {
+          accessToken: response.accessToken,
+          expiresAt,
+        };
+
+        localStorage.setItem('userInfo', JSON.stringify(userInfoLocalStorage));
         setUserInfo(response);
         if (option === '자동차 아이템') {
           if (response.car) {
@@ -56,6 +63,16 @@ function PhoneAuthModal({
     setFirstClick(true);
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      if (isValid) {
+        handleAuth();
+      } else {
+        handleDisabledClick();
+      }
+    }
+  };
+
   return (
     <>
       <div className="relative">
@@ -63,6 +80,7 @@ function PhoneAuthModal({
           placeholder="인증번호 입력 (6자리)"
           onClick={firstClickEvent}
           onChange={handleInputText}
+          onKeyDown={handleKeyDown}
           className={`w-[640px] h-[80px] px-[30px] pl-[40px] mb-1500 text-body-3-regular text-neutral-black placeholder:text-body-3-regular placeholder-neutral-black placeholder-opacity-50 border-solid ${!isValid && firstClick ? 'border-red-500 focus:border-red-500' : 'border-neutral-black focus:border-primary-blue'} border-[4px] rounded-[10px] outline-none`}
         ></input>
         {!isValid && firstClick && (
