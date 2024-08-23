@@ -8,6 +8,7 @@ function EventIntroRewards() {
     const fetchInfo = async () => {
       try {
         const data = await getPrizeInfo();
+        console.log(data);
         if (Array.isArray(data)) {
           setInfo(data);
         } else {
@@ -46,7 +47,7 @@ function EventIntroRewards() {
             응모에 많이 참여할 수록 당첨 확률이 높아져요.
           </p>
           <p className="text-detail-3-semibold text-primary-blue">
-            1등 당첨자 발표: nnnn.nn.nn nn시
+            1등 당첨자 발표: 2024.08.29 13시
           </p>
         </div>
         <div>
@@ -80,7 +81,8 @@ function EventIntroRewards() {
             <p className="text-body-2-bold text-neutral-black w-[250px]">
               {info[3].rewardName}
               &nbsp;
-              {info[3].rewardCount}명
+              {/* {info[3].rewardCount}명 */}
+              10명
             </p>
           </div>
           <span className="absolute text-primary-blue text-detail-3-semibold top-52 right-8">
@@ -100,7 +102,8 @@ function EventIntroRewards() {
             <p className="text-body-2-bold text-neutral-black w-[250px]">
               {info[4].rewardName}
               &nbsp;
-              {info[4].rewardCount}명
+              {/* {info[4].rewardCount}명 */}
+              100명
             </p>
           </div>
           <span className="absolute text-primary-blue text-detail-3-semibold top-52 right-8">
@@ -118,7 +121,8 @@ function EventIntroRewards() {
             <p className="text-body-2-bold text-neutral-black w-[200px]">
               {info[5].rewardName}
               &nbsp;
-              {info[5].rewardCount}명
+              {/* {info[5].rewardCount}명 */}
+              1000명
             </p>
           </div>
           <span className="absolute text-primary-blue text-detail-3-semibold top-52 right-8">
