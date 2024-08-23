@@ -65,7 +65,7 @@ function WorldCup() {
   return (
     <div className="px-3000 pt-2000 pb-500">
       <div className="flex gap-2000">
-        <div className="w-[610px]">
+        <div className="min-w-[610px]">
           <WorldCupEventDescription />
           <WorldCupEventDetails onClick={handleGotoWorldCup} />
         </div>
