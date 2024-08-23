@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'introduce',
+        path: 'intro',
         element: <NewCarIntro />,
       },
     ],
