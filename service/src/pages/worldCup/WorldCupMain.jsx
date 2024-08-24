@@ -6,6 +6,23 @@ import shuffleArr from '@/utils/shuffleArr';
 import { postWorldCupResult } from '@/api/worldCup/index';
 import { Helmet } from 'react-helmet-async';
 
+const TITLE = '캐스퍼 상황 월드컵';
+const DESCRIPTION = '월드컵 게임을 통해 자동차 아이템을 획득하세요!';
+const OG_IMAGE_URL =
+  'https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/OGImage.png';
+const OG_URL = 'https://casper-event.store/event/worldcup';
+
+const HelmetMeta = () => (
+  <Helmet>
+    <title>{TITLE}</title>
+    <meta name="description" content={DESCRIPTION} />
+    <meta property="og:url" content={OG_URL} />
+    <meta property="og:title" content={TITLE} />
+    <meta property="og:description" content={DESCRIPTION} />
+    <meta property="og:image" content={OG_IMAGE_URL} />
+  </Helmet>
+);
+
 const WorldCupMain = () => {
   const navigate = useNavigate();
   const [totalData, setTotalData] = useState(shuffleArr(worldCupData));
@@ -66,26 +83,7 @@ const WorldCupMain = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>캐스퍼 상황 월드컵</title>
-        <meta
-          name="description"
-          content="월드컵 게임을 통해 자동차 아이템을 획득하세요!"
-        />
-        <meta
-          property="og:url"
-          content="https://casper-event.store/event/worldcup"
-        />
-        <meta property="og:title" content="캐스퍼 상황 월드컵" />
-        <meta
-          property="og:description"
-          content="월드컵 게임을 통해 자동차 아이템을 획득하세요!"
-        />
-        <meta
-          property="og:image"
-          content="https://softeer4-team8.s3.ap-northeast-2.amazonaws.com/OGImage.png"
-        />
-      </Helmet>
+      <HelmetMeta />
       <WorldCupGame
         title={getTitle()}
         roundData={roundData}
