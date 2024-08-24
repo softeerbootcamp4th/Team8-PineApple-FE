@@ -8,7 +8,7 @@ function Header() {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
   const textColor =
-    useLocation().pathname === '/introduce'
+    useLocation().pathname === '/intro'
       ? 'text-neutral-white'
       : 'text-neutral-black';
 
@@ -33,11 +33,12 @@ function Header() {
 
   return (
     <header className="absolute flex justify-between w-full bg-transparent px-3000 py-500">
-      <span
+      <NavLink
+        to="/"
         className={`flex items-center justify-center text-detail-1-bold text-neutral-black text-nowrap ${textColor}`}
       >
         CASPER ELECTRONIC
-      </span>
+      </NavLink>
       <div className="flex items-center justify-between">
         <NavLink
           to="/"
@@ -64,7 +65,7 @@ function Header() {
           이벤트 참여하기
         </NavLink>
         <NavLink
-          to="introduce"
+          to="intro"
           className={({ isActive }) =>
             `text-nowrap pr-[44px] ${textColor} ${
               isActive

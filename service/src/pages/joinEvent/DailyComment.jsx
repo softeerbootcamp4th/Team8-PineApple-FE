@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Edit from '@/assets/icons/edit.svg';
 import Link from '@/assets/icons/link.svg';
 import ToastMessage from '@/components/toastMessage/ToastMessage';
@@ -7,27 +7,20 @@ import useToast from '@/hooks/useToast';
 import PhoneInputModal from '@/components/modal/PhoneInputModal';
 import GetItemModal from '@/components/modal/GetItemModal';
 import { AuthContext } from '@/context/authContext';
+import useFunnel from '@/hooks/useFunnel';
 
 function DailyComment() {
-  const { userInfo, setUserInfo } = useContext(AuthContext);
-  const [openPhoneInputModal, setOpenPhoneInputModal] = useState(false);
+  const { userInfo } = useContext(AuthContext);
   const { showToast, messageType, handleShareClick, AlreadyPostComment } =
     useToast();
-  const [resultModalOpen, setResultModalOpen] = useState('');
-
-  const closeModal = () => {
-    setResultModalOpen('');
-  };
-
-  const closePhoneModal = () => {
-    setOpenPhoneInputModal(false);
-  };
+  const steps = ['none', 'login', 'comment', 'toolBox'];
+  const [Funnel, setStep] = useFunnel(steps);
 
   const handleOpenModal = () => {
     if (userInfo.phoneNumber === undefined) {
-      setOpenPhoneInputModal(true);
+      setStep('login');
     } else {
-      setResultModalOpen('comment');
+      setStep('comment');
     }
   };
 
@@ -61,23 +54,25 @@ function DailyComment() {
         </button>
       </div>
       {showToast && <ToastMessage messageType={messageType} />}
-      {resultModalOpen === 'comment' && (
-        <CommentInputModal
-          closeCommentModal={closeModal}
-          AlreadyPostComment={AlreadyPostComment}
-          setResultModalOpen={setResultModalOpen}
-        />
-      )}
-      {resultModalOpen === 'toolBox' && (
-        <GetItemModal close={closeModal} item="툴 박스 1개" />
-      )}
-      {openPhoneInputModal && (
-        <PhoneInputModal
-          closePhoneModal={closePhoneModal}
-          option="기대평 댓글 작성"
-          setResultModalOpen={setResultModalOpen}
-        />
-      )}
+      <Funnel>
+        <Funnel.Step name="login">
+          <PhoneInputModal
+            closePhoneModal={() => setStep('none')}
+            option="기대평 댓글 작성"
+            setResultModalOpen={setStep}
+          />
+        </Funnel.Step>
+        <Funnel.Step name="comment">
+          <CommentInputModal
+            closeCommentModal={() => setStep('none')}
+            AlreadyPostComment={AlreadyPostComment}
+            setResultModalOpen={setStep}
+          />
+        </Funnel.Step>
+        <Funnel.Step name="toolBox">
+          <GetItemModal close={() => setStep('none')} item="툴 박스 1개" />
+        </Funnel.Step>
+      </Funnel>
     </div>
   );
 }

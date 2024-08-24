@@ -45,7 +45,7 @@ function EventIntroMain() {
                   </p>
                 </button>
               </Link>
-              <Link to="introduce">
+              <Link to="intro">
                 <button className="flex items-center justify-center bg-transparent rounded-full px-1000 py-500 border-[2px] border-solid border-neutral-black hover:scale-105 duration-200">
                   <p className="text-neutral-black text-detail-2-semibold">
                     캐스퍼 EV 알아보기

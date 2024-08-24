@@ -133,6 +133,7 @@ function WorldCupGame({ title = '8강', onSelect, roundData }) {
                 onMouseLeave={handleMouseLeave}
                 onClick={() => handleAnimation(true)}
                 className={`z-[100] w-[440px] h-[490px] ${animationClass === 'animate-slide-right-to-left' ? 'hidden' : null}`}
+                draggable="false"
               />
             </div>
 
@@ -161,6 +162,7 @@ function WorldCupGame({ title = '8강', onSelect, roundData }) {
                 onMouseLeave={handleMouseLeave}
                 onClick={() => handleAnimation(false)}
                 className={`z-[100] w-[440px] h-[490px] ${animationClass === 'animate-slide-left-to-right' ? 'hidden' : null}`}
+                draggable="false"
               />
             </div>
             <p

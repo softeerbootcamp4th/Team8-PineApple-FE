@@ -12,6 +12,7 @@ import NoQuiz from '@/pages/miniquiz/NoQuiz';
 import Reward from '@/pages/joinEvent/Reward';
 import CommentDetail from '@/pages/joinEvent/commentList/CommentDetail';
 import Redirect from '@/pages/joinEvent/commentList/Redirect';
+import NotFound from '@/pages/eventIntro/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -61,8 +62,12 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'introduce',
+        path: 'intro',
         element: <NewCarIntro />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },

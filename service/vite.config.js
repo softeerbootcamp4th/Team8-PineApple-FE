@@ -12,13 +12,7 @@ export default defineConfig({
     react(),
     svgr(),
     prerender({
-      routes: [
-        '/',
-        '/event',
-        '/event/worldCup',
-        '/event/miniQuiz',
-        '/introduce',
-      ],
+      routes: ['/', '/event', '/event/worldCup', '/event/miniQuiz', '/intro'],
       renderer: '@prerenderer/renderer-puppeteer',
       rendererOptions: {
         maxConcurrentRoutes: 1,
