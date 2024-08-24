@@ -9,7 +9,7 @@ import JSZip from 'jszip';
 const PRIZE_VALUES = [2, 3, 4, 5];
 
 function UploadPrize() {
-  const [rank, setRank] = useState(2);
+  const [rank, setRank] = useState(PRIZE_VALUES[0]);
   const tempRank = useRef(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,6 @@ function UploadPrize() {
   const [totalPrize, setTotalPrize] = useState({});
   const [openChangeModal, setOpenChangeModal] = useState(false);
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
-  const [modified, setModified] = useState(false);
 
   const createFormData = useFormData();
 
@@ -46,7 +45,7 @@ function UploadPrize() {
   }, []);
 
   const handleRank = rank => {
-    if (!modified) {
+    if (!selectedFile) {
       setRank(rank);
     } else {
       tempRank.current = rank;
@@ -101,7 +100,6 @@ function UploadPrize() {
 
   const handleFileChange = async files => {
     if (!files.length) return;
-    setModified(true);
     setErrorMessage('');
     setIsLoading(true);
 
