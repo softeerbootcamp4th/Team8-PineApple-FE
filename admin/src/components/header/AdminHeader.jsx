@@ -15,54 +15,63 @@ function AdminHeader() {
   const [isPreviousDayDisabled, setIsPreviousDayDisabled] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
 
-  useEffect(() => {
+  const checkAuthorization = () => {
     const token = sessionStorage.getItem('userInfo');
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
+    if (!token) {
+      navigate('/login');
+      return;
+    }
 
-        if (decodedToken && decodedToken.role === 'ADMIN') {
-          // Do Nothing
-        } else {
-          navigate('/error');
-        }
-      } catch (error) {
-        console.error(error);
+    try {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken?.role !== 'ADMIN') {
         navigate('/error');
       }
-    } else {
-      navigate('/login');
+    } catch (error) {
+      navigate('/error');
     }
-  }, []);
+  };
 
   useEffect(() => {
-    const getDate = async () => {
+    checkAuthorization();
+  }, []);
+
+  const fetchEventSchedules = async () => {
+    try {
       const response = await getEventSchedules();
       if (response.code === 'UNAUTHORIZED') {
         navigate('/error');
-      } else {
-        const startDate = new Date(response[0].date);
-        const finishDate = new Date(response[13].date);
-        const currentDate = new Date(dateInfo);
-        setIsPreviousDayDisabled(currentDate.getTime() === startDate.getTime());
-        setIsNextDayDisabled(currentDate.getTime() === finishDate.getTime());
+        return;
       }
-    };
-    getDate();
-  }, [dateInfo]);
 
-  const handleDateChange = event => {
-    setSelectedDate(event.target.value);
+      const startDate = new Date(response[0]?.date);
+      const finishDate = new Date(response[response.length - 1]?.date);
+      const currentDate = new Date(dateInfo);
+
+      setIsPreviousDayDisabled(currentDate.getTime() === startDate.getTime());
+      setIsNextDayDisabled(currentDate.getTime() === finishDate.getTime());
+    } catch (error) {
+      navigate('/error');
+    }
+  };
+
+  useEffect(() => {
+    fetchEventSchedules();
+  }, []);
+
+  const handleDateChange = event => setSelectedDate(event.target.value);
+
+  const navigateToDate = newDate => {
+    const [, , tabName] = location.pathname.split('/');
+    const newPath = `/${dateFormatting(newDate)}${tabName ? `/${tabName}` : ''}`;
+    navigate(newPath);
   };
 
   const handlePreviousDay = () => {
     if (!isPreviousDayDisabled) {
       const previousDay = new Date(dateInfo);
       previousDay.setDate(previousDay.getDate() - 1);
-      const [, , tabName] = location.pathname.split('/');
-      navigate(
-        `/${dateFormatting(previousDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
-      );
+      navigateToDate(previousDay);
     }
   };
 
@@ -70,15 +79,16 @@ function AdminHeader() {
     if (!isNextDayDisabled) {
       const nextDay = new Date(dateInfo);
       nextDay.setDate(nextDay.getDate() + 1);
-      const [, , tabName] = location.pathname.split('/');
-      navigate(
-        `/${dateFormatting(nextDay)}${tabName !== undefined ? `/${tabName}` : ''}`,
-      );
+      navigateToDate(nextDay);
     }
   };
 
-  const handleSubmit = () => {
-    putEventSchedules(selectedDate);
+  const handleSubmit = async () => {
+    try {
+      await putEventSchedules(selectedDate);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
