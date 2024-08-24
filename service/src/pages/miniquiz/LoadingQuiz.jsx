@@ -1,36 +1,43 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BlueButton from '@/components/buttons/BlueButton';
 import WhiteButton from '@/components/buttons/WhiteButton';
 import { useNavigate } from 'react-router-dom';
 
+const useLoadingText = (initialText, texts, interval) => {
+  const [loadingText, setLoadingText] = useState(initialText);
+
+  useEffect(() => {
+    let index = 0;
+    const textInterval = setInterval(() => {
+      setLoadingText(texts[index]);
+      index = (index + 1) % texts.length;
+    }, interval);
+
+    return () => clearInterval(textInterval);
+  }, [texts, interval]);
+
+  return loadingText;
+}; //loading 시 문자 바뀜
+
 function LoadingQuiz() {
   const navigate = useNavigate();
 
-  const handleExit = () => {
-    navigate('/event');
-  };
+  const handleExit = () => navigate('/event');
 
-  const handleRefresh = useCallback(() => {
-    window.location.reload();
-  }, []);
+  const handleRefresh = () => window.location.reload();
 
-  const [loadingText, setLoadingText] = useState('퀴즈 정보를 가져오는 중..!');
+  const loadingTexts = [
+    '퀴즈 정보를 가져오는 중.',
+    '퀴즈 정보를 가져오는 중..',
+    '퀴즈 정보를 가져오는 중...',
+    '퀴즈 정보를 가져오는 중..!',
+  ];
 
-  useEffect(() => {
-    const texts = [
-      '퀴즈 정보를 가져오는 중.',
-      '퀴즈 정보를 가져오는 중..',
-      '퀴즈 정보를 가져오는 중...',
-      '퀴즈 정보를 가져오는 중..!',
-    ];
-    let index = 0;
-    const interval = setInterval(() => {
-      setLoadingText(texts[index]);
-      index = (index + 1) % texts.length;
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
+  const loadingText = useLoadingText(
+    '퀴즈 정보를 가져오는 중..!',
+    loadingTexts,
+    500,
+  );
 
   return (
     <div className="flex flex-col items-center h-screen bg-miniquiz-paper pt-4000">
@@ -46,9 +53,8 @@ function LoadingQuiz() {
           onClickFunc={handleExit}
           styles="px-3000 py-500 text-bold-3-regular"
         />
-
         <WhiteButton
-          value="새로고침"
+          value="새로고침(선착순이 밀릴 수 있습니다)"
           onClickFunc={handleRefresh}
           styles="px-3000 py-500 text-bold-3-regular"
         />

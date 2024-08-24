@@ -15,6 +15,7 @@
     "@prerenderer/rollup-plugin": "^0.3.12",
     "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10.4.19",
+    "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-import-resolver-node": "^0.3.9",

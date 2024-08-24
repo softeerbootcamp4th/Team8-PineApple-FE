@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import WhiteButton from '@/components/buttons/WhiteButton';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function NoQuizMain() {
    */
   //이런 식으로 하면 되긴 하지만 이 페이지에서는 불필요한 최적화임
 
-  const handleExit = () => navigate('/event');
+  const handleNavigateToEvent = () => navigate('/event');
 
   return (
     <div className="flex flex-col items-center h-screen bg-miniquiz-paper pt-5000">
@@ -26,7 +26,7 @@ function NoQuizMain() {
       </div>
       <WhiteButton
         value="돌아가기"
-        onClickFunc={handleExit}
+        onClickFunc={handleNavigateToEvent}
         styles="px-3000 py-500 text-detail-1-semibold"
       />
     </div>

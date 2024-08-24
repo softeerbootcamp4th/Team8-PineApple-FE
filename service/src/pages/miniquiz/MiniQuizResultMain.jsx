@@ -14,39 +14,29 @@ function MiniQuizResultMain({ response }) {
   const [orderModal, setOrderModal] = useState(false);
 
   useEffect(() => {
-    const check = async () => {
+    const checkReward = async () => {
       try {
-        const result = await getRewardCheck();
-        const { rewarded } = result;
+        const { rewarded } = await getRewardCheck();
         if (rewarded) {
           setUserGotPrize(true);
         }
       } catch (error) {
-        console.error(error);
+        console.error('Error checking reward:', error);
       }
     };
-    check();
+    checkReward();
   }, []);
 
-  const handleExit = () => {
+  const handleExit = () =>
     navigate('/event', { state: { scrollTo: 'miniQuiz' } });
-  };
 
-  const closeToolBoxModal = useCallback(() => {
-    setToolBoxModal(false);
-  }, []);
-
-  const openToolBoxModal = useCallback(() => {
-    setToolBoxModal(true);
-  }, []);
-
-  const closeOrderModal = useCallback(() => {
-    setOrderModal(false);
-  }, []);
-
-  const openOrderModal = useCallback(() => {
-    setOrderModal(true);
-  }, []);
+  /*
+   * 가벼운 함수이므로 useCallback 삭제
+   */
+  const closeToolBoxModal = setToolBoxModal(false);
+  const openToolBoxModal = setToolBoxModal(true);
+  const closeOrderModal = setOrderModal(false);
+  const openOrderModal = setOrderModal(true);
 
   if (isCorrect === undefined) {
     return <div>예상치 못한 오류가 발생했습니다.</div>; // MiniQuizResult에 navigate state로 전달된 값이 잘못되었을 때

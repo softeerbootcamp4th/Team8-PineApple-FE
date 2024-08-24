@@ -13,6 +13,8 @@ function ButtonCases({
   openOrderModal,
 }) {
   const { userInfo } = useContext(AuthContext);
+  //showOrderButton은 선착순 수령 대상자인지에 대한 검사(500명 안에 들면 participantId가 defined)
+  //userGotPrize는 선착순 수령 여부 이를 통해 선착순 수령 대상자가 선착순을 수령하면 선착순 버튼을 삭제시키기 위함
   const showOrderButton = participantId !== undefined && !userGotPrize;
   const showToolBoxButton = isCorrect && !(userInfo.quizParticipated === true); //userInfo.quizParticipated는 undefined일 수 있음
   const buttons = [];
