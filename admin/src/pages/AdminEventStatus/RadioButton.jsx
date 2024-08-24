@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function RadioButton({ value, rowsPerPage, onChange }) {
+function RadioButton({ value, checked, onChange }) {
   return (
     <label className="flex items-center gap-2">
       <input
         type="radio"
         value={value}
-        checked={rowsPerPage === value}
+        checked={checked}
         onChange={onChange}
         className="w-[20px] h-[20px]"
       />
@@ -18,7 +18,7 @@ function RadioButton({ value, rowsPerPage, onChange }) {
 
 RadioButton.propTypes = {
   value: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
+  checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
