@@ -84,7 +84,7 @@ function JoinEventIntroMain() {
               <div className="relative">
                 <BluePurpleButton
                   value="결과 보기"
-                  onClickFunc={!isRewardButtonDisabled && handleReward}
+                  onClickFunc={handleReward}
                   styles="text-body-3-regular px-5000 py-400"
                   disabled={isRewardButtonDisabled}
                 />

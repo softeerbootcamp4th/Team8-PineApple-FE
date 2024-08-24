@@ -7,8 +7,8 @@ const ClickBox = ({ id, value, isChosen, onClick }) => {
     'hover-scale-ani set-center text-body-3-semibold min-w-[586px] min-h-[120px] rounded-[15px] border-2 overflow-hidden';
 
   const className = classnames(baseClass, {
-    'bg-background-lightblue gradient-border': id === isChosen,
-    'border-op-30-blue bg-neutral-white': id !== isChosen,
+    ' bg-background-lightblue gradient-border': isChosen,
+    ' border-op-30-blue bg-neutral-white': !isChosen,
   }); //classnames 를 사용하여 가독성 개선
 
   //이전 코드
@@ -31,7 +31,7 @@ const ClickBox = ({ id, value, isChosen, onClick }) => {
 ClickBox.propTypes = {
   id: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
-  isChosen: PropTypes.number.isRequired,
+  isChosen: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
