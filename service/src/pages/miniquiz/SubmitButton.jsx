@@ -43,7 +43,7 @@ function SubmitButton({ quizId, isChosen, disabled, setDisabled }) {
   return (
     <BluePurpleButton
       value="제출"
-      onClickFunc={handleSubmit}
+      onClickFunc={!disabled && handleSubmit}
       disabled={disabled}
       styles="px-3000 py-500 text-detail-1-regular"
     />

@@ -12,8 +12,7 @@ function BaseButton({
   return (
     <button
       onClick={onClickFunc}
-      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover-scale-ani'} set-center rounded-full ${bgColor} ${textColor}`}
-      disabled={disabled}
+      className={`${styles} ${disabled ? 'opacity-30 cursor-default' : 'opacity-100 hover-scale-ani'} set-center rounded-full ${bgColor} ${textColor}`}
     >
       {value}
     </button>
