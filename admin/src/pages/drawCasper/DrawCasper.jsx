@@ -4,7 +4,7 @@ import BlackButton from '@/components/buttons/BlackButton';
 import ModalFrame from '@/components/modal/ModalFrame';
 import { draw } from '@/api/DrawCasper/index';
 
-function DrawCasper() {
+const useDrawCasper = () => {
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const [winner, setWinner] = useState('');
 
@@ -19,24 +19,36 @@ function DrawCasper() {
     }
   };
 
+  return {
+    openSubmitModal,
+    winner,
+    setOpenSubmitModal,
+    handleSubmit,
+  };
+};
+
+function DrawCasper() {
+  const { openSubmitModal, winner, setOpenSubmitModal, handleSubmit } =
+    useDrawCasper();
+
   return (
     <div className="w-full mt-10">
       <AdminEditHeader info="1등 경품 추첨" />
       <div className="set-center h-[400px] w-full bg-neutral-white rounded-b-[10px] py-4">
-        {winner === '' ? (
+        {winner ? (
+          <div className="text-heading-banner-title-3">{winner}</div>
+        ) : (
           <BlackButton
             value="추첨하기"
             onClickFunc={() => setOpenSubmitModal(true)}
           />
-        ) : (
-          <div className="text-heading-banner-title-3">{winner}</div>
         )}
       </div>
       {openSubmitModal && (
         <ModalFrame
           text="정말로 추첨하시겠습니까??"
           onClickNo={() => setOpenSubmitModal(false)}
-          onClickYes={() => handleSubmit()}
+          onClickYes={handleSubmit}
         />
       )}
     </div>
