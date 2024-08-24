@@ -37,7 +37,7 @@ QuizQuestions.propTypes = {
 function MiniQuizMain() {
   const navigate = useNavigate();
   const { code, loading, error, data, shuffledQuizQuestion } = useMiniQuiz();
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState(0);
   const [isSubmitDisabled, setSubmitDisabled] = useState(true);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ function MiniQuizMain() {
       />
       <SubmitButton
         quizId={quizId}
-        selectedId={selectedId}
+        isChosen={selectedId}
         disabled={isSubmitDisabled}
         setDisabled={setSubmitDisabled}
       />
