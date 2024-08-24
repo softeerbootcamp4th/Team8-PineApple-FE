@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getMiniQuiz } from '@/api/miniQuiz';
 import shuffleArr from '@/utils/shuffleArr';
 
@@ -13,25 +13,25 @@ const useMiniQuiz = () => {
     const fetchMiniQuiz = async () => {
       try {
         setLoading(true);
-        const [data] = await Promise.all([
+        setError('');
+        const [quizData] = await Promise.all([
           getMiniQuiz(),
-          new Promise(resolve => setTimeout(resolve, 500)),
-        ]); //Promise.all을 이용하여 둘 중 오래 걸리는 시간 동안 로딩 화면 보여줌
-        const { code } = data;
-        if (code === 'NO_QUIZ_CONTENT') {
-          setCode(code);
+          new Promise(resolve => setTimeout(resolve, 300)), // 사용자의 경험을 방해하지 않는 선에서 로딩 화면을 보여주기 위한 0.3초
+        ]);
+
+        const { quizCode, quizQuestions } = quizData;
+        if (quizCode === 'NO_QUIZ_CONTENT') {
+          setCode(quizCode);
           return;
         }
-        setData(data);
-        setShuffledQuizQuestion(shuffleArr(Object.entries(data.quizQuestions)));
+        setData(quizData);
+        setShuffledQuizQuestion(shuffleArr(Object.entries(quizQuestions)));
       } catch (err) {
-        setError(err);
-        return;
+        setError('퀴즈 로딩에 실패했습니다. 다시 시도 부탁드립니다.');
       } finally {
         setLoading(false);
       }
     };
-
     fetchMiniQuiz();
   }, []);
 

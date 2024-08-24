@@ -2353,7 +2353,7 @@ chromium-bidi@0.6.4:
     urlpattern-polyfill "10.0.0"
     zod "3.23.8"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
   integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
@@ -3319,6 +3319,7 @@ fast-glob@^3.3.0:
     "@nodelib/fs.walk" "^1.2.3"
     glob-parent "^5.1.2"
     merge2 "^1.3.0"
+    micromatch "^4.0.4"
 
 fast-json-stable-stringify@^2.0.0:
   version "2.1.0"
@@ -3695,6 +3696,7 @@ http-proxy-middleware@^2.0.6:
     http-proxy "^1.18.1"
     is-glob "^4.0.1"
     is-plain-obj "^3.0.0"
+    micromatch "^4.0.2"
 
 http-proxy@^1.18.1:
   version "1.18.1"
@@ -4272,6 +4274,14 @@ micro-slider@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/micro-slider/-/micro-slider-1.1.0.tgz#f664f9fe6e0cf569ff224fd9c07dd95d609716d3"
   integrity sha512-/PQSZMZdjJ8/UCG2B27Jf/WomKxfldZVxb1nr6FJBe+nOU0jt59Z9udu02TtND9/dj/GvxMxS27oGZPAthUMJA==
+
+micromatch@^4.0.2, micromatch@^4.0.4, micromatch@^4.0.5, micromatch@^4.0.7:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.8.tgz#d66fa18f3a47076789320b9b1af32bd86d9fa202"
+  integrity sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==
+  dependencies:
+    braces "^3.0.3"
+    picomatch "^2.3.1"
 
 milliparsec@^2.3.0:
   version "2.3.0"
@@ -4901,7 +4911,7 @@ react-js-pagination@^3.0.3:
     paginator "^1.0.0"
     prop-types "15.x.x - 16.x.x"
     react "15.x.x - 16.x.x"
-    tar "2.2.2"
+    tar "7.4.3"
 
 react-router-dom@^6.25.1:
   version "6.25.1"
@@ -5561,6 +5571,7 @@ tailwindcss@^3.4.6:
     is-glob "^4.0.3"
     jiti "^1.21.0"
     lilconfig "^2.1.0"
+    micromatch "^4.0.5"
     normalize-path "^3.0.0"
     object-hash "^3.0.0"
     picocolors "^1.0.0"

@@ -13,8 +13,7 @@ function Dau({ data }) {
           key={index}
           className="set-center bg-[#363636] min-w-[157px] min-h-[70px] border"
         >
-          {/* 추후 null은 0으로 변경되어 올 예정 지금은 임시방편 */}
-          {value === null ? 0 : value}
+          {value}
         </div>
       ))}
     </div>
@@ -22,7 +21,7 @@ function Dau({ data }) {
 }
 
 Dau.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default Dau;

@@ -1,14 +1,23 @@
 import React from 'react';
-import BaseButton from '@/components/buttons/BaseButton';
+import PropTypes from 'prop-types';
 
-function WhiteButton(props) {
+function WhiteButton({ value, onClickFunc, styles, disabled = false }) {
   return (
-    <BaseButton
-      {...props}
-      bgColor="bg-neutral-white"
-      textColor="text-neutral-black"
-    />
+    <button
+      onClick={onClickFunc}
+      className={`${styles} ${disabled ? 'opacity-30' : 'opacity-100 hover-scale-ani'} set-center rounded-full bg-neutral-white text-neutral-black`}
+      disabled={disabled}
+    >
+      {value}
+    </button>
   );
 }
+
+WhiteButton.propTypes = {
+  value: PropTypes.string.isRequired,
+  onClickFunc: PropTypes.func.isRequired,
+  styles: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+};
 
 export default React.memo(WhiteButton);

@@ -43,11 +43,9 @@ function UploadReward() {
       file: selectedFile,
       quizDate: dateInfo,
     });
-    console.log(body);
     try {
       setIsLoading(true);
       const response = await postQuizReward(body);
-      console.log(response);
       setOpenModal(false);
       if (response.message === 'success') {
         setProcessMessage('파일 업로드를 완료했습니다.');
@@ -64,7 +62,6 @@ function UploadReward() {
 
   const handleFileChange = async files => {
     if (!files.length) return;
-    setModified(true);
     setErrorMessage('');
     setIsLoading(true);
 
