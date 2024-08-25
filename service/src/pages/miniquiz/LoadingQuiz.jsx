@@ -33,11 +33,7 @@ function LoadingQuiz() {
     '퀴즈 정보를 가져오는 중..!',
   ];
 
-  const loadingText = useLoadingText(
-    '퀴즈 정보를 가져오는 중..!',
-    loadingTexts,
-    500,
-  );
+  const loadingText = useLoadingText(loadingTexts[3], loadingTexts, 500);
 
   return (
     <div className="flex flex-col items-center h-screen bg-miniquiz-paper pt-4000">

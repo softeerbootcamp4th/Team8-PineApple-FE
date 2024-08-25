@@ -11,7 +11,7 @@ const QuizDescription = ({ description }) => (
 );
 
 QuizDescription.propTypes = {
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
 };
 
 const QuizQuestions = ({ questions, selectedId, onSelect }) => (

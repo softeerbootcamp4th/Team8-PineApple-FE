@@ -8,7 +8,6 @@ function EventIntroRewards() {
     const fetchInfo = async () => {
       try {
         const data = await getPrizeInfo();
-        console.log(data);
         if (Array.isArray(data)) {
           setInfo(data);
         } else {

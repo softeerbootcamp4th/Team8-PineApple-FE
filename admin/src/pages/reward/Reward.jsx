@@ -51,7 +51,6 @@ function Reward() {
   };
 
   const handleSubmit = async () => {
-    console.log(rewardData);
     const formData = createFormData(rewardData);
     try {
       const response = await putAdminReward(formData);
