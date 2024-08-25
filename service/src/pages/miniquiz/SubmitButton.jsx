@@ -51,7 +51,7 @@ function SubmitButton({ quizId, isChosen, disabled, setDisabled }) {
 }
 
 SubmitButton.propTypes = {
-  quizId: PropTypes.number.isRequired,
+  quizId: PropTypes.number,
   isChosen: PropTypes.number.isRequired,
   disabled: PropTypes.bool.isRequired,
   setDisabled: PropTypes.func.isRequired,

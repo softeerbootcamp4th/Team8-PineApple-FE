@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import InputForm from '@/components/form/InputForm';
 
 function MiniQuizContent({ response, onChange }) {
-  // console.log(response);
   return (
     <>
       <InputForm

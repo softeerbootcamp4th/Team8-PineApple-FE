@@ -18,10 +18,9 @@ const useMiniQuiz = () => {
           getMiniQuiz(),
           new Promise(resolve => setTimeout(resolve, 300)), // 사용자의 경험을 방해하지 않는 선에서 로딩 화면을 보여주기 위한 0.3초
         ]);
-
-        const { quizCode, quizQuestions } = quizData;
-        if (quizCode === 'NO_QUIZ_CONTENT') {
-          setCode(quizCode);
+        const { code, quizQuestions } = quizData;
+        if (code === 'NO_QUIZ_CONTENT') {
+          setCode(code);
           return;
         }
         setData(quizData);

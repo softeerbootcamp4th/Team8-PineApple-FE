@@ -1,4 +1,4 @@
-name: admin Deploy to S3 and CloudFront
+name: service Deploy to S3 and CloudFront
 
 on:
   push:
