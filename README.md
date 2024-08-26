@@ -204,7 +204,7 @@ feat : #27/Component Base - Button 기능 개발
 ```
 
 ## 1차 발표 pdf 링크
-> https://nbviewer.org/github/softeerbootcamp4th/Team8-PineApple-FE/blob/main/service/team8_%EB%B0%9F%EC%9C%BC%EC%8B%A4%EC%88%98%EC%88%98%EC%88%B2_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C%EC%B4%88%EC%95%88.pdf
+> [pdf 보기](https://nbviewer.org/github/softeerbootcamp4th/Team8-PineApple-FE/blob/main/service/team8_%EB%B0%9F%EC%9C%BC%EC%8B%A4%EC%88%98%EC%88%98%EC%88%B2_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C%EC%B4%88%EC%95%88.pdf)
 
 ## Notion 주소
 ```
