@@ -18,14 +18,11 @@ function NoQuizMain() {
 
   return (
     <div className="flex flex-col items-center h-screen bg-miniquiz-paper pt-5000">
-      <div className="text-heading-banner-title-3 text-gradient-blue-purple py-500">
-        12시부터 13까지는 퀴즈 준비시간입니다!!!
-      </div>
-      <div className="text-heading-banner-title-3 text-gradient-blue-purple pb-1000">
-        이벤트 페이지로 돌아가시겠습니까???
+      <div className="text-heading-banner-title-3 text-gradient-blue-purple py-2000">
+        12시부터 13시까지는 퀴즈에 참여할 수 없습니다!
       </div>
       <WhiteButton
-        value="돌아가기"
+        value="이벤트 페이지 돌아가기"
         onClickFunc={handleNavigateToEvent}
         styles="px-3000 py-500 text-detail-1-semibold"
       />

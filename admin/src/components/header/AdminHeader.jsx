@@ -57,7 +57,7 @@ function AdminHeader() {
 
   useEffect(() => {
     fetchEventSchedules();
-  }, []);
+  }, [dateInfo]);
 
   const handleDateChange = event => setSelectedDate(event.target.value);
 
